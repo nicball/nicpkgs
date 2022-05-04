@@ -6,7 +6,7 @@
     url = "github:NixOS/nixpkgs/nixos-19.09";
     flake = false;
   };
-  inputs.fvckbot = "github:nicball/fvckbot";
+  inputs.fvckbot.url = "github:nicball/fvckbot";
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, fvckbot }:
     flake-utils.eachDefaultSystem (system: {
