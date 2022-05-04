@@ -7,8 +7,12 @@
     flake = false;
   };
   inputs.fvckbot.url = "github:nicball/fvckbot";
+  inputs.armake2 = {
+    url = "github:KoffeinFlummi/armake2";
+    flake = false;
+  };
 
-  outputs = { self, nixpkgs, flake-utils, nixos1909, fvckbot }:
+  outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system: {
       packages = {
 
@@ -42,7 +46,7 @@
               meta = {};
             };
 
-        fvckbot = fvckbot.defaultPackage."${system}";
+        fvckbot = inputs.fvckbot.defaultPackage."${system}";
 
         terraria-server =
           with nixpkgs.legacyPackages."${system}";
@@ -68,6 +72,18 @@
               runHook postInstall
             '';
             meta = {};
+          };
+
+        armake2 =
+          with nixpkgs.legacyPackages."${system}";
+          rustPlatform.buildRustPackage rec {
+            pname = "armake2";
+            version = "0.3.0";
+            src = inputs.armake2;
+            cargoHash = "sha256-Y62c74xlpveietd+zP8uo14Q0A6h9fFdnPzCYf9RBO8=";
+            buildInputs = [ openssl ];
+            nativeBuildInputs = [ pkg-config ];
+            doCheck = false;
           };
 
       };
