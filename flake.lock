@@ -3,17 +3,16 @@
     "armake2": {
       "flake": false,
       "locked": {
-        "lastModified": 1567803938,
-        "narHash": "sha256-7es4KMMDwgRFe3MzU44gSslYPhHd38hagEPCmlUvzD0=",
+        "lastModified": 1630333773,
+        "narHash": "sha256-gLvizbiKWsE2bpGLnSoLbqfm1cQUcnqS4l48GeF/W8k=",
         "owner": "KoffeinFlummi",
         "repo": "armake2",
-        "rev": "836b44c3356e6ca249621a94fbbba82c251066fa",
+        "rev": "2e66c9243ab08666a5689a5344517b5ddf9f8abe",
         "type": "github"
       },
       "original": {
         "owner": "KoffeinFlummi",
         "repo": "armake2",
-        "rev": "836b44c3356e6ca249621a94fbbba82c251066fa",
         "type": "github"
       }
     },

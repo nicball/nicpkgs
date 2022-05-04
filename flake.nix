@@ -8,7 +8,7 @@
   };
   inputs.fvckbot.url = "github:nicball/fvckbot";
   inputs.armake2 = {
-    url = "github:KoffeinFlummi/armake2/836b44c3356e6ca249621a94fbbba82c251066fa";
+    url = "github:KoffeinFlummi/armake2";
     flake = false;
   };
 
@@ -80,9 +80,10 @@
             pname = "armake2";
             version = "0.3.0";
             src = inputs.armake2;
-            cargoHash = "sha256-qtj3Q6rXBkXqSx/z03flzM0fgOm+xlPXsKltlxvIom0=";
+            cargoHash = "sha256-Y62c74xlpveietd+zP8uo14Q0A6h9fFdnPzCYf9RBO8=";
             buildInputs = [ openssl ];
             nativeBuildInputs = [ pkg-config ];
+            cargoPatches = [ ./armake2.patch ];
           };
 
       };
