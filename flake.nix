@@ -80,7 +80,7 @@
             pname = "armake2";
             version = "0.3.0";
             src = inputs.armake2;
-            cargoHash = "sha256-Y62c74xlpveietd+zP8uo14Q0A6h9fFdnPzCYf9RBO8=";
+            cargoHash = "sha256-04JqADSD1z6UwUMh57MqxWpmpBdSLtvf8SvYnF76kDY=";
             buildInputs = [ openssl ];
             nativeBuildInputs = [ pkg-config ];
             cargoPatches = [ ./armake2.patch ];
