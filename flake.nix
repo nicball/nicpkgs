@@ -9,7 +9,7 @@
   inputs.fvckbot.url = "github:nicball/fvckbot";
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, fvckbot }:
-    flake-utils.eachDefaultSystem (system: {
+    flake-utils.lib.eachDefaultSystem (system: {
       packages = {
 
         piqueserver =
@@ -42,7 +42,7 @@
               meta = {};
             };
 
-        fvckbot = fvckbot.defaultPackage;
+        fvckbot = fvckbot.defaultPackage."${system}";
 
         terraria-server =
           with nixpkgs.legacyPackages."${system}";
