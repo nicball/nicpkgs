@@ -6,11 +6,6 @@
     url = "github:NixOS/nixpkgs/nixos-19.09";
     flake = false;
   };
-  inputs.fvckbot.url = "github:nicball/fvckbot";
-  inputs.armake2 = {
-    url = "github:KoffeinFlummi/armake2";
-    flake = false;
-  };
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system: {
@@ -46,7 +41,7 @@
               meta = {};
             };
 
-        fvckbot = inputs.fvckbot.defaultPackage."${system}";
+        fvckbot = (builtins.getFlake "github:nicball/fvckbot/24de6445b5c29f8bbc69f6cad20d097c17316ea0").defaultPackage."${system}";
 
         terraria-server =
           with nixpkgs.legacyPackages."${system}";
@@ -79,7 +74,12 @@
           rustPlatform.buildRustPackage rec {
             pname = "armake2";
             version = "0.3.0";
-            src = inputs.armake2;
+            src = fetchFromGitHub {
+              owner = "KoffeinFlummi";
+              repo = "armake2";
+              rev = "2e66c9243ab08666a5689a5344517b5ddf9f8abe";
+              sha256 = "sha256-gLvizbiKWsE2bpGLnSoLbqfm1cQUcnqS4l48GeF/W8k=";
+            };
             cargoHash = "sha256-04JqADSD1z6UwUMh57MqxWpmpBdSLtvf8SvYnF76kDY=";
             buildInputs = [ openssl ];
             nativeBuildInputs = [ pkg-config ];
