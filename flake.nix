@@ -89,6 +89,10 @@
         arma3-unix-launcher =
           with nixpkgs.legacyPackages."${system}";
           if system != "x86_64-linux" then null else
+          let aulimg = builtins.fetchurl {
+            url = "https://github.com/muttleyxd/arma3-unix-launcher/releases/download/commit-355/Arma_3_Unix_Launcher-x86_64.AppImage";
+            sha256 = "sha256-Q82d1aBqufJErSTudvBUe4rxThrNE4Xydd7YrG9HcaU=";
+          }; in
           stdenv.mkDerivation {
             pname = "arma3-unix-launcher";
             version = "6.6.6";
@@ -100,7 +104,7 @@
               runHook preInstall
               mkdir -p $out/bin
               mkdir -p $out/share/arma3-unix-launcher
-              cp ${./Arma_3_Unix_Launcher-x86_64.AppImage} $out/share/arma3-unix-launcher/launcher.AppImage
+              cp ${aulimg} $out/share/arma3-unix-launcher/launcher.AppImage
               makeWrapper ${appimage-run}/bin/appimage-run $out/bin/arma3-unix-launcher --add-flags "$out/share/arma3-unix-launcher/launcher.AppImage"
               runHook postInstall
             '';
