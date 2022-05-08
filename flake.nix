@@ -86,6 +86,26 @@
             cargoPatches = [ ./armake2.patch ];
           };
 
+        arma3-unix-launcher =
+          with nixpkgs.legacyPackages."${system}";
+          if system != "x86_64-linux" then null else
+          stdenv.mkDerivation {
+            pname = "arma3-unix-launcher";
+            version = "6.6.6";
+            nativeBuildInputs = [ makeWrapper ];
+            dontUnpack = true;
+            dontConfigure = true;
+            dontBuild = true;
+            installPhase = ''
+              runHook preInstall
+              mkdir -p $out/bin
+              mkdir -p $out/share/arma3-unix-launcher
+              cp ${./Arma_3_Unix_Launcher-x86_64.AppImage} $out/share/arma3-unix-launcher/launcher.AppImage
+              makeWrapper ${appimage-run}/bin/appimage-run $out/bin/arma3-unix-launcher --add-flags "$out/share/arma3-unix-launcher/launcher.AppImage"
+              runHook postInstall
+            '';
+          };
+
       };
     });
 }
