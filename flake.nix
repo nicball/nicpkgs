@@ -110,6 +110,29 @@
             '';
           };
 
+        rust-reference = 
+          with nixpkgs.legacyPackages."${system}";
+          stdenv.mkDerivation {
+            pname = "rust-reference";
+            version = "6.6.6";
+            src = fetchFromGitHub {
+              owner = "rust-lang";
+              repo = "reference";
+              rev = "b74825d8f88b685e239ade00f00de68ba4cd63d4";
+              sha256 = "sha256-NUfMatCl1cVJYZcwS3iOkRGGiaiRTC/U2G29EVhEIbI=";
+            };
+            dontConfigure = true;
+            dontBuild = true;
+            nativeBuildInputs = [ mdbook ];
+            installPhase = ''
+              runHook preInstall
+              mdbook build
+              mkdir $out
+              mv book $out/
+              runHook postInstall
+            '';
+          };
+
       };
     });
 }
