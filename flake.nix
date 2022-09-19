@@ -175,6 +175,7 @@
 
         thu-checkin =
           with nixpkgs.legacyPackages.x86_64-linux;
+          let python = python3.withPackages (p: with p; [ requests pillow pytesseract ]); in
           stdenv.mkDerivation {
             pname = "thu-checkin";
             version = "0.1.0";
@@ -186,7 +187,6 @@
             };
             buildInputs = [
               tesseract
-              (python3.withPackages (p: with p; [ requests pillow pytesseract ]))
             ];
             dontConfigure = true;
             dontBuild = true;
@@ -196,7 +196,7 @@
               cp ./thu-checkin.py $out/share/thu-checkin
               cat > $out/bin/thu-checkin <<EOF
               #!${bash}/bin/bash
-              python $out/share/thu-checkin/thu-checkin.py
+              ${python}/bin/python $out/share/thu-checkin/thu-checkin.py
               EOF
               chmod +x $out/bin/thu-checkin
             '';
