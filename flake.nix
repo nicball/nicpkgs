@@ -133,6 +133,75 @@
             '';
           };
 
+        chatterbot =
+          # with (import nixos1909 { inherit system; });
+          with nixpkgs.legacyPackages."${system}";
+          with python37Packages;
+          let
+            mathparse = buildPythonPackage rec {
+              pname = "mathparse";
+              version = "0.1.2";
+              src = fetchPypi {
+                inherit pname version;
+                sha256 = "58da83a32e1dbd16d0fa6fc28528e86b6fb2a9edcef107fdfe7aced48faf5de3";
+              };
+              doCheck = false;
+              meta = {};
+            };
+            sqlalchemy = buildPythonPackage rec {
+              pname = "SQLAlchemy";
+              version = "1.3.24";
+              src = fetchPypi {
+                inherit pname version;
+                sha256 = "ebbb777cbf9312359b897bf81ba00dae0f5cb69fba2a18265dcc18a6f5ef7519";
+              };
+              doCheck = false;
+              meta = {};
+            };
+          in
+          buildPythonPackage rec {
+            pname = "ChatterBot";
+            version = "1.0.8";
+            src = fetchPypi {
+              inherit pname version;
+              sha256 = "867b61756f1e8d3ee43ff242389a71fd28c662ac7b668057ad452836341a78b9";
+            };
+            propagatedBuildInputs = [
+              pytz mathparse python-dateutil sqlalchemy
+            ];
+            # doCheck = false;
+            meta = {};
+          };
+
+        thu-checkin =
+          with nixpkgs.legacyPackages.x86_64-linux;
+          let python = python3.withPackages (p: with p; [ requests pillow pytesseract ]); in
+          stdenv.mkDerivation {
+            pname = "thu-checkin";
+            version = "0.1.0";
+            src = fetchFromGitHub {
+              owner = "iBug";
+              repo = "thu-checkin";
+              rev = "2d52736322e552f2b779431f91b6bb978bef03c3";
+              sha256 = "sha256-v0LrQgqB9bSbefuI6QuPjcgsqI7ieS9CbM65wv8F7MM=";
+            };
+            buildInputs = [
+              tesseract
+            ];
+            dontConfigure = true;
+            dontBuild = true;
+            installPhase = ''
+              mkdir -p $out/bin $out/share/thu-checkin
+              sed -i '22s/(.*)/("'${lib.escapeShellArgs [ (lib.escape [ "/" ] (toString ./thu-checkin.txt)) ]}'")/' ./thu-checkin.py
+              cp ./thu-checkin.py $out/share/thu-checkin
+              cat > $out/bin/thu-checkin <<EOF
+              #!${bash}/bin/bash
+              ${python}/bin/python $out/share/thu-checkin/thu-checkin.py
+              EOF
+              chmod +x $out/bin/thu-checkin
+            '';
+          };
+
       };
     });
 }
