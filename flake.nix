@@ -9,7 +9,7 @@
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system: {
-      packages = {
+      packages = rec {
 
         piqueserver =
           with (import nixos1909 { inherit system; });
@@ -185,9 +185,6 @@
               rev = "2d52736322e552f2b779431f91b6bb978bef03c3";
               sha256 = "sha256-v0LrQgqB9bSbefuI6QuPjcgsqI7ieS9CbM65wv8F7MM=";
             };
-            buildInputs = [
-              tesseract
-            ];
             dontConfigure = true;
             dontBuild = true;
             installPhase = ''
@@ -199,6 +196,72 @@
               ${python}/bin/python $out/share/thu-checkin/thu-checkin.py
               EOF
               chmod +x $out/bin/thu-checkin
+            '';
+          };
+
+        rtw8852be =
+          with nixpkgs.legacyPackages.x86_64-linux;
+          let kernel = linuxKernel.packages.linux_6_0.kernel; in
+          stdenv.mkDerivation {
+            pname = "rtw8852be";
+            version = "0.1.0";
+            src = fetchFromGitHub {
+              owner = "lwfinger";
+              repo = "rtw8852be";
+              rev = "995881545a2b802c14ca3dc59c193a1a6cb7f95b";
+              sha256 = "sha256-ytt1jynBar8VngDFFFdGGs/4v3QfzAYc8C/II9p8138=";
+            };
+            hardeningDisable = [ "pic" "format" ];
+            nativeBuildInputs = kernel.moduleBuildDependencies ++ [ bc openssl mokutil ];
+            makeFlags = [
+              "KERNELRELEASE=${kernel.modDirVersion}"
+              "KVER=${kernel.modDirVersion}"
+              "KERNEL_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+              "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+              "INSTALL_MOD_PATH=$(out)"
+            ];
+          };
+
+        rtw89 =
+          with nixpkgs.legacyPackages.x86_64-linux;
+          let kernel = linuxKernel.packages.linux_6_0.kernel;
+              modDestDir = "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
+          in
+          stdenv.mkDerivation {
+            pname = "rtw89";
+            version = "9.9.9";
+            src = fetchFromGitHub {
+              owner = "lwfinger";
+              repo = "rtw89";
+              rev = "a7e89c2a14d50d387fea3658c5f55cf062666d12";
+              sha256 = "sha256-sJZ67FzXWpGn+x5fBLxaTlhqT63GQH0mXvOUVNOFViM=";
+            };
+            hardeningDisable = [ "pic" "format" ];
+            nativeBuildInputs = kernel.moduleBuildDependencies ++ [ openssl mokutil ];
+            makeFlags = kernel.makeFlags ++ [
+              "KVER=${kernel.modDirVersion}"
+              "KSRC=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+            ];
+            installPhase = ''
+              runHook preInstall
+              mkdir -p ${modDestDir}
+              find . -name '*.ko' -exec cp --parents {} ${modDestDir} \;
+              find ${modDestDir} -name '*.ko' -exec xz -f {} \;
+              runHook postInstall
+            '';
+          };
+
+        rtw89-firmware =
+          with nixpkgs.legacyPackages.x86_64-linux;
+          stdenv.mkDerivation {
+            pname = "rtw89-firmware";
+            inherit (rtw89) version src;
+            dontBuild = true;
+            installPhase = ''
+              runHook preInstall
+              mkdir -p $out/lib/firmware/rtw89
+              cp *.bin $out/lib/firmware/rtw89
+              runHook postInstall
             '';
           };
 
