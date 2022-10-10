@@ -199,29 +199,6 @@
             '';
           };
 
-        rtw8852be =
-          with nixpkgs.legacyPackages.x86_64-linux;
-          let kernel = linuxKernel.packages.linux_6_0.kernel; in
-          stdenv.mkDerivation {
-            pname = "rtw8852be";
-            version = "0.1.0";
-            src = fetchFromGitHub {
-              owner = "lwfinger";
-              repo = "rtw8852be";
-              rev = "995881545a2b802c14ca3dc59c193a1a6cb7f95b";
-              sha256 = "sha256-ytt1jynBar8VngDFFFdGGs/4v3QfzAYc8C/II9p8138=";
-            };
-            hardeningDisable = [ "pic" "format" ];
-            nativeBuildInputs = kernel.moduleBuildDependencies ++ [ bc openssl mokutil ];
-            makeFlags = [
-              "KERNELRELEASE=${kernel.modDirVersion}"
-              "KVER=${kernel.modDirVersion}"
-              "KERNEL_DIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-              "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-              "INSTALL_MOD_PATH=$(out)"
-            ];
-          };
-
         rtw89 =
           with nixpkgs.legacyPackages.x86_64-linux;
           let kernel = linuxKernel.packages.linux_6_0.kernel;
@@ -260,7 +237,9 @@
             installPhase = ''
               runHook preInstall
               mkdir -p $out/lib/firmware/rtw89
-              cp *.bin $out/lib/firmware/rtw89
+              cp rtw*.bin $out/lib/firmware/rtw89
+              mkdir -p $out/lib/firmware/rtl_bt
+              cp rtl*.bin $out/lib/firmware/rtl_bt
               runHook postInstall
             '';
           };
