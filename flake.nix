@@ -210,8 +210,8 @@
             src = fetchFromGitHub {
               owner = "lwfinger";
               repo = "rtw89";
-              rev = "a7e89c2a14d50d387fea3658c5f55cf062666d12";
-              sha256 = "sha256-sJZ67FzXWpGn+x5fBLxaTlhqT63GQH0mXvOUVNOFViM=";
+              rev = "f11fadeab69a1e747318b1d7fd2ad58fa9518ab1";
+              sha256 = "sha256-t9Upwopuq+BuMHoHjIAny7gvtm6RZqL3EHVx9cu++9k=";
             };
             hardeningDisable = [ "pic" "format" ];
             nativeBuildInputs = kernel.moduleBuildDependencies ++ [ openssl mokutil ];
