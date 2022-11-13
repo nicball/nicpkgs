@@ -254,6 +254,10 @@
           }) { nurpkgs = pkgs; inherit pkgs; }; in
           nurpkgs.repos.linyinfeng.wemeet;
 
+        maven-j8 =
+          with nixpkgs.legacyPackages."${system}";
+          maven.overrideAttrs (_: _: { jdk = jdk8; });
+
       };
     });
 }
