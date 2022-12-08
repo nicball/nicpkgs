@@ -110,6 +110,24 @@
             '';
           };
 
+        mdbook-epub =
+          # let rust-overlay = builtins.getFlake "github:oxalica/rust-overlay/073959f0687277a54bfaa3ac7a77feb072f88186"; in
+          # with (import nixpkgs { inherit system;  overlays = [ rust-overlay.overlays.default ]; });
+          with nixpkgs.legacyPackages."${system}";
+          rustPlatform.buildRustPackage {
+            pname = "mdbook-epub";
+            version = "0.4.14-beta";
+            src = fetchFromGitHub {
+              owner = "Michael-F-Bryan";
+              repo = "mdbook-epub";
+              rev = "23b4f766700d08d404bb6d937f2c050381b76a06";
+              sha256 = "sha256-gXQfQqtbRek74/EEH1ukCNM/7SXtWQh8B+lNZaTqfrI=";
+            };
+            doCheck = false;
+            cargoSha256 = "sha256-f7g5e9TQca5ZoyD29kthwnygekbgliazGD/1ppddTuk=";
+            cargoPatches = [ ./mdbook-epub.patch ];
+          };
+
         rust-reference = 
           with nixpkgs.legacyPackages."${system}";
           stdenv.mkDerivation {
@@ -118,16 +136,16 @@
             src = fetchFromGitHub {
               owner = "rust-lang";
               repo = "reference";
-              rev = "b74825d8f88b685e239ade00f00de68ba4cd63d4";
-              sha256 = "sha256-NUfMatCl1cVJYZcwS3iOkRGGiaiRTC/U2G29EVhEIbI=";
+              rev = "3ae62681ff236d5528ef7c8c28ba7c6b2ecc6731";
+              sha256 = "sha256-EEEa0uxmMXzYTo753eVAYUXekztbkR5CL5eK4XytOU8=";
             };
             dontConfigure = true;
             dontBuild = true;
-            nativeBuildInputs = [ mdbook ];
+            nativeBuildInputs = [ mdbook-epub ];
             installPhase = ''
               runHook preInstall
-              mdbook build
               mkdir $out
+              mdbook-epub --standalone
               mv book $out/
               runHook postInstall
             '';
