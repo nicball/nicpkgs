@@ -9,7 +9,7 @@
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system: {
-      packages = rec {
+      packages = nixpkgs.lib.filterAttrs (_: v: v != null) rec {
 
         piqueserver =
           with (import nixos1909 { inherit system; });
@@ -175,46 +175,6 @@
             '';
           };
 
-        chatterbot =
-          # with (import nixos1909 { inherit system; });
-          with nixpkgs.legacyPackages."${system}";
-          with python37Packages;
-          let
-            mathparse = buildPythonPackage rec {
-              pname = "mathparse";
-              version = "0.1.2";
-              src = fetchPypi {
-                inherit pname version;
-                sha256 = "58da83a32e1dbd16d0fa6fc28528e86b6fb2a9edcef107fdfe7aced48faf5de3";
-              };
-              doCheck = false;
-              meta = {};
-            };
-            sqlalchemy = buildPythonPackage rec {
-              pname = "SQLAlchemy";
-              version = "1.3.24";
-              src = fetchPypi {
-                inherit pname version;
-                sha256 = "ebbb777cbf9312359b897bf81ba00dae0f5cb69fba2a18265dcc18a6f5ef7519";
-              };
-              doCheck = false;
-              meta = {};
-            };
-          in
-          buildPythonPackage rec {
-            pname = "ChatterBot";
-            version = "1.0.8";
-            src = fetchPypi {
-              inherit pname version;
-              sha256 = "867b61756f1e8d3ee43ff242389a71fd28c662ac7b668057ad452836341a78b9";
-            };
-            propagatedBuildInputs = [
-              pytz mathparse python-dateutil sqlalchemy
-            ];
-            # doCheck = false;
-            meta = {};
-          };
-
        thu-checkin =
           with nixpkgs.legacyPackages."${system}";
           let python = python3.withPackages (p: with p; [ requests pillow pytesseract ]); in
@@ -242,6 +202,7 @@
           };
 
         rtw89 =
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           let kernel = linuxKernel.packages.linux_6_1.kernel;
               modDestDir = "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
@@ -271,6 +232,7 @@
           };
 
         rtw89-firmware =
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           stdenv.mkDerivation {
             pname = "rtw89-firmware";
@@ -286,7 +248,8 @@
             '';
           };
 
-        wemeet = if system != "x86_64-linux" then null else
+        wemeet =
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           let nurpkgs = import (fetchFromGitHub {
             owner = "nix-community";
@@ -301,6 +264,7 @@
           maven.overrideAttrs (_: _: { jdk = jdk8; });
 
         r8168 =
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           linuxPackages_6_0.r8168.overrideAttrs (self: super: rec {
             version = "8.051.02";
