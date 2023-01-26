@@ -1,3 +1,16 @@
+diff --git a/book.toml b/book.toml
+index 96ba9ed..8bf09f9 100644
+--- a/book.toml
++++ b/book.toml
+@@ -12,5 +12,8 @@ git-repository-url = "https://github.com/rust-lang/async-book"
+ site-url = "/async-book/"
+ 
+ [output.linkcheck]
++optional = true
+ follow-web-links = true
+ traverse-parent-directories = false
++
++[output.epub]
 diff --git a/src/SUMMARY.md b/src/SUMMARY.md
 index a089ceb..71757f7 100644
 --- a/src/SUMMARY.md

@@ -165,11 +165,11 @@
             dontConfigure = true;
             dontBuild = true;
             patches = [ ./rust-async-book.patch ];
-            nativeBuildInputs = [ mdbook-epub ];
+            nativeBuildInputs = [ mdbook mdbook-epub ];
             installPhase = ''
               runHook preInstall
               mkdir $out
-              mdbook-epub --standalone
+              mdbook build
               mv book $out/
               runHook postInstall
             '';
