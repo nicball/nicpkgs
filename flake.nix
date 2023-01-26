@@ -164,6 +164,7 @@
             };
             dontConfigure = true;
             dontBuild = true;
+            patches = [ ./rust-async-book.patch ];
             nativeBuildInputs = [ mdbook-epub ];
             installPhase = ''
               runHook preInstall
