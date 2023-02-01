@@ -9,7 +9,7 @@
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system: {
-      packages = let nil-derivation = derivation { name = "nil-package"; inherit system; builder = "nil-builder"; }; in rec {
+      packages = nixpkgs.lib.filterAttrs (_: v: v != null) rec {
 
         piqueserver =
           with (import nixos1909 { inherit system; });
@@ -88,7 +88,7 @@
 
         arma3-unix-launcher =
           with nixpkgs.legacyPackages."${system}";
-          if system != "x86_64-linux" then nil-derivation else
+          if system != "x86_64-linux" then null else
           let aulimg = builtins.fetchurl {
             url = "https://github.com/muttleyxd/arma3-unix-launcher/releases/download/commit-355/Arma_3_Unix_Launcher-x86_64.AppImage";
             sha256 = "sha256-Q82d1aBqufJErSTudvBUe4rxThrNE4Xydd7YrG9HcaU=";
@@ -202,7 +202,7 @@
           };
 
         rtw89 =
-          if system != "x86_64-linux" then nil-derivation else
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           let kernel = linuxKernel.packages.linux_6_1.kernel;
               modDestDir = "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
@@ -232,7 +232,7 @@
           };
 
         rtw89-firmware =
-          if system != "x86_64-linux" then nil-derivation else
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           stdenv.mkDerivation {
             pname = "rtw89-firmware";
@@ -248,7 +248,8 @@
             '';
           };
 
-        wemeet = if system != "x86_64-linux" then nil-derivation else
+        wemeet =
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           let nurpkgs = import (fetchFromGitHub {
             owner = "nix-community";
@@ -263,7 +264,7 @@
           maven.overrideAttrs (_: _: { jdk = jdk8; });
 
         r8168 =
-          if system != "x86_64-linux" then nil-derivation else
+          if system != "x86_64-linux" then null else
           with nixpkgs.legacyPackages."${system}";
           linuxPackages_6_0.r8168.overrideAttrs (self: super: rec {
             version = "8.051.02";
