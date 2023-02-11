@@ -21,7 +21,8 @@ rec {
         };
     wrapDerivationOutput = drv: path: args:
         modifyDerivationOutput drv {
-            inherit (drv) pname version;
+            pname = drv.pname or drv.name;
+            version = drv.version or null;
             nativeBuildInputs = [ pkgs.makeWrapper ];
             extraCommands = ''
                 mv $out/${path} $out/${path}-unwrapped
