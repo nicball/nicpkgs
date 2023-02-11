@@ -1,5 +1,5 @@
 { pkgs }:
-{
+rec {
     modifyDerivationOutput =
         drv:
         { pname
@@ -17,6 +17,15 @@
                 chmod -R +w $out
                 ${extraCommands}
                 runHook postInstall
+            '';
+        };
+    wrapDerivationOutput = drv: path: args:
+        modifyDerivationOutput drv {
+            inherit (drv) pname version;
+            nativeBuildInputs = [ pkgs.makeWrapper ];
+            extraCommands = ''
+                mv $out/${path} $out/${path}-unwrapped
+                makeWrapper $out/${path}-unwrapped $out/${path} ${args}
             '';
         };
 }
