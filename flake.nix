@@ -8,6 +8,7 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
+    { lib = import ./lib.nix; } //
     flake-utils.lib.eachDefaultSystem (system: {
       packages = nixpkgs.lib.filterAttrs (_: v: v != null) rec {
 
