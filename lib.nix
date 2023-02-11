@@ -5,6 +5,7 @@
             unpackPhase = ''
                 runHook preUnpack
                 cp -r ${drv} $out
+                chmod -R +w $out
                 runHook postUnpack
             '';
         });
