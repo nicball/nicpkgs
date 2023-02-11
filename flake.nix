@@ -8,8 +8,8 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
+    { lib = import ./lib.nix; } //
     flake-utils.lib.eachDefaultSystem (system: {
-      lib = import ./lib.nix { pkgs = nixpkgs.legacyPackages."${system}"; };
       packages = nixpkgs.lib.filterAttrs (_: v: v != null) rec {
 
         piqueserver =
