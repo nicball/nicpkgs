@@ -1,12 +1,13 @@
 { pkgs }:
 {
     modifyDerivationOutput = drv: args:
-        pkgs.stdenv.mkDerivation (args // {
-            unpackPhase = ''
-                runHook preUnpack
+        pkgs.stdenv.mkDerivation {
+            inherit (args)
+                pname version buildInputs nativeBuildInputs;
+            installPhase = ''
                 cp -r ${drv} $out
                 chmod -R +w $out
-                runHook postUnpack
+                ${args.installPhase}
             '';
-        });
+        };
 }
