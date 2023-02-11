@@ -264,16 +264,6 @@
           with nixpkgs.legacyPackages."${system}";
           maven.overrideAttrs (_: _: { jdk = jdk8; });
 
-        r8168 =
-          if system != "x86_64-linux" then null else
-          with nixpkgs.legacyPackages."${system}";
-          linuxPackages_6_0.r8168.overrideAttrs (self: super: rec {
-            version = "8.051.02";
-            name = "r8168-${linux_6_0.version}-${version}";
-            src = ./r8168-8.051.02.tar.bz2;
-            meta = super.meta // { broken = false; };
-          });
-
       };
     });
 }
