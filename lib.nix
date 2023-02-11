@@ -14,7 +14,7 @@
                 runHook preInstall
                 cp -r ${drv} $out
                 chmod -R +w $out
-                ${args.extraCommands}
+                ${extraCommands}
                 runHook postInstall
             '';
         };
