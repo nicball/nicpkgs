@@ -10,6 +10,7 @@
         }:
         pkgs.stdenv.mkDerivation {
             inherit pname version buildInputs nativeBuildInputs;
+            dontUnpack = true;
             installPhase = ''
                 runHook preInstall
                 cp -r ${drv} $out
