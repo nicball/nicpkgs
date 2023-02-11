@@ -4,7 +4,7 @@
         pkgs.stdenv.mkDerivation (args // {
             unpackPhase = ''
                 runHook preUnpack
-                cp -rp ${drv} $out
+                cp -r ${drv} $out
                 runHook postUnpack
             '';
         });
