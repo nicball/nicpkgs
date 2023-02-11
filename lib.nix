@@ -2,14 +2,13 @@
 rec {
     modifyDerivationOutput =
         drv:
-        { pname
-        , version
-        , buildInputs ? []
+        { buildInputs ? []
         , nativeBuildInputs ? []
         , extraCommands
-        }:
-        pkgs.stdenv.mkDerivation {
-            inherit pname version buildInputs nativeBuildInputs;
+        , ...
+        }@args:
+        pkgs.stdenv.mkDerivation (getDrvName args // {
+            inherit buildInputs nativeBuildInputs;
             dontUnpack = true;
             installPhase = ''
                 runHook preInstall
@@ -18,14 +17,19 @@ rec {
                 ${extraCommands}
                 runHook postInstall
             '';
-        };
+        });
+
     wrapDerivationOutput = drv: path: args:
-        modifyDerivationOutput drv {
-            inherit (drv) pname version;
+        modifyDerivationOutput drv (getDrvName drv // {
             nativeBuildInputs = [ pkgs.makeWrapper ];
             extraCommands = ''
                 mv $out/${path} $out/${path}-unwrapped
                 makeWrapper $out/${path}-unwrapped $out/${path} ${args}
             '';
-        };
+        });
+
+    getDrvName = drv:
+        if pkgs.lib.hasAttrByPath [ "pname" ] drv
+            then { inherit (drv) pname version; }
+            else { inherit (drv) name; };
 }
