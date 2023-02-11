@@ -6,14 +6,16 @@
         , version
         , buildInputs ? []
         , nativeBuildInputs ? []
-        , installPhase ? "runHook preInstall; runHook postInstall"
-        }@args:
+        , extraCommands
+        }:
         pkgs.stdenv.mkDerivation {
             inherit pname version buildInputs nativeBuildInputs;
             installPhase = ''
+                runHook preInstall
                 cp -r ${drv} $out
                 chmod -R +w $out
-                ${args.installPhase}
+                ${args.extraCommands}
+                runHook postInstall
             '';
         };
 }
