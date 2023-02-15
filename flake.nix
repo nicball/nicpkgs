@@ -286,34 +286,6 @@
           with nixpkgs.legacyPackages."${system}";
           maven.overrideAttrs (_: _: { jdk = jdk8; });
 
-        looklookbook =
-          with nixpkgs.legacyPackages."${system}";
-          let py = python3.withPackages (p: with p; [ python-telegram-bot pandas ]); in
-          stdenv.mkDerivation {
-            pname = "looklookbook";
-            version = "6.6.6";
-            src = fetchgit {
-              url = "https://github.com/ksqsf/toys";
-              rev = "a94a137364a3ee7f7e8a582c7d703e042cc9159e";
-              sha256 = "sha256-gYg+vMmzqfeEAYopX6K3gsIO04qHNoHSsFQ325WLSQY=";
-              sparseCheckout = [ "telegram/looklookbook.py" ];
-              fetchSubmodules = false;
-            };
-            dontBuild = true;
-            nativeBuildInputs = [ makeWrapper ];
-            installPhase = ''
-              runHook preInstall
-              mkdir -p $out/bin
-              mkdir -p $out/share/looklookbook
-              echo -e "import os\nTOKEN = os.environ['TG_BOT_TOKEN']" \
-                | cat - ./telegram/looklookbook.py \
-                > $out/share/looklookbook/looklookbook.py
-              makeWrapper ${py}/bin/python $out/bin/looklookbook \
-                --inherit-argv0 --add-flags "$out/share/looklookbook/looklookbook.py"
-              runHook postInstall
-            '';
-          };
-
       };
     });
 }
