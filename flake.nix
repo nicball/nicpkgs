@@ -288,7 +288,7 @@
 
         kakoune =
           with pkgs;
-          lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak}";
+          lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
 
       };
     });

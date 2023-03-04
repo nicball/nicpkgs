@@ -1,0 +1,65 @@
+# line numbers
+add-highlighter global/ number-lines
+
+# highlight matching parentheses
+add-highlighter global/ show-matching
+set-face global MatchingChar black,bright-cyan+b
+
+# expand tab
+# hook global ModuleLoaded smarttab %{
+#     set-option global softtabstop 4
+# }
+# hook global BufCreate .* expandtab
+
+# use tab to indent line
+map global insert <tab> '<a-;><a-gt>'
+map global insert <s-tab> '<a-;><a-lt>'
+
+# use tab when completions are shown. revert to normal tab otherwise.
+hook global InsertCompletionShow .* %{
+    try %{
+        # this command temporarily removes cursors preceded by whitespace;
+        # if there are no cursors left, it raises an error, does not
+        # continue to execute the mapping commands, and the error is eaten
+        # by the `try` command so no warning appears.
+        execute-keys -draft 'h<a-K>\h<ret>'
+        map window insert <tab> <c-n>
+        map window insert <s-tab> <c-p>
+        hook -once -always window InsertCompletionHide .* %{
+            unmap window insert <tab> <c-n>
+            unmap window insert <s-tab> <c-p>
+        }
+    }
+}
+
+# autoload
+evaluate-commands %sh{
+    shopt -s nullglob
+    for i in $kak_config/myautoload/*.kak; do
+        printf 'source "%s"\n' "$i"
+        echo "Sourced $i" 1>&2
+    done
+}
+
+# highlight current line
+cursorline
+
+# disable cursor wrap
+# hook global NormalKey h %{
+#     try %{
+#         execute-keys <a-k>$<ret> l
+#     }
+# }
+# 
+# hook global NormalKey l %{
+#     try %{
+#         execute-keys <a-k>^<ret>h
+#     }
+# }
+
+# set indent width
+hook global BufCreate .* %{
+    set-option buffer indentwidth 4
+}
+
+colorscheme solarized-light
