@@ -8,9 +8,9 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
-    { lib = import ./lib.nix; } //
-    flake-utils.lib.eachDefaultSystem (system: {
-      packages = nixpkgs.lib.filterAttrs (_: v: v != null) rec {
+    flake-utils.lib.eachDefaultSystem (system: let pkgs = nixpkgs.legacyPackages.${system}; in rec {
+      lib = import ./lib.nix { inherit pkgs; };
+      packages = pkgs.lib.filterAttrs (_: v: v != null) rec {
 
         piqueserver =
           with (import nixos1909 { inherit system; });
@@ -45,7 +45,7 @@
         fvckbot = (builtins.getFlake "github:nicball/fvckbot/24de6445b5c29f8bbc69f6cad20d097c17316ea0").defaultPackage."${system}";
 
         terraria-server =
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           stdenv.mkDerivation rec {
             pname = "terraria-server";
             version = "1.4.3.6";
@@ -71,7 +71,7 @@
           };
 
         armake2 =
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           rustPlatform.buildRustPackage rec {
             pname = "armake2";
             version = "0.3.0";
@@ -88,7 +88,7 @@
           };
 
         arma3-unix-launcher =
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           if system != "x86_64-linux" then null else
           let aulimg = builtins.fetchurl {
             url = "https://github.com/muttleyxd/arma3-unix-launcher/releases/download/commit-355/Arma_3_Unix_Launcher-x86_64.AppImage";
@@ -114,7 +114,7 @@
         mdbook-epub =
           # let rust-overlay = builtins.getFlake "github:oxalica/rust-overlay/073959f0687277a54bfaa3ac7a77feb072f88186"; in
           # with (import nixpkgs { inherit system;  overlays = [ rust-overlay.overlays.default ]; });
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           rustPlatform.buildRustPackage {
             pname = "mdbook-epub";
             version = "0.4.14-beta";
@@ -130,7 +130,7 @@
           };
 
         rust-reference = 
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           stdenv.mkDerivation {
             pname = "rust-reference";
             version = "6.6.6";
@@ -153,7 +153,7 @@
           };
 
         rust-async-book =
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           stdenv.mkDerivation {
             pname = "rust-async-book";
             version = "6.6.6";
@@ -177,7 +177,7 @@
           };
 
         wayland-book =
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           stdenv.mkDerivation {
             pname = "wayland-book";
             version = "6.6.6";
@@ -199,7 +199,7 @@
           };
 
         thu-checkin =
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           let python = python3.withPackages (p: with p; [ requests pillow pytesseract ]); in
           stdenv.mkDerivation {
             pname = "thu-checkin";
@@ -226,7 +226,7 @@
 
         rtw89 =
           if system != "x86_64-linux" then null else
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           let kernel = linuxKernel.packages.linux_6_1.kernel;
               modDestDir = "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
           in
@@ -256,7 +256,7 @@
 
         rtw89-firmware =
           if system != "x86_64-linux" then null else
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           stdenv.mkDerivation {
             pname = "rtw89-firmware";
             inherit (rtw89) version src;
@@ -273,7 +273,7 @@
 
         wemeet =
           if system != "x86_64-linux" then null else
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           let nurpkgs = import (fetchFromGitHub {
             owner = "nix-community";
             repo = "nur-combined";
@@ -283,8 +283,12 @@
           nurpkgs.repos.linyinfeng.wemeet;
 
         maven-j8 =
-          with nixpkgs.legacyPackages."${system}";
+          with pkgs;
           maven.overrideAttrs (_: _: { jdk = jdk8; });
+
+        kakoune =
+          with pkgs;
+          lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
 
       };
     });
