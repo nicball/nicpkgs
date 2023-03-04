@@ -9,7 +9,7 @@
 
   outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system: let pkgs = nixpkgs.legacyPackages.${system}; in rec {
-      lib = import ./lib.nix pkgs;
+      lib = import ./lib.nix { inherit pkgs; };
       packages = pkgs.lib.filterAttrs (_: v: v != null) rec {
 
         piqueserver =
