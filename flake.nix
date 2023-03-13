@@ -290,6 +290,16 @@
           with pkgs;
           lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
 
+        lilypondbot =
+          with pkgs;
+          writeShellApplication {
+            name = "lilypondbot";
+            runtimeInputs = [ curl jq lilypond timidity ffmpeg ];
+            text = ''
+              common=${./common.ly}
+              ${builtins.readFile ./lilypondbot.sh}
+            '';
+          };
       };
     });
 }
