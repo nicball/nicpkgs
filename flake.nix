@@ -290,6 +290,9 @@
           with pkgs;
           lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
 
+        lilypondbot =
+          import ./lilypondbot.nix pkgs;
+
       };
     });
 }
