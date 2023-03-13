@@ -37,7 +37,7 @@ writeShellApplication {
           call "sendMessage?chat_id=$cid&reply_to_message_id=$mid" -G --data-urlencode "text=$log"
         else
           call "sendPhoto?chat_id=$cid&reply_to_message_id=$mid" -F photo=@"$filebase".png
-          timidity "$filebase".midi -Ow -o - | ffmpeg -i - "$filebase".mp3
+          timidity "$filebase".midi -Ow -o - | ffmpeg -loglevel error -i - "$filebase".mp3
           call "sendAudio?chat_id=$cid&reply_to_message_id=$mid" -F audio=@"$filebase".mp3
         fi
       fi
