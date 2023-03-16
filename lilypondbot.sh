@@ -38,6 +38,6 @@ while true; do
       call "sendAudio?chat_id=$cid&reply_to_message_id=$mid" -F audio=@"$filebase".mp3
     fi
   fi
-  sleep 1
+  sleep 0.1
   log "offset:$offset"
 done
