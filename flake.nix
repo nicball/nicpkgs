@@ -291,8 +291,15 @@
           lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
 
         lilypondbot =
-          import ./lilypondbot.nix pkgs;
-
+          with pkgs;
+          writeShellApplication {
+            name = "lilypondbot";
+            runtimeInputs = [ curl jq lilypond timidity ffmpeg ];
+            text = ''
+              common=${./common.ly}
+              ${builtins.readFile ./lilypondbot.sh}
+            '';
+          };
       };
     });
 }
