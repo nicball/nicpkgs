@@ -236,8 +236,8 @@
             src = fetchFromGitHub {
               owner = "lwfinger";
               repo = "rtw89";
-              rev = "f963ec3d4d24c38ef725c422726b786376d3e233";
-              sha256 = "sha256-sjL3+AmmQhptPhFjSUxToV5Q9m9WPDDx6AwC7By+KT8=";
+              rev = "bea0ed7298727397670505672316c49a68d59d80";
+              sha256 = "sha256-tHcjr7o3JAWzPm81cX4OxbkexDnDv0jK67hrBU+8svI=";
             };
             hardeningDisable = [ "pic" "format" ];
             nativeBuildInputs = kernel.moduleBuildDependencies ++ [ openssl mokutil ];
@@ -250,23 +250,6 @@
               mkdir -p ${modDestDir}
               find . -name '*.ko' -exec cp --parents {} ${modDestDir} \;
               find ${modDestDir} -name '*.ko' -exec xz -f {} \;
-              runHook postInstall
-            '';
-          };
-
-        rtw89-firmware =
-          if system != "x86_64-linux" then null else
-          with pkgs;
-          stdenv.mkDerivation {
-            pname = "rtw89-firmware";
-            inherit (rtw89) version src;
-            dontBuild = true;
-            installPhase = ''
-              runHook preInstall
-              mkdir -p $out/lib/firmware/rtw89
-              cp rtw*.bin $out/lib/firmware/rtw89
-              mkdir -p $out/lib/firmware/rtl_bt
-              cp rtl*.bin $out/lib/firmware/rtl_bt
               runHook postInstall
             '';
           };
@@ -317,14 +300,6 @@
                 sha256 = "e9251407bc9c51177739994941420d43afc18b972bb3f5296a2b1c11a2b92b06";
               };
             }.${system};
-            # src = fetchPypi {
-            #   inherit pname version;
-            #   sha256 = {
-            #     x86_64-linux = "e2e7295ba4997ab86b4fb1bd7a784319dfcdb508ce26638063515334c11fa05a";
-            #     x86_64-darwin = "e9251407bc9c51177739994941420d43afc18b972bb3f5296a2b1c11a2b92b06";
-            #   };
-            #   format = "wheel";
-            # };
             format = "wheel";
             propagatedBuildInputs = [ numpy ];
             nativeBuildInputs = [ autoPatchelfHook ];
