@@ -198,32 +198,6 @@
             '';
           };
 
-        thu-checkin =
-          with pkgs;
-          let python = python3.withPackages (p: with p; [ requests pillow pytesseract ]); in
-          stdenv.mkDerivation {
-            pname = "thu-checkin";
-            version = "0.1.0";
-            src = fetchFromGitHub {
-              owner = "iBug";
-              repo = "thu-checkin";
-              rev = "2d52736322e552f2b779431f91b6bb978bef03c3";
-              sha256 = "sha256-v0LrQgqB9bSbefuI6QuPjcgsqI7ieS9CbM65wv8F7MM=";
-            };
-            dontConfigure = true;
-            dontBuild = true;
-            installPhase = ''
-              mkdir -p $out/bin $out/share/thu-checkin
-              sed -i '22s/(.*)/("'${lib.escapeShellArgs [ (lib.escape [ "/" ] (toString ./thu-checkin.txt)) ]}'")/' ./thu-checkin.py
-              cp ./thu-checkin.py $out/share/thu-checkin
-              cat > $out/bin/thu-checkin <<EOF
-              #!${bash}/bin/bash
-              ${python}/bin/python $out/share/thu-checkin/thu-checkin.py
-              EOF
-              chmod +x $out/bin/thu-checkin
-            '';
-          };
-
         rtw89 =
           if system != "x86_64-linux" then null else
           with pkgs;
