@@ -1,19 +1,23 @@
 {
   description = "Nicball's package collection";
 
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.nixos1909 = {
-    url = "github:NixOS/nixpkgs/nixos-19.09";
-    flake = false;
+  inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
+    nixos1909 = {
+      url = "github:NixOS/nixpkgs/nixos-19.09";
+      flake = false;
+    };
+    nixpkgs-latest.url = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, flake-utils, nixos1909, ... }@inputs:
+
+  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system: let pkgs = nixpkgs.legacyPackages.${system}; in rec {
       lib = import ./lib.nix { inherit pkgs; };
       packages = pkgs.lib.filterAttrs (_: v: v != null) rec {
 
         piqueserver =
-          with (import nixos1909 { inherit system; });
+          with (import inputs.nixos1909 { inherit system; });
           with python3Packages;
           let
             pyenet = buildPythonPackage rec {
@@ -247,7 +251,10 @@
           maven.overrideAttrs (_: _: { jdk = jdk8; });
 
         kakoune =
-          with pkgs;
+          let
+            pkgs = inputs.nixpkgs-latest.legacyPackages.${system};
+            lib = import ./lib.nix { inherit pkgs; };
+          in
           lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
 
         lilypondbot =
@@ -302,6 +309,17 @@
               "PREFIX=$(out)"
             ];
           };
+
+          emacs = 
+            let
+              eol = builtins.getFlake "github:nix-community/emacs-overlay/c470756d69bc9195d0ddc1fcd70110376fc93473";
+              pkgs = import nixpkgs { inherit system; overlays = [ eol.overlay ]; };
+            in
+            with pkgs;
+            pkgs.lib.flip pkgs.lib.makeOverridable {} (
+              { plugins ? (p: with p; [ vterm ]) }:
+              (emacsPackagesFor emacsPgtk).emacsWithPackages plugins
+            );
 
       };
     });
