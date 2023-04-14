@@ -251,7 +251,10 @@
           maven.overrideAttrs (_: _: { jdk = jdk8; });
 
         kakoune =
-          with inputs.nixpkgs-latest.legacyPackages.${system};
+          let
+            pkgs = inputs.nixpkgs-latest.legacyPackages.${system};
+            lib = import ./lib.nix { inherit pkgs; };
+          in
           lib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
 
         lilypondbot =
