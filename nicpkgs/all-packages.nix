@@ -239,4 +239,6 @@ with pkgs;
         (emacsPackagesFor emacsPgtk).emacsWithPackages plugins
       );
 
+    instaepub = callPackage ./instaepub {};
+
 }

@@ -8,23 +8,29 @@
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = nixpkgs.legacyPackages.${system}; in rec {
+      let
 
         niclib = import ./niclib { inherit pkgs; };
 
-        packages =
-          let
-            inherit (pkgs) lib;
+        pkgs = nixpkgs.legacyPackages.${system};
 
-            allPkgs = pkgs // nicpkgs // { inherit niclib; };
+        inherit (pkgs) lib;
 
-            callPackage = lib.callPackageWith allPkgs;
+        allPkgs = pkgs // nicpkgs // { inherit niclib; };
 
-            nicpkgs = import ./nicpkgs/all-packages.nix {
-              inherit system pkgs niclib callPackage nixpkgs;
-            };
-          in
-          lib.filterAttrs (_: v: v != null) nicpkgs;
+        callPackage = lib.callPackageWith allPkgs;
+
+        nicpkgs = import ./nicpkgs/all-packages.nix {
+          inherit system pkgs niclib callPackage nixpkgs;
+        };
+
+      in rec {
+
+        inherit niclib;
+
+        packages = lib.filterAttrs (_: v: v != null) nicpkgs;
+
+        homeModules = import ./home-modules { inherit callPackage; };
 
       }
     );
