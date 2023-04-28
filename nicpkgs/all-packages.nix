@@ -2,15 +2,15 @@
 
 with pkgs;
 
-lib.filterAttrs (_: v: v != null) rec {
+{
 
   piqueserver =
-    # if true then null else
+    #if true then null else
     let nixos1909 = fetchFromGitHub {
       owner = "NixOS";
       repo = "nixpkgs";
       rev = "75f4ba05c63be3f147bcc2f7bd4ba1f029cedcb1";
-      sha256 = lib.fakeSha256;
+      sha256 = "sha256-GUKHrnng33luc6mUT3rDnZ3Hm+4MMEJpEchRIAQx7JQ=";
     }; in
     with (import nixos1909 { inherit system; });
     with python3Packages;
@@ -66,21 +66,7 @@ lib.filterAttrs (_: v: v != null) rec {
       meta = {};
     };
 
-  armake2 =
-    rustPlatform.buildRustPackage rec {
-      pname = "armake2";
-      version = "0.3.0";
-      src = fetchFromGitHub {
-        owner = "KoffeinFlummi";
-        repo = "armake2";
-        rev = "2e66c9243ab08666a5689a5344517b5ddf9f8abe";
-        sha256 = "sha256-gLvizbiKWsE2bpGLnSoLbqfm1cQUcnqS4l48GeF/W8k=";
-      };
-      cargoHash = "sha256-04JqADSD1z6UwUMh57MqxWpmpBdSLtvf8SvYnF76kDY=";
-      buildInputs = [ openssl ];
-      nativeBuildInputs = [ pkg-config ];
-      cargoPatches = [ ./armake2.patch ];
-    };
+  armake2 = pkgs.callPackage ./armake2 {};
 
   arma3-unix-launcher =
     if system != "x86_64-linux" then null else
@@ -105,22 +91,7 @@ lib.filterAttrs (_: v: v != null) rec {
       '';
     };
 
-  mdbook-epub =
-    # let rust-overlay = builtins.getFlake "github:oxalica/rust-overlay/073959f0687277a54bfaa3ac7a77feb072f88186"; in
-    # with (import nixpkgs { inherit system;  overlays = [ rust-overlay.overlays.default ]; });
-    rustPlatform.buildRustPackage {
-      pname = "mdbook-epub";
-      version = "0.4.14-beta";
-      src = fetchFromGitHub {
-        owner = "Michael-F-Bryan";
-        repo = "mdbook-epub";
-        rev = "23b4f766700d08d404bb6d937f2c050381b76a06";
-        sha256 = "sha256-gXQfQqtbRek74/EEH1ukCNM/7SXtWQh8B+lNZaTqfrI=";
-      };
-      doCheck = false;
-      cargoSha256 = "sha256-f7g5e9TQca5ZoyD29kthwnygekbgliazGD/1ppddTuk=";
-      cargoPatches = [ ./mdbook-epub.patch ];
-    };
+  mdbook-epub = callPackage ./mdbook-epub {};
 
   rust-reference = 
     stdenv.mkDerivation {
@@ -144,28 +115,7 @@ lib.filterAttrs (_: v: v != null) rec {
       '';
     };
 
-  rust-async-book =
-    stdenv.mkDerivation {
-      pname = "rust-async-book";
-      version = "6.6.6";
-      src = fetchFromGitHub {
-        owner = "rust-lang";
-        repo = "async-book";
-        rev = "e224ead5275545acc00fa82d94ba6d6f377c8563";
-        sha256 = "sha256-lzUljczQ7hPZAVi+bFXth0sDTX+C/W1f/iBiK3gPtO0=";
-      };
-      dontConfigure = true;
-      dontBuild = true;
-      patches = [ ./rust-async-book.patch ];
-      nativeBuildInputs = [ mdbook mdbook-epub ];
-      installPhase = ''
-        runHook preInstall
-        mkdir $out
-        mdbook build
-        mv book $out/
-        runHook postInstall
-      '';
-    };
+  rust-async-book = callPackage ./rust-async-book {};
 
   wayland-book =
     stdenv.mkDerivation {
@@ -234,8 +184,7 @@ lib.filterAttrs (_: v: v != null) rec {
     with pkgs;
     maven.overrideAttrs (_: _: { jdk = jdk8; });
 
-  kakoune =
-    niclib.wrapDerivationOutput pkgs.kakoune "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./kak-config}";
+  kakoune = callPackage ./kakoune {};
 
   lilypondbot = pkgs.callPackage ./lilypondbot {};
 

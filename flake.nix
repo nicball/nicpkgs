@@ -10,21 +10,21 @@
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = nixpkgs.legacyPackages.${system}; in rec {
 
-        niclib = import ./niclib.nix { inherit pkgs; };
+        niclib = import ./niclib { inherit pkgs; };
 
         packages =
           let
+            inherit (pkgs) lib;
+
             allPkgs = pkgs // nicpkgs // { inherit niclib; };
 
-            callPackage = pathOrFn: extra:
-              let fn = if builtins.isFunction pathOrFn then pathOrFn else import pathOrFn; in
-              fn ((builtins.intersectAttrs (builtins.functionArgs fn) allPkgs) // extra);
+            callPackage = lib.callPackageWith allPkgs;
 
-            nicpkgs = import ./all-packages.nix {
+            nicpkgs = import ./nicpkgs/all-packages.nix {
               inherit system pkgs niclib callPackage nixpkgs;
             };
           in
-          nicpkgs;
+          lib.filterAttrs (_: v: v != null) nicpkgs;
 
       }
     );
