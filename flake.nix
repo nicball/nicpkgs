@@ -18,7 +18,9 @@
 
         allPkgs = pkgs // nicpkgs // { inherit niclib; };
 
-        callPackage = lib.callPackageWith allPkgs;
+        callPackage = fn: extraArgs:
+          let f = if lib.isFunction fn then fn else import fn; in
+          f ((builtins.intersectAttrs (lib.functionArgs f) allPkgs) // extraArgs);
 
         nicpkgs = import ./nicpkgs/all-packages.nix {
           inherit system pkgs niclib callPackage nixpkgs;
