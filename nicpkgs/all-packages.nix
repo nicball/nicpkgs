@@ -243,4 +243,6 @@ with pkgs;
 
     kitty = callPackage ./kitty {};
 
+    screenshot = callPackage ./screenshot {};
+
 }
