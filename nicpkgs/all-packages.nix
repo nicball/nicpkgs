@@ -245,4 +245,6 @@ with pkgs;
 
     screenshot = callPackage ./screenshot {};
 
+    aria2 = callPackage ./aria2 {};
+
 }
