@@ -48,7 +48,7 @@ in
       Unit.Description = "Cloudflare DNS Updater";
       Service = {
         Type = "oneshot";
-        ExecStart = "${package}";
+        ExecStart = "${package}/bin/cloudflare-ddns";
       };
     };
 
