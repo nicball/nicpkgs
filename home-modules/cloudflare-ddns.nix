@@ -6,7 +6,7 @@ let
 
   cfg = config.services.cloudflare-ddns;
 
-  package = cloudflare-ddns.override {
+  package = with cfg; cloudflare-ddns.override {
     authKey = auth-key;
     authEmail = auth-email;
     zoneName = zone-name;
