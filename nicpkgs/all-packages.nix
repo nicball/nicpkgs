@@ -247,4 +247,6 @@ with pkgs;
 
     aria2 = pkgs.lib.makeOverridable (callPackage ./aria2 {}) {};
 
+    cloudflare-ddns = pkgs.lib.makeOverridable (callPackage ./cloudflare-ddns {}) {};
+
 }
