@@ -9,6 +9,7 @@
 , output-dir ? "~/screenshots"
 , format ? "$(date +%Y-%m-%d_%H-%M-%S)"
 }:
+
 writeShellScriptBin "screenshot" ''
   fullscreen=false
   savetodisk=false

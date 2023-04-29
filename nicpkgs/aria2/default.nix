@@ -10,9 +10,10 @@
 , rpc-secret ? "p@ssw0rd"
 , bt-tracker ? "${builtins.readFile ./bt-trackers.txt}"
 }:
-let
-  aria2Config = pkgs.writeText "aria2.conf" ''
 
+let
+
+  aria2Config = pkgs.writeText "aria2.conf" ''
     ${lib.optionalString server-mode ''
       quiet
       dir=${dir}
@@ -36,7 +37,9 @@ let
     
     bt-tracker=${bt-tracker}
   '';
+
 in
+
 niclib.wrapDerivationOutput pkgs.aria2 "bin/aria2c" ''
   --add-flags '--conf-path=${aria2Config}'
 ''
