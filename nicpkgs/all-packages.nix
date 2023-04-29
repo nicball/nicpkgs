@@ -239,12 +239,12 @@ with pkgs;
         (emacsPackagesFor emacsPgtk).emacsWithPackages plugins
       );
 
-    instaepub = callPackage ./instaepub {};
+    instaepub = pkgs.lib.makeOverridable (callPackage ./instaepub {}) {};
 
     kitty = callPackage ./kitty {};
 
-    screenshot = callPackage ./screenshot {};
+    screenshot = pkgs.lib.makeOverridable (callPackage ./screenshot {}) {};
 
-    aria2 = callPackage ./aria2 {};
+    aria2 = pkgs.lib.makeOverridable (callPackage ./aria2 {}) {};
 
 }
