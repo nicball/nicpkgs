@@ -10,6 +10,7 @@
 , username ? "nobody"
 , password ? "p@ssw0rd"
 , outputDir ? "."
+, autoArchive ? false
 }:
 
 let
@@ -17,6 +18,7 @@ let
   src = substituteAll {
     src = ./instaepub.py;
     inherit consumerKey consumerSecret username password outputDir;
+    autoArchive = if autoArchive then "True" else "False";
     inherit pandoc;
   };
 
