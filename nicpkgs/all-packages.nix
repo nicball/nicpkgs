@@ -241,4 +241,6 @@ with pkgs;
 
     instaepub = callPackage ./instaepub {};
 
+    kitty = callPackage ./kitty {};
+
 }
