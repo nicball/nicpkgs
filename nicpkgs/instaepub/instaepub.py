@@ -63,8 +63,14 @@ for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
     html_file, html_path = tempfile.mkstemp(suffix='.html', text=True)
     with open(html_file, 'w') as f:
         f.write(content)
-    subprocess.run([
+    proc = subprocess.run([
         pandoc_path,
         '-f', 'html', '-t', 'epub', '-o', filename,
         html_path
     ])
+    if @autoArchive@ and proc.returnCode == 0:
+        requests.post(
+            url=base_url+'/1/bookmarks/archive',
+            auth=auth,
+            data={'bookmark_id': v['bookmark_id']}
+        )

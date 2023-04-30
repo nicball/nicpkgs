@@ -12,6 +12,7 @@ let
     username = cfg.username;
     password = cfg.password;
     outputDir = cfg.output-dir;
+    autoArchive = cfg.auto-archive;
   };
 
 in
@@ -31,6 +32,11 @@ in
     password = lib.mkOption { type = lib.types.str; };
 
     output-dir = lib.mkOption { type = lib.types.str; };
+
+    auto-archive = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
 
     interval = lib.mkOption {
       type = lib.types.str;
