@@ -59,7 +59,7 @@ cursorline
 
 # set indent width
 hook global BufCreate .* %{
-    set-option buffer indentwidth 4
+    set-option buffer indentwidth 2
 }
 
 colorscheme solarized-light
