@@ -68,7 +68,7 @@ for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
         '-f', 'html', '-t', 'epub', '-o', filename,
         html_path
     ])
-    if @autoArchive@ and proc.returnCode == 0:
+    if @autoArchive@ and proc.returncode == 0:
         requests.post(
             url=base_url+'/1/bookmarks/archive',
             auth=auth,
