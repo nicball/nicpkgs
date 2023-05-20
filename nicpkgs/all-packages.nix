@@ -249,4 +249,8 @@ with pkgs;
 
     cloudflare-ddns = pkgs.lib.makeOverridable (callPackage ./cloudflare-ddns {}) {};
 
+    qq = niclib.wrapDerivationOutput pkgs.qq "bin/qq" ''
+      --add-flags "--ozone-platform-hint=wayland"
+    '';
+
 }
