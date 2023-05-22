@@ -3,7 +3,6 @@ add-highlighter global/ number-lines
 
 # highlight matching parentheses
 add-highlighter global/ show-matching
-set-face global MatchingChar black,bright-cyan+b
 
 # expand tab
 # hook global ModuleLoaded smarttab %{
@@ -62,4 +61,4 @@ hook global BufCreate .* %{
     set-option buffer indentwidth 2
 }
 
-colorscheme solarized-light
+colorscheme one-light
