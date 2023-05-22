@@ -62,4 +62,4 @@ hook global BufCreate .* %{
     set-option buffer indentwidth 2
 }
 
-colorscheme solarized-light
+colorscheme one-light

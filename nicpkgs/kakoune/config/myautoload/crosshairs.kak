@@ -1,4 +1,4 @@
-set-face global crosshairs_line default,rgb:dddddd+bd
+set-face global crosshairs_line default,rgb:e6e6e6+bd
 set-face global crosshairs_column default,rgb:dddddd+bd
 
 declare-option -hidden bool highlight_current_line false
