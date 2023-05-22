@@ -71,7 +71,7 @@ set-face global StatusLineInfo "rgb:%opt{blue}"
 set-face global StatusLineValue "rgb:%opt{fg}"
 set-face global StatusCursor "default,rgba:%opt{blue}%opt{cursoralpha}"
 set-face global Prompt "rgb:%opt{blue}"
-set-face global MatchingChar "default,rgb:%opt{subbg}"
+set-face global MatchingChar "rgb:%opt{lightred}+b"
 set-face global BufferPadding "rgb:%opt{bg},rgb:%opt{bg}"
 set-face global Whitespace "rgb:%opt{comment}"
 
