@@ -8,10 +8,10 @@ buildGoModule rec {
     owner = "owncast";
     repo = "owncast";
     rev = "v${version}";
-    sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    sha256 = "sha256-aDXXRe/CrA5JuUeGmsBLtESa6jRTfokV9uhycpik7mw=";
   };
 
-  vendorSha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+  vendorSha256 = "sha256-abAZtBwSVHJlbjciKZmBvU7bz/3FoTKh4SkuJbfwsas=";
 
   propagatedBuildInputs = [ ffmpeg ];
 
@@ -19,16 +19,12 @@ buildGoModule rec {
 
   preInstall = ''
     mkdir -p $out
-    cp -r $src/{static,webroot} $out
+    cp -r $src/static $out
   '';
 
   postInstall = let
 
     setupScript = ''
-      [ ! -d "$PWD/webroot" ] && (
-        ${coreutils}/bin/cp --no-preserve=mode -r "${placeholder "out"}/webroot" "$PWD"
-      )
-
       [ ! -d "$PWD/static" ] && (
         [ -L "$PWD/static" ] && ${coreutils}/bin/rm "$PWD/static"
         ${coreutils}/bin/ln -s "${placeholder "out"}/static" "$PWD"
