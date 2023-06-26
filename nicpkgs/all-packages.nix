@@ -253,4 +253,6 @@ with pkgs;
       --add-flags "--ozone-platform-hint=wayland"
     '';
 
+    owncast = callPackage ./owncast.nix {};
+
 }
