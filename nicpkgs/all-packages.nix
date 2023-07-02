@@ -255,4 +255,6 @@ with pkgs;
 
     owncast = callPackage ./owncast.nix {};
 
+    rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
+
 }
