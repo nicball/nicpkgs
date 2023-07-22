@@ -2,7 +2,7 @@
 
 {
 
-  piqueserver = callPackage ./piqueserver.nix {};
+  piqueserver = callPackage ./piqueserver {};
 
   terraria-server = callPackage ./terraria-server.nix {};
 
@@ -52,6 +52,6 @@
 
   ufs-utils = callPackage ./ufs-utils.nix {};
 
-    rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
+  rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
 
 }
