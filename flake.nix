@@ -32,7 +32,7 @@
 
         inherit niclib;
 
-        packages = lib.filterAttrs (_: v: v != null) nicpkgs;
+        packages = nicpkgs;
 
         homeModules = import ./home-modules { inherit callPackage; };
 
