@@ -1,4 +1,4 @@
-{ fetchFromGitHub, system, python3Packages, fetchPypi }:
+{ fetchFromGitHub, system }:
 
 let nixos1909 = fetchFromGitHub {
   owner = "NixOS";
@@ -21,7 +21,6 @@ let
     };
     doCheck = false;
     propagatedBuildInputs = [ cython ];
-    meta = {};
   };
 in
 
