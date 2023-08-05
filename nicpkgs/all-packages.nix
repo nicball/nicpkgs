@@ -54,4 +54,6 @@
 
   rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
 
+  ryzenadj = callPackage ./ryzenadj.nix {};
+
 }
