@@ -40,9 +40,9 @@ set-face global comment   "%opt{nord3}+i"
 # backgrounds use Snow Storm for the primary cursor
 # and Frost for secondary elements 
 set-face global PrimaryCursor      "%opt{nord0},%opt{nord8}+Bfg"
-set-face global PrimarySelection   "%opt{nord0},%opt{nord7}+g"
-set-face global SecondaryCursor    "%opt{nord0},%opt{nord9}+fg"
-set-face global SecondarySelection "%opt{nord0},%opt{nord10}+g"
+set-face global PrimarySelection   "%opt{nord0},%opt{nord10}+g"
+set-face global SecondaryCursor    "%opt{nord0},%opt{nord7}+fg"
+set-face global SecondarySelection "%opt{nord0},%opt{nord9}+g"
 
 # current line's number is white and matches the cursorline
 # other line's numbers are grey like comments
@@ -76,7 +76,7 @@ set-face global StatusLineValue  "%opt{nord8}+i"
 set-face global StatusCursor     "%opt{nord0},%opt{nord4}"
 set-face global Prompt           "%opt{nord0}"
 set-face global Whitespace       "%opt{nord10},%opt{nord1}+f"
-set-face global MatchingChar     "%opt{nord0},%opt{nord9}+F"
+set-face global MatchingChar     "%opt{nord0},%opt{nord12}+F"
 
 # extra padding at the end of a buffer (file)
 set-face global BufferPadding      "%opt{nord1},%opt{nord1}"
