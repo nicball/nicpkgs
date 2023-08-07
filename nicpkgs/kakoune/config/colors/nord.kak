@@ -39,15 +39,15 @@ set-face global comment   "%opt{nord3}+i"
 # cursor/selection text is always black
 # backgrounds use Snow Storm for the primary cursor
 # and Frost for secondary elements 
-set-face global PrimaryCursor      "%opt{nord0},%opt{nord4}+Bfg"
-set-face global PrimarySelection   "%opt{nord0},%opt{nord8}+g"
+set-face global PrimaryCursor      "%opt{nord0},%opt{nord8}+Bfg"
+set-face global PrimarySelection   "%opt{nord0},%opt{nord7}+g"
 set-face global SecondaryCursor    "%opt{nord0},%opt{nord9}+fg"
 set-face global SecondarySelection "%opt{nord0},%opt{nord10}+g"
 
 # current line's number is white and matches the cursorline
 # other line's numbers are grey like comments
 set-face global LineNumbers        "%opt{nord10}+b"
-set-face global LineNumberCursor   "%opt{nord4},%opt{nord2}+b"
+set-face global LineNumberCursor   "%opt{nord0},%opt{nord10}+b"
 
 # marks a soft-wrap in yellow
 set-face global LineNumbersWrapped "%opt{nord13},%opt{nord1}"
