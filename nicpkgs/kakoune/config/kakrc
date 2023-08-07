@@ -1,5 +1,5 @@
 # line numbers
-add-highlighter global/ number-lines
+add-highlighter global/ number-lines -hlcursor
 
 # highlight matching parentheses
 add-highlighter global/ show-matching
@@ -40,9 +40,6 @@ evaluate-commands %sh{
     done
 }
 
-# highlight current line
-cursorline
-
 # disable cursor wrap
 # hook global NormalKey h %{
 #     try %{
@@ -57,11 +54,12 @@ cursorline
 # }
 
 # set indent width
-hook global BufCreate .* %{
-    set-option buffer indentwidth 2
-}
+# hook global BufCreate .* %{
+#     set-option buffer indentwidth 2
+# }
+set-option global indentwidth 2
 
-colorscheme one-light
+colorscheme nord
 
 # parinfer
 hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
