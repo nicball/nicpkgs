@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation {
   pname = "ufs-utils";
-  version = "v4.13.5";
+  version = "4.13.5";
   src = fetchFromGitHub {
     owner = "westerndigitalcorporation";
     repo = "ufs-utils";

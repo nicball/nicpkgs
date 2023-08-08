@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation {
   pname = "wayland-book";
-  version = "6.6.6";
+  version = "unstable-2022-12-12";
   src = fetchgit {
     url = "https://git.sr.ht/~sircmpwn/wayland-book";
     rev = "9023e006f51a37b4ee84b42966aeeaa4f6fd44c5";

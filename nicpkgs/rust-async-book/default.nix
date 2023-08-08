@@ -6,7 +6,7 @@
 
 stdenv.mkDerivation {
   pname = "rust-async-book";
-  version = "6.6.6";
+  version = "unstable-2022-10-21";
   src = fetchFromGitHub {
     owner = "rust-lang";
     repo = "async-book";

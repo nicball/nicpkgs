@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation {
   pname = "rime-table-bin-decompiler";
-  version = "6.6.6";
+  version = "unstable-2022-10-30";
   src = fetchFromGitHub {
     owner = "kitty-panics";
     repo = "rime-table-bin-decompiler";
