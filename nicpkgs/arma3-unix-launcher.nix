@@ -7,7 +7,7 @@ let aulimg = fetchurl {
 
 stdenv.mkDerivation {
   pname = "arma3-unix-launcher";
-  version = "6.6.6";
+  version = "unstable-2022-3-29";
   nativeBuildInputs = [ makeWrapper ];
   dontUnpack = true;
   dontConfigure = true;

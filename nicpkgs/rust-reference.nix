@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation {
   pname = "rust-reference";
-  version = "6.6.6";
+  version = "unstable-2022-12-04";
   src = fetchFromGitHub {
     owner = "rust-lang";
     repo = "reference";
