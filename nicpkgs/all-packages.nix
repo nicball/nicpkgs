@@ -56,4 +56,6 @@
 
   ryzenadj = callPackage ./ryzenadj.nix {};
 
+  lean-doc = callPackage ./lean-doc.nix {};
+
 }
