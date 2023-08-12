@@ -5,8 +5,8 @@
 let nurpkgs = import (fetchFromGitHub {
   owner = "nix-community";
   repo = "nur-combined";
-  rev = "d336fa98ac701595ae9e827b0101d95350a53593";
-  sha256 = "sha256-hwz0hc5FVZanzFflbtInU7PW+DeiBy/JlF67BoZjhnM=";
+  rev = "38940c1ddf77b803aa2eaa3d20b3030b99f65cc6";
+  sha256 = "sha256-sbL+QVfOJ11KH/UYVUEEfBQ18Xc/GGwLJurJvsJFXfc=";
 }) { nurpkgs = pkgs; inherit pkgs; }; in
 
 nurpkgs.repos.linyinfeng.wemeet
