@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
   pname = "ryzenadj";
-  version = "snapshot";
+  version = "unstable-2023-07-14";
 
   src = fetchFromGitHub {
     owner = "FlyGoat";
