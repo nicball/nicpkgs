@@ -14,7 +14,7 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
     mkdir $out
-    mdbook-epub --standalone
+    mdbook-epub --standalone true
     mv book $out/
     runHook postInstall
   '';

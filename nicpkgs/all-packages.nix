@@ -10,7 +10,7 @@
 
   arma3-unix-launcher = callPackage ./arma3-unix-launcher.nix {};
 
-  mdbook-epub = callPackage ./mdbook-epub {};
+  mdbook-epub = callPackage ./mdbook-epub.nix {};
 
   rust-reference = callPackage ./rust-reference.nix {};
 
@@ -57,5 +57,7 @@
   ryzenadj = callPackage ./ryzenadj.nix {};
 
   lean-doc = callPackage ./lean-doc.nix {};
+
+  helix-doc = callPackage ./helix-doc.nix {};
 
 }
