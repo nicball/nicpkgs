@@ -10,10 +10,10 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "Michael-F-Bryan";
     repo = "mdbook-epub";
-    rev = "23b4f766700d08d404bb6d937f2c050381b76a06";
-    sha256 = "sha256-gXQfQqtbRek74/EEH1ukCNM/7SXtWQh8B+lNZaTqfrI=";
+    rev = "6a649147438bc884111eecb7cdf3879ee6cb5f9a";
+    sha256 = "sha256-V4W/+LAQI0yOphhhvRooJBKXlvryNxppXMIigtn7wXA=";
   };
   doCheck = false;
-  cargoSha256 = "sha256-f7g5e9TQca5ZoyD29kthwnygekbgliazGD/1ppddTuk=";
-  cargoPatches = [ ./mdbook-epub.patch ];
+  cargoSha256 = "sha256-NNYy/zO7SWbb/1qJ/5E3uHcxR3lI6Fj8WknK9YWBrO8=";
+  # cargoPatches = [ ./mdbook-epub.patch ];
 }
