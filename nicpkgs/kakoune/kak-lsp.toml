@@ -1,0 +1,5 @@
+[language.racket]
+filetypes = [ "racket" ]
+roots = [ ".git" ]
+command = "racket"
+args = [ "-l", "racket-langserver" ]
