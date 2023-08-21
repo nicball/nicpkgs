@@ -15,7 +15,9 @@ stdenv.mkDerivation {
     runHook preInstall
     mkdir $out
     mdbook-epub --standalone true
-    mv book $out/
+    mv book/*.epub $out/
     runHook postInstall
   '';
+  outputHash = "sha256-tL0tCJ5aBFUmSxnePfg8c5tQRkihkmLZtRtKR5BXa1I=";
+  outputHashMode = "recursive";
 }

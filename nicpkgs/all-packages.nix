@@ -14,7 +14,7 @@
 
   rust-reference = callPackage ./rust-reference.nix {};
 
-  rust-async-book = callPackage ./rust-async-book {};
+  rust-async-book = callPackage ./rust-async-book.nix {};
 
   wayland-book = callPackage ./wayland-book.nix {};
 
