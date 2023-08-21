@@ -32,7 +32,6 @@
 
         nicpkgs = import ./nicpkgs/all-packages.nix {
           inherit system pkgs niclib callPackage nixpkgs;
-          nur = nur-no-pkgs;
         };
 
       in rec {
@@ -42,6 +41,8 @@
         packages = nicpkgs;
 
         homeModules = import ./home-modules { inherit callPackage; };
+
+        nur = nur-no-pkgs;
 
       }
     );

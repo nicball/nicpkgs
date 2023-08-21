@@ -1,4 +1,4 @@
-{ pkgs, callPackage, niclib, system, nixpkgs, nur }:
+{ pkgs, callPackage, niclib, system, nixpkgs }:
 
 {
 
@@ -57,7 +57,5 @@
   lean-doc = callPackage ./lean-doc.nix {};
 
   helix-doc = callPackage ./helix-doc.nix {};
-
-  # wemeet = nur.repos.linyinfeng.wemeet;
 
 }
