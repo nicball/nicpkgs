@@ -1,5 +1,5 @@
 [language.racket]
 filetypes = [ "racket" ]
 roots = [ ".git" ]
-command = "racket"
-args = [ "-l", "racket-langserver" ]
+command = "nix"
+args = [ "shell", "nixpkgs#racket", "--command", "racket", "-l", "racket-langserver" ]
