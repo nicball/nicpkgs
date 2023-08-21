@@ -8,12 +8,12 @@ in
 
 stdenv.mkDerivation {
   pname = "rtw89";
-  version = "unstable-2023-8-8";
+  version = "unstable-2023-8-13";
   src = fetchFromGitHub {
     owner = "lwfinger";
     repo = "rtw89";
-    rev = "6345e2d1987693aeed88711707bdab37fa39dd16";
-    sha256 = "sha256-81K54AkO0FmB6MnUBanpLecWYNRi09KcAxuHaylXjXQ=";
+    rev = "a90a30a0eddca05ccb2496b106daca4a76b89b11";
+    sha256 = "sha256-NuztcWB9dg2O5Sof0bilqfHL7H1c1vMuEqnESGC1Ll0=";
   };
   hardeningDisable = [ "pic" "format" ];
   nativeBuildInputs = kernel.moduleBuildDependencies ++ [ openssl mokutil ];
