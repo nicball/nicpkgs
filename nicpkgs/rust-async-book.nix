@@ -1,27 +1,25 @@
 { fetchFromGitHub
 , stdenv
-, mdbook
 , mdbook-epub
 }:
 
 stdenv.mkDerivation {
   pname = "rust-async-book";
-  version = "unstable-2022-10-21";
+  version = "unstable-2023-07-06";
   src = fetchFromGitHub {
     owner = "rust-lang";
     repo = "async-book";
-    rev = "e224ead5275545acc00fa82d94ba6d6f377c8563";
-    sha256 = "sha256-lzUljczQ7hPZAVi+bFXth0sDTX+C/W1f/iBiK3gPtO0=";
+    rev = "1ef20c71ba1a365a3b09092b5fef27fe23e45de3";
+    sha256 = "sha256-RFsu8+Y2LrueXfTKJOrD2Pyy5Aoa/ap0eKBP+CBdeVM=";
   };
   dontConfigure = true;
   dontBuild = true;
-  patches = [ ./rust-async-book.patch ];
-  nativeBuildInputs = [ mdbook mdbook-epub ];
+  nativeBuildInputs = [ mdbook-epub ];
   installPhase = ''
     runHook preInstall
     mkdir $out
-    mdbook build
-    mv book $out/
+    mdbook-epub --standalone true
+    mv book/epub/*.epub $out/
     runHook postInstall
   '';
 }
