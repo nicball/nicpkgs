@@ -1,4 +1,4 @@
-{ pkgs, callPackage, niclib, system, nixpkgs }:
+{ pkgs, callPackage, niclib, system, nixpkgs, nur }:
 
 {
 
@@ -19,8 +19,6 @@
   wayland-book = callPackage ./wayland-book.nix {};
 
   rtw89 = pkgs.lib.makeOverridable (callPackage ./rtw89.nix {}) {};
-
-  wemeet = callPackage ./wemeet.nix {};
 
   maven-j8 = with pkgs; maven.overrideAttrs (_: _: { jdk = jdk8; });
 
@@ -59,5 +57,7 @@
   lean-doc = callPackage ./lean-doc.nix {};
 
   helix-doc = callPackage ./helix-doc.nix {};
+
+  wemeet = nur.repos.linyinfeng.wemeet;
 
 }
