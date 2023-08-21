@@ -4,10 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
+    nur.url = "github:nix-community/NUR";
   };
 
 
-  outputs = { self, nixpkgs, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, flake-utils, nur , ... }@inputs:
     flake-utils.lib.eachDefaultSystem (system:
       let
 
@@ -24,6 +25,11 @@
         #   f ((builtins.intersectAttrs (lib.functionArgs f) allPkgs) // extraArgs);
         callPackage = lib.callPackageWith allPkgs;
 
+        nur-no-pkgs = import nur {
+          inherit pkgs;
+          nurpkgs = pkgs;
+        };
+
         nicpkgs = import ./nicpkgs/all-packages.nix {
           inherit system pkgs niclib callPackage nixpkgs;
         };
@@ -35,6 +41,8 @@
         packages = nicpkgs;
 
         homeModules = import ./home-modules { inherit callPackage; };
+
+        nur = nur-no-pkgs;
 
       }
     );

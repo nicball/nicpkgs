@@ -20,8 +20,6 @@
 
   rtw89 = pkgs.lib.makeOverridable (callPackage ./rtw89.nix {}) {};
 
-  wemeet = callPackage ./wemeet.nix {};
-
   maven-j8 = with pkgs; maven.overrideAttrs (_: _: { jdk = jdk8; });
 
   kakoune = callPackage ./kakoune {};
