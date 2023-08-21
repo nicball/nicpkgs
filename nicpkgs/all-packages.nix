@@ -58,6 +58,6 @@
 
   helix-doc = callPackage ./helix-doc.nix {};
 
-  wemeet = nur.repos.linyinfeng.wemeet;
+  # wemeet = nur.repos.linyinfeng.wemeet;
 
 }
