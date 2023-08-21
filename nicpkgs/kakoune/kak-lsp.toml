@@ -2,4 +2,4 @@
 filetypes = [ "racket" ]
 roots = [ ".git" ]
 command = "nix"
-args = [ "shell", "nixpkgs#racket", "--command", "--", "racket", "-l", "racket-langserver" ]
+args = [ "shell", "nixpkgs#racket", "--command", "racket", "-l", "racket-langserver" ]
