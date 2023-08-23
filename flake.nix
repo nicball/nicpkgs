@@ -2,7 +2,6 @@
   description = "Nicball's package collection";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nur.url = "github:nix-community/NUR";
   };
