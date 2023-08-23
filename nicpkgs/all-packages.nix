@@ -44,7 +44,7 @@
 
   qq = niclib.wrapDerivationOutput pkgs.qq "bin/qq" ''
     --add-flags "--ozone-platform-hint=wayland"
-  '';
+  '' // { license = pkgs.lib.licenses.free; };
 
   owncast = callPackage ./owncast.nix {};
 
