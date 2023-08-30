@@ -58,4 +58,6 @@
 
   helix-doc = callPackage ./helix-doc.nix {};
 
+  waybar = callPackage ./waybar {};
+
 }
