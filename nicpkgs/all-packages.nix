@@ -60,4 +60,6 @@
 
   waybar = callPackage ./waybar {};
 
+  rofi = callPackage ./rofi {};
+
 }
