@@ -62,4 +62,6 @@
 
   rofi = callPackage ./rofi {};
 
+  alchitry-lab = callPackage ./alchitry-lab.nix {};
+
 }
