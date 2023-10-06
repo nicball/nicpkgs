@@ -64,4 +64,6 @@
 
   alchitry-lab = callPackage ./alchitry-lab.nix {};
 
+  InsydeImageExtractor = callPackage ./InsydeImageExtractor.nix {};
+
 }
