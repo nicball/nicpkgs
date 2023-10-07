@@ -68,7 +68,7 @@ hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
 
 # lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(racket) %{
+hook global WinSetOption filetype=(racket|haskell) %{
     lsp-enable-window
     map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
     # map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
