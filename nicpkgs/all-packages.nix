@@ -66,4 +66,6 @@
 
   InsydeImageExtractor = callPackage ./InsydeImageExtractor.nix {};
 
+  flowerss-bot = callPackage ./flowerss-bot.nix {};
+
 }
