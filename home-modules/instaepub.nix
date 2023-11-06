@@ -13,6 +13,7 @@ let
     password = cfg.password;
     outputDir = cfg.output-dir;
     autoArchive = cfg.auto-archive;
+    pandoc = cfg.pandoc;
   };
 
 in
@@ -41,6 +42,11 @@ in
     interval = lib.mkOption {
       type = lib.types.str;
       default = "daily";
+    };
+
+    pandoc = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.pandoc;
     };
 
   };
