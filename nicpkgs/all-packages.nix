@@ -68,4 +68,6 @@
 
   flowerss-bot = callPackage ./flowerss-bot.nix {};
 
+  pandoc = callPackage ./pandoc.nix {};
+
 }
