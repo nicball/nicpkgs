@@ -2,7 +2,7 @@
 , substituteAll
 , writers
 , python3Packages
-, pandoc
+, pkgs
 }:
 
 { consumerKey ? "badkey"
@@ -11,6 +11,7 @@
 , password ? "p@ssw0rd"
 , outputDir ? "."
 , autoArchive ? false
+, pandoc ? pkgs.pandoc
 }:
 
 let
