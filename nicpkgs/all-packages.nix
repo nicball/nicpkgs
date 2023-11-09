@@ -70,4 +70,6 @@
 
   pandoc = callPackage ./pandoc.nix {};
 
+  mirai-console-loader = callPackage ./mirai-console-loader.nix {};
+
 }
