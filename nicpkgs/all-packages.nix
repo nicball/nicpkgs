@@ -72,4 +72,6 @@
 
   mirai-console-loader = callPackage ./mirai-console-loader.nix {};
 
+  matrix-qq = callPackage ./matrix-qq.nix {};
+
 }
