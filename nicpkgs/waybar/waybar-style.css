@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 11px;
+    font-size: 16px;
     /* color: #2e3440; */
     color: #eceff4;
 }
@@ -30,7 +30,7 @@ window#waybar.solo {
 */
 
 #workspaces button {
-    padding: 0 10px;
+    padding: 0 16px;
     /*
     background-color: #1c4149;
     color: #6b7443;
@@ -38,7 +38,7 @@ window#waybar.solo {
     /* background: transparent; */
     /* color: white; */
     /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -3px transparent;
+    box-shadow: inset 0 -5px transparent;
     /* Avoid rounded borders under each workspace name */
     border: none;
     border-radius: 0;
@@ -54,7 +54,7 @@ window#waybar.solo {
     background-color: #56737a;
     color: #1e1e20;
     */
-    border-bottom: 2px solid;
+    border-bottom: 3px solid;
 }
 
 #workspaces button.urgent {
@@ -72,9 +72,9 @@ window#waybar.solo {
     background-color: #56737a;
     */
     /* color: white; */
-    font-size: 14px;
+    font-size: 21px;
     /* min-width: 60px; */
-    padding: 0 10px;
+    padding: 0 16px;
 }
 
 #waybar.empty #window {
@@ -95,9 +95,9 @@ window#waybar.solo {
 #mode,
 #idle_inhibitor,
 #mpd {
-    padding: 0 10px;
+    padding: 0 16px;
     /* color: white; */
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
 /*
@@ -110,7 +110,7 @@ button:hover {
     
 #window,
 #workspaces {
-    margin: 0 4px;
+    margin: 0 6px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -158,7 +158,7 @@ label:focus {
     /*
     background-color: #000000;
     */
-    border-bottom: 2px solid;
+    border-bottom: 3px solid;
 }
 
 /*
@@ -203,7 +203,7 @@ label:focus {
 #custom-media {
     background-color: #66cc99;
     color: #2a5c45;
-    min-width: 100px;
+    min-width: 150px;
 }
 
 #custom-media.custom-spotify {
@@ -266,21 +266,21 @@ label:focus {
 #language {
     background: #00b093;
     color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
+    padding: 0 8px;
+    margin: 0 8px;
+    min-width: 24px;
 }
 
 #keyboard-state {
     background: #97e1ad;
     color: #000000;
     padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
+    margin: 0 8px;
+    min-width: 24px;
 }
 
 #keyboard-state > label {
-    padding: 0 5px;
+    padding: 0 8px;
 }
 
 #keyboard-state > label.locked {

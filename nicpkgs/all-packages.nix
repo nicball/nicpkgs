@@ -74,4 +74,6 @@
 
   matrix-qq = callPackage ./matrix-qq.nix {};
 
+  mako = callPackage ./mako {};
+
 }
