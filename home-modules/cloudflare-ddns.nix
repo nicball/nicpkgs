@@ -7,11 +7,7 @@ let
   cfg = config.services.cloudflare-ddns;
 
   package = with cfg; cloudflare-ddns.override {
-    authKey = auth-key;
-    authEmail = auth-email;
-    zoneName = zone-name;
-    recordName = record-name;
-    log = log;
+    inherit auth-key auth-email zone-name record-name enable-log log-path enable-ipv4 enable-ipv6;
   };
 
 in
@@ -30,7 +26,12 @@ in
 
     record-name = lib.mkOption { type = lib.types.str; };
 
-    log = lib.mkOption {
+    enable-log = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+
+    log-path = lib.mkOption {
       type = lib.types.str;
       default = "";
     };
@@ -38,6 +39,16 @@ in
     interval = lib.mkOption {
       type = lib.types.str;
       default = "hourly";
+    };
+
+    enable-ipv4 = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
+
+    enable-ipv6 = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
     };
 
   };
