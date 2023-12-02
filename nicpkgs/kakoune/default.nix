@@ -14,6 +14,7 @@ wrapKakoune pkg {
     parinfer-rust
     kakoune-state-save
     kak-lsp
+    kak-ansi
   ];
 } // {
   meta.mainProgram = "kak";
