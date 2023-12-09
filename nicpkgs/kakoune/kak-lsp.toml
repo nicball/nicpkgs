@@ -1,11 +1,11 @@
 [language.racket]
 filetypes = [ "racket" ]
 roots = [ ".git" ]
-command = "nix"
-args = [ "shell", "nixpkgs#racket", "--command", "racket", "-l", "racket-langserver" ]
+command = "racket"
+args = [ "-l", "racket-langserver" ]
 
 [language.haskell]
 filetypes = [ "haskell" ]
 roots = [ "hie.yaml", "cabal.project", "Setup.hs", "stack.yaml", "*.cabal" ]
-command = "nix"
-args = [ "shell", "nixpkgs#haskellPackages.ghc", "nixpkgs#haskellPackages.haskell-language-server", "--command", "haskell-language-server-wrapper", "--lsp" ]
+command = "haskell-language-server-wrapper"
+args = [ "--lsp" ]
