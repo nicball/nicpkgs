@@ -80,3 +80,6 @@ hook global WinSetOption filetype=(racket|haskell) %{
     map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
 }
 
+map global normal q :q<ret>
+map global normal Q :wq<ret>
+map global normal <c-q> :q!<ret>
