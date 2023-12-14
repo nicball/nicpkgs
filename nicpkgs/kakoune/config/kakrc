@@ -82,3 +82,4 @@ hook global WinSetOption filetype=(racket|haskell) %{
 
 map global normal q :q<ret>
 map global normal Q :wq<ret>
+map global normal <c-q> :q!<ret>
