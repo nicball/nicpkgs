@@ -1,9 +1,7 @@
 { lib
 , niclib
 , pkgs
-}:
-
-{ server-mode ? false
+, server-mode ? false
 , dir ? "."
 , log ? "${dir}/.log"
 , session ? "${dir}/.session"

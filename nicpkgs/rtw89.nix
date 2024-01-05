@@ -1,9 +1,7 @@
 { lib, stdenv, linux, fetchFromGitHub, openssl, mokutil }:
 
-{ kernel ? linux }:
-
 let
-    modDestDir = "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
+    modDestDir = "$out/lib/modules/${linux.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
 in
 
 stdenv.mkDerivation {
@@ -16,10 +14,10 @@ stdenv.mkDerivation {
     sha256 = "sha256-NuztcWB9dg2O5Sof0bilqfHL7H1c1vMuEqnESGC1Ll0=";
   };
   hardeningDisable = [ "pic" "format" ];
-  nativeBuildInputs = kernel.moduleBuildDependencies ++ [ openssl mokutil ];
-  makeFlags = kernel.makeFlags ++ [
-    "KVER=${kernel.modDirVersion}"
-    "KSRC=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+  nativeBuildInputs = linux.moduleBuildDependencies ++ [ openssl mokutil ];
+  makeFlags = linux.makeFlags ++ [
+    "KVER=${linux.modDirVersion}"
+    "KSRC=${linux.dev}/lib/modules/${linux.modDirVersion}/build"
   ];
   installPhase = ''
     runHook preInstall
