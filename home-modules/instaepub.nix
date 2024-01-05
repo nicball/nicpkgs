@@ -7,13 +7,7 @@ let
   cfg = config.services.instaepub;
 
   package = instaepub.override {
-    consumerKey = cfg.consumer-key;
-    consumerSecret = cfg.consumer-secret;
-    username = cfg.username;
-    password = cfg.password;
-    outputDir = cfg.output-dir;
-    autoArchive = cfg.auto-archive;
-    pandoc = cfg.pandoc;
+    inherit (cfg) consumer-key consumer-secret username password output-dir auto-archive pandoc;
   };
 
 in

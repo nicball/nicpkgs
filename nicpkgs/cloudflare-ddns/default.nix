@@ -3,9 +3,7 @@
 , curl
 , jq
 , lib
-}:
-
-{ auth-key ? "badkey"
+, auth-key ? "badkey"
 , auth-email ? "nonexistent@example.com"
 , zone-name ? "badzone"
 , record-name ? "badrecord"

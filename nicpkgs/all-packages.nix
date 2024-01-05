@@ -18,7 +18,7 @@
 
   wayland-book = callPackage ./wayland-book.nix {};
 
-  rtw89 = pkgs.lib.makeOverridable (callPackage ./rtw89.nix {}) {};
+  rtw89 = callPackage ./rtw89.nix {};
 
   maven-j8 = with pkgs; maven.overrideAttrs (_: _: { jdk = jdk8; });
 
@@ -32,15 +32,15 @@
 
   emacs = pkgs.lib.makeOverridable (import ./emacs.nix { inherit nixpkgs system; }) {};
 
-  instaepub = pkgs.lib.makeOverridable (callPackage ./instaepub {}) {};
+  instaepub = callPackage ./instaepub {};
 
   kitty = callPackage ./kitty {};
 
-  screenshot = pkgs.lib.makeOverridable (callPackage ./screenshot {}) {};
+  screenshot = callPackage ./screenshot {};
 
-  aria2 = pkgs.lib.makeOverridable (callPackage ./aria2 {}) {};
+  aria2 = callPackage ./aria2 {};
 
-  cloudflare-ddns = pkgs.lib.makeOverridable (callPackage ./cloudflare-ddns {}) {};
+  cloudflare-ddns = callPackage ./cloudflare-ddns {};
 
   qq = niclib.wrapDerivationOutput pkgs.qq "bin/qq" ''
     --add-flags "--ozone-platform-hint=wayland"

@@ -3,9 +3,7 @@
 , grim
 , slurp
 , imagemagick
-}:
-
-{ scale ? "1"
+, scale ? "1"
 , output-dir ? "~/screenshots"
 , format ? "$(date +%Y-%m-%d_%H-%M-%S)"
 }:

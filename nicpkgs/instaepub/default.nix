@@ -2,24 +2,25 @@
 , substituteAll
 , writers
 , python3Packages
+, pandoc
 , pkgs
-}:
-
-{ consumerKey ? "badkey"
-, consumerSecret ? "verysecret"
+, consumer-key ? "badkey"
+, consumer-secret ? "verysecret"
 , username ? "nobody"
 , password ? "p@ssw0rd"
-, outputDir ? "."
-, autoArchive ? false
-, pandoc ? pkgs.pandoc
+, output-dir ? "."
+, auto-archive ? false
 }:
 
 let
 
   src = substituteAll {
     src = ./instaepub.py;
-    inherit consumerKey consumerSecret username password outputDir;
-    autoArchive = if autoArchive then "True" else "False";
+    inherit username password;
+    consumerKey = consumer-key;
+    consumerSecret = consumer-secret;
+    outputDir = output-dir;
+    autoArchive = if auto-archive then "True" else "False";
     inherit pandoc;
   };
 

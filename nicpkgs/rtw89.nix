@@ -1,7 +1,5 @@
 { lib, stdenv, linux, fetchFromGitHub, openssl, mokutil }:
 
-{ kernel ? linux }:
-
 let
     modDestDir = "$out/lib/modules/${kernel.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
 in
