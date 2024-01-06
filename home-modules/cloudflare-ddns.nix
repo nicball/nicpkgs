@@ -1,12 +1,10 @@
-{ cloudflare-ddns }:
-
 { config, pkgs, lib, ... }:
 
 let
 
   cfg = config.services.cloudflare-ddns;
 
-  package = with cfg; cloudflare-ddns.override {
+  package = with cfg; pkgs.cloudflare-ddns.override {
     inherit auth-key auth-email zone-name record-name enable-log log-path enable-ipv4 enable-ipv6;
   };
 

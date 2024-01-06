@@ -7,8 +7,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "FlyGoat";
     repo = "RyzenAdj";
-    rev = "4b558e75a4810f8e13375c8c3ae08025fec276ac";
-    sha256 = "sha256-elIup39t1CssFFvfe7z/euUifGenWgpvdiogD4KixTA=";
+    rev = "dac383e1cd23aa9b631e20dba6d26f1fdf223164";
+    sha256 = "sha256-CT/vMHnA6dyo+S4aYABSccW5ARlwJsY0omlASJ2lMoI=";
   };
 
   nativeBuildInputs = [ pciutils cmake ];

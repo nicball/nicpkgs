@@ -1,13 +1,18 @@
-{ instaepub }:
-
 { config, pkgs, lib, ... }:
 
 let
 
   cfg = config.services.instaepub;
 
-  package = instaepub.override {
-    inherit (cfg) consumer-key consumer-secret username password output-dir auto-archive pandoc;
+  package = pkgs.instaepub.override {
+    inherit (cfg)
+      consumer-key
+      consumer-secret
+      username
+      password
+      output-dir
+      auto-archive
+      pandoc;
   };
 
 in

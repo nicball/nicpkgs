@@ -1,6 +1,6 @@
 { lib
-, niclib
-, pkgs
+, writeText
+, super
 , server-mode ? false
 , dir ? "."
 , log ? "${dir}/.log"
@@ -11,7 +11,7 @@
 
 let
 
-  aria2Config = pkgs.writeText "aria2.conf" ''
+  aria2Config = writeText "aria2.conf" ''
     ${lib.optionalString server-mode ''
       quiet
       dir=${dir}
@@ -38,6 +38,6 @@ let
 
 in
 
-niclib.wrapDerivationOutput pkgs.aria2 "bin/aria2c" ''
+lib.wrapDerivationOutput super.aria2 "bin/aria2c" ''
   --add-flags '--conf-path=${aria2Config}'
 ''
