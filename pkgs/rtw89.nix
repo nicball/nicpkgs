@@ -6,12 +6,14 @@ in
 
 stdenv.mkDerivation {
   pname = "rtw89";
-  version = "unstable-2024-01-06";
+  version = "unstable-2023-10-26";
   src = fetchFromGitHub {
     owner = "lwfinger";
     repo = "rtw89";
-    rev = "139b1477900f7f13f0c1111c8919a3bf4aeb4a80";
-    sha256 = "sha256-V4ZbNBMc7Gy/E4HLusXhxCLLN1Enb9Ua4XSpS6XB29Q=";
+    # rev = "6efcb8f06873053e63ddff85526ea8d3efcc8f22";
+    # sha256 = "sha256-ied2vgEBetdJvt6r+9RmIh8rceH8QhY01zg6qejq3W0=";
+    rev = "add37506180331f012d1b4292c65845771b9160f";
+    sha256 = "sha256-JZSZ8BbMtwZ+046OJ6qjQrT9Y4JS/SX7vw84ikUSZQQ=";
   };
   hardeningDisable = [ "pic" "format" ];
   nativeBuildInputs = linux.moduleBuildDependencies ++ [ openssl mokutil ];
@@ -22,8 +24,8 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
     mkdir -p ${modDestDir}
-    find . -name '*.ko' -exec cp --parents {} ${modDestDir} \;
-    find ${modDestDir} -name '*.ko' -exec xz -f {} \;
+    cp *.ko ${modDestDir}
+    xz -f ${modDestDir}/*.ko
     runHook postInstall
   '';
   meta.platforms = lib.platforms.x86;
