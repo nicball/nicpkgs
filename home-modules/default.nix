@@ -1,9 +1,7 @@
-{ callPackage }:
-
 {
 
-  instaepub = callPackage ./instaepub.nix {};
+  instaepub = import ./instaepub.nix;
 
-  cloudflare-ddns = callPackage ./cloudflare-ddns.nix {};
+  cloudflare-ddns = import ./cloudflare-ddns.nix;
 
 }

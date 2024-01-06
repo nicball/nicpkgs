@@ -6,12 +6,12 @@ in
 
 stdenv.mkDerivation {
   pname = "rtw89";
-  version = "unstable-2023-8-13";
+  version = "unstable-2024-01-06";
   src = fetchFromGitHub {
     owner = "lwfinger";
     repo = "rtw89";
-    rev = "a90a30a0eddca05ccb2496b106daca4a76b89b11";
-    sha256 = "sha256-NuztcWB9dg2O5Sof0bilqfHL7H1c1vMuEqnESGC1Ll0=";
+    rev = "139b1477900f7f13f0c1111c8919a3bf4aeb4a80";
+    sha256 = "sha256-V4ZbNBMc7Gy/E4HLusXhxCLLN1Enb9Ua4XSpS6XB29Q=";
   };
   hardeningDisable = [ "pic" "format" ];
   nativeBuildInputs = linux.moduleBuildDependencies ++ [ openssl mokutil ];

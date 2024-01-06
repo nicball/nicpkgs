@@ -3,46 +3,23 @@
 
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
-    nur.url = "github:nix-community/NUR";
   };
 
-
   outputs = { self, nixpkgs, flake-utils, nur , ... }@inputs:
+    let overlay = import ./pkgs/all-packages.nix; in
     flake-utils.lib.eachDefaultSystem (system:
-      let
+      let pkgs = import nixpkgs { inherit system; overlays = [ overlay ]; }; in {
 
-        niclib = import ./niclib { inherit pkgs; };
+        lib = builtins.intersectAttrs (import ./lib 42) pkgs.lib;
 
-        pkgs = nixpkgs.legacyPackages.${system};
-
-        inherit (pkgs) lib;
-
-        allPkgs = pkgs // nicpkgs // { inherit niclib; };
-
-        # callPackage = fn: extraArgs:
-        #   let f = if lib.isFunction fn then fn else import fn; in
-        #   f ((builtins.intersectAttrs (lib.functionArgs f) allPkgs) // extraArgs);
-        callPackage = lib.callPackageWith allPkgs;
-
-        nur-no-pkgs = import nur {
-          inherit pkgs;
-          nurpkgs = pkgs;
-        };
-
-        nicpkgs = import ./nicpkgs/all-packages.nix {
-          inherit system pkgs niclib callPackage nixpkgs;
-        };
-
-      in rec {
-
-        inherit niclib;
-
-        packages = nicpkgs;
-
-        homeModules = import ./home-modules { inherit callPackage; };
-
-        nur = nur-no-pkgs;
+        packages = pkgs.lib.filterAttrs (k: v: k != "lib") (builtins.intersectAttrs (overlay 42 42) pkgs);
 
       }
-    );
+    ) // {
+
+      overlays.default = overlay;
+
+      homeModules = import ./home-modules;
+
+    };
 }
