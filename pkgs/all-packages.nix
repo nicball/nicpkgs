@@ -74,4 +74,6 @@ self: super:
 
   mako = self.callPackage ./mako {};
 
+  factorio-headless = self.callPackage ./factorio-headless.nix {};
+
 }
