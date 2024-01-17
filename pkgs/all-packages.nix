@@ -76,4 +76,5 @@ self: super:
 
   factorio-headless = self.callPackage ./factorio-headless.nix {};
 
+  wiwinwlh = self.callPackage ./wiwinwlh.nix {};
 }
