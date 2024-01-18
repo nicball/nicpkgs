@@ -2,6 +2,7 @@
 , fetchFromGitHub
 , haskellPackages
 , pandoc
+, glibcLocales
 }:
 
 stdenv.mkDerivation {
@@ -14,9 +15,13 @@ stdenv.mkDerivation {
     sha256 = "sha256-0z/ZWi42cRvlL7YNy7s68Lg8Ij23Z/ljUTnD7ePq/JM=";
   };
   nativeBuildInputs = [ (haskellPackages.ghcWithPackages (p: [ p.pandoc ])) pandoc ];
+  LOCALE_ARCHIVE = "${glibcLocales}/lib/locale/locale-archive";
+  buildPhase = ''
+    export LANG=en_US.UTF-8
+    make
+  '';
   installPhase = ''
     mkdir $out
     cp tutorial.epub $out/'What I Wish I Knew When Learning Haskell'.epub
-    cp tutorial.md $out/
   '';
 }
