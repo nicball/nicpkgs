@@ -42,7 +42,7 @@ self: super:
 
   qq-wayland = self.wrapDerivationOutput self.qq "bin/qq" ''
     --add-flags "--ozone-platform-hint=wayland"
-  '' // { license = self.lib.licenses.free; };
+  '';
 
   ufs-utils = self.callPackage ./ufs-utils.nix {};
 
