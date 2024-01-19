@@ -20,6 +20,8 @@ stdenv.mkDerivation {
     mv book/*.epub $out/
     runHook postInstall
   '';
+  outputHashMode = "recursive";
+  outputHash = "sha256-CVqI10exzwlaZFHIeRA4P3GSHxrZP8aqBznALNBiXX4=";
 }
 
 
