@@ -82,7 +82,7 @@ self: super:
 
   transfersh = self.callPackage ./transfersh.nix {};
 
-  inherit (self.callPackages ./wrap-derivation-output.nix { inherit self; })
+  inherit ((self.callPackages ./wrap-derivation-output.nix { inherit self; }).fns)
     modifyDerivationOutput
     wrapDerivationOutput;
 
