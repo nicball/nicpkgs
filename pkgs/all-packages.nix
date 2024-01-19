@@ -74,7 +74,7 @@ self: super:
 
   factorio-headless = self.callPackage ./factorio-headless.nix {};
 
-  factorio-bot = (builtins.getFlake "github:nicball/midymidy-factorio-webservice/1c9989ff657ad63d55f2a6cec61dfe6fe2031f67").packages.${self.system}.default;
+  factorio-bot = (builtins.getFlake "github:nicball/midymidy-factorio-webservice/b25420b4b87439adda777f306c7e4d5efeb434aa").packages.${self.system}.default;
 
   fvckbot = (builtins.getFlake "github:nicball/fvckbot/ffe40ebe4f13aee58f79ce2bb4429aa0af65614a").packages.${self.system}.fvckbot;
 
