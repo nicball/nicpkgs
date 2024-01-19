@@ -1,0 +1,43 @@
+diff --git a/book/src/install.md b/book/src/install.md
+index 9c052917..0f852baf 100644
+--- a/book/src/install.md
++++ b/book/src/install.md
+@@ -46,7 +46,7 @@ ## Pre-built binaries
+ 
+ ## Linux, macOS, Windows and OpenBSD packaging status
+ 
+-[![Packaging status](https://repology.org/badge/vertical-allrepos/helix.svg)](https://repology.org/project/helix/versions)
++[![Packaging status](./img/helix.svg)](https://repology.org/project/helix/versions)
+ 
+ ## Linux
+ 
+diff --git a/book/src/usage.md b/book/src/usage.md
+index e392e5e6..8ac97bfa 100644
+--- a/book/src/usage.md
++++ b/book/src/usage.md
+@@ -72,7 +72,7 @@ ## Surround
+ Helix includes built-in functionality similar to [vim-surround](https://github.com/tpope/vim-surround).
+ The keymappings have been inspired from [vim-sandwich](https://github.com/machakann/vim-sandwich):
+ 
+-![Surround demo](https://user-images.githubusercontent.com/23398472/122865801-97073180-d344-11eb-8142-8f43809982c6.gif)
++![Surround demo](./img/surround-demo.gif)
+ 
+ | Key Sequence                      | Action                                  |
+ | --------------------------------- | --------------------------------------- |
+@@ -98,8 +98,8 @@ ## Selecting and manipulating text with textobjects
+ their structure or purpose, such as a word, sentence, paragraph, or even a
+ function or block of code.
+ 
+-![Textobject demo](https://user-images.githubusercontent.com/23398472/124231131-81a4bb00-db2d-11eb-9d10-8e577ca7b177.gif)
+-![Textobject tree-sitter demo](https://user-images.githubusercontent.com/23398472/132537398-2a2e0a54-582b-44ab-a77f-eb818942203d.gif)
++![Textobject demo](./img/textobject-demo.gif)
++![Textobject tree-sitter demo](./img/textobject-tree-sitter-demo.gif)
+ 
+ - `ma` - Select around the object (`va` in Vim, `<alt-a>` in Kakoune)
+ - `mi` - Select inside the object (`vi` in Vim, `<alt-i>` in Kakoune)
+@@ -205,4 +205,4 @@ ## Moving the selection with syntax-aware motions
+ 
+ [lang-support]: ./lang-support.md
+ [unimpaired-keybinds]: ./keymap.md#unimpaired
+-[tree-sitter-nav-demo]: https://user-images.githubusercontent.com/23398472/152332550-7dfff043-36a2-4aec-b8f2-77c13eb56d6f.gif
++[tree-sitter-nav-demo]: ./img/tree-sitter-nav-demo.gif

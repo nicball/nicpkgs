@@ -8,6 +8,7 @@ stdenv.mkDerivation {
     rev = "9023e006f51a37b4ee84b42966aeeaa4f6fd44c5";
     sha256 = "sha256-I8bhpzisH2veHdCtEBC06eIQrVZk8BDvWhb8JDdWiwg=";
   };
+  patches = [ ./ccpng.patch ];
   dontConfigure = true;
   dontBuild = true;
   nativeBuildInputs = [ mdbook-epub ];
@@ -18,6 +19,4 @@ stdenv.mkDerivation {
     mv book/*.epub $out/
     runHook postInstall
   '';
-  outputHash = "sha256-tL0tCJ5aBFUmSxnePfg8c5tQRkihkmLZtRtKR5BXa1I=";
-  outputHashMode = "recursive";
 }
