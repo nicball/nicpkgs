@@ -31,7 +31,7 @@ in
           ${extraCommands}
           runHook postInstall
         '';
-        inherit (drv) meta;
+        meta.platforms = drv.meta.platforms;
       });
 
     wrapDerivationOutput = drv: path: args:
