@@ -28,15 +28,24 @@
         addEverything = pkgs: ps: ps // {
           everything = pkgs.symlinkJoin {
             name = "everything";
-            paths = builtins.filter (v: !builtins.isFunction v) (lib.attrValues ps);
+            paths = builtins.filter (v: builtins.isDerivation v) (lib.attrValues ps);
           };
         };
 
+        filterSystem = system: lib.filterAttrs (k: v: !builtins.isDerivation v || lib.meta.availableOn { inherit system; } v);
+
       in {
 
-        packages = addEverything pkgs (mypkgs pkgs);
+        packages = addEverything pkgs (filterSystem system (mypkgs pkgs));
 
-        packagesCross = builtins.mapAttrs (arch: cpkgs: addEverything cpkgs (mypkgs cpkgs)) pkgs.pkgsCross;
+        packagesCross = builtins.mapAttrs
+          (arch: cpkgs:
+            lib.pipe cpkgs [
+              mypkgs
+              (filterSystem arch)
+              (addEverything cpkgs)
+            ])
+          pkgs.pkgsCross;
 
       }
     ) // {

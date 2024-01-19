@@ -31,6 +31,7 @@ in
           ${extraCommands}
           runHook postInstall
         '';
+        inherit (drv) meta;
       });
 
     wrapDerivationOutput = drv: path: args:
