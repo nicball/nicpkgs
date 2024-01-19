@@ -26,7 +26,7 @@ let
 
 in
 
-writers.writePython3
+writers.writePython3Bin
   "instaepub"
   { libraries = with python3Packages; [ requests requests_oauthlib urllib3 ]; }
   src

@@ -56,7 +56,7 @@ in
       Unit.Description = "InstaEpub - Fetch your instapaper as epub";
       Service = {
         Type = "oneshot";
-        ExecStart = "${package}";
+        ExecStart = "${package}/bin/instaepub";
       };
     };
 
