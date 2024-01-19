@@ -20,7 +20,7 @@ self: super:
 
   wayland-book = self.callPackage ./wayland-book.nix {};
 
-  rtw89 = self.callPackage ./rtw89.nix {};
+  rtw89 = self.callPackage ./rtw89.nix { linux = self.linux_6_6; };
 
   maven-j8 = self.maven.overrideAttrs (_: _: { jdk = self.jdk8; });
 
@@ -76,5 +76,11 @@ self: super:
 
   factorio-headless = self.callPackage ./factorio-headless.nix {};
 
+  factorio-bot = (builtins.getFlake "github:nicball/midymidy-factorio-webservice/fd2065a5065518a485dc63955c4548d300285063").packages.${self.system}.default;
+
+  fvckbot = (builtins.getFlake "github:nicball/fvckbot/a336645184d1a18c84854a9680c312c37eebb2e5").packages.${self.system}.fvckbot;
+
   wiwinwlh = self.callPackage ./wiwinwlh.nix {};
+
+  transfersh = self.callPackage ./transfersh.nix {};
 }
