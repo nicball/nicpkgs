@@ -25,10 +25,10 @@
 
         mypkgs = ps: builtins.intersectAttrs (overlay 42 42) ps;
 
-        addEverything = pkgs: ps: ps // {
+        addEverything = system: pkgs: ps: ps // {
           everything = pkgs.symlinkJoin {
             name = "everything";
-            paths = builtins.filter (v: lib.isDerivation v) (lib.attrValues ps);
+            paths = filterSystem system (builtins.filter (v: lib.isDerivation v) (lib.attrValues ps));
           };
         };
 
@@ -36,16 +36,9 @@
 
       in {
 
-        packages = addEverything pkgs (filterSystem system (mypkgs pkgs));
+        packages = addEverything system pkgs (mypkgs pkgs);
 
-        packagesCross = builtins.mapAttrs
-          (arch: cpkgs:
-            lib.pipe cpkgs [
-              mypkgs
-              (filterSystem arch)
-              (addEverything cpkgs)
-            ])
-          pkgs.pkgsCross;
+        packagesCross = builtins.mapAttrs (arch: cpkgs: addEverything arch cpkgs (mypkgs cpkgs)) pkgs.pkgsCross;
 
       }
     ) // {
