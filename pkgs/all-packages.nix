@@ -54,7 +54,7 @@ self: super:
 
   lean-doc = self.callPackage ./lean-doc.nix {};
 
-  helix-doc = self.callPackage ./helix-doc.nix {};
+  helix-doc = self.callPackage ./helix-doc {};
 
   waybar = self.callPackage ./waybar { inherit super; };
 
