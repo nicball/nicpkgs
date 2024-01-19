@@ -8,7 +8,7 @@ self: super:
 
   terraria-server = self.callPackage ./terraria-server.nix {};
 
-  armake2 = self.callPackage ./armake2 {};
+  armake2 = self.callPackage ./armake2.nix {};
 
   arma3-unix-launcher = self.callPackage ./arma3-unix-launcher.nix {};
 
