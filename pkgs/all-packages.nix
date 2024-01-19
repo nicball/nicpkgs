@@ -74,9 +74,13 @@ self: super:
 
   factorio-headless = self.callPackage ./factorio-headless.nix {};
 
-  factorio-bot = (builtins.getFlake "github:nicball/midymidy-factorio-webservice/b25420b4b87439adda777f306c7e4d5efeb434aa").packages.${self.system}.default;
+  factorio-bot =
+    let flake = builtins.getFlake "github:nicball/midymidy-factorio-webservice/8a96c6e3d6d647dfb63f82257b9165cdd4ce7429"; in
+    (flake.overlays.default self super).midymidy-factorio-webservice;
 
-  fvckbot = (builtins.getFlake "github:nicball/fvckbot/ffe40ebe4f13aee58f79ce2bb4429aa0af65614a").packages.${self.system}.fvckbot;
+  fvckbot =
+    let flake = builtins.getFlake "github:nicball/fvckbot/092942a34eb356ec5e0f004bc0036edb03045dc1"; in
+    (flake.overlays.default self super).fvckbot;
 
   wiwinwlh = self.callPackage ./wiwinwlh.nix {};
 
