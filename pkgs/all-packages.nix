@@ -18,7 +18,7 @@ self: super:
 
   rust-async-book = self.callPackage ./rust-async-book.nix {};
 
-  wayland-book = self.callPackage ./wayland-book.nix {};
+  wayland-book = self.callPackage ./wayland-book {};
 
   rtw89 = self.callPackage ./rtw89.nix { linux = self.linux_6_6; };
 
