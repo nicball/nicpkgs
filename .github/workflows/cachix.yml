@@ -15,4 +15,5 @@ jobs:
         name: nicpkgs
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - uses: DeterminateSystems/magic-nix-cache-action@v2
-    - run: nix build .#everything.x86_64-linux
+    - run: nix build .#everything
+    - run: nix build .#packagesCross.x86_64-linux.aarch64-multiplatform.everything
