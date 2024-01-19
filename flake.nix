@@ -28,11 +28,9 @@
         addEverything = system: pkgs: ps: ps // {
           everything = pkgs.symlinkJoin {
             name = "everything";
-            paths = filterSystem system (builtins.filter (v: lib.isDerivation v) (lib.attrValues ps));
+            paths = builtins.filter (v: lib.isDerivation v && lib.meta.availableOn { inherit system; } v) (lib.attrValues ps);
           };
         };
-
-        filterSystem = system: lib.filterAttrs (k: v: !lib.isDerivation v || lib.meta.availableOn { inherit system; } v);
 
       in {
 
