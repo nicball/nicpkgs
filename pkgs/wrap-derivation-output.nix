@@ -1,4 +1,16 @@
-pkgs:
+{ self
+, stdenv
+, makeWrapper
+}:
+
+let
+
+  getDerivationName = drv:
+    if builtins.hasAttr "pname" drv
+      then { inherit (drv) pname version; }
+      else { inherit (drv) name; };
+
+in
 
 {
   modifyDerivationOutput =
@@ -8,7 +20,7 @@ pkgs:
     , extraCommands
     , ...
     }@args:
-    pkgs.stdenv.mkDerivation (pkgs.lib.getDerivationName args // {
+    stdenv.mkDerivation (getDerivationName args // {
       inherit buildInputs nativeBuildInputs;
       dontUnpack = true;
       installPhase = ''
@@ -21,16 +33,11 @@ pkgs:
     });
 
   wrapDerivationOutput = drv: path: args:
-    pkgs.lib.modifyDerivationOutput drv (pkgs.lib.getDerivationName drv // {
-      nativeBuildInputs = [ pkgs.makeWrapper ];
+    self.modifyDerivationOutput drv (getDerivationName drv // {
+      nativeBuildInputs = [ makeWrapper ];
       extraCommands = ''
         mv $out/${path} $out/${path}-unwrapped
         makeWrapper $out/${path}-unwrapped $out/${path} ${args}
       '';
     });
-
-  getDerivationName = drv:
-    if builtins.hasAttr "pname" drv
-      then { inherit (drv) pname version; }
-      else { inherit (drv) name; };
 }

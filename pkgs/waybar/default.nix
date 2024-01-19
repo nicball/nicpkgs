@@ -1,6 +1,6 @@
-{ lib, super }:
+{ wrapDerivationOutput, super }:
 
-lib.wrapDerivationOutput super.waybar "bin/waybar" ''
+wrapDerivationOutput super.waybar "bin/waybar" ''
   --add-flags '--config ${./waybar-config}' \
   --add-flags '--style ${./waybar-style.css}'
 ''

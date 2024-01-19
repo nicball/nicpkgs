@@ -1,4 +1,5 @@
 { lib
+, wrapDerivationOutput
 , writeText
 , super
 , server-mode ? false
@@ -38,6 +39,6 @@ let
 
 in
 
-lib.wrapDerivationOutput super.aria2 "bin/aria2c" ''
+wrapDerivationOutput super.aria2 "bin/aria2c" ''
   --add-flags '--conf-path=${aria2Config}'
 ''
