@@ -2,11 +2,12 @@
 , kakoune-unwrapped
 , kakounePlugins
 , wrapKakoune
+, wrapDerivationOutput
 }:
 
 let
-  pkg = lib.wrapDerivationOutput kakoune-unwrapped "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./config}";
-  kak-lsp = lib.wrapDerivationOutput kakounePlugins.kak-lsp "bin/kak-lsp" "--add-flags '--config ${./kak-lsp.toml}'";
+  pkg = wrapDerivationOutput kakoune-unwrapped "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./config}";
+  kak-lsp = wrapDerivationOutput kakounePlugins.kak-lsp "bin/kak-lsp" "--add-flags '--config ${./kak-lsp.toml}'";
 in
 
 wrapKakoune pkg {

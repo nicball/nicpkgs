@@ -2,8 +2,6 @@ self: super:
 
 {
 
-  lib = super.lib // import ../lib self;
-
   piqueserver = self.callPackage ./piqueserver {};
 
   terraria-server = self.callPackage ./terraria-server.nix {};
@@ -42,7 +40,7 @@ self: super:
 
   cloudflare-ddns = self.callPackage ./cloudflare-ddns {};
 
-  qq-wayland = self.lib.wrapDerivationOutput self.qq "bin/qq" ''
+  qq-wayland = self.wrapDerivationOutput self.qq "bin/qq" ''
     --add-flags "--ozone-platform-hint=wayland"
   '' // { license = self.lib.licenses.free; };
 
@@ -83,4 +81,9 @@ self: super:
   wiwinwlh = self.callPackage ./wiwinwlh.nix {};
 
   transfersh = self.callPackage ./transfersh.nix {};
+
+  inherit ((self.callPackages ./wrap-derivation-output.nix { inherit self; }).fns)
+    modifyDerivationOutput
+    wrapDerivationOutput;
+
 }
