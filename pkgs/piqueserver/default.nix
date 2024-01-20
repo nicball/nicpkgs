@@ -31,4 +31,5 @@ buildPythonPackage rec {
     cython jinja2 toml pillow aiohttp packaging twisted pyenet
   ] ++ twisted.optional-dependencies.tls;
   doCheck = false;
+  meta.platforms = lib.platforms.x64;
 }
