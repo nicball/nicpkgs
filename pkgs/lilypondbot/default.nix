@@ -4,7 +4,6 @@
 , lilypond
 , timidity
 , ffmpeg
-, lib
 }:
 
 writeShellApplication {
@@ -14,5 +13,4 @@ writeShellApplication {
     common=${./common.ly}
     ${builtins.readFile ./lilypondbot.sh}
   '';
-  meta.platforms = lib.platforms.x86;
 }
