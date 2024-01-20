@@ -30,7 +30,7 @@ self: super:
 
   kindle-tool = self.callPackage ./kindle-tool.nix {};
 
-  instaepub = self.callPackage ./instaepub {};
+  instaepub = self.callPackage ./instaepub { pandoc = self.pandoc-static; };
 
   kitty = self.callPackage ./kitty { inherit super; };
 
