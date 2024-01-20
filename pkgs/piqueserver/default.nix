@@ -1,4 +1,4 @@
-{ fetchFromGitHub, python39Packages }:
+{ lib, fetchFromGitHub, python39Packages }:
 
 with python39Packages;
 
@@ -19,16 +19,17 @@ in
 
 buildPythonPackage rec {
   pname = "piqueserver";
-  version = "1.1.1";
+  version = "unstable-2024-01-16";
   src = fetchFromGitHub {
     owner = "piqueserver";
     repo = "piqueserver";
-    rev = "b14f6f00ca021ef724cb72e975bd8228a25dcc89";
-    sha256 = "sha256-LrbodG6lYAtaGjl5PDYnBKLKf23OmXOgxSZfWIZvCg4=";
+    rev = "ac41b4a435780ecaa12bb7c12c4810738296073d";
+    sha256 = "sha256-IJ0448T26Vdy9QJR59N4m3RhTcvzRT+LcrdnVtoJfMc=";
   };
   patches = [ ./aiohttp.patch ];
   propagatedBuildInputs = [
     cython jinja2 toml pillow aiohttp packaging twisted pyenet
   ] ++ twisted.optional-dependencies.tls;
   doCheck = false;
+  meta.platforms = lib.platforms.x86;
 }
