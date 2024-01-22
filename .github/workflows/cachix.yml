@@ -6,6 +6,9 @@ jobs:
   cachix:
     runs-on: ubuntu-latest
     steps:
+    - uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: true
     - uses: docker/setup-qemu-action@v3
     - uses: actions/checkout@v3
     - uses: DeterminateSystems/nix-installer-action@main
