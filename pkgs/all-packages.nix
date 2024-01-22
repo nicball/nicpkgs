@@ -90,4 +90,8 @@ self: super:
     modifyDerivationOutput
     wrapDerivationOutput;
 
+  torchvisionWithRocm = let p = self.python3Packages; in p.torchvision.override { torch = p.torchWithRocm; } // {
+    meta.platforms = self.lib.platforms.x86;
+  };
+
 }
