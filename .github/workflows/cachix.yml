@@ -12,10 +12,12 @@ jobs:
     - uses: docker/setup-qemu-action@v3
     - uses: actions/checkout@v3
     - uses: DeterminateSystems/nix-installer-action@main
-    - uses: cachix/cachix-action@v12
+    - uses: cachix/cachix-action@v14
       with:
         name: nicpkgs
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+        skipAddingSubstituter: true
     - uses: DeterminateSystems/magic-nix-cache-action@main
+    - run: cat ~/.config/nix/nix.conf
     - run: nix build .#everything
     - run: nix build .#packages.aarch64-linux.everything --extra-platforms aarch64-linux
