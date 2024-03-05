@@ -33,6 +33,8 @@ let
     max-connection-per-server=16
     min-split-size=1M
     max-overall-upload-limit=1M
+    max-tries=0
+    retry-wait=1
     
     bt-tracker=${bt-tracker}
   '';
