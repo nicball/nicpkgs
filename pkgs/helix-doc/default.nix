@@ -48,7 +48,7 @@ stdenv.mkDerivation {
           name = "helix.svg";
           path = fetchurl {
             url = "https://repology.org/badge/vertical-allrepos/helix.svg";
-            sha256 = "sha256-0DGhmsCcqUpZG0Bmz4j8RRyQS7GlyVwGC4YH7IYU48g=";
+            sha256 = "sha256-5sb6XdM3EDmmHCRtz6tR+4EkDnD5Tm7uFoiCQ9ZDsTY=";
           };
         }
       ];
