@@ -5,4 +5,6 @@
   evenHeaderMarkup = ##f
   oddFooterMarkup = ##f
   evenFooterMarkup = ##f
+  bookTitleMarkup = ##f
+  scoreTitleMarkup = ##f
 }
