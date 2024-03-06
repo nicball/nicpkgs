@@ -5,6 +5,7 @@ call() {
 }
 log() {
   [[ -v DEBUG ]] && echo "$@" 1>&2
+  return 0
 }
 offset=""
 while true; do
