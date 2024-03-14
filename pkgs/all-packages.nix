@@ -4,7 +4,7 @@ self: super:
 
   nicpkgs-scale = 1;
 
-  piqueserver = self.callPackage ./piqueserver {};
+  # piqueserver = self.callPackage ./piqueserver {};
 
   terraria-server = self.callPackage ./terraria-server.nix {};
 
