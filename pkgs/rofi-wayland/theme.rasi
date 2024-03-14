@@ -35,13 +35,13 @@ window {
     border-color:       @accent-color;
 
     location:   center;
-    width:      @windowWidth@px;
+    width:      25em;
     border:     2px;
 }
 
 inputbar {
-    padding:    @smallPadding@px @largePadding@px;
-    spacing:    @largePadding@px;
+    padding:    0.5em 1em;
+    spacing:    1em;
     children:   [ prompt, entry ];
 }
 
@@ -61,8 +61,8 @@ listview {
 }
 
 element {
-    padding:    @smallPadding@px;
-    spacing:    @smallPadding@px;
+    padding:    0.5em;
+    spacing:    0.5em;
 }
 
 element normal urgent {

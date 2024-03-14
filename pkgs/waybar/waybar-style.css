@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: @fontSize@px;
+    font-size: 3mm;
     color: #eceff4;
 }
 
@@ -29,9 +29,9 @@ window#waybar.solo {
 */
 
 #workspaces button {
-    padding: 0 @padding@px;
+    padding: 0 0.8em;
     /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -5px transparent;
+    box-shadow: inset 0 -0.5em transparent;
     /* Avoid rounded borders under each workspace name */
     border: none;
     border-radius: 0;
@@ -47,7 +47,7 @@ window#waybar.solo {
     background-color: #56737a;
     color: #1e1e20;
     */
-    border-bottom: @border@px solid;
+    border-bottom: 0.2em solid;
 }
 
 #workspaces button.urgent {
@@ -58,8 +58,7 @@ window#waybar.solo {
 }
 
 #window {
-    font-size: @titleSize@px;
-    padding: 0 @padding@px;
+    font-size: 4mm;
 }
 
 #waybar.empty #window {
@@ -80,15 +79,16 @@ window#waybar.solo {
 #mode,
 #idle_inhibitor,
 #mpd {
-    padding: 0 @padding@px;
-    border-radius: @borderRadius@px;
+    padding: 0 0.8em;
+    border-radius: 0.4em;
 }
 
-   
+/*
 #window,
 #workspaces {
-    margin: 0 @margin@px;
+    margin: 0 0.3em;
 }
+*/
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
@@ -121,7 +121,7 @@ window#waybar.solo {
 }
 
 label:focus {
-    border-bottom: @border@px solid;
+    border-bottom: 0.2em solid;
 }
 
 #network.disconnected {
