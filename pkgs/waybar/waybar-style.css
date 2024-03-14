@@ -1,8 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    /* color: #2e3440; */
+    font-size: 3mm;
     color: #eceff4;
 }
 
@@ -30,15 +29,9 @@ window#waybar.solo {
 */
 
 #workspaces button {
-    padding: 0 16px;
-    /*
-    background-color: #1c4149;
-    color: #6b7443;
-    */
-    /* background: transparent; */
-    /* color: white; */
+    padding: 0 0.8em;
     /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 -5px transparent;
+    box-shadow: inset 0 -0.5em transparent;
     /* Avoid rounded borders under each workspace name */
     border: none;
     border-radius: 0;
@@ -54,7 +47,7 @@ window#waybar.solo {
     background-color: #56737a;
     color: #1e1e20;
     */
-    border-bottom: 3px solid;
+    border-bottom: 0.2em solid;
 }
 
 #workspaces button.urgent {
@@ -62,19 +55,10 @@ window#waybar.solo {
 }
 
 #mode {
-    /* background-color: #56737a; */
-    /* color: #1e1e20; */
 }
 
 #window {
-    /*
-    color: white;
-    background-color: #56737a;
-    */
-    /* color: white; */
-    font-size: 21px;
-    /* min-width: 60px; */
-    padding: 0 16px;
+    font-size: 4mm;
 }
 
 #waybar.empty #window {
@@ -95,23 +79,16 @@ window#waybar.solo {
 #mode,
 #idle_inhibitor,
 #mpd {
-    padding: 0 16px;
-    /* color: white; */
-    border-radius: 8px;
+    padding: 0 0.8em;
+    border-radius: 0.4em;
 }
 
 /*
-button:hover {
-    background: transparent;
-    box-shadow: inherit;
-    text-shadow: inherit;
-}
-*/
-    
 #window,
 #workspaces {
-    margin: 0 6px;
+    margin: 0 0.3em;
 }
+*/
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
@@ -122,17 +99,6 @@ button:hover {
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
 }
-
-/*
-#clock {
-    background-color: #64727D;
-}
-
-#battery {
-    background-color: #ffffff;
-    color: #000000;
-}
-*/
 
 #battery.charging, #battery.plugged {
     background-color: #a3be8c;
@@ -155,78 +121,17 @@ button:hover {
 }
 
 label:focus {
-    /*
-    background-color: #000000;
-    */
-    border-bottom: 3px solid;
+    border-bottom: 0.2em solid;
 }
-
-/*
-#cpu {
-    background-color: #2ecc71;
-    color: #000000;
-}
-
-#memory {
-    background-color: #9b59b6;
-}
-
-#disk {
-    background-color: #964B00;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-*/
 
 #network.disconnected {
     background-color: #f53c3c;
 }
 
-/*
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
-}
-*/
-
 #pulseaudio.muted {
     background-color: #90b1b1;
     color: #2a5c45;
 }
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 150px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-/*
-#tray {
-    background-color: #2980b9;
-}
-*/
 
 #tray > .passive {
     -gtk-icon-effect: dim;
@@ -235,54 +140,4 @@ label:focus {
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 8px;
-    margin: 0 8px;
-    min-width: 24px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 8px;
-    min-width: 24px;
-}
-
-#keyboard-state > label {
-    padding: 0 8px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
 }

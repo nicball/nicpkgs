@@ -1,7 +1,21 @@
 { lib, stdenv, fetchFromGitHub, meson, ninja, pkg-config, scdoc
 , systemd, pango, cairo, gdk-pixbuf, jq
 , wayland, wayland-protocols
-, wrapGAppsHook }:
+, wrapGAppsHook
+, substituteAll, nicpkgs-scale
+}:
+
+let
+  config = substituteAll ({
+    src = ./config;
+  } // lib.mapAttrs (k: v: builtins.ceil (nicpkgs-scale * v)) {
+    fontSize = 10;
+    width = 300;
+    height = 100;
+    padding = 6;
+    margin = 10;
+  });
+in
 
 stdenv.mkDerivation rec {
   pname = "mako";
@@ -26,7 +40,7 @@ stdenv.mkDerivation rec {
   preFixup = ''
     gappsWrapperArgs+=(
       --prefix PATH : "${lib.makeBinPath [ systemd /* for busctl */ jq ]}"
-      --add-flags "--config ${./config}"
+      --add-flags "--config ${config}"
     )
   '';
 

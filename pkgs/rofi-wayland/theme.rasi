@@ -27,7 +27,7 @@
     padding:    0px;
     spacing:    0px;
 
-    font:       "mono 18";
+    font:       "mono @fontSize@";
 }
 
 window {
@@ -35,13 +35,13 @@ window {
     border-color:       @accent-color;
 
     location:   center;
-    width:      720px;
+    width:      25em;
     border:     2px;
 }
 
 inputbar {
-    padding:    12px 18px;
-    spacing:    18px;
+    padding:    0.5em 1em;
+    spacing:    1em;
     children:   [ prompt, entry ];
 }
 
@@ -61,8 +61,8 @@ listview {
 }
 
 element {
-    padding:    12px;
-    spacing:    12px;
+    padding:    0.5em;
+    spacing:    0.5em;
 }
 
 element normal urgent {
