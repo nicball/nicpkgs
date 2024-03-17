@@ -30,7 +30,7 @@ while true; do
     filebase=msg_"$cid"_"$mid"
     log "filebase:$filebase"
     printf '\\version "2.22.2" \\include "%s" \\score{ \\layout{} \\midi{} { %s } }' "$common" "$score" > "$filebase".ly
-    log="$(lilypond -dbackend=eps -dresolution=300 --png -lERROR "$filebase".ly 2>&1)"
+    log="$(lilypond -dbackend=eps -dresolution=300 --png -lERROR "$filebase".ly 2>&1; exit 0)"
     if [[ -n "$log" ]]; then
       call "sendMessage?chat_id=$cid&reply_to_message_id=$mid" -G --data-urlencode "text=$log"
     else
