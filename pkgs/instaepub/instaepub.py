@@ -35,8 +35,8 @@ for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
         continue
     filename = (
         '@outputDir@/' +
-        re.sub(r'[^\w\s-]', '', v['title']) +
-        '.' + str(v['bookmark_id']) + '.epub'
+        str(v['bookmark_id']) + '.' +
+        re.sub(r'[^\w\s-]', '', v['title']) + '.epub'
     )
     if os.path.exists(filename):
         continue
