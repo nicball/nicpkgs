@@ -14,7 +14,7 @@ wrapKakoune pkg {
   plugins = with kakounePlugins; [
     parinfer-rust
     kakoune-state-save
-    kak-lsp
+    kakoune-lsp
     kak-ansi
   ];
 } // {
