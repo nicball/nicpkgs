@@ -63,4 +63,5 @@ stdenv.mkDerivation {
       mv book/*.epub $out/
       runHook postInstall
     '';
+  meta.broken = true;
 }
