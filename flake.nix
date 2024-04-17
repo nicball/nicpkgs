@@ -25,11 +25,14 @@
 
         mypkgs = ps: builtins.intersectAttrs (overlay 42 42) ps;
 
+
         addEverything = system: pkgs: ps: ps // {
-          everything = pkgs.symlinkJoin {
-            name = "everything";
-            paths = builtins.filter (v: lib.isDerivation v && lib.meta.availableOn { inherit system; } v) (lib.attrValues ps);
-          };
+          everything =
+            let
+              isBroken = lib.attrByPath [ "meta" "broken" ] false;
+              goodPkgs = (builtins.filter (v: !isBroken v && lib.isDerivation v && lib.meta.availableOn { inherit system; } v) (lib.attrValues ps));
+              pathList = builtins.map (drv: { inherit (drv) name; path = "${drv}"; }) goodPkgs;
+            in pkgs.linkFarm "everything" pathList;
         };
 
       in {
