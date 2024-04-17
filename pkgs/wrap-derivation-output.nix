@@ -1,6 +1,7 @@
 { self
 , stdenv
 , makeWrapper
+, lndir
 }:
 
 let
@@ -26,8 +27,8 @@ in
         dontUnpack = true;
         installPhase = ''
           runHook preInstall
-          cp -r ${drv} $out
-          chmod -R +w $out
+          mkdir $out
+          ${lndir}/bin/lndir -silent ${drv} $out
           ${extraCommands}
           runHook postInstall
         '';
