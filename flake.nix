@@ -25,7 +25,6 @@
 
         mypkgs = ps: builtins.intersectAttrs (overlay 42 42) ps;
 
-
         addEverything = system: pkgs: ps: ps // {
           everything =
             let
