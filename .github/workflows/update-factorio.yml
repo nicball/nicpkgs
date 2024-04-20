@@ -9,11 +9,11 @@ jobs:
     steps:
     - uses: DeterminateSystems/nix-installer-action@main
     - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.FACTORIO_UPDATE_TOKEN }}
     - name: Run update script
       run: ./pkgs/factorio-headless/update.py
     - name: Commit
-      with:
-        token: ${{ secrets.FACTORIO_UPDATE_TOKEN }}
       run: |
         git config --global user.name "Nick Ballard"
         git config --global user.email "znhihgiasy@gmail.com"
