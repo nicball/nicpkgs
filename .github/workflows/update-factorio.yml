@@ -1,4 +1,4 @@
-name: "update-factorio"
+name: "Update factorio versions"
 on:
   schedule:
     - cron: '0 0 * * *'
@@ -11,9 +11,9 @@ jobs:
     - uses: actions/checkout@v3
       with:
         token: ${{ secrets.FACTORIO_UPDATE_TOKEN }}
-    - name: Run update script
+    - name: Update script
       run: ./pkgs/factorio-headless/update.py
-    - name: Commit
+    - name: Commit & Push
       run: |
         git config --global user.name "Nick Ballard"
         git config --global user.email "znhihgiasy@gmail.com"
