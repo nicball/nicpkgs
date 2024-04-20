@@ -1,15 +1,19 @@
 { stdenv
 , fetchurl
 , autoPatchelfHook
+, lib
+, system
 }:
+
+let
+  release = (lib.importJSON ./versions.json).${system}.headless.stable;
+in
 
 stdenv.mkDerivation rec {
   pname = "factorio-headless";
-  version = "1.1.104";
+  inherit (release) version;
   src = fetchurl {
-    name = "factorio_headless_x64-${version}.tar.xz";
-    url = "https://factorio.com/get-download/${version}/headless/linux64";
-    sha256 = "sha256-jhM1OrI9V5idt7BllEEdMIhd4akj86mJ0SdJwavAFYM=";
+    inherit (release) name url sha256;
   };
   nativeBuildInputs = [ autoPatchelfHook ];
   preferLocalBuild = true;

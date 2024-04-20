@@ -1,0 +1,20 @@
+name: "update-factorio"
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  update-factorio:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: DeterminateSystems/nix-installer-action@main
+    - uses: actions/checkout@v3
+    - name: Run update script
+      run: ./pkgs/factorio-headless/update.py
+    - name: Commit
+      with:
+        token: ${{ secrets.FACTORIO_UPDATE_TOKEN }}
+      run: |
+        git config --global user.name "Nick Ballard"
+        git config --global user.email "znhihgiasy@gmail.com"
+        git commit -am "Automatically update factorio version"
+        git push

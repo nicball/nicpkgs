@@ -74,7 +74,7 @@ self: super:
 
   mako = self.callPackage ./mako {};
 
-  factorio-headless = self.callPackage ./factorio-headless.nix {};
+  factorio-headless = self.callPackage ./factorio-headless {};
 
   factorio-bot =
     let flake = builtins.getFlake "github:nicball/midymidy-factorio-webservice/e58610d2e860c60f83578c18c0406964d3f4923a"; in
