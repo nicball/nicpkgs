@@ -2,6 +2,7 @@ name: "cachix"
 on:
   pull_request:
   push:
+  workflow_dispatch:
 jobs:
   cachix:
     runs-on: ubuntu-latest
@@ -10,7 +11,7 @@ jobs:
       with:
         tool-cache: true
     - uses: docker/setup-qemu-action@v3
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: DeterminateSystems/nix-installer-action@main
     - uses: cachix/cachix-action@v14
       with:
