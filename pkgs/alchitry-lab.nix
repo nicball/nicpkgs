@@ -28,4 +28,5 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
   meta.platforms = [ "x86_64-linux" ];
+  meta.broken = true;
 }

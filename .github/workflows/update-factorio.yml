@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: DeterminateSystems/nix-installer-action@main
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         token: ${{ secrets.FACTORIO_UPDATE_TOKEN }}
     - name: Update script
@@ -17,5 +17,6 @@ jobs:
       run: |
         git config --global user.name "Nick Ballard"
         git config --global user.email "znhihgiasy@gmail.com"
-        git commit -am "Automatically update factorio version"
-        git push
+        if git commit -am "Automatically update factorio version"; then
+          git push
+        fi
