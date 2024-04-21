@@ -82,21 +82,23 @@ hook global WinSetOption filetype=(racket|haskell) %{
 
 define-command -params 0..1 delete-buffer-or-quit %{
   evaluate-commands %sh{
+    isForce=false
+    [ $1 = -force ] && isForce=true
+    eval set -- "$kak_quoted_buflist"
     count=0
-    eval "buflist=($kak_quoted_buflist)"
-    for i in "${buflist[@]}"; do
-      case "$i" in
-        \*scratch\*) ;;
-        \*debug\*) ;;
+    while [ $# -gt 0 ]; do
+      case "$1" in
+        \**\*) ;;
         *) count=$((count + 1)) ;;
       esac
+      shift
     done
-    if [[ $count -le 1 ]]; then
+    if [ $count -le 1 ]; then
       echo -n "quit"
     else
       echo -n "delete-buffer"
     fi
-    if [[ $1 == -force ]]; then
+    if $isForce; then
       echo "!"
     else
       echo
