@@ -115,3 +115,6 @@ map global normal <c-q> :dbq<space>-force<ret>
 hook global BufCreate \*make\* %{
   ansi-enable
 }
+
+# Copy
+map global normal <a-c> "<percent><a-|>wl-copy<ret>"

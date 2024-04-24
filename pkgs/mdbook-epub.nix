@@ -6,14 +6,14 @@
 # with (import nixpkgs { inherit system;  overlays = [ rust-overlay.overlays.default ]; });
 rustPlatform.buildRustPackage {
   pname = "mdbook-epub";
-  version = "0.4.14-beta";
+  version = "unstable-2024-03-30";
   src = fetchFromGitHub {
     owner = "Michael-F-Bryan";
     repo = "mdbook-epub";
-    rev = "6a649147438bc884111eecb7cdf3879ee6cb5f9a";
-    sha256 = "sha256-V4W/+LAQI0yOphhhvRooJBKXlvryNxppXMIigtn7wXA=";
+    rev = "cb441315f259df9938e24e1297c7fe48d039654f";
+    sha256 = "sha256-Fa9Jc+WszJL8MjtsOWndjp7afMtQ5ObGgLCVX9aT8Uw=";
   };
   doCheck = false;
-  cargoSha256 = "sha256-NNYy/zO7SWbb/1qJ/5E3uHcxR3lI6Fj8WknK9YWBrO8=";
+  cargoSha256 = "sha256-WO3tVevrT0CyvVAZ2+ELzZ6wh04qRlq8m3VNMtVeySQ=";
   # cargoPatches = [ ./mdbook-epub.patch ];
 }
