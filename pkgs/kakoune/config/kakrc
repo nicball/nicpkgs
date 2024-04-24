@@ -88,8 +88,7 @@ define-command -params 0..1 delete-buffer-or-quit %{
     count=0
     while [ $# -gt 0 ]; do
       case "$1" in
-        \*scratch\*) ;;
-        \*debug\*) ;;
+        \**\*) ;;
         *) count=$((count + 1)) ;;
       esac
       shift
