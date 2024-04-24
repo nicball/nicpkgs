@@ -96,4 +96,6 @@ self: super:
     meta.platforms = self.lib.platforms.x86;
   };
 
+  rust-rfcs = self.callPackage ./rust-rfcs.nix {};
+
 }
