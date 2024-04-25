@@ -116,5 +116,6 @@ hook global BufCreate \*make\* %{
   ansi-enable
 }
 
-# Copy
-map global normal <a-c> "<percent><a-|>wl-copy<ret>"
+# Copy and paste
+map global normal <a-c> <a-|>wl-copy<ret>
+map global normal <a-v> !wl-paste<ret>
