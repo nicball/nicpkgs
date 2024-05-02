@@ -7,7 +7,7 @@
 
 let
   pkg = wrapDerivationOutput kakoune-unwrapped "bin/kak" "--set KAKOUNE_CONFIG_DIR ${./config}";
-  kak-lsp = wrapDerivationOutput kakounePlugins.kak-lsp "bin/kak-lsp" "--add-flags '--config ${./kak-lsp.toml}'";
+  kakoune-lsp = wrapDerivationOutput kakounePlugins.kakoune-lsp "bin/kak-lsp" "--add-flags '--config ${./kakoune-lsp.toml}'";
 in
 
 wrapKakoune pkg {

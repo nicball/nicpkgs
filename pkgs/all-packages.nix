@@ -98,4 +98,6 @@ self: super:
 
   rust-rfcs = self.callPackage ./rust-rfcs.nix {};
 
+  rescript-language-server = self.callPackage ./rescript-language-server.nix {};
+
 }
