@@ -83,7 +83,7 @@ hook global WinSetOption filetype=(racket|haskell|rescript) %{
 define-command -params 0..1 delete-buffer-or-quit %{
   evaluate-commands %sh{
     isForce=false
-    [ $1 = -force ] && isForce=true
+    [ $# -gt 0 ] && [ $1 = -force ] && isForce=true
     eval set -- "$kak_quoted_buflist"
     count=0
     while [ $# -gt 0 ]; do
