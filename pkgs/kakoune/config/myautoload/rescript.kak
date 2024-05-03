@@ -8,13 +8,17 @@ hook global BufCreate .*\.(res|resi)$ %{
 # Initialization
 # ‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 
-hook global WinSetOption filetype=rescript %{
+hook global WinSetOption filetype=rescript %<
   require-module rescript
   set-option window static_words %opt{rescript_static_words}
-  hook window InsertChar -group rescript-insert '\*' rescript-insert-closing-comment-bracket
-  hook window InsertChar \n -group rescript-insert rescript-insert-on-new-line
-  hook window ModeChange pop:insert:.* -group rescript-trim-indent rescript-trim-indent
-}
+  hook -group rescript-insert window InsertChar '\*' rescript-insert-closing-comment-bracket
+  hook -group rescript-insert window InsertChar '\n' rescript-insert-on-newline
+  hook -group rescript-indent window InsertChar '\n' rescript-indent-on-newline
+  hook -group rescript-indent window InsertChar '\}' rescript-indent-on-closing-curly-brace
+  hook -group rescript-indent window InsertChar '\]' rescript-indent-on-closing-square-bracket
+  hook -group rescript-indent window InsertChar '\)' rescript-indent-on-closing-paren
+  hook -group rescript-trim-indent window ModeChange pop:insert:.* rescript-trim-indent
+>
 
 hook -group rescript-highlight global WinSetOption filetype=rescript %{
   add-highlighter window/rescript ref rescript
@@ -25,7 +29,7 @@ hook -group rescript-highlight global WinSetOption filetype=rescript %{
   }
 }
 
-provide-module rescript %{
+provide-module rescript %∎
 
 # Highlighters
 # ‾‾‾‾‾‾‾‾‾‾‾‾
@@ -34,7 +38,8 @@ add-highlighter shared/rescript regions
 add-highlighter shared/rescript/code default-region group
 add-highlighter shared/rescript/string region (?<!['\\])" (?<!\\)(\\\\)*" fill string
 add-highlighter shared/rescript/quotedstring region -match-capture %"\{(\w*)\|" %"\|(\w*)\}" fill string
-add-highlighter shared/rescript/comment region -recurse \Q(* \Q(* \Q*) fill comment
+add-highlighter shared/rescript/comment region /\* \*/ fill comment
+add-highlighter shared/rescript/line-comment region // $ fill comment
 
 add-highlighter shared/rescript/code/char regex %{\B'([^'\\]|(\\[\\"'nrtb])|(\\\d{3})|(\\x[a-fA-F0-9]{2})|(\\o[0-7]{3}))'\B} 0:value
 
@@ -95,8 +100,6 @@ define-command rescript-alternative-file -docstring 'Switch between .res and .re
   }
 }
 
-}
-
 # Remove trailing whitespaces
 define-command -hidden rescript-trim-indent %{
   evaluate-commands -no-hooks -draft -itersel %{
@@ -104,23 +107,115 @@ define-command -hidden rescript-trim-indent %{
   }
 }
 
-# Preserve indentation when creating new line
-define-command -hidden rescript-insert-on-new-line %{
-  evaluate-commands -draft -itersel %{
-    # copy white spaces at the beginnig of the previous line
-    try %{ execute-keys -draft K <a-&> }
-    # increase indentation if the previous line ended with some charactors
-    try ' execute-keys -draft k x s (=|\(|\{|\[|=>)$ <ret> j <a-gt> ' # }
-  }
-}
+define-command -hidden rescript-insert-on-newline %[ evaluate-commands -itersel -draft %[
+    execute-keys <semicolon>
+    try %[
+        evaluate-commands -draft -save-regs '/"' %[
+            # copy the commenting prefix
+            execute-keys -save-regs '' k x1s^\h*(//+\h*)<ret> y
+            try %[
+                # if the previous comment isn't empty, create a new one
+                execute-keys x<a-K>^\h*//+\h*$<ret> jxs^\h*<ret>P
+            ] catch %[
+                # if there is no text in the previous comment, remove it completely
+                execute-keys d
+            ]
+        ]
 
-# The OCaml comment is `(* Some comment *)`. Like the C-family this can be a multiline comment.
+        # trim trailing whitespace on the previous line
+        try %[ execute-keys -draft k x s\h+$<ret> d ]
+    ]
+    try %[
+        # if the previous line isn't within a comment scope, break
+        execute-keys -draft kx <a-k>^(\h*/\*|\h+\*(?!/))<ret>
+
+        # find comment opening, validate it was not closed, and check its using star prefixes
+        execute-keys -draft <a-?>/\*<ret><a-H> <a-K>\*/<ret> <a-k>\A\h*/\*([^\n]*\n\h*\*)*[^\n]*\n\h*.\z<ret>
+
+        try %[
+            # if the previous line is opening the comment, insert star preceeded by space
+            execute-keys -draft kx<a-k>^\h*/\*<ret>
+            execute-keys -draft i*<space><esc>
+        ] catch %[
+           try %[
+                # if the next line is a comment line insert a star
+                execute-keys -draft jx<a-k>^\h+\*<ret>
+                execute-keys -draft i*<space><esc>
+            ] catch %[
+                try %[
+                    # if the previous line is an empty comment line, close the comment scope
+                    execute-keys -draft kx<a-k>^\h+\*\h+$<ret> x1s\*(\h*)<ret>c/<esc>
+                ] catch %[
+                    # if the previous line is a non-empty comment line, add a star
+                    execute-keys -draft i*<space><esc>
+                ]
+            ]
+        ]
+
+        # trim trailing whitespace on the previous line
+        try %[ execute-keys -draft k x s\h+$<ret> d ]
+        # align the new star with the previous one
+        execute-keys Kx1s^[^*]*(\*)<ret>&
+    ]
+] ]
+
+define-command -hidden rescript-indent-on-newline %< evaluate-commands -draft -itersel %<
+    execute-keys <semicolon>
+    try %<
+        # if previous line is part of a comment, do nothing
+        execute-keys -draft <a-?>/\*<ret> <a-K>^\h*[^/*\h]<ret>
+    > catch %<
+        # else if previous line closed a paren (possibly followed by words and a comment),
+        # copy indent of the opening paren line
+        execute-keys -draft kx 1s([)\]])(\h+\w+)*\h*(\;\h*)?(?://[^\n]+)?\n\z<ret> m<a-semicolon>J <a-S> 1<a-&>
+    > catch %<
+        # else indent new lines with the same level as the previous one
+        execute-keys -draft K <a-&>
+    >
+    # remove previous empty lines resulting from the automatic indent
+    try %< execute-keys -draft k x <a-k>^\h+$<ret> Hd >
+    # indent after an opening paren at end of line
+    try %< execute-keys -draft k x <a-k>[{([]\h*$<ret> j <a-gt> >
+    # deindent closing paren when after cursor
+    try %< execute-keys -draft x <a-k> ^\h*[})\]] <ret> gh / [})] <esc> m <a-S> 1<a-&> >
+> >
+
+define-command -hidden rescript-indent-on-closing-curly-brace %[
+    evaluate-commands -draft -itersel -verbatim try %[
+        # check if alone on the line and select to opening curly brace
+        execute-keys <a-h><a-:><a-k>^\h*\}$<ret>hm
+        # align to selection start
+        execute-keys <a-S>1<a-&>
+    ]
+]
+
+define-command -hidden rescript-indent-on-closing-square-bracket %<
+    evaluate-commands -draft -itersel -verbatim try %<
+        # check if alone on the line and select to opening curly brace
+        execute-keys <a-h><a-:><a-k>^\h*\]$<ret>hm
+        # align to selection start
+        execute-keys <a-S>1<a-&>
+    >
+>
+
+define-command -hidden rescript-indent-on-closing-paren %[
+    evaluate-commands -draft -itersel -verbatim try %[
+        # check if alone on the line and select to opening curly brace
+        execute-keys <a-h><a-:><a-k>^\h*\)$<ret>hm
+        # align to selection start
+        execute-keys <a-S>1<a-&>
+    ]
+]
+
+# The Rescript comment is `/* Some comment */`. Like the C-family this can be a multiline comment.
 #
-# Recognize when the user is trying to commence a comment when they type `(*` and
-# then automatically insert `*)` on behalf of the user. A small convenience.
+# Recognize when the user is trying to commence a comment when they type `/*` and
+# then automatically insert `*/` on behalf of the user. A small convenience.
 define-command -hidden rescript-insert-closing-comment-bracket %{
   try %{
     execute-keys -draft 'HH<a-k>/\*<ret>'
     execute-keys ' */<left><left><left>'
   }
 }
+
+∎
