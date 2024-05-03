@@ -79,6 +79,7 @@ hook global WinSetOption filetype=(racket|haskell|rescript) %{
     map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
     map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
 }
+map global insert <a-tab> '<a-;>:lsp-snippets-select-next-placeholders<ret>' -docstring 'Select next snippet placeholder'
 
 define-command -params 0..1 delete-buffer-or-quit %{
   evaluate-commands %sh{
