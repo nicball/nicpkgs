@@ -9,3 +9,9 @@ filetypes = [ "haskell" ]
 roots = [ "hie.yaml", "cabal.project", "Setup.hs", "stack.yaml", "*.cabal" ]
 command = "haskell-language-server-wrapper"
 args = [ "--lsp" ]
+
+[language.rescript]
+filetypes = [ "rescript" ]
+roots = [ "packages.json", "rescript.json" ]
+command = "rescript-language-server"
+args = [ "--stdio" ]
