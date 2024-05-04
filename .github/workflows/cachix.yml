@@ -17,5 +17,8 @@ jobs:
       with:
         name: nicpkgs
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix build .#everything
-    - run: nix build .#packages.aarch64-linux.everything --extra-platforms aarch64-linux
+    - run: |
+        nix run .#build-everything-unsubstitutable https://nicpkgs.cachix.org
+    - run: |
+        nix run --extra-platforms aarch64-linux .#packages.aarch64-linux.build-everything-unsubstitutable https://nicpkgs.cachix.org \
+          "nix build --extra-platforms aarch64-linux .#packages.aarch64-linux."
