@@ -9,9 +9,33 @@ filetypes = [ "haskell" ]
 roots = [ "hie.yaml", "cabal.project", "Setup.hs", "stack.yaml", "*.cabal" ]
 command = "haskell-language-server-wrapper"
 args = [ "--lsp" ]
+settings_section = "haskell"
+
+[language.haskell.settings.haskell]
+"haskell.plugin.semanticTokens.globalOn" = true
 
 [language.rescript]
 filetypes = [ "rescript" ]
 roots = [ "packages.json", "rescript.json" ]
 command = "rescript-language-server"
 args = [ "--stdio" ]
+
+[semantic_tokens]
+faces = [
+  {face="documentation", token="comment", modifiers=["documentation"]},
+  {face="comment", token="comment"},
+  {face="function", token="function"},
+  {face="keyword", token="keyword"},
+  {face="module", token="namespace"},
+  {face="operator", token="operator"},
+  {face="string", token="string"},
+  {face="type", token="type"},
+  {face="+b@variable", token="variable", modifiers=["readonly"]},
+  {face="+b@variable", token="variable", modifiers=["constant"]},
+  {face="variable", token="variable"},
+  {face="+i@keyword", token="modifier"},
+  {face="function", token="enumMember"},
+  {face="attribute", token="property"},
+  {face="type", token="interface"},
+  {face="type", token="class"},
+]

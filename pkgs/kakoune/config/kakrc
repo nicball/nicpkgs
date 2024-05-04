@@ -63,38 +63,56 @@ colorscheme nord
 
 # parinfer
 hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
-    parinfer-enable-window -smart
+  parinfer-enable-window -smart
 }
 
 # lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
 hook global WinSetOption filetype=(racket|haskell|rescript) %{
-    lsp-enable-window
-    map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
-    # map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
-    map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
-    map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
-    map global object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
-    map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
-    map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
-    map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
+  lsp-enable-window
+  lsp-inlay-hints-enable window
+  map window user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
+  map window object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+  map window object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+  map window object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
+  map window object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+  map window object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
+  map window object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
+  map window insert <a-tab> '<a-;>:lsp-snippets-select-next-placeholders<ret>' -docstring 'Select next snippet placeholder'
+  hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+  hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+  hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-hooks window semantic-tokens
+    unmap window user l
+    map window object a
+    map window object <a-a>
+    map window object e
+    map window object k
+    map window object d
+    map window object D
+    map window insert <a-tab>
+  }
 }
-map global insert <a-tab> '<a-;>:lsp-snippets-select-next-placeholders<ret>' -docstring 'Select next snippet placeholder'
 
 define-command -params 0..1 delete-buffer-or-quit %{
   evaluate-commands %sh{
     isForce=false
     [ $# -gt 0 ] && [ $1 = -force ] && isForce=true
     eval set -- "$kak_quoted_buflist"
-    count=0
+    countReal=0
+    case "$kak_bufname" in
+      \**\*) currentIsReal=false ;;
+      *) currentIsReal=true ;;
+    esac
     while [ $# -gt 0 ]; do
       case "$1" in
         \**\*) ;;
-        *) count=$((count + 1)) ;;
+        *) countReal=$((countReal + 1)) ;;
       esac
       shift
     done
-    if [ $count -le 1 ]; then
+    if [ $countReal = 0 ] || ([ $countReal = 1 ] && $currentIsReal); then
       echo -n "quit"
     else
       echo -n "delete-buffer"
@@ -112,6 +130,8 @@ alias global dbq delete-buffer-or-quit
 map global normal q :dbq<ret>
 map global normal Q :w<ret>:dbq<ret>
 map global normal <c-q> :dbq<space>-force<ret>
+map global normal <a-q> :db<ret>
+map global normal <a-s-q> :db!<ret>
 
 hook global BufCreate \*make\* %{
   ansi-enable
