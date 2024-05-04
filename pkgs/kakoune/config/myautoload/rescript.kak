@@ -18,6 +18,11 @@ hook global WinSetOption filetype=rescript %<
   hook -group rescript-indent window InsertChar '\]' rescript-indent-on-closing-square-bracket
   hook -group rescript-indent window InsertChar '\)' rescript-indent-on-closing-paren
   hook -group rescript-trim-indent window ModeChange pop:insert:.* rescript-trim-indent
+  hook -once -always window WinSetOption filetype=.* %{
+    remove-hooks window rescript-insert
+    remove-hooks window rescript-indent
+    remove-hooks window rescript-trim-indent
+  }
 >
 
 hook -group rescript-highlight global WinSetOption filetype=rescript %{
@@ -38,6 +43,9 @@ add-highlighter shared/rescript regions
 add-highlighter shared/rescript/code default-region group
 add-highlighter shared/rescript/string region (?<!['\\])" (?<!\\)(\\\\)*" fill string
 add-highlighter shared/rescript/quotedstring region -match-capture %"\{(\w*)\|" %"\|(\w*)\}" fill string
+add-highlighter shared/rescript/backtickstring region "`" (?<!\\)(\\\\)*` group
+add-highlighter shared/rescript/backtickstring/ fill string
+add-highlighter shared/rescript/backtickstring/ regex \$\{.*?\} 0:value
 add-highlighter shared/rescript/comment region /\* \*/ fill comment
 add-highlighter shared/rescript/line-comment region // $ fill comment
 

@@ -39,6 +39,9 @@ set-face global comment   "%opt{nord3}+i"
 set-face global operator  "%opt{nord9}"
 set-face global documentation comment
 
+# LSP
+set-face global InlayHint comment
+
 # kakoune
 set-face global PrimaryCursor      "%opt{nord0},%opt{nord8}+Bfg"
 set-face global PrimarySelection   "%opt{nord0},%opt{nord10}+g"
