@@ -34,7 +34,7 @@ faces = [
   {face="+b@variable", token="variable", modifiers=["constant"]},
   {face="variable", token="variable"},
   {face="+i@keyword", token="modifier"},
-  {face="+b@function", token="enumMember"},
+  {face="function", token="enumMember"},
   {face="attribute", token="property"},
   {face="type", token="interface"},
   {face="type", token="class"},
