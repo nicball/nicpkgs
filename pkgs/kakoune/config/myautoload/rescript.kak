@@ -14,9 +14,8 @@ hook global WinSetOption filetype=rescript %<
   hook -group rescript-insert window InsertChar '\*' rescript-insert-closing-comment-bracket
   hook -group rescript-insert window InsertChar '\n' rescript-insert-on-newline
   hook -group rescript-indent window InsertChar '\n' rescript-indent-on-newline
-  hook -group rescript-indent window InsertChar '\}' rescript-indent-on-closing-curly-brace
-  hook -group rescript-indent window InsertChar '\]' rescript-indent-on-closing-square-bracket
-  hook -group rescript-indent window InsertChar '\)' rescript-indent-on-closing-paren
+  hook -group rescript-indent window InsertChar '[)}\]]' rescript-indent-on-closing-paren
+  hook -group rescript-indent window InsertChar '\|' rescript-indent-on-pipe
   hook -group rescript-trim-indent window ModeChange pop:insert:.* rescript-trim-indent
   hook -once -always window WinSetOption filetype=.* %{
     remove-hooks window rescript-insert
@@ -116,104 +115,118 @@ define-command -hidden rescript-trim-indent %{
 }
 
 define-command -hidden rescript-insert-on-newline %[ evaluate-commands -itersel -draft %[
-    execute-keys <semicolon>
-    try %[
-        evaluate-commands -draft -save-regs '/"' %[
-            # copy the commenting prefix
-            execute-keys -save-regs '' k x1s^\h*(//+\h*)<ret> y
-            try %[
-                # if the previous comment isn't empty, create a new one
-                execute-keys x<a-K>^\h*//+\h*$<ret> jxs^\h*<ret>P
-            ] catch %[
-                # if there is no text in the previous comment, remove it completely
-                execute-keys d
-            ]
-        ]
-
-        # trim trailing whitespace on the previous line
-        try %[ execute-keys -draft k x s\h+$<ret> d ]
+  execute-keys <semicolon>
+  try %[
+    evaluate-commands -draft -save-regs '/"' %[
+      # copy the commenting prefix
+      execute-keys -save-regs '' k x1s^\h*(//+\h*)<ret> y
+      try %[
+        # if the previous comment isn't empty, create a new one
+        execute-keys x<a-K>^\h*//+\h*$<ret> jxs^\h*<ret>P
+      ] catch %[
+        # if there is no text in the previous comment, remove it completely
+        execute-keys d
+      ]
     ]
+
+    # trim trailing whitespace on the previous line
+    try %[ execute-keys -draft k x s\h+$<ret> d ]
+  ]
+  try %[
+    # if the previous line isn't within a comment scope, break
+    execute-keys -draft kx <a-k>^(\h*/\*|\h+\*(?!/))<ret>
+
+    # find comment opening, validate it was not closed, and check its using star prefixes
+    execute-keys -draft <a-?>/\*<ret><a-H> <a-K>\*/<ret> <a-k>\A\h*/\*([^\n]*\n\h*\*)*[^\n]*\n\h*.\z<ret>
+
     try %[
-        # if the previous line isn't within a comment scope, break
-        execute-keys -draft kx <a-k>^(\h*/\*|\h+\*(?!/))<ret>
-
-        # find comment opening, validate it was not closed, and check its using star prefixes
-        execute-keys -draft <a-?>/\*<ret><a-H> <a-K>\*/<ret> <a-k>\A\h*/\*([^\n]*\n\h*\*)*[^\n]*\n\h*.\z<ret>
-
+      # if the previous line is opening the comment, insert star preceeded by space
+      execute-keys -draft kx<a-k>^\h*/\*<ret>
+      execute-keys -draft i*<space><esc>
+    ] catch %[
+      try %[
+        # if the next line is a comment line insert a star
+        execute-keys -draft jx<a-k>^\h+\*<ret>
+        execute-keys -draft i*<space><esc>
+      ] catch %[
         try %[
-            # if the previous line is opening the comment, insert star preceeded by space
-            execute-keys -draft kx<a-k>^\h*/\*<ret>
-            execute-keys -draft i*<space><esc>
+          # if the previous line is an empty comment line, close the comment scope
+          execute-keys -draft kx<a-k>^\h+\*\h+$<ret> x1s\*(\h*)<ret>c/<esc>
         ] catch %[
-           try %[
-                # if the next line is a comment line insert a star
-                execute-keys -draft jx<a-k>^\h+\*<ret>
-                execute-keys -draft i*<space><esc>
-            ] catch %[
-                try %[
-                    # if the previous line is an empty comment line, close the comment scope
-                    execute-keys -draft kx<a-k>^\h+\*\h+$<ret> x1s\*(\h*)<ret>c/<esc>
-                ] catch %[
-                    # if the previous line is a non-empty comment line, add a star
-                    execute-keys -draft i*<space><esc>
-                ]
-            ]
+          # if the previous line is a non-empty comment line, add a star
+          execute-keys -draft i*<space><esc>
         ]
-
-        # trim trailing whitespace on the previous line
-        try %[ execute-keys -draft k x s\h+$<ret> d ]
-        # align the new star with the previous one
-        execute-keys Kx1s^[^*]*(\*)<ret>&
+      ]
     ]
+
+    # trim trailing whitespace on the previous line
+    try %[ execute-keys -draft k x s\h+$<ret> d ]
+    # align the new star with the previous one
+    execute-keys Kx1s^[^*]*(\*)<ret>&
+  ]
 ] ]
 
 define-command -hidden rescript-indent-on-newline %< evaluate-commands -draft -itersel %<
-    execute-keys <semicolon>
-    try %<
-        # if previous line is part of a comment, do nothing
-        execute-keys -draft <a-?>/\*<ret> <a-K>^\h*[^/*\h]<ret>
-    > catch %<
-        # else if previous line closed a paren (possibly followed by words and a comment),
-        # copy indent of the opening paren line
-        execute-keys -draft kx 1s([)\]])(\h+\w+)*\h*(\;\h*)?(?://[^\n]+)?\n\z<ret> m<a-semicolon>J <a-S> 1<a-&>
-    > catch %<
-        # else indent new lines with the same level as the previous one
-        execute-keys -draft K <a-&>
-    >
-    # remove previous empty lines resulting from the automatic indent
-    try %< execute-keys -draft k x <a-k>^\h+$<ret> Hd >
-    # indent after an opening paren at end of line
-    try %< execute-keys -draft k x <a-k>[{([]\h*$<ret> j <a-gt> >
-    # deindent closing paren when after cursor
-    try %< execute-keys -draft x <a-k> ^\h*[})\]] <ret> gh / [})] <esc> m <a-S> 1<a-&> >
+  execute-keys <semicolon>
+  try %<
+    # if previous line is part of a comment, do nothing
+    execute-keys -draft <a-?>/\*<ret> <a-K>^\h*[^/*\h]<ret>
+  > catch %<
+    # else if previous line closed a paren (possibly followed by words and a comment),
+    # copy indent of the opening paren line
+    execute-keys -draft kx 1s([)\]])(\h+\w+)*\h*(\;\h*)?(?://[^\n]+)?\n\z<ret> m<a-semicolon>J <a-S> 1<a-&>
+  > catch %<
+    # else indent new lines with the same level as the previous one
+    execute-keys -draft K <a-&>
+  >
+  # remove previous empty lines resulting from the automatic indent
+  try %< execute-keys -draft k x <a-k>^\h+$<ret> Hd >
+  # indent after an opening paren at end of line
+  try %< execute-keys -draft k x <a-k>[{([]\h*$<ret> j <a-gt> >
+  # indent after = or arrow
+  try %< execute-keys -draft k x <a-k>(=|=<gt>)\h*$<ret>j<a-gt> >
+  # deindent closing paren when after cursor
+  try %< execute-keys -draft x <a-k> ^\h*[})\]] <ret> gh / [})] <esc> m <a-S> 1<a-&> >
 > >
 
-define-command -hidden rescript-indent-on-closing-curly-brace %[
-    evaluate-commands -draft -itersel -verbatim try %[
-        # check if alone on the line and select to opening curly brace
-        execute-keys <a-h><a-:><a-k>^\h*\}$<ret>hm
-        # align to selection start
-        execute-keys <a-S>1<a-&>
-    ]
-]
-
-define-command -hidden rescript-indent-on-closing-square-bracket %<
-    evaluate-commands -draft -itersel -verbatim try %<
-        # check if alone on the line and select to opening curly brace
-        execute-keys <a-h><a-:><a-k>^\h*\]$<ret>hm
-        # align to selection start
-        execute-keys <a-S>1<a-&>
-    >
+define-command -hidden rescript-indent-on-closing-paren %<
+  evaluate-commands -draft -itersel -verbatim try %<
+    # check if alone on the line and select the paren
+    execute-keys <a-h><a-:><a-k>^\h*[})\]]$<ret>h
+    # make sure there's a matching opening
+    execute-keys -draft m
+    # delete indent and select to opening curly brace
+    execute-keys 10000<lt>m
+    try %{
+      # check if begining with pipe
+      execute-keys -draft <semicolon>x<a-k>^\h*\|<ret>
+      # select to pipe
+      execute-keys <a-H>HF|
+      # select to first word
+      execute-keys EB
+      # align
+      execute-keys <a-S>&
+    } catch %{
+      # copy indentation
+      execute-keys <a-S>1<a-&>
+    }
+  >
 >
 
-define-command -hidden rescript-indent-on-closing-paren %[
-    evaluate-commands -draft -itersel -verbatim try %[
-        # check if alone on the line and select to opening curly brace
-        execute-keys <a-h><a-:><a-k>^\h*\)$<ret>hm
-        # align to selection start
-        execute-keys <a-S>1<a-&>
+define-command -hidden rescript-indent-on-pipe %[
+  evaluate-commands -draft -itersel %[ try %[
+    try %[
+      # if last line ends with =, do nothing
+      execute-keys -draft kx<a-k>=$<ret>
+    ] catch %[
+      # if last line starts with pipe, do nothing
+      execute-keys -draft kx<a-k>^\h*\|<ret>
+    ] catch %[
+      # else deindent
+      execute-keys <a-lt>
     ]
-]
+  ]
+] ]
 
 # The Rescript comment is `/* Some comment */`. Like the C-family this can be a multiline comment.
 #
