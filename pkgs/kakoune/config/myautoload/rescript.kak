@@ -214,7 +214,7 @@ define-command -hidden rescript-indent-on-closing-paren %<
 >
 
 define-command -hidden rescript-indent-on-pipe %[
-  evaluate-commands -draft -itersel %[
+  evaluate-commands -draft -itersel %[ try %[
     try %[
       # if last line ends with =, do nothing
       execute-keys -draft kx<a-k>=$<ret>
@@ -226,7 +226,7 @@ define-command -hidden rescript-indent-on-pipe %[
       execute-keys <a-lt>
     ]
   ]
-]
+] ]
 
 # The Rescript comment is `/* Some comment */`. Like the C-family this can be a multiline comment.
 #
