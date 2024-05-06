@@ -15,6 +15,7 @@ hook global WinSetOption filetype=rescript %<
   hook -group rescript-insert window InsertChar '\n' rescript-insert-on-newline
   hook -group rescript-indent window InsertChar '\n' rescript-indent-on-newline
   hook -group rescript-indent window InsertChar '[)}\]]' rescript-indent-on-closing-paren
+  hook -group rescript-indent window InsertChar '\|' rescript-indent-on-pipe
   hook -group rescript-trim-indent window ModeChange pop:insert:.* rescript-trim-indent
   hook -once -always window WinSetOption filetype=.* %{
     remove-hooks window rescript-insert
@@ -186,12 +187,6 @@ define-command -hidden rescript-indent-on-newline %< evaluate-commands -draft -i
   try %< execute-keys -draft k x <a-k>(=|=<gt>)\h*$<ret>j<a-gt> >
   # deindent closing paren when after cursor
   try %< execute-keys -draft x <a-k> ^\h*[})\]] <ret> gh / [})] <esc> m <a-S> 1<a-&> >
-  try %<
-    # check if previous line begins with pipe and has anything following 
-    execute-keys -draft kx<a-k>^\h*\|\h*\w+<ret>
-    # delete indent, select to first word and indent
-    execute-keys -draft  10000<lt> K<a-H>HF|EB <a-S>&,<gt>
-  >
 > >
 
 define-command -hidden rescript-indent-on-closing-paren %<
@@ -217,6 +212,21 @@ define-command -hidden rescript-indent-on-closing-paren %<
     }
   >
 >
+
+define-command -hidden rescript-indent-on-pipe %[
+  evaluate-commands -draft -itersel %[
+    try %[
+      # if last line ends with =, do nothing
+      execute-keys -draft kx<a-k>=$<ret>
+    ] catch %[
+      # if last line starts with pipe, do nothing
+      execute-keys -draft kx<a-k>^\h*\|<ret>
+    ] catch %[
+      # else deindent
+      execute-keys <a-lt>
+    ]
+  ]
+]
 
 # The Rescript comment is `/* Some comment */`. Like the C-family this can be a multiline comment.
 #
