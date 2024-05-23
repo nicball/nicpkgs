@@ -100,4 +100,6 @@ self: super:
 
   rescript-language-server = self.callPackage ./rescript-language-server.nix {};
 
+  monaco-ttf = self.callPackage ./monaco-ttf {};
+
 }
