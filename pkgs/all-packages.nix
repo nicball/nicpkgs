@@ -2,7 +2,7 @@ self: super:
 
 {
 
-  nicpkgs-scale = 1;
+  nicpkgs-scale = 1.5;
 
   piqueserver = self.callPackage ./piqueserver {};
 
@@ -99,5 +99,7 @@ self: super:
   rust-rfcs = self.callPackage ./rust-rfcs.nix {};
 
   rescript-language-server = self.callPackage ./rescript-language-server.nix {};
+
+  monaco-ttf = self.callPackage ./monaco-ttf {};
 
 }
