@@ -2,7 +2,7 @@ self: super:
 
 {
 
-  nicpkgs-scale = 1;
+  nicpkgs-scale = 1.5;
 
   piqueserver = self.callPackage ./piqueserver {};
 
