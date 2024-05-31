@@ -1,9 +1,9 @@
 {
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 45, // Waybar height (to be removed for auto height)
+    // "height": 45, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 0, // Gaps between modules (0px)
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
@@ -28,7 +28,8 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "sway/window": {
-        "format": " {title} "
+        "format": "{title}",
+        "icon": true
     },
     "tray": {
         "icon-size": 28,
@@ -72,7 +73,7 @@
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "interface": "wlo1", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",

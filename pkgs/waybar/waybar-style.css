@@ -1,17 +1,10 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 3mm;
+    font-size: 3.5mm;
     color: #eceff4;
 }
 
 window#waybar {
-    /*
-    transition-property: background-color;
-    transition-duration: .5s;
-    */
-    /* border-bottom: 1px solid @unfocused_borders; */
-    /* background: #d8dee9; */
     background: #3b4252;
 }
 
@@ -19,34 +12,18 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
 #workspaces button {
-    padding: 0 0.8em;
-    /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -0.5em transparent;
-    /* Avoid rounded borders under each workspace name */
+    padding: 0.3em 0.8em;
     border: none;
     border-radius: 0;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
     background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.focused {
-    /*
-    background-color: #56737a;
-    color: #1e1e20;
-    */
     border-bottom: 0.2em solid;
 }
 
@@ -57,12 +34,9 @@ window#waybar.solo {
 #mode {
 }
 
-#window {
-    font-size: 4mm;
-}
-
-#waybar.empty #window {
-    background-color: transparent;
+#window label {
+    padding: 0.3em 0.8em;
+    font-size: 1.2em;
 }
 
 #clock,
@@ -79,25 +53,8 @@ window#waybar.solo {
 #mode,
 #idle_inhibitor,
 #mpd {
-    padding: 0 0.8em;
+    padding: 0.3em 0.8em;
     border-radius: 0.4em;
-}
-
-/*
-#window,
-#workspaces {
-    margin: 0 0.3em;
-}
-*/
-
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}
-
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
 }
 
 #battery.charging, #battery.plugged {
@@ -118,10 +75,6 @@ window#waybar.solo {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-}
-
-label:focus {
-    border-bottom: 0.2em solid;
 }
 
 #network.disconnected {
