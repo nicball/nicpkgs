@@ -1,7 +1,7 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 3mm;
+    font-size: 3.5mm;
     color: #eceff4;
 }
 
@@ -18,15 +18,6 @@ window#waybar {
 window#waybar.hidden {
     opacity: 0.2;
 }
-
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
 
 #workspaces button {
     padding: 0 0.8em;
@@ -57,12 +48,8 @@ window#waybar.solo {
 #mode {
 }
 
-#window {
-    font-size: 4mm;
-}
-
-#waybar.empty #window {
-    background-color: transparent;
+#window label {
+    font-size: 1.2em;
 }
 
 #clock,
@@ -82,13 +69,6 @@ window#waybar.solo {
     padding: 0 0.8em;
     border-radius: 0.4em;
 }
-
-/*
-#window,
-#workspaces {
-    margin: 0 0.3em;
-}
-*/
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {

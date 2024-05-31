@@ -28,7 +28,7 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "sway/window": {
-        "format": " {title} "
+        "format": "{title}"
     },
     "tray": {
         "icon-size": 28,
@@ -72,7 +72,7 @@
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "interface": "wlo1", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",

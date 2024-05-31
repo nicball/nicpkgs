@@ -20,7 +20,7 @@ self: super:
 
   wayland-book = self.callPackage ./wayland-book {};
 
-  rtw89 = self.callPackage ./rtw89.nix { linux = self.linux_6_6; };
+  rtw89 = self.callPackage ./rtw89.nix {};
 
   maven-j8 = self.maven.overrideAttrs (_: _: { jdk = self.jdk8; });
 
@@ -94,6 +94,7 @@ self: super:
 
   torchvisionWithRocm = let p = self.python3Packages; in p.torchvision.override { torch = p.torchWithRocm; } // {
     meta.platforms = self.lib.platforms.x86;
+    meta.broken = true;
   };
 
   rust-rfcs = self.callPackage ./rust-rfcs.nix {};
