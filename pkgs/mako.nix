@@ -7,14 +7,15 @@ let
   scale = x: toString (builtins.ceil (nicpkgs-scale * x));
   config = writeText "mako-config" ''
     font=sans ${scale 12}
-    background-color=#5e81ace6
+    background-color=#5e81acd6
     text-color=#eceff4
     width=${scale 300}
     height=${scale 100}
     padding=${scale 12}
-    margin=${scale 10}
-    border-radius=${scale 16}
+    outer-margin=${scale 10}
+    margin=0,0,${scale 10}
     border-size=0
+    #border-radius=${scale 16}
   '';
 in
 
