@@ -72,7 +72,7 @@ self: super:
 
   matrix-qq = self.callPackage ./matrix-qq.nix {};
 
-  mako = self.callPackage ./mako {};
+  mako = self.callPackage ./mako.nix { inherit super; };
 
   factorio-headless = self.callPackage ./factorio-headless {};
 
