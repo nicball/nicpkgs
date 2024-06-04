@@ -43,6 +43,7 @@ window > box {
 
 menu {
   background: #4c566a;
+  font-weight: normal;
 }
 
 tooltip {
