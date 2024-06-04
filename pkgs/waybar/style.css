@@ -1,6 +1,7 @@
 * {
   font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 3.5mm;
+  font-size: 3.4mm;
+  font-weight: bold;
   color: #eceff4;
 }
 
@@ -38,7 +39,6 @@ window > box {
 
 #window label {
   padding: 0.3em 0.8em;
-  font-size: 1.2em;
 }
 
 menu {
