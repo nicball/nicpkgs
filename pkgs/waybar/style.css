@@ -1,6 +1,7 @@
-* {
+window#waybar {
   font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 3.5mm;
+  font-size: 3.4mm;
+  font-weight: bold;
   color: #eceff4;
 }
 
@@ -9,7 +10,7 @@ window#waybar {
   opacity: 0.9;
 }
 
-window > box {
+window#waybar > box {
   margin: 0 0.5em;
 }
 
@@ -19,6 +20,7 @@ window > box {
   border: none;
   border-radius: 1.5em;
   margin: 0.4em 0.2em;
+  color: currentcolor;
 }
 
 #workspaces button:hover {
@@ -33,16 +35,17 @@ window > box {
   background-color: #ba2922;
 }
 
-#mode {
-}
-
 #window label {
   padding: 0.3em 0.8em;
-  font-size: 1.2em;
 }
 
 menu {
   background: #4c566a;
+}
+
+#tray window.popup {
+  color: currentcolor;
+  font-weight: normal;
 }
 
 tooltip {
