@@ -103,4 +103,6 @@ self: super:
 
   monaco-ttf = self.callPackage ./monaco-ttf {};
 
+  fcitx5 = self.callPackage ./fcitx5.nix { inherit super; };
+
 }
