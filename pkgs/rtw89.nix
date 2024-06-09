@@ -1,17 +1,17 @@
 { lib, stdenv, linux, fetchFromGitHub, openssl, mokutil }:
 
 let
-    modDestDir = "$out/lib/modules/${linux.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
+  modDestDir = "$out/lib/modules/${linux.modDirVersion}/kernel/drivers/net/wireless/realtek/rtw89";
 in
 
 stdenv.mkDerivation {
   pname = "rtw89";
-  version = "unstable-2024-01-07";
-  src = fetchFromGitHub {
+  version = "unstable-2024-05-08";
+  src = pkgs.fetchFromGitHub {
     owner = "lwfinger";
     repo = "rtw89";
-    rev = "6dc9441698a7f2f79ff8f74c6ea3704c0c8feb61";
-    sha256 = "sha256-iQF8+ufnqRxy+IttMRG4ZH7XXrvaCxPYuWNU/FwRxdc=";
+    rev = "239cc6670a67a1e7b6f43bd681efdfedf6a53bb1";
+    sha256 = "sha256-7rhZs9P9c/z1DcHLw0zhnwf6WvOOxRioJhC3k4h668A=";
   };
   hardeningDisable = [ "pic" "format" ];
   nativeBuildInputs = linux.moduleBuildDependencies ++ [ openssl mokutil ];
