@@ -7,7 +7,7 @@ in
 stdenv.mkDerivation {
   pname = "rtw89";
   version = "unstable-2024-05-08";
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "lwfinger";
     repo = "rtw89";
     rev = "239cc6670a67a1e7b6f43bd681efdfedf6a53bb1";
