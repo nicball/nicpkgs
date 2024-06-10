@@ -105,4 +105,6 @@ self: super:
 
   fcitx5 = self.callPackage ./fcitx5.nix { inherit super; };
 
+  libjit = self.callPackage ./libjit.nix {};
+
 }
