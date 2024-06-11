@@ -66,5 +66,7 @@
 
       homeModules = import ./home-modules;
 
+      nixosModules.all = import ./nixos-modules/all.nix { inherit overlay; };
+
     };
 }
