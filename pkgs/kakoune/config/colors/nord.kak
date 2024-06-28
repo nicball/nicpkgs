@@ -62,7 +62,7 @@ set-face global StatusCursor     "%opt{nord0},%opt{nord8}"
 set-face global Prompt           "%opt{nord8}"
 set-face global Whitespace       "%opt{nord10},%opt{nord1}+f"
 set-face global MatchingChar     "%opt{nord0},%opt{nord12}+F"
-set-face global BufferPadding      ",%opt{nord1}"
+set-face global BufferPadding      "%opt{nord10},%opt{nord0}"
 set-face global Information        "%opt{nord0},%opt{nord9}"
 set-face global Error              "%opt{nord4},%opt{nord11}"
 
