@@ -84,7 +84,7 @@ self: super:
     let flake = builtins.getFlake "github:nicball/fvckbot/61022c520ed573e2906dd505fed9af4cf1eb0542"; in
     (flake.overlays.default self super).fvckbot;
 
-  wiwinwlh = self.callPackage ./wiwinwlh.nix {};
+  wiwikwlh = self.callPackage ./wiwikwlh.nix {};
 
   transfersh = self.callPackage ./transfersh.nix {};
 
