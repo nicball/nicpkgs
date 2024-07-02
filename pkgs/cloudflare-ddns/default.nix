@@ -40,11 +40,7 @@ writeShellApplication {
     (lib.optionalString (enable-ipv4 && enable-log) ''
       {
         date
-        echo "zone=$zone_json"
-        echo "record=$record_json"
-        echo "my_ip=$my_ip"
-        echo "results=$results"
-        echo
+        printf 'zone=%s\nrecord=%s\nmy_ip=%s\nresults=%s\n\n' "$zone_json" "$record_json" "$my_ip" "$results"
       } >> "${log-path}"
     '')
 
@@ -61,11 +57,7 @@ writeShellApplication {
     (lib.optionalString (enable-ipv6 && enable-log) ''
       {
         date
-        echo "zone=$zone_json"
-        echo "record=$record_json"
-        echo "my_ip6=$my_ip6"
-        echo "results=$results"
-        echo
+        printf 'zone=%s\nrecord=%s\nmy_ip6=%s\nresults=%s\n\n' "$zone_json" "$record_json" "$my_ip6" "$results"
       } >> "${log-path}"
     '')
   ];
