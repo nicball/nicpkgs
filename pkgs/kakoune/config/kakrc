@@ -137,6 +137,10 @@ hook global BufCreate \*make\* %{
   ansi-enable
 }
 
-# Copy and paste
-map global normal <a-c> <a-|>wl-copy<ret>
-map global normal <a-v> !wl-paste<ret>
+# Copy to clipboard
+define-command copy-selection-to-osc52 %{
+  nop %sh{
+    printf '\e]52;c;%s\e\\' "$(printf '%s' "$kak_selection" | base64 -w 0)" > /proc/"$kak_client_pid"/fd/1
+  }
+}
+map global normal <a-c> :copy-selection-to-osc52<ret>
