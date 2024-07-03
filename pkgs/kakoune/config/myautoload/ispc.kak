@@ -37,7 +37,7 @@ evaluate-commands %sh{
   keywords='assert assume cbreak ccontinue creturn delete launch new print soa sync task unmasked
     cif cdo cfor cwhile foreach foreach_tiled foreach_unique foreach_active
     programCount programIndex taskCount taskCount0 taskCount1 taskCount3 taskIndex taskIndex0 taskIndex1 taskIndex2
-    operator in template typename \.\.\.'
+    operator in template typename'
 
   attributes='noinline __vectorcall __regcall'
 
