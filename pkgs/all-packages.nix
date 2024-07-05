@@ -107,4 +107,6 @@ self: super:
 
   libjit = self.callPackage ./libjit.nix {};
 
+  adaptive-cpp = self.callPackage ./adaptive-cpp.nix {};
+
 }
