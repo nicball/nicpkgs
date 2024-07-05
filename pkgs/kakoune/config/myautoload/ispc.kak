@@ -30,8 +30,37 @@ hook -group ispc-highlight global WinSetOption filetype=c %{
 
 provide-module ispc %§
 
-add-highlighter shared/ispc group
-add-highlighter shared/ispc/inherited ref c
+add-highlighter shared/ispc regions
+add-highlighter shared/ispc/code default-region group
+add-highlighter shared/ispc/code/c-keywords ref c/code/keywords
+add-highlighter shared/ispc/code/c-attributes ref c/code/attributes
+add-highlighter shared/ispc/code/c-types ref c/code/types
+add-highlighter shared/ispc/code/c-values ref c/code/values
+add-highlighter shared/ispc/string region %{(?<!')(?<!'\\)"} %{(?<!\\)(?:\\\\)*"} fill string
+add-highlighter shared/ispc/documentation_comment region /\*(\*[^/]|!) \*/ fill documentation
+add-highlighter shared/ispc/line_documentation_comment region //[/!] $ fill documentation
+add-highlighter shared/ispc/comment region /\* \*/ fill comment
+add-highlighter shared/ispc/line_comment region // (?<!\\)(?=\n) fill comment
+add-highlighter shared/ispc/disabled region -recurse "#\h*if(?:def)?" ^\h*?#\h*if\h+(?:0|FALSE)\b "#\h*(?:else|elif|endif)" fill comment
+add-highlighter shared/ispc/ifdef region %{^\h*\K#\h*(?:define|elif|if)(?=\h)} %{(?<!\\)(?=\s)|(?=//)} fill meta
+add-highlighter shared/ispc/macro region %{^\h*#} %{(?<!\\)(?=\n)|(?=//)} group
+add-highlighter shared/ispc/macro/ regex ^\h*(#\h*\S*) 1:meta
+add-highlighter shared/ispc/macro/ regex ^\h*#\h*include\h+(<[^>]*>|"(?:[^"\\]|\\.)*") 1:module
+add-highlighter shared/ispc/macro/ regex /\*.*?\*/ 0:comment
+
+# integer literals
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b[1-9]('?\d+)*(ul?l?|ll?u?)?\b(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b0b[01]('?[01]+)*(ul?l?|ll?u?)?\b(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b0('?[0-7]+)*(ul?l?|ll?u?)?\b(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b0x[\da-f]('?[\da-f]+)*(ul?l?|ll?u?)?\b(?!\.)} 0:value
+
+# floating point literals
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b\d('?\d+)*\.(d\b|\B)(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b\d('?\d+)*\.?e[+-]?\d('?\d+)*d?\b(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)(\b(\d('?\d+)*)|\B)\.\d('?[\d]+)*(e[+-]?\d('?\d+)*)?d?\b(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b0x[\da-f]('?[\da-f]+)*\.(d\b|\B)(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b0x[\da-f]('?[\da-f]+)*\.?p[+-]?\d('?\d+)*)?d?\b(?!\.)} 0:value
+add-highlighter shared/ispc/code/ regex %{(?i)(?<!\.)\b0x([\da-f]('?[\da-f]+)*)?\.\d('?[\d]+)*(p[+-]?\d('?\d+)*)?d?\b(?!\.)} 0:value
 
 evaluate-commands %sh{
   keywords='assert assume cbreak ccontinue creturn delete launch new print soa sync task unmasked
@@ -55,10 +84,10 @@ evaluate-commands %sh{
 
   # Highlight keywords
   printf %s "
-    add-highlighter shared/ispc/keywords regex \b($(join "${keywords}" '|'))\b 0:keyword
-    add-highlighter shared/ispc/attributes regex \b($(join "${attributes}" '|'))\b 0:attribute
-    add-highlighter shared/ispc/types regex \b($(join "${types}" '|'))\b 0:type
-    add-highlighter shared/ispc/values regex \b($(join "${macros}" '|'))\b 0:value
+    add-highlighter shared/ispc/code/keywords regex \b($(join "${keywords}" '|'))\b 0:keyword
+    add-highlighter shared/ispc/code/attributes regex \b($(join "${attributes}" '|'))\b 0:attribute
+    add-highlighter shared/ispc/code/types regex \b($(join "${types}" '|'))\b 0:type
+    add-highlighter shared/ispc/code/values regex \b($(join "${macros}" '|'))\b 0:value
   "
 }
 
