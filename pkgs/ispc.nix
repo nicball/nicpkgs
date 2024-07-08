@@ -10,4 +10,5 @@ super.ispc.overrideAttrs rec {
     rev = "v${version}";
     sha256 = "sha256-1Ns8w34fXgYrSu3XE89uowjaVoW3MOgKYV1Jb/XRj1Q=";
   };
+  dontFixCmake = true;
 }
