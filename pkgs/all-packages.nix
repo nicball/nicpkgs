@@ -109,4 +109,6 @@ self: super:
 
   adaptive-cpp = self.callPackage ./adaptive-cpp.nix {};
 
+  ispc = self.callPackage ./ispc.nix { inherit super; };
+
 }
