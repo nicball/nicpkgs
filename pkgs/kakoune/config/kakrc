@@ -68,7 +68,7 @@ hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
 
 # lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
-hook global WinSetOption filetype=(racket|haskell|rescript) %{
+hook global WinSetOption filetype=(racket|haskell|rescript|c|cpp) %{
   lsp-enable-window
   lsp-inlay-hints-enable window
   map window user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"

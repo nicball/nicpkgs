@@ -1,3 +1,8 @@
+[language.c]
+filetypes = [ "c", "cpp" ]
+roots = [ ".git" ]
+command = "clangd"
+
 [language.racket]
 filetypes = [ "racket" ]
 roots = [ ".git" ]
