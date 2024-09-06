@@ -2,12 +2,12 @@
 
 stdenv.mkDerivation {
   pname = "rust-reference";
-  version = "unstable-2022-12-04";
+  version = "unstable-2024-08-30";
   src = fetchFromGitHub {
     owner = "rust-lang";
     repo = "reference";
-    rev = "3ae62681ff236d5528ef7c8c28ba7c6b2ecc6731";
-    sha256 = "sha256-EEEa0uxmMXzYTo753eVAYUXekztbkR5CL5eK4XytOU8=";
+    rev = "df36291f495153180e01b78397997761797d583a";
+    sha256 = "sha256-0v0nL6npcdYN9/1OIP94wJw5w0aZzK9NUPk+ZED5Mzc=";
   };
   dontConfigure = true;
   dontBuild = true;
