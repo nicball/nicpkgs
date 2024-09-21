@@ -12,7 +12,8 @@ let
 in
 
 wrapDerivationOutput super.kitty "bin/kitty" ''
-  --add-flags '--config ${config}'
+  --add-flags '--config ${config}' \
+  --prefix PATH : "$out/bin"
 '' // {
   inherit (super.kitty) terminfo;
 }

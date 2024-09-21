@@ -2,7 +2,7 @@ import requests
 from requests_oauthlib import OAuth1
 import re
 from urllib.parse import parse_qs  # , quote_plus
-import tempfile
+# import tempfile
 import subprocess
 import os.path
 
@@ -36,7 +36,7 @@ for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
     filename = (
         '@outputDir@/' +
         str(v['bookmark_id']) + '.' +
-        re.sub(r'[^\w\s-]', '', v['title']) + '.epub'
+        re.sub(r'[^\w\s-]', '_', v['title']) + '.epub'
     )
     if os.path.exists(filename):
         continue
@@ -46,27 +46,29 @@ for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
         auth=auth,
         data={'bookmark_id': v['bookmark_id']}
     ).text
-    content = """
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <meta charset="utf-8" />
-                <title>{}</title>
-            </head>
-            <body>{}</body>
-        </html>
-    """.format(v['title'], article)
+    # content = """
+    #     <!DOCTYPE html>
+    #     <html>
+    #         <head>
+    #             <meta charset="utf-8" />
+    #             <title>{}</title>
+    #         </head>
+    #         <body>{}</body>
+    #     </html>
+    # """.format(v['title'], article)
     pandoc_path = (
         '@pandoc@' +
         '/bin/pandoc'
     )
-    html_file, html_path = tempfile.mkstemp(suffix='.html', text=True)
-    with open(html_file, 'w') as f:
-        f.write(content)
+    # html_file, html_path = tempfile.mkstemp(suffix='.html', text=True)
+    # with open(html_file, 'w') as f:
+    #     f.write(content)
     proc = subprocess.run([
         pandoc_path,
-        '-f', 'html', '-t', 'epub', '-o', filename,
-        html_path
+        # '-f', 'html',
+        '-t', 'epub', '-o', filename,
+        # html_path,
+        v['url'],
     ])
     if @autoArchive@ and proc.returncode == 0:
         requests.post(
