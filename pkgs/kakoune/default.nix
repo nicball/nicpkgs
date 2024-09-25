@@ -13,14 +13,14 @@ let
   '';
   kakoune-lsp-base = rustPlatform.buildRustPackage rec {
     pname = "kakoune-lsp";
-    version = "17.0.1";
+    version = "17.1.2";
     src = fetchFromGitHub {
       owner = pname;
       repo = pname;
       rev = "v${version}";
-      sha256 = "sha256-uXKquAjfytUn/Q0kx+0BGRQTkVMQ9rMRnTCy622upag=";
+      sha256 = "sha256-NZDp98Ne6z7DlJ2vZiqGzw5ukusOkEjb+eyvmxB+IKI=";
     };
-    cargoHash = "sha256-XnhYODMzqInwbgM8wveY048sljZ8OKw4hLYJG5h8Twc=";
+    cargoHash = "sha256-QonOqdcdp1vbxzLnF46X0DLVay2Up1LvHZ/ZZ04LqlE=";
     buildInputs = [ perl makeWrapper ];
   };
   kakoune-lsp = wrapDerivationOutput kakoune-lsp-base "bin/kak-lsp" ''
