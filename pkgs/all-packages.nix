@@ -109,4 +109,6 @@ self: super:
 
   ispc = self.callPackage ./ispc.nix { inherit super; };
 
+  proton-ge-bin = self.callPackage ./proton-ge-bin.nix {};
+
 }
