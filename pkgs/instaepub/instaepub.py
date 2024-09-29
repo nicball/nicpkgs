@@ -2,7 +2,7 @@ import requests
 from requests_oauthlib import OAuth1
 import re
 from urllib.parse import parse_qs  # , quote_plus
-# import tempfile
+import tempfile
 import subprocess
 import os.path
 
@@ -33,44 +33,59 @@ auth = OAuth1(
 for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
     if v['type'] != 'bookmark':
         continue
-    filename = (
+    pandoc_filename = (
         '@outputDir@/' +
         str(v['bookmark_id']) + '.' +
-        re.sub(r'[^\w\s-]', '_', v['title']) + '.epub'
+        re.sub(r'[^\w\s-]', '_', v['title']) + '.pandoc.epub'
     )
-    if os.path.exists(filename):
-        continue
+    ip_filename = (
+        '@outputDir@/' +
+        str(v['bookmark_id']) + '.' +
+        re.sub(r'[^\w\s-]', '_', v['title']) + '.instapaper.epub'
+    )
     print("fetching", v['title'], v['bookmark_id'])
-    article = requests.post(
-        url=base_url+'/1/bookmarks/get_text',
-        auth=auth,
-        data={'bookmark_id': v['bookmark_id']}
-    ).text
-    # content = """
-    #     <!DOCTYPE html>
-    #     <html>
-    #         <head>
-    #             <meta charset="utf-8" />
-    #             <title>{}</title>
-    #         </head>
-    #         <body>{}</body>
-    #     </html>
-    # """.format(v['title'], article)
     pandoc_path = (
         '@pandoc@' +
         '/bin/pandoc'
     )
-    # html_file, html_path = tempfile.mkstemp(suffix='.html', text=True)
-    # with open(html_file, 'w') as f:
-    #     f.write(content)
-    proc = subprocess.run([
-        pandoc_path,
-        # '-f', 'html',
-        '-t', 'epub', '-o', filename,
-        # html_path,
-        v['url'],
-    ])
-    if @autoArchive@ and proc.returncode == 0:
+    if not os.path.exists(pandoc_filename):
+        pproc = subprocess.run([
+            pandoc_path,
+            '-t', 'epub', '-o', pandoc_filename,
+            v['url'],
+        ])
+        pstatus = pproc.returncode == 0
+    else:
+        pstatus = True
+    if not os.path.exists(ip_filename):
+        article = requests.post(
+            url=base_url+'/1/bookmarks/get_text',
+            auth=auth,
+            data={'bookmark_id': v['bookmark_id']}
+        ).text
+        content = """
+            <!DOCTYPE html>
+            <html>
+                <head>
+                    <meta charset="utf-8" />
+                    <title>{}</title>
+                </head>
+                <body>{}</body>
+            </html>
+        """.format(v['title'], article)
+        html_file, html_path = tempfile.mkstemp(suffix='.html', text=True)
+        with open(html_file, 'w') as f:
+            f.write(content)
+        iproc = subprocess.run([
+            pandoc_path,
+            '-f', 'html',
+            '-t', 'epub', '-o', ip_filename,
+            html_path,
+        ])
+        istatus = iproc.returncode == 0
+    else:
+        istatus = True
+    if @autoArchive@ and istatus and pstatus:
         requests.post(
             url=base_url+'/1/bookmarks/archive',
             auth=auth,
