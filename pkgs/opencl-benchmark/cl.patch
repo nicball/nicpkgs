@@ -1,0 +1,20 @@
+diff --git a/src/opencl.hpp b/src/opencl.hpp
+index 8c8d0e9..203dec7 100644
+--- a/src/opencl.hpp
++++ b/src/opencl.hpp
+@@ -7,7 +7,7 @@
+ #ifndef _WIN32
+ #pragma GCC diagnostic ignored "-Wignored-attributes" // ignore compiler warnings for CL/cl.hpp with g++
+ #endif // _WIN32
+-#include <CL/cl.hpp> // OpenCL 1.0, 1.1, 1.2
++#include <CL/opencl.hpp> // OpenCL 1.0, 1.1, 1.2
+ #include "utilities.hpp"
+ using cl::Event;
+ 
+@@ -617,4 +617,4 @@ public:
+ 		cl_queue.finish();
+ 		return *this;
+ 	}
+-};
+\ No newline at end of file
++};

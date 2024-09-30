@@ -1,80 +1,82 @@
 self: super:
 
+with self;
+
 {
 
   nicpkgs-scale = 1.5;
 
-  piqueserver = self.callPackage ./piqueserver {};
+  piqueserver = callPackage ./piqueserver {};
 
-  terraria-server = self.callPackage ./terraria-server.nix {};
+  terraria-server = callPackage ./terraria-server.nix {};
 
-  armake2 = self.callPackage ./armake2.nix {};
+  armake2 = callPackage ./armake2.nix {};
 
-  arma3-unix-launcher = self.callPackage ./arma3-unix-launcher.nix {};
+  arma3-unix-launcher = callPackage ./arma3-unix-launcher.nix {};
 
-  mdbook-epub = self.callPackage ./mdbook-epub.nix {};
+  mdbook-epub = callPackage ./mdbook-epub.nix {};
 
-  rust-reference = self.callPackage ./rust-reference.nix {};
+  rust-reference = callPackage ./rust-reference.nix {};
 
-  rust-async-book = self.callPackage ./rust-async-book.nix {};
+  rust-async-book = callPackage ./rust-async-book.nix {};
 
-  wayland-book = self.callPackage ./wayland-book {};
+  wayland-book = callPackage ./wayland-book {};
 
-  rtw89 = self.callPackage ./rtw89.nix {};
+  rtw89 = callPackage ./rtw89.nix {};
 
-  maven-j8 = self.maven.overrideAttrs (_: _: { jdk = self.jdk8; });
+  maven-j8 = maven.overrideAttrs (_: _: { jdk = jdk8; });
 
-  kakoune = self.callPackage ./kakoune {};
+  kakoune = callPackage ./kakoune {};
 
-  lilypondbot = self.callPackage ./lilypondbot {};
+  lilypondbot = callPackage ./lilypondbot {};
 
-  deepspeech = self.callPackage ./deepspeech.nix {};
+  deepspeech = callPackage ./deepspeech.nix {};
 
-  kindle-tool = self.callPackage ./kindle-tool.nix {};
+  kindle-tool = callPackage ./kindle-tool.nix {};
 
-  instaepub = self.callPackage ./instaepub { pandoc = self.pandoc-static; };
+  instaepub = callPackage ./instaepub {};
 
-  kitty = self.callPackage ./kitty { inherit super; };
+  kitty = callPackage ./kitty { inherit super; };
 
-  screenshot = self.callPackage ./screenshot {};
+  screenshot = callPackage ./screenshot {};
 
-  aria2 = self.callPackage ./aria2 { inherit super; };
+  aria2 = callPackage ./aria2 { inherit super; };
 
-  cloudflare-ddns = self.callPackage ./cloudflare-ddns {};
+  cloudflare-ddns = callPackage ./cloudflare-ddns {};
 
-  qq-wayland = self.wrapDerivationOutput self.qq "bin/qq" ''
+  qq-wayland = wrapDerivationOutput qq "bin/qq" ''
     --add-flags "--ozone-platform-hint=wayland"
   '';
 
-  ufs-utils = self.callPackage ./ufs-utils.nix {};
+  ufs-utils = callPackage ./ufs-utils.nix {};
 
-  rime-table-bin-decompiler = self.callPackage ./rime-table-bin-decompiler.nix {};
+  rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
 
-  ryzenadj = self.callPackage ./ryzenadj.nix {};
+  ryzenadj = callPackage ./ryzenadj.nix {};
 
-  lean-doc = self.callPackage ./lean-doc.nix {};
+  lean-doc = callPackage ./lean-doc.nix {};
 
-  helix-doc = self.callPackage ./helix-doc {};
+  helix-doc = callPackage ./helix-doc {};
 
-  waybar = self.callPackage ./waybar { inherit super; };
+  waybar = callPackage ./waybar { inherit super; };
 
-  rofi-wayland = self.callPackage ./rofi-wayland { inherit super; };
+  rofi-wayland = callPackage ./rofi-wayland { inherit super; };
 
-  alchitry-lab = self.callPackage ./alchitry-lab.nix {};
+  alchitry-lab = callPackage ./alchitry-lab.nix {};
 
-  InsydeImageExtractor = self.callPackage ./InsydeImageExtractor.nix {};
+  InsydeImageExtractor = callPackage ./InsydeImageExtractor.nix {};
 
-  flowerss-bot = self.callPackage ./flowerss-bot.nix {};
+  flowerss-bot = callPackage ./flowerss-bot.nix {};
 
-  pandoc-static = self.callPackage ./pandoc-static.nix {};
+  pandoc-static = callPackage ./pandoc-static.nix {};
 
-  mirai-console-loader = self.callPackage ./mirai-console-loader.nix {};
+  mirai-console-loader = callPackage ./mirai-console-loader.nix {};
 
-  matrix-qq = self.callPackage ./matrix-qq.nix {};
+  matrix-qq = callPackage ./matrix-qq.nix {};
 
-  mako = self.callPackage ./mako.nix { inherit super; };
+  mako = callPackage ./mako.nix { inherit super; };
 
-  factorio-headless = self.callPackage ./factorio-headless {};
+  factorio-headless = callPackage ./factorio-headless {};
 
   factorio-bot =
     let flake = builtins.getFlake "github:nicball/midymidy-factorio-webservice/e58610d2e860c60f83578c18c0406964d3f4923a"; in
@@ -84,31 +86,33 @@ self: super:
     let flake = builtins.getFlake "github:nicball/fvckbot/61022c520ed573e2906dd505fed9af4cf1eb0542"; in
     (flake.overlays.default self super).fvckbot;
 
-  wiwikwlh = self.callPackage ./wiwikwlh.nix {};
+  wiwikwlh = callPackage ./wiwikwlh.nix {};
 
-  transfersh = self.callPackage ./transfersh.nix {};
+  transfersh = callPackage ./transfersh.nix {};
 
-  inherit (self.callPackages ./wrap-derivation-output.nix { inherit self; })
+  inherit (callPackages ./wrap-derivation-output.nix { inherit self; })
     modifyDerivationOutput
     wrapDerivationOutput;
 
-  torchvisionWithRocm = let p = self.python3Packages; in p.torchvision.override { torch = p.torchWithRocm; } // {
-    meta.platforms = self.lib.platforms.x86;
+  torchvisionWithRocm = let p = python3Packages; in p.torchvision.override { torch = p.torchWithRocm; } // {
+    meta.platforms = lib.platforms.x86;
     meta.broken = true;
   };
 
-  rust-rfcs = self.callPackage ./rust-rfcs.nix {};
+  rust-rfcs = callPackage ./rust-rfcs.nix {};
 
-  rescript-language-server = self.callPackage ./rescript-language-server.nix {};
+  rescript-language-server = callPackage ./rescript-language-server.nix {};
 
-  monaco-ttf = self.callPackage ./monaco-ttf {};
+  monaco-ttf = callPackage ./monaco-ttf {};
 
-  libjit = self.callPackage ./libjit.nix {};
+  libjit = callPackage ./libjit.nix {};
 
-  adaptive-cpp = self.callPackage ./adaptive-cpp.nix {};
+  adaptive-cpp = callPackage ./adaptive-cpp.nix {};
 
-  ispc = self.callPackage ./ispc.nix { inherit super; };
+  ispc = callPackage ./ispc.nix { inherit super; };
 
-  proton-ge-bin = self.callPackage ./proton-ge-bin.nix {};
+  proton-ge-bin = callPackage ./proton-ge-bin.nix {};
+
+  opencl-benchmark = callPackage ./opencl-benchmark { inherit (darwin.apple_sdk.frameworks) OpenCL; };
 
 }
