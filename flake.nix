@@ -23,15 +23,18 @@
 
         lib = pkgs.lib;
 
-        mypkgs = ps: builtins.intersectAttrs (overlay 42 42) ps;
+        filterMyPkgs = builtins.intersectAttrs (overlay 42 42);
+
+        isBroken = lib.attrByPath [ "meta" "broken" ] false;
+
+        isGood = system: p: lib.isDerivation p && !isBroken p && lib.meta.availableOn { inherit system; } p;
+
+        filterGoodPkgs = system: lib.filterAttrs (k: v: isGood system v);
 
         addEverything = system: pkgs: ps: ps // {
           build-everything-unsubstitutable =
             let
-              isBroken = lib.attrByPath [ "meta" "broken" ] false;
-              isGood = p: lib.isDerivation p && !isBroken p && lib.meta.availableOn { inherit system; } p;
-              goodPkgs = lib.filterAttrs (k: v: isGood v) ps;
-              nameList = lib.concatMapStringsSep " " lib.escapeShellArg (lib.attrNames goodPkgs);
+              nameList = lib.concatMapStringsSep " " lib.escapeShellArg (lib.attrNames (filterGoodPkgs system ps));
             in
             pkgs.writeShellApplication {
               name = "build-everything-unsubstitutable";
@@ -53,11 +56,13 @@
             };
         };
 
+        finalPkgs = system: pkgs: filterGoodPkgs system (addEverything system pkgs (filterMyPkgs pkgs));
+
       in {
 
-        packages = addEverything system pkgs (mypkgs pkgs);
+        packages = finalPkgs system pkgs;
 
-        packagesCross = builtins.mapAttrs (arch: cpkgs: addEverything arch cpkgs (mypkgs cpkgs)) pkgs.pkgsCross;
+        packagesCross = builtins.mapAttrs (arch: cpkgs: finalPkgs arch cpkgs) pkgs.pkgsCross;
 
       }
     ) // {
