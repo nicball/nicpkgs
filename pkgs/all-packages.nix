@@ -52,8 +52,6 @@ with self;
 
   rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
 
-  ryzenadj = callPackage ./ryzenadj.nix {};
-
   lean-doc = callPackage ./lean-doc.nix {};
 
   helix-doc = callPackage ./helix-doc {};
