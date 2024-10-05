@@ -3,7 +3,7 @@
 , grim
 , slurp
 , imagemagick
-, scale ? "1"
+, scaling ? "1"
 , output-dir ? "~/screenshots"
 , format ? "$(date +%Y-%m-%d_%H-%M-%S)"
 }:
@@ -27,7 +27,7 @@ writeShellScriptBin "screenshot" ''
     file=$(mktemp /tmp/XXXXXXXXXXX-screenshot.png)
     ${grim}/bin/grim $file
     read w h x y < <(${slurp}/bin/slurp -f "%w %h %x %y")
-    ${imagemagick}/bin/convert $file -crop $((w*${scale}))x$((h*${scale}))+$((x*${scale}))+$((y*${scale})) /tmp/latest-screenshot.png
+    ${imagemagick}/bin/convert $file -crop $((w*${scaling}))x$((h*${scaling}))+$((x*${scaling}))+$((y*${scaling})) /tmp/latest-screenshot.png
     rm $file
   fi
   wl-copy --type image/png < /tmp/latest-screenshot.png

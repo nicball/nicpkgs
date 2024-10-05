@@ -1,21 +1,21 @@
 { super
 , writeText
-, nicpkgs-scale
+, nicpkgs-scaling
 }:
 
 let
-  scale = x: toString (builtins.ceil (nicpkgs-scale * x));
+  scaling = x: toString (builtins.ceil (nicpkgs-scaling * x));
   config = writeText "mako-config" ''
-    font=sans ${scale 12}
+    font=sans ${scaling 12}
     background-color=#5e81acd6
     text-color=#eceff4
-    width=${scale 300}
-    height=${scale 100}
-    padding=${scale 12}
-    outer-margin=${scale 10}
-    margin=0,0,${scale 10}
+    width=${scaling 300}
+    height=${scaling 100}
+    padding=${scaling 12}
+    outer-margin=${scaling 10}
+    margin=0,0,${scaling 10}
     border-size=0
-    #border-radius=${scale 16}
+    #border-radius=${scaling 16}
   '';
 in
 

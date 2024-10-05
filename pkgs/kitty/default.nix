@@ -1,13 +1,13 @@
 { wrapDerivationOutput
 , substituteAll
 , super
-, nicpkgs-scale
+, nicpkgs-scaling
 }:
 
 let
   config = substituteAll {
     src = ./kitty.conf;
-    fontSize = builtins.ceil (nicpkgs-scale * 12);
+    fontSize = builtins.ceil (nicpkgs-scaling * 12);
   };
 in
 

@@ -1,9 +1,9 @@
-{ super, wrapDerivationOutput, lib, substituteAll, nicpkgs-scale }:
+{ super, wrapDerivationOutput, lib, substituteAll, nicpkgs-scaling }:
 
 let
   theme = substituteAll ({
     src = ./theme.rasi;
-    fontSize = builtins.ceil (nicpkgs-scale * 12);
+    fontSize = builtins.ceil (nicpkgs-scaling * 12);
   });
 in
 
