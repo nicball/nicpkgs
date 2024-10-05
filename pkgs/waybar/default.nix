@@ -1,4 +1,4 @@
-{ lib, substituteAll, wrapDerivationOutput, fetchFromGitHub, super, wm ? "niri" }:
+{ lib, substituteAll, wrapDerivationOutput, fetchFromGitHub, super, wm ? "sway" }:
 
 let config = substituteAll { src = ./config; inherit wm; }; in
 
