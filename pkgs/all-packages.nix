@@ -4,7 +4,7 @@ with self;
 
 {
 
-  nicpkgs-scale = 1.5;
+  nicpkgs-scaling = 1.5;
 
   piqueserver = callPackage ./piqueserver {};
 

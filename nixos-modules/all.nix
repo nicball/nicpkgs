@@ -15,7 +15,7 @@
           type = lib.types.bool;
           default = true;
         };
-        scale-factor = lib.mkOption {
+        scaling-factor = lib.mkOption {
           type = lib.types.number;
           default = 1;
         };
@@ -27,7 +27,7 @@
     (lib.mkIf config.nic.nicpkgs.enable-overlay {
       nixpkgs.overlays = [
         overlay
-        (self: super: { nicpkgs-scale = config.nic.nicpkgs.scale-factor; })
+        (self: super: { nicpkgs-scaling = config.nic.nicpkgs.scaling-factor; })
       ];
     })
     (lib.mkIf config.nic.set-nix-path {
