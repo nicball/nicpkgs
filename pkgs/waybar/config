@@ -2,14 +2,14 @@
   "margin-top": 5,
   "margin-left": 5,
   "margin-right": 5,
-  // "layer": "top", // Waybar at top layer
+  "layer": "top", // Waybar at top layer
   // "position": "bottom", // Waybar position (top|bottom|left|right)
   // "height": 45, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
   "spacing": 0, // Gaps between modules (0px)
   // Choose the order of the modules
-  "modules-left": ["sway/workspaces", "sway/mode"],
-  "modules-center": ["sway/window"],
+  "modules-left": ["@wm@/workspaces", "sway/mode"],
+  "modules-center": ["@wm@/window"],
   "modules-right": ["pulseaudio", "backlight", "network", "cpu", "memory", "battery", "clock", "tray"],
   // Modules configuration
   // "sway/workspaces": {
@@ -30,8 +30,8 @@
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
-  "sway/window": {
-    "format": " {title} ",
+  "@wm@/window": {
+    "format": "{title}",
     "icon": true
   },
   "tray": {
