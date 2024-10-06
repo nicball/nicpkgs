@@ -36,8 +36,6 @@ with self;
 
   instaepub = callPackage ./instaepub {};
 
-  kitty = callPackage ./kitty { inherit super; };
-
   screenshot = callPackage ./screenshot {};
 
   aria2 = callPackage ./aria2 { inherit super; };
@@ -56,10 +54,6 @@ with self;
 
   helix-doc = callPackage ./helix-doc {};
 
-  waybar = callPackage ./waybar { inherit super; };
-
-  rofi-wayland = callPackage ./rofi-wayland { inherit super; };
-
   alchitry-lab = callPackage ./alchitry-lab.nix {};
 
   InsydeImageExtractor = callPackage ./InsydeImageExtractor.nix {};
@@ -71,8 +65,6 @@ with self;
   mirai-console-loader = callPackage ./mirai-console-loader.nix {};
 
   matrix-qq = callPackage ./matrix-qq.nix {};
-
-  mako = callPackage ./mako.nix { inherit super; };
 
   factorio-headless = callPackage ./factorio-headless {};
 
@@ -112,5 +104,7 @@ with self;
   proton-ge-bin = callPackage ./proton-ge-bin.nix {};
 
   opencl-benchmark = callPackage ./opencl-benchmark { inherit (darwin.apple_sdk.frameworks) OpenCL; };
+
+  xwayland-satellite = callPackage ./xwayland-satellite.nix {};
 
 }

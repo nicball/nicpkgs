@@ -3,6 +3,14 @@
 { lib, config, ... }:
 
 {
+  imports = [
+    ./window-managers.nix
+    ./waybar.nix
+    ./greetd.nix
+    ./kitty.nix
+    ./dunst.nix
+    ./rofi-wayland.nix
+  ];
 
   options = {
     nic = {

@@ -11,22 +11,6 @@
   "modules-left": ["@wm@/workspaces", "sway/mode"],
   "modules-center": ["@wm@/window"],
   "modules-right": ["pulseaudio", "backlight", "network", "cpu", "memory", "battery", "clock", "tray"],
-  // Modules configuration
-  // "sway/workspaces": {
-  //   "disable-scroll": true,
-  //   "all-outputs": true,
-  //   "format": "{name}: {icon}",
-  //   "format-icons": {
-  //     "1": "",
-  //     "2": "",
-  //     "3": "",
-  //     "4": "",
-  //     "5": "",
-  //     "urgent": "",
-  //     "focused": "",
-  //     "default": ""
-  //   }
-  // },
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
