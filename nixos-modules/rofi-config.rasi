@@ -1,0 +1,6 @@
+configuration {
+  modes: [ combi ];
+  combi-modes: [ drun, run ];
+}
+
+@theme "@themefile@"
