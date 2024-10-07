@@ -99,8 +99,6 @@ with self;
 
   adaptive-cpp = callPackage ./adaptive-cpp.nix {};
 
-  ispc = callPackage ./ispc.nix { inherit super; };
-
   proton-ge-bin = callPackage ./proton-ge-bin.nix {};
 
   opencl-benchmark = callPackage ./opencl-benchmark { inherit (darwin.apple_sdk.frameworks) OpenCL; };
