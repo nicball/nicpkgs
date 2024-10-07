@@ -11,5 +11,6 @@ buildGoModule {
   };
   propagatedBuildInputs = [ olm ];
   vendorHash = "sha256-Haz08hkKNOilX2uBum+en9z97927kobj49bsLXow/Yo=";
+  meta.broken = true; # libolm
 }
 
