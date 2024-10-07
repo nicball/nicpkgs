@@ -49,9 +49,6 @@ rustPlatform.buildRustPackage rec {
   postInstall = ''
     wrapProgram $out/bin/xwayland-satellite \
       --prefix PATH : "${lib.makeBinPath [xwayland]}"
-    mkdir -p $out/lib/systemd/user
-    substitute $src/resources/xwayland-satellite.service $out/lib/systemd/user/xwayland-satellite.service \
-      --replace-fail '/usr/local/bin' "$out/bin"
   '';
 
   meta = with lib; {
