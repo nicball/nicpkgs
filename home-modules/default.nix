@@ -1,7 +1,8 @@
+{ ... }:
+
 {
-
-  instaepub = import ./instaepub.nix;
-
-  cloudflare-ddns = import ./cloudflare-ddns.nix;
-
+  imports = [
+    ./cloudflare-ddns.nix
+    ./instaepub.nix
+  ];
 }
