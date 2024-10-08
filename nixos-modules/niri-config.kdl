@@ -273,6 +273,8 @@ binds {
   Mod+Return { spawn "kitty"; }
   Mod+D { spawn "rofi" "-show" "combi" "-run-command" "niri msg action spawn -- {cmd}"; }
   Super+Alt+L { spawn "swaylock"; }
+  Mod+G { spawn "env" "-u" "http_proxy" "-u" "https_proxy" "steam"; }
+  Mod+A { spawn "firefox"; }
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
