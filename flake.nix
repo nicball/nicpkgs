@@ -85,7 +85,7 @@
             };
         };
 
-        finalPkgs = system: pkgs: filterGoodPkgs system (addEverything system pkgs (filterMyPkgs pkgs));
+        finalPkgs = system: pkgs: addEverything system pkgs (filterMyPkgs pkgs);
 
       in {
 
