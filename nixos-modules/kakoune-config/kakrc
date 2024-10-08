@@ -31,15 +31,6 @@ hook global InsertCompletionShow .* %{
   }
 }
 
-# autoload
-evaluate-commands %sh{
-  shopt -s nullglob
-  for i in "$kak_config"/myautoload/*.kak; do
-    printf 'source "%s"\n' "$i"
-    printf 'Sourced %s\n' "$i" 1>&2
-  done
-}
-
 # disable cursor wrap
 # hook global NormalKey h %{
 #   try %{

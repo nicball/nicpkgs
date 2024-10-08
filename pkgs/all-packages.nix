@@ -26,8 +26,6 @@ with self;
 
   maven-j8 = maven.overrideAttrs (_: _: { jdk = jdk8; });
 
-  kakoune = callPackage ./kakoune {};
-
   lilypondbot = callPackage ./lilypondbot {};
 
   deepspeech = callPackage ./deepspeech.nix {};
