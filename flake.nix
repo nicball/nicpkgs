@@ -23,18 +23,47 @@
 
         lib = pkgs.lib;
 
-        filterMyPkgs = builtins.intersectAttrs (overlay 42 42);
+        filterMyPkgs = ps:
+          let
+            skeleton = builtins.intersectAttrs (overlay 42 42) ps;
+            directPkgs = lib.filterAttrs (_: v: !isRecursivePkgs v) skeleton;
+            subSets = lib.filterAttrs (_: isRecursivePkgs) skeleton;
+            filteredSubSets = lib.mapAttrs (k: v: builtins.intersectAttrs (overlay dummyPkgs {}).${k} v) subSets;
+            dummyPkgs = {
+              lib = { inherit (lib) recurseIntoAttrs; };
+              callPackage = fnOrPath: additionalArgs:
+                let
+                  fn = if builtins.isPath fnOrPath then import fnOrPath else fnOrPath;
+                  args = lib.mapAttrs (k: v: 42) (lib.functionArgs fn) // additionalArgs;
+                in
+                fn args;
+            };
+          in
+          directPkgs // filteredSubSets;
 
         isBroken = lib.attrByPath [ "meta" "broken" ] false;
 
         isGood = system: p: lib.isDerivation p && !isBroken p && lib.meta.availableOn { inherit system; } p;
 
-        filterGoodPkgs = system: lib.filterAttrs (k: v: isGood system v);
+        isRecursivePkgs = p: builtins.isAttrs p && (p.recurseForDerivations or false);
+
+        filterGoodPkgs = system: ps:
+          let
+            directPkgs = lib.filterAttrs (_: isGood system) ps;
+            subSets = lib.filterAttrs (_: isRecursivePkgs) ps;
+            filteredSubSets = lib.mapAttrs (_: subps: lib.recurseIntoAttrs (lib.filterAttrs (_: isGood system) subps)) subSets;
+          in
+          directPkgs // filteredSubSets;
 
         addEverything = system: pkgs: ps: ps // {
           build-everything-unsubstitutable =
             let
-              nameList = lib.concatMapStringsSep " " lib.escapeShellArg (lib.attrNames (filterGoodPkgs system ps));
+              goodPkgs = filterGoodPkgs system ps;
+              directPkgs = lib.filterAttrs (_: v: !isRecursivePkgs v) goodPkgs;
+              subSets = lib.filterAttrs (_: isRecursivePkgs) goodPkgs;
+              directNames = lib.attrNames directPkgs;
+              indirectNames = lib.concatMap lib.id (lib.attrValues (lib.mapAttrs (k: v: builtins.map (vv: k + "." + vv) (lib.attrNames (lib.removeAttrs v [ "recurseForDerivations" ]))) subSets));
+              nameList = lib.concatMapStringsSep " " lib.escapeShellArg (directNames ++ indirectNames);
             in
             pkgs.writeShellApplication {
               name = "build-everything-unsubstitutable";
