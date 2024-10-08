@@ -103,4 +103,6 @@ with self;
 
   xwayland-satellite = callPackage ./xwayland-satellite.nix {};
 
+  kakounePlugins = lib.recurseIntoAttrs (callPackage ./kakoune-plugins { inherit super; });
+
 }
