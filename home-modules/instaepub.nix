@@ -2,7 +2,7 @@
 
 let
 
-  cfg = config.services.instaepub;
+  cfg = config.nic.instaepub;
 
   package = pkgs.instaepub.override {
     inherit (cfg)
@@ -19,7 +19,7 @@ in
 
 {
 
-  options.services.instaepub = {
+  options.nic.instaepub = {
 
     enable = lib.mkEnableOption "instaepub";
 

@@ -2,7 +2,7 @@
 
 let
 
-  cfg = config.services.cloudflare-ddns;
+  cfg = config.nic.cloudflare-ddns;
 
   package = with cfg; pkgs.cloudflare-ddns.override {
     inherit auth-key auth-email zone-name record-name enable-log log-path enable-ipv4 enable-ipv6;
@@ -12,7 +12,7 @@ in
 
 {
 
-  options.services.cloudflare-ddns = {
+  options.nic.cloudflare-ddns = {
 
     enable = lib.mkEnableOption "cloudflare-ddns";
 
