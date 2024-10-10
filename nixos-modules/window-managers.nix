@@ -78,9 +78,10 @@ let cfg = config.nic.window-managers; in
 
       (lib.mkIf cfg.scaling.enable {
         environment.variables = {
-          QT_WAYLAND_FORCE_DPI = toString (builtins.ceil (96 * cfg.scaling.factor));
+          # QT_WAYLAND_FORCE_DPI = toString (builtins.ceil (96 * cfg.scaling.factor));
           QT_AUTO_SCREEN_SCALE_FACTOR = 0;
           QT_ENABLE_HIGHDPI_SCALING = 0;
+          QT_SCALE_FACTOR = cfg.scaling.factor;
         };
         nic.nicpkgs.scaling-factor = cfg.scaling.factor;
         programs.dconf.enable = true;
