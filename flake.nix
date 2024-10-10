@@ -23,47 +23,56 @@
 
         lib = pkgs.lib;
 
-        filterMyPkgs = ps:
+        filter-pkgset-recursive = f: attrs:
+          let go = f: prefixes: attrs:
+            let first-level = lib.filterAttrs (k: v: k == "recurseForDerivations" || f (prefixes ++ [ k ]) v) attrs; in
+            lib.mapAttrs (k: v: if is-recursive-pkgs v then go f (prefixes ++ [ k ]) v else v) first-level;
+          in
+          go f [] attrs;
+
+        get-paths-recursive = ps:
           let
-            skeleton = builtins.intersectAttrs (overlay 42 42) ps;
-            directPkgs = lib.filterAttrs (_: v: !isRecursivePkgs v) skeleton;
-            subSets = lib.filterAttrs (_: isRecursivePkgs) skeleton;
-            filteredSubSets = lib.mapAttrs (k: v: builtins.intersectAttrs (overlay dummyPkgs {}).${k} v) subSets;
-            dummyPkgs = {
+            flatten = prefix: ps:
+              lib.concatMapAttrs
+                (k: v:
+                  if k == "recurseForDerivations" then
+                    {}
+                  else if is-recursive-pkgs v then
+                    flatten "${prefix}.${k}" v
+                  else
+                    { "${prefix}.${k}" = v; })
+                ps;
+          in
+          builtins.map (lib.removePrefix ".") (builtins.attrNames (flatten "" ps));
+
+        filter-my-pkgs = ps:
+          let
+            skeleton = overlay dummy-pkgs {};
+            dummy-pkgs = {
               lib = { inherit (lib) recurseIntoAttrs; };
               callPackage = fnOrPath: additionalArgs:
                 let
                   fn = if builtins.isPath fnOrPath then import fnOrPath else fnOrPath;
-                  args = lib.mapAttrs (k: v: 42) (lib.functionArgs fn) // additionalArgs;
+                  args = lib.mapAttrs (k: v: dummy-pkgs.${k} or 42) (lib.functionArgs fn) // additionalArgs;
                 in
                 fn args;
             };
           in
-          directPkgs // filteredSubSets;
+          filter-pkgset-recursive (path: _: lib.hasAttrByPath path skeleton) ps;
 
-        isBroken = lib.attrByPath [ "meta" "broken" ] false;
+        is-broken = lib.attrByPath [ "meta" "broken" ] false;
 
-        isGood = system: p: lib.isDerivation p && !isBroken p && lib.meta.availableOn { inherit system; } p;
+        is-good = system: p: lib.isDerivation p && !is-broken p && lib.meta.availableOn { inherit system; } p;
 
-        isRecursivePkgs = p: builtins.isAttrs p && (p.recurseForDerivations or false);
+        is-recursive-pkgs = p: builtins.isAttrs p && (p.recurseForDerivations or false);
 
-        filterGoodPkgs = system: ps:
-          let
-            directPkgs = lib.filterAttrs (_: isGood system) ps;
-            subSets = lib.filterAttrs (_: isRecursivePkgs) ps;
-            filteredSubSets = lib.mapAttrs (_: subps: lib.recurseIntoAttrs (lib.filterAttrs (_: isGood system) subps)) subSets;
-          in
-          directPkgs // filteredSubSets;
+        filter-good-pkgs = system: ps: filter-pkgset-recursive (_: p: is-recursive-pkgs p || is-good system p) ps;
 
-        addEverything = system: pkgs: ps: ps // {
+        add-everything = system: pkgs: ps: ps // {
           build-everything-unsubstitutable =
             let
-              goodPkgs = filterGoodPkgs system ps;
-              directPkgs = lib.filterAttrs (_: v: !isRecursivePkgs v) goodPkgs;
-              subSets = lib.filterAttrs (_: isRecursivePkgs) goodPkgs;
-              directNames = lib.attrNames directPkgs;
-              indirectNames = lib.concatMap lib.id (lib.attrValues (lib.mapAttrs (k: v: builtins.map (vv: k + "." + vv) (lib.attrNames (lib.removeAttrs v [ "recurseForDerivations" ]))) subSets));
-              nameList = lib.concatMapStringsSep " " lib.escapeShellArg (directNames ++ indirectNames);
+              good-pkgs = filter-good-pkgs system ps;
+              nameList = lib.concatMapStringsSep " " lib.escapeShellArg (get-paths-recursive good-pkgs);
             in
             pkgs.writeShellApplication {
               name = "build-everything-unsubstitutable";
@@ -85,13 +94,13 @@
             };
         };
 
-        finalPkgs = system: pkgs: addEverything system pkgs (filterMyPkgs pkgs);
+        final-pkgs = system: pkgs: add-everything system pkgs (filter-my-pkgs pkgs);
 
       in {
 
-        packages = finalPkgs system pkgs;
+        packages = final-pkgs system pkgs;
 
-        packagesCross = builtins.mapAttrs (arch: cpkgs: finalPkgs arch cpkgs) pkgs.pkgsCross;
+        packagesCross = builtins.mapAttrs (arch: cpkgs: final-pkgs arch cpkgs) pkgs.pkgsCross;
 
       }
     ) // {
