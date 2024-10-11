@@ -89,7 +89,7 @@
   "backlight": {
     "format": "{percent}% {icon}",
     "format-icons": "\uf185",
-    "on-scroll-up": "sudo xbacklight +5",
-    "on-scroll-down": "sudo xbacklight -5",
+    "on-scroll-up": "@xbacklight@ +5",
+    "on-scroll-down": "@xbacklight@ -5",
   },
 }

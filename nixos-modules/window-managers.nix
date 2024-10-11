@@ -62,6 +62,8 @@ let cfg = config.nic.window-managers; in
           swayimg adwaita-icon-theme nautilus glib
         ];
 
+        nic.backlight.enable = true;
+
         nic.rofi-wayland.enable = true;
 
         nic.window-managers.x-resources.text = ''
