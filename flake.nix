@@ -94,7 +94,7 @@
             };
         };
 
-        final-pkgs = system: pkgs: add-everything system pkgs (filter-my-pkgs pkgs);
+        final-pkgs = system: pkgs: filter-good-pkgs system (add-everything system pkgs (filter-my-pkgs pkgs));
 
       in {
 
