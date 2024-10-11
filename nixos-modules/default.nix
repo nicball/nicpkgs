@@ -13,6 +13,7 @@
     ./rofi-wayland.nix
     ./kakoune.nix
     ./backlight.nix
+    ./hexcore-link.nix
   ];
 
   options.nic.set-nix-path = lib.mkOption {

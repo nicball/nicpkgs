@@ -105,4 +105,6 @@ with self;
 
   kakounePlugins = lib.recurseIntoAttrs (callPackage ./kakoune-plugins { inherit super; });
 
+  hexcore-link = callPackage ./hexcore-link.nix {};
+
 }
