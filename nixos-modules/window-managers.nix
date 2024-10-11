@@ -59,7 +59,7 @@ let cfg = config.nic.window-managers; in
 
         environment.systemPackages = with pkgs; [
           pavucontrol swaylock
-          swayimg acpilight adwaita-icon-theme nautilus glib
+          swayimg adwaita-icon-theme nautilus glib
         ];
 
         nic.rofi-wayland.enable = true;

@@ -27,5 +27,6 @@
         inherit wm;
       };
       environment.etc."xdg/waybar/style.css".source = ./waybar-style.css;
+      systemd.user.services.waybar.serviceConfig.Environment = "PATH=${pkgs.acpilight}/bin";
     };
 }

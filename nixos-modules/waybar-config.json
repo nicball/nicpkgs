@@ -87,7 +87,6 @@
     "on-click-right": "sudo rfkill toggle bluetooth",
   },
   "backlight": {
-    // "device": "intel_backlight",
     "format": "{percent}% {icon}",
     "format-icons": "\uf185",
     "on-scroll-up": "sudo xbacklight +5",
