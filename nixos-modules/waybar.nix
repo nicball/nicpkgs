@@ -25,8 +25,8 @@
       environment.etc."xdg/waybar/config.jsonc".source = pkgs.substituteAll {
         src = ./waybar-config.json;
         inherit wm;
+        xbacklight = "${pkgs.acpilight}/bin/xbacklight";
       };
       environment.etc."xdg/waybar/style.css".source = ./waybar-style.css;
-      systemd.user.services.waybar.serviceConfig.Environment = "PATH=${pkgs.acpilight}/bin";
     };
 }

@@ -12,6 +12,7 @@
     ./dunst.nix
     ./rofi-wayland.nix
     ./kakoune.nix
+    ./backlight.nix
   ];
 
   options.nic.set-nix-path = lib.mkOption {
