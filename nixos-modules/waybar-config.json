@@ -64,7 +64,7 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}",
-    "on-click-right": "sudo rfkill toggle wifi",
+    "on-click-right": "@rfkill@ toggle wifi",
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
@@ -83,8 +83,8 @@
       "car": "",
       "default": ["", "", ""]
     },
-    "on-click": "pavucontrol",
-    "on-click-right": "sudo rfkill toggle bluetooth",
+    "on-click": "@pavucontrol@",
+    "on-click-right": "@rfkill@ toggle bluetooth",
   },
   "backlight": {
     "format": "{percent}% {icon}",

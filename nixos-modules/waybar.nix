@@ -26,6 +26,8 @@
         src = ./waybar-config.json;
         inherit wm;
         xbacklight = "${pkgs.acpilight}/bin/xbacklight";
+        pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+        rfkill = "${pkgs.util-linux}/bin/rfkill";
       };
       environment.etc."xdg/waybar/style.css".source = ./waybar-style.css;
     };
