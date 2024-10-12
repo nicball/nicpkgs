@@ -11,7 +11,6 @@ label {
 
 window#waybar {
   background: #3b4252;
-  opacity: 0.9;
 }
 
 window#waybar > box {
