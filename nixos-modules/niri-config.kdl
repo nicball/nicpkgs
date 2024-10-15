@@ -494,12 +494,12 @@ workspace "game"
 workspace "media"
 
 window-rule {
-  match app-id="kitty" at-startup=true
+  match app-id="^kitty$" at-startup=true
   open-on-workspace "term"
 }
 spawn-at-startup "kitty"
 window-rule {
-  match app-id="firefox" at-startup=true
+  match app-id="^firefox$" at-startup=true
   open-on-workspace "browser"
 }
 spawn-at-startup "firefox"
@@ -507,4 +507,10 @@ spawn-at-startup "firefox"
 cursor {
   xcursor-theme "@cursorTheme@"
   xcursor-size @cursorSize@
+}
+
+window-rule {
+  match app-id="^steam$"
+  match app-id="^steam_app_0$"
+  open-on-workspace "game"
 }
