@@ -1,6 +1,6 @@
 configuration {
   modes: [ combi ];
-  combi-modes: [ window, drun, run ];
+  combi-modes: [ run, drun, window ]; // when no mode matches the query, the first one is used
 }
 
 @theme "@themefile@"
