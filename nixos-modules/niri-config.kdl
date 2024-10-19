@@ -512,5 +512,13 @@ cursor {
 window-rule {
   match app-id="^steam$"
   match app-id="^steam_app_0$"
+  match app-id="^org.prismlauncher.PrismLauncher$"
+  match app-id="^Minecraft"
   open-on-workspace "game"
+}
+
+window-rule {
+  match app-id="^vlc$"
+  match app-id="^mpv$"
+  open-on-workspace "media"
 }
