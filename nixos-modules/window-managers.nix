@@ -25,13 +25,17 @@ let cfg = config.nic.window-managers; in
           };
         };
       };
-      x-resources.text = lib.mkOption {
-        type = lib.types.nullOr lib.types.lines;
-        description = "text of .Xresources";
-      };
-      x-resources.source = lib.mkOption {
-        type = lib.types.path;
-        description = "path of .Xresources";
+      x-resources = {
+        enable = lib.mkEnableOption "xrdb config";
+        text = lib.mkOption {
+          type = lib.types.nullOr lib.types.lines;
+          description = "text of .Xresources";
+          default = null;
+        };
+        source = lib.mkOption {
+          type = lib.types.path;
+          description = "path of .Xresources";
+        };
       };
       cursor-theme = lib.mkOption {
         type = lib.types.str;
@@ -41,8 +45,11 @@ let cfg = config.nic.window-managers; in
         type = lib.types.number;
         default = 24;
       };
-      wallpaper = lib.mkOption {
-        type = lib.types.path;
+      wallpaper = {
+        enable = lib.mkEnableOption "wallpaper";
+        source = lib.mkOption {
+          type = lib.types.path;
+        };
       };
     };
   };
@@ -66,11 +73,6 @@ let cfg = config.nic.window-managers; in
 
         nic.rofi-wayland.enable = true;
 
-        nic.window-managers.x-resources.text = ''
-          Xft.dpi: ${toString (builtins.ceil (96 * cfg.scaling.factor))}
-          Xcursor.size: ${toString cfg.cursor-size}
-        '';
-
         environment.variables = {
           XCURSOR_THEME = cfg.cursor-theme;
           XCURSOR_SIZE = cfg.cursor-size;
@@ -79,6 +81,13 @@ let cfg = config.nic.window-managers; in
       })
 
       (lib.mkIf cfg.scaling.enable {
+        nic.window-managers.x-resources = {
+          enable = true;
+          text = ''
+            Xft.dpi: ${toString (builtins.ceil (96 * cfg.scaling.factor))}
+            Xcursor.size: ${toString cfg.cursor-size}
+          '';
+        };
         environment.variables = {
           QT_WAYLAND_FORCE_DPI = toString (builtins.ceil (96 * cfg.scaling.factor));
           QT_AUTO_SCREEN_SCALE_FACTOR = 0;

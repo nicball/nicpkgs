@@ -19,8 +19,8 @@
     xdg.portal.wlr.enable = true;
     environment.etc."sway/config".source = with config.nic.window-managers; pkgs.substituteAll {
       src = ./sway-config;
-      inherit wallpaper;
-      xresources = x-resources.source;
+      setWallpaper = lib.optionalString wallpaper.enable ''background ${wallpaper.source} stretch'';
+      sourceXrdb = lib.optionalString x-resources.enable ''exec_always "${pkgs.xorg.xrdb}/bin/xrdb ${x-resources.source}"'';
       cursorTheme = cursor-theme;
       cursorSize = cursor-size;
     };

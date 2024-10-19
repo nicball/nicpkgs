@@ -25,7 +25,7 @@ set $browser firefox
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
-output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -280,9 +280,9 @@ for_window [title="Volume Control"] floating enable
 # for_window [title="Telegram \(\d*\)"] floating enable
 for_window [shell="xwayland"] title_format "[XWayland] %title"
 output eDP-1 {
-    # scale 1.5
-    background @wallpaper@ stretch
-    adaptive_sync on
+  # scale 1.5
+  @setWallpaper@
+  adaptive_sync on
 }
 # workspace_auto_back_and_forth yes
 
@@ -310,7 +310,7 @@ bindgesture pinch:2:inward+down move down
 bindgesture pinch:2:inward+left move left
 bindgesture pinch:2:inward+right move right
 
-exec_always xrdb @xresources@
+@sourceXrdb@
 seat * xcursor_theme @cursorTheme@ @cursorSize@
 
 # swayfx
