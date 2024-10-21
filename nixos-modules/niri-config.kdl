@@ -514,6 +514,7 @@ window-rule {
   match app-id="^steam_app_0$"
   match app-id="^org.prismlauncher.PrismLauncher$"
   match app-id="^Minecraft"
+  match app-id="^factorio$"
   open-on-workspace "game"
 }
 
