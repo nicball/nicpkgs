@@ -133,3 +133,8 @@ define-command copy-selection-to-osc52 %{
   }
 }
 map global normal <a-c> :copy-selection-to-osc52<ret>
+
+# .hsc is haskell too!
+hook global BufCreate .*[.](hsc) %{
+    set-option buffer filetype haskell
+}
