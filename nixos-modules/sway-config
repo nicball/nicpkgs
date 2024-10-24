@@ -221,11 +221,6 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-bar {
-  swaybar_command waybar
-  icon_theme Adwaita
-}
-
 include /etc/sway/config.d/*
 
 bindsym $mod+c exec $browser

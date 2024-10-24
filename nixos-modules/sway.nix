@@ -15,7 +15,6 @@
       wrapperFeatures.gtk = true;
       extraPackages = with pkgs; [ screenshot dex xorg.xrdb ];
     };
-    nic.waybar.enable = true;
     xdg.portal.wlr.enable = true;
     environment.etc."sway/config".source = with config.nic.window-managers; pkgs.substituteAll {
       src = ./sway-config;
