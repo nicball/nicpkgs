@@ -6,7 +6,7 @@
   };
 
   config = lib.mkIf config.nic.window-managers.niri.enable {
-    nic.greetd.start-command = "niri-session";
+    nic.greetd.auto-login.start-command = "niri-session";
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [ xdg-desktop-portal-gnome xdg-desktop-portal-gtk gnome-keyring ];
