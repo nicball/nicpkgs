@@ -14,6 +14,8 @@
     ./kakoune.nix
     ./backlight.nix
     ./hexcore-link.nix
+    ./cloudflare-ddns.nix
+    ./instaepub.nix
   ];
 
   options.nic.set-nix-path = lib.mkOption {
