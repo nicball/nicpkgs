@@ -8,7 +8,7 @@
   };
 
   config = lib.mkIf config.nic.window-managers.sway.enable {
-    nic.greetd.start-command = "sway";
+    nic.greetd.auto-login.start-command = "sway";
     programs.sway = {
       enable = true;
       package = pkgs.swayfx;

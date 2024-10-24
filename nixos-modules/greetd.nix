@@ -4,9 +4,15 @@
   options = {
     nic.greetd = {
       enable = lib.mkEnableOption "greetd";
-      start-command = lib.mkOption {
-        type = lib.types.str;
-        description = "command to start the shell";
+      auto-login = {
+        enable = lib.mkEnableOption "automatic login";
+        user = lib.mkOption {
+          type = lib.types.str;
+        };
+        start-command = lib.mkOption {
+          type = lib.types.str;
+          description = "command to start the shell";
+        };
       };
     };
   };
@@ -18,9 +24,10 @@
         default_session = {
           command = "${pkgs.greetd.greetd}/bin/agreety --cmd fish";
         };
-        initial_session = {
-          command = config.nic.greetd.start-command;
-          user = "nicball";
+      } // lib.optionalAttrs config.nic.greetd.auto-login.enable {
+        initial_session = with config.nic.greetd.auto-login; {
+          command = start-command;
+          inherit user;
         };
       };
     };
