@@ -67,7 +67,7 @@ with self;
   factorio-headless = callPackage ./factorio-headless {};
 
   factorio-bot =
-    let flake = builtins.getFlake "github:MidyMidy-Factorio/midymidy-factorio-webservice/4da5b68984ac3f588c583cf66cc4579abee1fcd9"; in
+    let flake = builtins.getFlake "github:MidyMidy-Factorio/midymidy-factorio-webservice/a5c3a95fbfc09a03d5e45039417cd4631c7221ef"; in
     (flake.overlays.default self super).midymidy-factorio-webservice;
 
   fvckbot =
