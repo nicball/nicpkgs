@@ -271,7 +271,7 @@ binds {
 
   // Suggested binds for running programs: terminal, app launcher, screen locker.
   Mod+Return { spawn "kitty"; }
-  Mod+D { spawn "rofi" "-show" "combi" "-run-command" "niri msg action spawn -- {cmd}"; }
+  Mod+D { spawn "rofi" "-show" "combi" "-run-command" "niri msg action spawn -- sh -c \"eval exec {cmd}\""; }
   Super+Alt+L { spawn "swaylock"; }
   Mod+G { spawn "env" "-u" "http_proxy" "-u" "https_proxy" "steam"; }
   Mod+A { spawn "firefox"; }
@@ -282,10 +282,13 @@ binds {
 
   // Example volume keys mappings for PipeWire & WirePlumber.
   // The allow-when-locked=true property makes them work even when the session is locked.
-  XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
-  XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-  XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "@wpctl@" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn "@wpctl@" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+  XF86AudioMute        allow-when-locked=true { spawn "@wpctl@" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+  XF86AudioMicMute     allow-when-locked=true { spawn "@wpctl@" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+  XF86AudioPrev        allow-when-locked=true { spawn "@playerctl@" "-a" "previous"; }
+  XF86AudioPlay        allow-when-locked=true { spawn "@playerctl@" "-a" "play-pause"; }
+  XF86AudioNext        allow-when-locked=true { spawn "@playerctl@" "-a" "next"; }
 
   Mod+Q { close-window; }
 

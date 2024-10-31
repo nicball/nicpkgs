@@ -17,6 +17,8 @@
       src = ./niri-config.kdl;
       cursorTheme = cursor-theme;
       cursorSize = cursor-size;
+      playerctl = "${pkgs.playerctl}/bin/playerctl";
+      wpctl = "${pkgs.wireplumber}/bin/wpctl";
     };
 
     systemd.user.services.swaybg = {
