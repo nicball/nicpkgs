@@ -107,4 +107,8 @@ with self;
 
   hexcore-link = callPackage ./hexcore-link.nix {};
 
+  nutstore-client = callPackage ./nutstore-client.nix {};
+
+  nutstore-nautilus = callPackage ./nutstore-nautilus.nix {};
+
 }
