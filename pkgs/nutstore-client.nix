@@ -40,8 +40,6 @@ stdenv.mkDerivation rec {
     substituteInPlace gnome-config/autostart/nutstore-daemon.desktop \
       --replace-fail '~/.nutstore/dist' $out/share/nutstore
     cd bin
-    substituteInPlace nutstore-pydaemon.py \
-      --replace-fail gvfs-set-attribute "gio set"
     python -m compileall .
     cd ..
   '';
