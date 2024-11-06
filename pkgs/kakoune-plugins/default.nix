@@ -1,4 +1,4 @@
-{ lib, runCommand, wrapDerivationOutput, super }:
+{ lib, runCommand, wrapDerivationOutput, callPackage, super }:
 
 let
 
@@ -42,7 +42,7 @@ in (super.kakounePlugins or {}) // {
     source = ./colors/one-light.kak;
   } ];
 
-  kakoune-lsp = wrapDerivationOutput super.kakounePlugins.kakoune-lsp "bin/kak-lsp" ''
+  kakoune-lsp = wrapDerivationOutput (callPackage ./kakoune-lsp.nix {}) "bin/kak-lsp" ''
     --add-flags '--config ${./kakoune-lsp-config.toml}';
   '';
 
