@@ -111,4 +111,6 @@ with self;
 
   nutstore-nautilus = callPackage ./nutstore-nautilus.nix {};
 
+  zen-browser = callPackage ./zen-browser {};
+
 }
