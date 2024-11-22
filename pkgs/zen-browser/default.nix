@@ -1,10 +1,14 @@
 { lib
 , symlinkJoin
+, makeWrapper
 , stdenv
 , fetchzip
 , autoPatchelfHook
-, nss
+, nss_latest
 , alsa-lib
+, libGL
+, libva
+, pciutils
 , wrapGAppsHook3
 , glib
 , gtk3
@@ -23,6 +27,7 @@ let
     name = "zen-browser-hyphen";
     paths = builtins.map (l: hyphenDicts.${l}) hyphenAttrs;
   };
+  runtimeDeps = lib.makeLibraryPath [ libGL pciutils libva ];
 in
 
 stdenv.mkDerivation rec {
@@ -32,11 +37,13 @@ stdenv.mkDerivation rec {
     url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
     sha256 = "sha256-WGaRfsiewSEKK0RC5OMGp7zUbJBy2j1IPUl55XzA9rw=";
   };
-  buildInputs = [ autoPatchelfHook wrapGAppsHook3 glib gtk3 nss alsa-lib ];
+  nariveBuildInputs = [ makeWrapper ];
+  buildInputs = [ autoPatchelfHook wrapGAppsHook3 glib gtk3 alsa-lib ];
   installPhase = ''
     mkdir -p $out/{bin,share/{applications,${pname}}}
     cp -r * $out/share/${pname}
-    ln -s $out/share/${pname}/zen-bin $out/bin/zen
+    makeWrapper $out/share/${pname}/zen-bin $out/bin/zen \
+      --prefix LD_LIBRARY_PATH : ${runtimeDeps}
     substitute ${./zen-alpha.desktop} $out/share/applications/zen-alpha.desktop \
       --replace-fail zen $out/bin/zen-bin
     for i in 16x16 32x32 48x48 64x64 128x128; do
@@ -46,7 +53,15 @@ stdenv.mkDerivation rec {
     done
     ln -Ts ${hunspell}/share/hunspell $out/share/${pname}/dictionaries
     ln -Ts ${hyphen}/share/hyphen $out/share/${pname}/hyphenation
-    ln -sf ${nss}/lib/libnssckbi.so $out/share/${pname}/
+    cd ${nss_latest}/lib
+    for i in *.so; do
+      if [ -e $out/share/${pname}/$i ]; then
+        ln -sf ${nss_latest}/lib/$i $out/share/${pname}/
+      fi
+    done
   '';
-  meta.platforms = lib.platforms.x86_64;
+  meta = {
+    platforms = lib.platforms.x86_64;
+    mainProgram = "zen";
+  };
 }
