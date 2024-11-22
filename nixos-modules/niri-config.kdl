@@ -274,7 +274,7 @@ binds {
   Mod+D { spawn "rofi" "-show" "combi" "-run-command" "niri msg action spawn -- sh -c \"eval exec {cmd}\""; }
   Super+Alt+L { spawn "swaylock"; }
   Mod+G { spawn "env" "-u" "http_proxy" "-u" "https_proxy" "steam"; }
-  Mod+A { spawn "firefox"; }
+  Mod+A { spawn "zen"; }
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
@@ -503,9 +503,10 @@ window-rule {
 spawn-at-startup "kitty"
 window-rule {
   match app-id="^firefox$" at-startup=true
+  match app-id="^zen-alpha$" at-startup=true
   open-on-workspace "browser"
 }
-spawn-at-startup "firefox"
+spawn-at-startup "zen"
 
 cursor {
   xcursor-theme "@cursorTheme@"

@@ -20,7 +20,7 @@ set $term kitty
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu rofi -show combi -modes combi -combi-modes 'drun,run' -run-command 'swaymsg exec -- {cmd}'
-set $browser firefox
+set $browser zen
 
 ### Output configuration
 #
