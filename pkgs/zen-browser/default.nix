@@ -1,6 +1,5 @@
 { lib
 , symlinkJoin
-, makeWrapper
 , stdenv
 , fetchzip
 , wrapFirefox
@@ -34,25 +33,19 @@ let
         url = "https://github.com/zen-browser/desktop/releases/download/${version}/zen.linux-specific.tar.bz2";
         sha256 = "sha256-WGaRfsiewSEKK0RC5OMGp7zUbJBy2j1IPUl55XzA9rw=";
       };
-      nariveBuildInputs = [ makeWrapper ];
-      buildInputs = [ autoPatchelfHook wrapGAppsHook3 glib gtk3 alsa-lib ];
+      nativeBuildInputs = [ wrapGAppsHook3 autoPatchelfHook ];
+      buildInputs = [ glib gtk3 alsa-lib ];
       installPhase = ''
-        mkdir -p $out/{bin,share/{applications,${pname}}}
-        cp -r * $out/share/${pname}
-        ln -s $out/share/${pname}/zen-bin $out/bin/zen
-        zen=$out/bin/zen-bin substituteAll ${./zen-alpha.desktop} $out/share/applications/zen-alpha.desktop
-        for i in 16x16 32x32 48x48 64x64 128x128; do
-          install -d $out/share/icons/hicolor/$i/apps/
-          ln -s $out/share/${pname}/browser/chrome/icons/default/default''${i/x*}.png \
-            $out/share/icons/hicolor/$i/apps/${pname}.png
-        done
-        ln -Ts ${hunspell}/share/hunspell $out/share/${pname}/dictionaries
-        ln -Ts ${hyphen}/share/hyphen $out/share/${pname}/hyphenation
+        mkdir -p $out/{bin,share/applications,lib/${pname}}
+        cp -r * $out/lib/${pname}
+        ln -s $out/lib/${pname}/zen-bin $out/bin/zen
+        ln -Ts ${hunspell}/share/hunspell $out/lib/${pname}/dictionaries
+        ln -Ts ${hyphen}/share/hyphen $out/lib/${pname}/hyphenation
         for lib in ${nss_latest} ${nspr}; do
           cd $lib/lib
           for i in *.so; do
-            if [ -e $out/share/${pname}/$i ]; then
-              ln -sf $lib/lib/$i $out/share/${pname}/
+            if [ -e $out/lib/${pname}/$i ]; then
+              ln -sf $lib/lib/$i $out/lib/${pname}/
             fi
           done
         done
@@ -77,12 +70,14 @@ let
     };
   package = wrapFirefox unwrapped {
     pname = "zen-browser";
-    libName = "zen";
+    libName = "zen-browser";
   };
 in
 
 package.overrideAttrs (self: super: {
   buildCommand = super.buildCommand + "\n" + ''
     rm $out/share/applications/zen.desktop
+    substitute ${./zen-alpha.desktop} $out/share/applications/zen-alpha.desktop \
+      --replace-fail @zen@ $out/bin/zen
   '';
 })
