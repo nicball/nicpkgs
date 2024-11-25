@@ -113,6 +113,4 @@ with self;
 
   zen-browser = callPackage ./zen-browser {};
 
-  zen-nixpkgs = callPackage ./zen-nixpkgs {};
-
 }
