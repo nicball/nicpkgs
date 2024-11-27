@@ -401,7 +401,7 @@ let
       homepage = "https://www.zen-browser.app/";
       license = lib.licenses.mpl20;
       platforms = [
-        "aarch64-linux"
+        # "aarch64-linux"
         "x86_64-linux"
       ];
     };
