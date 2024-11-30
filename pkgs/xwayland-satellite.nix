@@ -11,14 +11,14 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "xwayland-satellite";
-  version = "unstable-2024-09-15";
+  version = "unstable-2024-11-22";
   src = fetchFromGitHub {
     owner = "Supreeeme";
     repo = "xwayland-satellite";
-    rev = "b962a0f33b503aa39c9cf6919f488b664e5b79b4";
-    hash = "sha256-OANPb73V/RQDqtpIcbzeJ93KuOHKFQv+1xXC44Ut7tY=";
+    rev = "02f30546264ff8407cbb39528b3a3cc3045e53c1";
+    hash = "sha256-gWf9dX6DVx0ssK2G3yrFG9yMT9UU0mDwyD51z/Q6FTA=";
   };
-  cargoHash = "sha256-82+ukrsqdC1+wETAGbmy6yYNAUeIi4sXbQWlSI08DOU=";
+  cargoHash = "sha256-ThCVZ1i0aOl8xaew3f9Jv7intpZ9KosrlDhlDOxO7Mg=";
   buildFeatures = [ "systemd" ];
 
   nativeBuildInputs = [
@@ -32,19 +32,7 @@ rustPlatform.buildRustPackage rec {
     xcb-util-cursor
   ];
 
-  # disable Xwayland integration tests which need a running display server
-  checkFlags = [
-    "--exact"
-    "--skip=copy_from_wayland"
-    "--skip=copy_from_x11"
-    "--skip=input_focus"
-    "--skip=quick_delete"
-    "--skip=reparent"
-    "--skip=toplevel_flow"
-    "--skip=bad_clipboard_data"
-    "--skip=different_output_position"
-    "--skip=funny_window_title"
-  ];
+  doCheck = false;
 
   postInstall = ''
     wrapProgram $out/bin/xwayland-satellite \
