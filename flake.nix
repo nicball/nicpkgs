@@ -81,9 +81,8 @@
                 bincache=''${1:?"Please tell me which binary cache to check"}
                 build=''${2:-"nix build .#"}
                 for name in ${nameList}; do
-                  path=$(nix path-info --json .#"$name" 2>/dev/null | jq -r '.[0].path')
-                  exist=$(nix path-info --json "$path" --store "$bincache" 2>/dev/null | jq '.[0].valid')
-                  if $exist; then
+                  path=$(nix path-info --json .#"$name"^out 2>/dev/null | jq -r 'keys[]')
+                  if nix path-info "$path" --store "$bincache" >/dev/null 2>&1; then
                     echo "$name already exists, skipping..."
                   else
                     echo "Building $name..."
