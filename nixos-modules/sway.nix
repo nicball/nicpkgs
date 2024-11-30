@@ -30,6 +30,9 @@ let cfg = config.nic.window-managers.sway; in
       cursorSize = cursor-size;
       swayfxConfig = lib.optionalString cfg.use-swayfx (builtins.readFile ./swayfx-config);
       inherit browser;
+      playerctl = "${pkgs.playerctl}/bin/playerctl";
+      wpctl = "${pkgs.wireplumber}/bin/wpctl";
     };
+    nic.backlight.enable = true;
   };
 }
