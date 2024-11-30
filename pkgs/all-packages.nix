@@ -97,8 +97,6 @@ with self;
 
   adaptive-cpp = callPackage ./adaptive-cpp.nix {};
 
-  proton-ge-bin = callPackage ./proton-ge-bin.nix {};
-
   opencl-benchmark = callPackage ./opencl-benchmark { inherit (darwin.apple_sdk.frameworks) OpenCL; };
 
   xwayland-satellite = callPackage ./xwayland-satellite.nix {};
