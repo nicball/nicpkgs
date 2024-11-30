@@ -21,4 +21,5 @@ buildPythonApplication rec {
   buildInputs = [ stdenv.cc.cc.lib ];
   doCheck = false;
   meta.platforms = lib.platforms.x86;
+  meta.broken = true;
 }
