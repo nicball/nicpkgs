@@ -1,17 +1,23 @@
 { lib, config, pkgs, ... }:
 
+let cfg = config.nic.window-managers.sway; in
+
 {
   options = {
     nic.window-managers.sway = {
       enable = lib.mkEnableOption "sway";
+      use-swayfx = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+      };
     };
   };
 
-  config = lib.mkIf config.nic.window-managers.sway.enable {
+  config = lib.mkIf cfg.enable {
     nic.greetd.auto-login.start-command = "sway";
     programs.sway = {
       enable = true;
-      package = pkgs.swayfx;
+      package = if cfg.use-swayfx then pkgs.swayfx else pkgs.sway;
       wrapperFeatures.gtk = true;
       extraPackages = with pkgs; [ screenshot dex xorg.xrdb ];
     };
@@ -22,6 +28,7 @@
       sourceXrdb = lib.optionalString x-resources.enable ''exec_always "${pkgs.xorg.xrdb}/bin/xrdb ${x-resources.source}"'';
       cursorTheme = cursor-theme;
       cursorSize = cursor-size;
+      swayfxConfig = lib.optionalString cfg.use-swayfx (builtins.readFile ./swayfx-config);
     };
   };
 }

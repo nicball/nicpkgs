@@ -1,0 +1,14 @@
+titlebar_separator disable
+blur enable
+corner_radius 15
+shadows enable
+layer_effects "waybar" {
+  blur enable
+  corner_radius 26
+  shadows enable
+}
+layer_effects "notifications" {
+  blur enable
+  corner_radius 15
+  shadows enable
+}
