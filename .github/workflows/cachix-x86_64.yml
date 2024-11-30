@@ -7,6 +7,18 @@ jobs:
   cachix-x86_64:
     runs-on: ubuntu-latest
     steps:
+    - uses: jlumbroso/free-disk-space@main
+      with:
+        tool-cache: true
+    - name: Set Swap
+      shell: bash
+      run: |
+        SWAP_FILE=/swapfile
+        sudo fallocate -l 20G $SWAP_FILE
+        sudo chmod 600 $SWAP_FILE
+        sudo mkswap $SWAP_FILE
+        sudo swapon $SWAP_FILE
+        free -h
     - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v26
     - uses: cachix/cachix-action@v14
