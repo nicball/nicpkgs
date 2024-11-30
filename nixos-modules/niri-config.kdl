@@ -274,7 +274,7 @@ binds {
   Mod+D { spawn "rofi" "-show" "combi" "-run-command" "niri msg action spawn -- sh -c \"eval exec {cmd}\""; }
   Super+Alt+L { spawn "swaylock"; }
   Mod+G { spawn "env" "-u" "http_proxy" "-u" "https_proxy" "steam"; }
-  Mod+A { spawn "zen"; }
+  Mod+A { spawn "@browser@"; }
 
   // You can also use a shell. Do this if you need pipes, multiple commands, etc.
   // Note: the entire command goes as a single argument in the end.
@@ -506,7 +506,7 @@ window-rule {
   match app-id="^zen-alpha$" at-startup=true
   open-on-workspace "browser"
 }
-spawn-at-startup "zen"
+spawn-at-startup "@browser@"
 
 cursor {
   xcursor-theme "@cursorTheme@"

@@ -29,6 +29,7 @@ let cfg = config.nic.window-managers.sway; in
       cursorTheme = cursor-theme;
       cursorSize = cursor-size;
       swayfxConfig = lib.optionalString cfg.use-swayfx (builtins.readFile ./swayfx-config);
+      inherit browser;
     };
   };
 }

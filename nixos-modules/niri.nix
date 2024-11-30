@@ -19,6 +19,7 @@
       cursorSize = cursor-size;
       playerctl = "${pkgs.playerctl}/bin/playerctl";
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
+      inherit browser;
     };
 
     systemd.user.services.swaybg = {

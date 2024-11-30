@@ -51,6 +51,9 @@ let cfg = config.nic.window-managers; in
           type = lib.types.path;
         };
       };
+      browser = {
+        type = lib.types.str;
+      };
     };
   };
 
@@ -76,6 +79,7 @@ let cfg = config.nic.window-managers; in
         environment.variables = {
           XCURSOR_THEME = cfg.cursor-theme;
           XCURSOR_SIZE = cfg.cursor-size;
+          BROWSER = cfg.browser;
         };
 
       })
