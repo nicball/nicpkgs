@@ -51,7 +51,7 @@ let cfg = config.nic.window-managers; in
           type = lib.types.path;
         };
       };
-      browser = {
+      browser = lib.mkOption {
         type = lib.types.str;
       };
     };
