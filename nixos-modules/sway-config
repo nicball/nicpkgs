@@ -157,7 +157,7 @@ for_window [class="steam_app_0" title="Battle\.net.*"] floating enable
 for_window [app_id="org.prismlauncher.PrismLauncher"] move window to workspace 4:game
 for_window [app_id="Minecraft.*"] move window to workspace 4:game
 for_window [app_id="factorio"] move window to workspace 4:game
-for_window [app_id="vlc"] move window to workspace 5:media
+for_window [class="vlc"] move window to workspace 5:media
 for_window [app_id="mpv"] move window to workspace 5:media
 
 output eDP-1 {
