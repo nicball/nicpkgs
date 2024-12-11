@@ -29,6 +29,7 @@
 , vips
 , wrapGAppsHook3
 , writeShellScript
+, removeReferencesTo
 
   # runtime
 , alsa-lib
@@ -204,6 +205,7 @@ let
       unzip
       wrapGAppsHook3
       xorg.xvfb
+      removeReferencesTo
     ] ++ lib.optionals crashreporterSupport [
       dump_syms
       patchelf
@@ -393,6 +395,18 @@ let
 
     preInstall = ''
       cd engine/obj-*
+    '';
+
+    fixupPhase = ''
+      runHook preFixup
+      remove-references-to \
+        -t ${buildStdenv.cc} \
+        -t ${buildPackages.rustc} \
+        -t ${llvmPackagesBuildBuild.libclang.lib} \
+        -t ${wasiSysRoot} \
+        -t ${wasi32.stdenv.cc} \
+        $out/lib/zen/omni.ja
+      runHook postFixup
     '';
 
     meta = {
