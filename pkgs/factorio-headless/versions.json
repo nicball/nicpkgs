@@ -2,12 +2,12 @@
   "x86_64-linux": {
     "headless": {
       "experimental": {
-        "name": "factorio_headless_x64-2.0.27.tar.xz",
+        "name": "factorio_headless_x64-2.0.28.tar.xz",
         "needsAuth": false,
-        "sha256": "14r95d8rm9jyvbf5jcpv03bf7nxbcnc8xyg9bavf9lfr9kkmriv3",
+        "sha256": "1lsdi16dvz0lpf085ringd4hg51qxj94krp1lhbqx8f7mnv3g6ga",
         "tarDirectory": "x64",
-        "url": "https://factorio.com/get-download/2.0.27/headless/linux64",
-        "version": "2.0.27"
+        "url": "https://factorio.com/get-download/2.0.28/headless/linux64",
+        "version": "2.0.28"
       },
       "stable": {
         "name": "factorio_headless_x64-2.0.23.tar.xz",
