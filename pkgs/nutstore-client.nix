@@ -1,5 +1,7 @@
 { stdenv
 , fetchzip
+, jdk
+, gtk3, cairo, libGLU
 , python3
 , makeWrapper
 , wrapGAppsHook3
@@ -12,14 +14,29 @@
 , autoPatchelfHook
 }:
 
-stdenv.mkDerivation rec {
-  pname = "nutstore-client";
+let
   version = "6.3.6";
   src = fetchzip {
     url = "https://pkg-cdn.jianguoyun.com/static/exe/st/${version}/nutstore_client-${version}-linux-x86_64-public.tar.gz";
     sha256 = "sha256-PgRCIk6CEb3mycRjv+EXouhsufMp/LKRnqYIvJ2qEqM=";
     stripRoot = false;
   };
+  native-libs = stdenv.mkDerivation {
+    name = "nutstore-native-libs";
+    buildInputs = [ autoPatchelfHook gtk3 cairo libGLU ];
+    autoPatchelfIgnoreMissingDeps = [ "libjawt.so" ];
+    dontUnpack = true;
+    installPhase = ''
+      mkdir $out
+      cd $out
+      ${jdk}/bin/jar xf ${src}/lib/nutstore_client-${version}.jar
+    '';
+  };
+in
+
+stdenv.mkDerivation rec {
+  pname = "nutstore-client";
+  inherit version src;
   nativeBuildInputs = [ makeWrapper ];
   buildInputs = [
     wrapGAppsHook3
@@ -39,6 +56,7 @@ stdenv.mkDerivation rec {
       --replace-fail '~/.nutstore/dist/bin/nutstore-pydaemon.py' $out/bin/nutstore
     substituteInPlace gnome-config/autostart/nutstore-daemon.desktop \
       --replace-fail '~/.nutstore/dist' $out/share/nutstore
+    cp ${native-libs}/*.so lib/native
     cd bin
     python -m compileall .
     cd ..
