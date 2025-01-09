@@ -48,7 +48,7 @@ for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
         '@pandoc@' +
         '/bin/pandoc'
     )
-    if not os.path.exists(pandoc_filename):
+    if not os.path.exists(pandoc_filename) and @enablePandoc@:
         pproc = subprocess.run([
             pandoc_path,
             '-t', 'epub', '-o', pandoc_filename,
@@ -57,7 +57,7 @@ for v in requests.post(url=base_url+'/1/bookmarks/list', auth=auth).json():
         pstatus = pproc.returncode == 0
     else:
         pstatus = True
-    if not os.path.exists(ip_filename):
+    if not os.path.exists(ip_filename) and @enableInstapaper@:
         article = requests.post(
             url=base_url+'/1/bookmarks/get_text',
             auth=auth,

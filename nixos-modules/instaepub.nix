@@ -12,6 +12,8 @@ let
       password
       output-dir
       auto-archive
+      enable-pandoc
+      enable-instapaper
       pandoc;
   };
 
@@ -36,6 +38,16 @@ in
     auto-archive = lib.mkOption {
       type = lib.types.bool;
       default = false;
+    };
+
+    enable-instapaper = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+    };
+
+    enable-pandoc = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
     };
 
     interval = lib.mkOption {
