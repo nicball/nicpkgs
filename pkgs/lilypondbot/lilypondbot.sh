@@ -34,7 +34,8 @@ while true; do
     if [[ -n "$log" ]]; then
       call "sendMessage?chat_id=$cid&reply_to_message_id=$mid" -G --data-urlencode "text=$log"
     else
-      call "sendPhoto?chat_id=$cid&reply_to_message_id=$mid" -F photo=@"$filebase".png
+      magick convert "$filebase".png -trim "$filebase".t.png
+      call "sendPhoto?chat_id=$cid&reply_to_message_id=$mid" -F photo=@"$filebase".t.png
       timidity "$filebase".midi -Ow -o - | ffmpeg -loglevel error -i - "$filebase".mp3
       call "sendAudio?chat_id=$cid&reply_to_message_id=$mid" -F audio=@"$filebase".mp3
     fi
