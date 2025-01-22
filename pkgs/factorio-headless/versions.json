@@ -10,12 +10,12 @@
         "version": "2.0.32"
       },
       "stable": {
-        "name": "factorio_headless_x64-2.0.28.tar.xz",
+        "name": "factorio_headless_x64-2.0.30.tar.xz",
         "needsAuth": false,
-        "sha256": "1lsdi16dvz0lpf085ringd4hg51qxj94krp1lhbqx8f7mnv3g6ga",
+        "sha256": "0s0n9h6qk7v96g11310smc6npd0f5pk8ab232222kwz141584ds1",
         "tarDirectory": "x64",
-        "url": "https://factorio.com/get-download/2.0.28/headless/linux64",
-        "version": "2.0.28"
+        "url": "https://factorio.com/get-download/2.0.30/headless/linux64",
+        "version": "2.0.30"
       }
     }
   }
