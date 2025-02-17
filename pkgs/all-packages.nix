@@ -111,8 +111,6 @@ with self;
 
   zen-browser = callPackage ./zen-browser {};
 
-  rofi-wayland-unwrapped = callPackage ./rofi-wayland-unwrapped.nix { inherit super; };
-
   swayexec = callPackage ./swayexec {};
 
 }
