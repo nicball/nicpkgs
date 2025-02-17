@@ -41,7 +41,7 @@ index 7e7d80d..36d0326 100644
        : 'branding/unofficial',
      binName: config.binaryName,
 -    changeset,
-+    changeset: process.env.REV,
++    changeset: process.env.REV || "",
    }
  
    const commonConfig = stringTemplate(

@@ -401,17 +401,17 @@ let
       cd engine/obj-*
     '';
 
-    fixupPhase = ''
-      runHook preFixup
-      remove-references-to \
-        -t ${buildStdenv.cc} \
-        -t ${buildPackages.rustc} \
-        -t ${llvmPackagesBuildBuild.libclang.lib} \
-        -t ${wasiSysRoot} \
-        -t ${wasi32.stdenv.cc} \
-        $out/lib/zen/omni.ja
-      runHook postFixup
-    '';
+    # fixupPhase = ''
+    #   runHook preFixup
+    #   remove-references-to \
+    #     -t ${buildStdenv.cc} \
+    #     -t ${buildPackages.rustc} \
+    #     -t ${llvmPackagesBuildBuild.libclang.lib} \
+    #     -t ${wasiSysRoot} \
+    #     -t ${wasi32.stdenv.cc} \
+    #     $out/lib/zen/omni.ja
+    #   runHook postFixup
+    # '';
 
     meta = {
       mainProgram = "zen";
@@ -448,4 +448,4 @@ in
 wrapFirefox unwrapped {
   pname = "zen-browser";
   libName = "zen";
-}
+} // { meta.broken = true; }
