@@ -111,6 +111,4 @@ with self;
 
   zen-browser = callPackage ./zen-browser {};
 
-  swayexec = callPackage ./swayexec {};
-
 }

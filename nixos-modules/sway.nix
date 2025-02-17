@@ -1,6 +1,13 @@
 { lib, config, pkgs, ... }:
 
-let cfg = config.nic.window-managers.sway; in
+let
+  cfg = config.nic.window-managers.sway;
+
+  swayexec = pkgs.writeShellApplication {
+    name = "swayexec";
+    text = builtins.readFile ./swayexec.sh;
+  };
+in
 
 {
   options = {
@@ -32,7 +39,7 @@ let cfg = config.nic.window-managers.sway; in
       inherit browser;
       playerctl = "${pkgs.playerctl}/bin/playerctl";
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
-      swayexec = "${pkgs.swayexec}/bin/swayexec";
+      swayexec = "${swayexec}/bin/swayexec";
     };
     nic.backlight.enable = true;
   };
