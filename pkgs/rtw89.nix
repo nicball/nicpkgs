@@ -26,5 +26,6 @@ stdenv.mkDerivation {
     xz -f ${modDestDir}/*.ko
     runHook postInstall
   '';
+  NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=int-conversion -Wno-error=incompatible-pointer-types";
   meta.platforms = lib.platforms.x86;
 }

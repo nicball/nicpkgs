@@ -1,4 +1,4 @@
-name: "Update factorio versions"
+name: "Check new factorio versions"
 on:
   schedule:
     - cron: '0 0 * * *'
@@ -17,6 +17,6 @@ jobs:
       run: |
         git config --global user.name "Nick Ballard"
         git config --global user.email "znhihgiasy@gmail.com"
-        if git commit -am "Automatically update factorio version"; then
+        if git commit -am "Automatically update factorio version."; then
           git push
         fi

@@ -11,4 +11,5 @@ stdenv.mkDerivation {
   buildInputs = [ nautilus.dev gtk2 glib ];
   preConfigure = "source ./update-toolchain.sh; set +u";
   configureFlags = [ "--with-nautilus-extension-dir=$(out)/lib/nautilus/extension-4" ];
+  NIX_CFLAGS_COMPILE = "-Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=int-conversion -Wno-error=incompatible-pointer-types";
 }

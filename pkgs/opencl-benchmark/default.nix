@@ -15,4 +15,5 @@ stdenv.mkDerivation rec {
     ++ lib.optionals (!stdenv.isDarwin) [ opencl-headers ocl-icd ];
   buildPhase = "g++ src/*.cpp -std=c++17 -pthread -O2 -lOpenCL -o OpenCL-Benchmark";
   installPhase = "mkdir $out/bin -p; mv OpenCL-Benchmark $out/bin";
+  meta.broken = true;
 }

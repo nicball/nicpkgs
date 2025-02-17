@@ -109,16 +109,20 @@
 let
   surfer = buildNpmPackage {
     pname = "surfer";
-    version = "1.5.0";
+    version = "1.6.4";
 
     src = fetchFromGitHub {
       owner = "zen-browser";
       repo = "surfer";
-      rev = "50af7094ede6e9f0910f010c531f8447876a6464";
-      hash = "sha256-wmAWg6hoICNHfoXJifYFHmyFQS6H22u3GSuRW4alexw=";
+      rev = "ecd6b650f0234402976dde7e775d42aec6568406";
+      hash = "sha256-e83YPteNgMNfTzAjmu3YLudSGaBbmvOyS6WglP6j21k=";
     };
 
-    patches = [ ./surfer-dont-check-update.patch ];
+    patches = [
+      ./surfer-dont-check-update.patch
+      ./surfer-addon.patch
+      ./surfer-changeset.patch
+    ];
 
     npmDepsHash = "sha256-p0RVqn0Yfe0jxBcBa/hYj5g9XSVMFhnnZT+au+bMs18=";
     makeCacheWritable = true;
@@ -162,13 +166,13 @@ let
 
   unwrapped = buildStdenv.mkDerivation (finalAttrs: {
     pname = "zen-browser-unwrapped";
-    version = "1.0.1-a.19";
+    version = "1.0.2-b.4";
 
     src = fetchFromGitHub {
       owner = "zen-browser";
       repo = "desktop";
       rev = finalAttrs.version;
-      hash = "sha256-+eehLsnQoWapkSKo3zWFxaz6N68BryK1XsmSk48zbbk=";
+      hash = "sha256-bV1dIOIKHS2iM9hJaKCJumTdzVHORl+PhXSdHdmCIQc=";
       fetchSubmodules = true;
     };
 
@@ -178,10 +182,10 @@ let
     # The Firefox version is specified by `zen-browser` in the `surfer.json` file.
     #
     # We need to manually set the version here to avoid IFD.
-    firefoxVersion = "132.0.1";
+    firefoxVersion = "133.0.3";
     firefoxSrc = fetchurl {
       url = "mirror://mozilla/firefox/releases/${finalAttrs.firefoxVersion}/source/firefox-${finalAttrs.firefoxVersion}.source.tar.xz";
-      hash = "sha256-XAMbVywdpyZnfi/5e2rVp+OyM4em/DljORy1YvgKXkg=";
+      hash = "sha256-8TSlQgIAuwOrRg+dKGdQfA7bIiznP69AZM2+oCoKyhs=";
     };
 
     SURFER_COMPAT = generic;
@@ -360,7 +364,7 @@ let
       export WASM_CXX=${wasi32.stdenv.cc}/bin/${wasi32.stdenv.cc.targetPrefix}c++
 
       export ZEN_RELEASE=1
-      surfer ci --brand alpha --display-version ${finalAttrs.version}
+      surfer ci --brand beta --display-version ${finalAttrs.version}
 
       install -D ${finalAttrs.firefoxSrc} .surfer/engine/firefox-${finalAttrs.firefoxVersion}.source.tar.xz
       surfer download
