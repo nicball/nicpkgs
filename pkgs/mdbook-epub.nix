@@ -14,6 +14,6 @@ rustPlatform.buildRustPackage {
     sha256 = "sha256-Fa9Jc+WszJL8MjtsOWndjp7afMtQ5ObGgLCVX9aT8Uw=";
   };
   doCheck = false;
-  cargoSha256 = "sha256-WO3tVevrT0CyvVAZ2+ELzZ6wh04qRlq8m3VNMtVeySQ=";
-  # cargoPatches = [ ./mdbook-epub.patch ];
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-2R+CpQnSupn4oD5XnCWNgvmkg7+IHaDtOBvU7n40ix4=";
 }

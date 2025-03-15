@@ -18,7 +18,8 @@ rustPlatform.buildRustPackage rec {
     rev = "02f30546264ff8407cbb39528b3a3cc3045e53c1";
     hash = "sha256-gWf9dX6DVx0ssK2G3yrFG9yMT9UU0mDwyD51z/Q6FTA=";
   };
-  cargoHash = "sha256-ThCVZ1i0aOl8xaew3f9Jv7intpZ9KosrlDhlDOxO7Mg=";
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-1IsKt+OfezILaDklHts74TnS0/FVogu6Ds/7JG+ataY=";
   buildFeatures = [ "systemd" ];
 
   nativeBuildInputs = [
