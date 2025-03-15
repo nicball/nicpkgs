@@ -28,5 +28,6 @@ jobs:
       with:
         name: nicpkgs
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+        useDaemon: false
     - run: |
-        nix run .#build-everything-unsubstitutable https://nicpkgs.cachix.org
+        nix run .#push-to-cachix https://nicpkgs.cachix.org nicpkgs

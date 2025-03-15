@@ -68,32 +68,33 @@
 
         filter-good-pkgs = system: ps: filter-pkgset-recursive (_: p: is-recursive-pkgs p || is-good system p) ps;
 
-        add-everything = system: pkgs: ps: ps // {
-          build-everything-unsubstitutable =
+        add-push-to-cachix = system: pkgs: ps: ps // {
+          push-to-cachix =
             let
               good-pkgs = filter-good-pkgs system ps;
               nameList = lib.concatMapStringsSep " " lib.escapeShellArg (get-paths-recursive good-pkgs);
             in
             pkgs.writeShellApplication {
-              name = "build-everything-unsubstitutable";
+              name = "push-to-cachix";
               runtimeInputs = with pkgs; [ jq nix ];
               text = ''
-                bincache=''${1:?"Please tell me which binary cache to check"}
-                build=''${2:-"nix build .#"}
+                bincache=''${1:?"Please tell me which binary cache to check."}
+                cachixname=''${2:?"Please tell me which cachix to push to."}
                 for name in ${nameList}; do
                   path=$(nix path-info --json .#"$name"^out 2>/dev/null | jq -r 'keys[]')
                   if nix path-info "$path" --store "$bincache" >/dev/null 2>&1; then
                     echo "$name already exists, skipping..."
                   else
                     echo "Building $name..."
-                    eval "$build'$name'"
+                    nix build .#"$name"
+                    nix path-info --recursive "$path" | cachix push "$cachixname"
                   fi
                 done
               '';
             };
         };
 
-        final-pkgs = system: pkgs: filter-good-pkgs system (add-everything system pkgs (filter-my-pkgs pkgs));
+        final-pkgs = system: pkgs: filter-good-pkgs system (add-push-to-cachix system pkgs (filter-my-pkgs pkgs));
 
       in {
 
