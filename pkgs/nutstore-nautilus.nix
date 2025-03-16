@@ -5,7 +5,7 @@ stdenv.mkDerivation {
   version = "6.3.6";
   src = fetchzip {
     url = "https://www.jianguoyun.com/static/exe/installer/nutstore_linux_src_installer.tar.gz";
-    sha256 = "sha256-Z7zFPdwKE3WxyITwBWliU9nX1uZ+3wnn3wCx+t9oU1E=";
+    sha256 = "sha256-G74Q51jCkZvNXX26aaSEzbQm3L0cGkiCfrb14JaMF/4=";
   };
   nativeBuildInputs = [ autoconf automake libtool pkg-config ];
   buildInputs = [ nautilus.dev gtk2 glib ];
