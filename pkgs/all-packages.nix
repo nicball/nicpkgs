@@ -40,10 +40,6 @@ with self;
 
   cloudflare-ddns = callPackage ./cloudflare-ddns {};
 
-  qq-wayland = wrapDerivationOutput qq "bin/qq" ''
-    --add-flags "--ozone-platform-hint=wayland"
-  '';
-
   ufs-utils = callPackage ./ufs-utils.nix {};
 
   rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
