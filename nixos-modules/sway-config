@@ -160,10 +160,10 @@ for_window [app_id="factorio"] move window to workspace 4:game
 for_window [class="vlc"] move window to workspace 5:media
 for_window [app_id="mpv"] move window to workspace 5:media
 
-output eDP-1 {
-  # scale 1.5
+output "YCT Sculptor 0000" {
   @setWallpaper@
-  adaptive_sync on
+  adaptive_sync off
+  mode 2560x1600@120Hz
 }
 # workspace_auto_back_and_forth yes
 
