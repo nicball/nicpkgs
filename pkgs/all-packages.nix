@@ -93,7 +93,7 @@ with self;
 
   adaptive-cpp = callPackage ./adaptive-cpp.nix {};
 
-  opencl-benchmark = callPackage ./opencl-benchmark { inherit (darwin.apple_sdk.frameworks) OpenCL; };
+  opencl-benchmark = callPackage ./opencl-benchmark.nix {};
 
   xwayland-satellite = callPackage ./xwayland-satellite.nix {};
 

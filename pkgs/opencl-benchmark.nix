@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, opencl-headers, opencl-clhpp, ocl-icd, OpenCL }:
+{ lib, stdenv, fetchFromGitHub, opencl-headers, opencl-clhpp, ocl-icd }:
 
 let
   clhpp = opencl-clhpp.overrideAttrs rec {

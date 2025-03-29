@@ -119,22 +119,24 @@ bindsym $mod+t input type:touchpad events disabled
 bindsym $mod+Shift+t input type:touchpad events enabled
 bindsym $mod+y input 1:1:AT_Translated_Set_2_keyboard events disabled
 bindsym $mod+Shift+y input 1:1:AT_Translated_Set_2_keyboard events enabled
-bindsym F1        exec $term
-bindsym F2        exec $browser
-bindsym F3        exec $menu
-bindsym F4        kill
-bindsym Shift+F5  move scratchpad
-bindsym F5        scratchpad show
-bindsym F6        floating toggle
-bindsym Shift+F6  sticky toggle
-bindsym F7        move container to workspace trash
-bindsym Shift+F7  workspace trash
-bindsym F8        fullscreen
-bindsym F9        layout toggle split
-bindsym F10       layout stacking
-bindsym F11       layout tabbed
-bindsym F12       focus parent
-bindsym Shift+F12 focus mode_toggle
+bindsym F1             exec $term
+bindsym F2             exec $browser
+bindsym F3             exec $menu
+bindsym F4             kill
+bindsym F5             scratchpad show
+bindsym Shift+F5       move scratchpad
+bindsym F6             floating toggle
+bindsym Shift+F6       focus mode_toggle
+bindsym Alt+F6         sticky toggle
+bindsym $mod+F6        workspace float
+bindsym $mod+Shift+F6  move container to workspace float
+bindsym F7             move container to workspace trash
+bindsym $mod+F7        workspace trash
+bindsym F8             fullscreen
+bindsym F9             layout toggle split
+bindsym F10            layout stacking
+bindsym F11            layout tabbed
+bindsym F12            focus parent
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #3b4252 #4c566a #eceff4 #5e81ac #5e81ac
@@ -148,6 +150,7 @@ gaps inner 5
 smart_borders on
 font "Source Han Sans SC" 18
 
+for_window [workspace="float"] floating enable
 for_window [app_id="org.pulseaudio.pavucontrol"] floating enable
 for_window [app_id="xdg-desktop-portal-gtk"] floating enable
 for_window [app_id="lact"] floating enable
@@ -164,7 +167,7 @@ for_window [app_id="mpv"] move window to workspace 5:media
 
 output "YCT Sculptor 0000" {
   @setWallpaper@
-  adaptive_sync off
+  adaptive_sync on
   mode 2560x1600@120Hz
 }
 # workspace_auto_back_and_forth yes
