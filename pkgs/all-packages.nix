@@ -107,4 +107,6 @@ with self;
 
   zen-browser = callPackage ./zen-browser {};
 
+  uudeck = callPackage ./uudeck.nix {};
+
 }
