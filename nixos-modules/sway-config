@@ -26,7 +26,7 @@ input type:touchpad {
     natural_scroll enabled
 }
 
-input "type:keyboard" {
+input type:keyboard {
 #   xkb_options ctrl:swapcaps
   repeat_rate 25
 }
@@ -165,11 +165,15 @@ for_window [app_id="factorio"] move window to workspace 4:game
 for_window [class="vlc"] move window to workspace 5:media
 for_window [app_id="mpv"] move window to workspace 5:media
 
-output "YCT Sculptor 0000" {
+output "*" {
   @setWallpaper@
+}
+
+output "YCT Sculptor  0000" {
   adaptive_sync on
   mode 2560x1600@120Hz
 }
+
 # workspace_auto_back_and_forth yes
 
 # auto shut screen
