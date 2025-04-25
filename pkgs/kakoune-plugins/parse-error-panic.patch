@@ -1,0 +1,13 @@
+diff --git a/src/controller.rs b/src/controller.rs
+index 254e1c8..b12ec20 100644
+--- a/src/controller.rs
++++ b/src/controller.rs
+@@ -245,7 +245,7 @@ where
+     <T as FromString>::Err: std::fmt::Debug,
+ {
+     fn deserialize(state: &mut ParserState) -> Option<Self> {
+-        Some(T::from_string(next_string(state)?).unwrap())
++        T::from_string(next_string(state)?).ok()
+     }
+ }
+ impl Deserializable for KakounePosition {
