@@ -42,8 +42,4 @@ in (super.kakounePlugins or {}) // {
     source = ./colors/one-light.kak;
   } ];
 
-  kakoune-lsp = wrapDerivationOutput super.kakoune-lsp "bin/kak-lsp" ''
-    --add-flags '--config ${./kakoune-lsp-config.toml}';
-  '';
-
 }

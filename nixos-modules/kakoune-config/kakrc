@@ -59,6 +59,65 @@ hook global WinSetOption filetype=(clojure|lisp|scheme|racket) %{
 
 # lsp
 eval %sh{kak-lsp}
+
+hook -group lsp-filetype-c global BufSetOption filetype=(c|cpp) %{
+  set-option buffer lsp_servers %{
+    [clangd]
+    root_globs = [ "compile_commands.json", ".clangd", ".git", ".hg" ]
+  }
+}
+
+hook -group lsp-filetype-c global BufSetOption filetype=racket %{
+  set-option buffer lsp_servers %{
+    [racket]
+    root_globs = [ ".git" "info.rkt" ]
+    args = [ "-l", "racket-langserver" ]
+  }
+}
+
+hook -group lsp-filetype-c global BufSetOption filetype=haskell %{
+  set-option buffer lsp_servers %{
+    [haskell]
+    root_globs = [ "hie.yaml", "cabal.project", "Setup.hs", "stack.yaml", "*.cabal" ]
+    command = "haskell-language-server-wrapper"
+    args = [ "--lsp" ]
+    settings_section = "haskell"
+
+    [haskell.settings.haskell]
+    "haskell.plugin.semanticTokens.globalOn" = true
+  }
+}
+
+hook -group lsp-filetype-c global BufSetOption filetype=rescript %{
+  set-option buffer lsp_servers %{
+    [rescript]
+    root_globs = [ "packages.json", "rescript.json" ]
+    command = "rescript-language-server"
+    args = [ "--stdio" ]
+  }
+}
+
+set-option global lsp_semantic_tokens %{
+  [
+    {face="documentation", token="comment", modifiers=["documentation"]},
+    {face="comment", token="comment"},
+    {face="function", token="function"},
+    {face="keyword", token="keyword"},
+    {face="module", token="namespace"},
+    {face="operator", token="operator"},
+    {face="string", token="string"},
+    {face="type", token="type"},
+    {face="+b@variable", token="variable", modifiers=["readonly"]},
+    {face="+b@variable", token="variable", modifiers=["constant"]},
+    {face="variable", token="variable"},
+    {face="+i@keyword", token="modifier"},
+    {face="function", token="enumMember"},
+    {face="attribute", token="property"},
+    {face="type", token="interface"},
+    {face="type", token="class"},
+  ]
+}
+
 hook global WinSetOption filetype=(racket|haskell|rescript|c|cpp) %{
   lsp-enable-window
   lsp-inlay-hints-enable window
@@ -86,6 +145,7 @@ hook global WinSetOption filetype=(racket|haskell|rescript|c|cpp) %{
   }
 }
 
+# smart quit
 define-command -params 0..1 delete-buffer-or-quit %{
   evaluate-commands %sh{
     isForce=false
@@ -122,11 +182,12 @@ map global normal <c-q> :dbq<space>-force<ret>
 map global normal <a-q> :db<ret>
 map global normal <a-s-q> :db!<ret>
 
+# color codes for make output
 hook global BufCreate \*make\* %{
   ansi-enable
 }
 
-# Copy to clipboard
+# copy to clipboard
 define-command copy-selection-to-osc52 %{
   nop %sh{
     printf '\e]52;c;%s\e\\' "$(printf '%s' "$kak_selection" | base64 -w 0)" > /proc/"$kak_client_pid"/fd/1
