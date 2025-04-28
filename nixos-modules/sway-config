@@ -169,7 +169,7 @@ output "*" {
   @setWallpaper@
 }
 
-output "YCT Sculptor  0000" {
+output "YCT Sculptor 0000" {
   adaptive_sync on
   mode 2560x1600@120Hz
 }
