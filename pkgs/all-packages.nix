@@ -109,4 +109,6 @@ with self;
 
   uudeck = callPackage ./uudeck.nix {};
 
+  wpa_supplicant = callPackage ./wpa_supplicant.nix { inherit super; };
+
 }
