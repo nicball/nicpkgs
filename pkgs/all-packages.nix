@@ -28,8 +28,6 @@ with self;
 
   lilypondbot = callPackage ./lilypondbot {};
 
-  deepspeech = callPackage ./deepspeech.nix {};
-
   kindle-tool = callPackage ./kindle-tool.nix {};
 
   instaepub = callPackage ./instaepub {};

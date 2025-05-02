@@ -1,6 +1,6 @@
-{ lib, fetchFromGitHub, python39Packages }:
+{ lib, fetchFromGitHub, python310Packages }:
 
-with python39Packages;
+with python310Packages;
 
 let
 
