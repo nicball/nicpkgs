@@ -22,8 +22,7 @@
     in
     lib.mkIf config.nic.waybar.enable {
       programs.waybar.enable = true;
-      environment.etc."xdg/waybar/config.jsonc".source = pkgs.substituteAll {
-        src = ./waybar-config.json;
+      environment.etc."xdg/waybar/config.jsonc".source = pkgs.replaceVars ./waybar-config.json {
         inherit wm;
         xbacklight = "${pkgs.acpilight}/bin/xbacklight";
         pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";

@@ -1,5 +1,4 @@
 { writeShellApplication
-, substituteAll
 , curl
 , jq
 , lib

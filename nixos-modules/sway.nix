@@ -29,8 +29,7 @@ in
       extraPackages = with pkgs; [ screenshot dex xorg.xrdb ];
     };
     xdg.portal.wlr.enable = true;
-    environment.etc."sway/config".source = with config.nic.window-managers; pkgs.substituteAll {
-      src = ./sway-config;
+    environment.etc."sway/config".source = with config.nic.window-managers; pkgs.replaceVars ./sway-config {
       setWallpaper = lib.optionalString wallpaper.enable ''background ${wallpaper.source} stretch'';
       sourceXrdb = lib.optionalString x-resources.enable ''exec_always "${pkgs.xorg.xrdb}/bin/xrdb ${x-resources.source}"'';
       cursorTheme = cursor-theme;
@@ -40,6 +39,9 @@ in
       playerctl = "${pkgs.playerctl}/bin/playerctl";
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       swayexec = "${swayexec}/bin/swayexec";
+      # keep these unchanged
+      DEFAULT_AUDIO_SINK = null;
+      DEFAULT_AUDIO_SOURCE = null;
     };
     nic.backlight.enable = true;
   };

@@ -13,8 +13,7 @@
       configPackages = [ pkgs.niri ];
     };
     environment.systemPackages = with pkgs; [ niri xwayland-satellite ];
-    environment.variables.NIRI_CONFIG = with config.nic.window-managers; pkgs.substituteAll {
-      src = ./niri-config.kdl;
+    environment.variables.NIRI_CONFIG = with config.nic.window-managers; pkgs.replaceVars ./niri-config.kdl {
       cursorTheme = cursor-theme;
       cursorSize = cursor-size;
       playerctl = "${pkgs.playerctl}/bin/playerctl";

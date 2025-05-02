@@ -1,5 +1,5 @@
 { lib
-, substituteAll
+, replaceVars
 , writers
 , python3Packages
 , pandoc
@@ -16,8 +16,7 @@
 
 let
 
-  src = substituteAll {
-    src = ./instaepub.py;
+  src = replaceVars ./instaepub.py {
     inherit username password;
     consumerKey = consumer-key;
     consumerSecret = consumer-secret;
