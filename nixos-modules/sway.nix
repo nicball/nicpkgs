@@ -26,7 +26,6 @@ in
       enable = true;
       package = if cfg.use-swayfx then pkgs.swayfx else pkgs.sway;
       wrapperFeatures.gtk = true;
-      extraPackages = with pkgs; [ screenshot dex xorg.xrdb ];
     };
     xdg.portal.wlr.enable = true;
     environment.etc."sway/config".source = with config.nic.window-managers; pkgs.replaceVars ./sway-config {
@@ -39,6 +38,8 @@ in
       playerctl = "${pkgs.playerctl}/bin/playerctl";
       wpctl = "${pkgs.wireplumber}/bin/wpctl";
       swayexec = "${swayexec}/bin/swayexec";
+      screenshot = "${pkgs.screenshot}/bin/screenshot";
+      dex = "${pkgs.dex}/bin/dex";
       # keep these unchanged
       DEFAULT_AUDIO_SINK = null;
       DEFAULT_AUDIO_SOURCE = null;

@@ -100,9 +100,9 @@ bindsym $mod+Escape scratchpad show
 
 bindsym $mod+c exec $browser
 bindsym $mod+Alt+f exec nautilus
-bindsym Print exec screenshot
-bindsym Control+Print exec screenshot --full
-bindsym Shift+Print exec screenshot --save
+bindsym Print exec @screenshot@
+bindsym Control+Print exec @screenshot@ --full
+bindsym Shift+Print exec @screenshot@ --save
 bindsym Control+Shift+Print exec screenshot --full --save
 bindsym $mod+Alt+g exec env -u http_proxy -u https_proxy steam
 bindsym $mod+Alt+l exec swaylock
@@ -186,7 +186,7 @@ mode passthru {
 bindsym $mod+p mode passthru
 
 # auto start programs
-exec "dex -a"
+exec "@dex@ -a"
 workspace 2:browser
 exec $browser
 workspace 1:term
