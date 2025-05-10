@@ -103,7 +103,7 @@
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#3b4252"
+    frame_color = "#88c0d0"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -263,7 +263,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 15
 
     # Define which corners to round when drawing the window. If the corner radius
     # is set to 0 this option will be ignored.

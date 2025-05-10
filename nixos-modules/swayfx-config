@@ -2,9 +2,15 @@ titlebar_separator disable
 blur enable
 corner_radius 15
 shadows enable
+shadow_color #000000FF
 layer_effects "waybar" {
   blur enable
-  corner_radius 26
+  corner_radius 0
+  shadows enable
+}
+layer_effects "rofi" {
+  blur enable
+  corner_radius 15
   shadows enable
 }
 layer_effects "notifications" {

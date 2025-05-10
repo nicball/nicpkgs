@@ -31,12 +31,13 @@
 }
 
 window {
-    background-color:   @nord0;
+    background-color:   #2e3440af;
     border-color:       @accent-color;
 
     location:   center;
     width:      25em;
     border:     2px;
+    border-radius: 15px;
 }
 
 inputbar {

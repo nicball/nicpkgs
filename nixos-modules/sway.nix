@@ -29,7 +29,7 @@ in
     };
     xdg.portal.wlr.enable = true;
     environment.etc."sway/config".source = with config.nic.window-managers; pkgs.replaceVars ./sway-config {
-      setWallpaper = lib.optionalString wallpaper.enable ''background ${wallpaper.source} stretch'';
+      setWallpaper = lib.optionalString wallpaper.enable ''background ${wallpaper.source} fill'';
       sourceXrdb = lib.optionalString x-resources.enable ''exec_always "${pkgs.xorg.xrdb}/bin/xrdb ${x-resources.source}"'';
       cursorTheme = cursor-theme;
       cursorSize = cursor-size;

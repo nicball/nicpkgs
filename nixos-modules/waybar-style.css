@@ -3,38 +3,36 @@ window#waybar {
   font-size: 3.4mm;
   font-weight: bold;
   color: #eceff4;
+  background: rgba(46, 52, 64, 0.15);
 }
 
 label {
   text-shadow: 0px -1px 1px black;
-}
-
-window#waybar {
-  background: #3b4252;
+  padding: 0.2em 0 0.4em 0;
 }
 
 window#waybar > box {
-  margin: 0 0.5em;
+  margin: 0 0.4em;
 }
 
 #workspaces button {
-  padding: 0.3em 0.8em;
+  padding: 0 0.7em;
   border: none;
-  border-radius: 1.5em;
+  border-radius: 5px;
   margin: 0.4em 0.2em;
   color: currentcolor;
 }
 
 #workspaces button:hover {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   box-shadow: none;
   text-shadow: inherit;
   transition: none;
 }
 
 #workspaces button.focused {
-  box-shadow: 0px 2px 2px black;
-  background: #5e81ac;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
   text-shadow: inherit;
   transition: none;
 }
@@ -44,11 +42,16 @@ window#waybar > box {
 }
 
 #window label {
-  padding: 0.3em 0.8em;
+  padding: 0.2em 0 0.4em 0;
 }
 
 menu {
-  background: #4c566a;
+  background: rgba(166, 172, 183, 0.95);
+}
+
+menu label {
+  color: #2e3440;
+  text-shadow: none;
 }
 
 #tray window.popup {
@@ -58,7 +61,12 @@ menu {
 
 tooltip {
   /* border-radius: 1.5em; */
-  background: #4c566a;
+  background: rgba(166, 172, 183, 0.95);
+}
+
+tooltip label {
+  color: #2e3440;
+  text-shadow: none;
 }
 
 #clock,
@@ -75,9 +83,9 @@ tooltip {
 #mode,
 #idle_inhibitor,
 #mpd {
-  padding: 0.3em 0.8em;
-  border-radius: 1.5em;
+  padding: 0.2em 0.5em 0.4em 0.5em;
   margin: 0.4em 0.2em;
+  border-radius: 5px;
 }
 
 #battery.charging, #battery.plugged {
@@ -107,7 +115,6 @@ tooltip {
 
 #pulseaudio.muted {
   background-color: #90b1b1;
-  color: #2a5c45;
 }
 
 #tray > .passive {
