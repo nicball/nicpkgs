@@ -42,6 +42,4 @@ in (super.kakounePlugins or {}) // {
     source = ./colors/one-light.kak;
   } ];
 
-  kakoune-lsp = callPackage ./kakoune-lsp.nix {};
-
 }
