@@ -13,7 +13,7 @@
   // Choose the order of the modules
   "modules-left": ["@wm@/workspaces", "sway/mode"],
   "modules-center": ["@wm@/window"],
-  "modules-right": ["pulseaudio", "backlight", "network", "cpu", "memory", "battery", "clock", "tray"],
+  "modules-right": ["pulseaudio", "backlight", "network", "battery", "clock", "tray"],
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
@@ -94,5 +94,12 @@
     "format-icons": "\uf185",
     "on-scroll-up": "@xbacklight@ +5",
     "on-scroll-down": "@xbacklight@ -5",
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 32,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
   },
 }
