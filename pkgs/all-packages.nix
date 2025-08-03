@@ -109,4 +109,6 @@ with self;
 
   wpa_supplicant = callPackage ./wpa_supplicant.nix { inherit super; };
 
+  torrent-file-editor = qt6Packages.callPackage ./torrent-file-editor.nix {};
+
 }
