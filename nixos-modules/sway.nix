@@ -40,7 +40,7 @@ in
       swayexec = "${swayexec}/bin/swayexec";
       screenshot = "${pkgs.screenshot}/bin/screenshot";
       dex = "${pkgs.dex}/bin/dex";
-      # keep these unchanged
+      # keep these verbatim because '@' conflicts with replace
       DEFAULT_AUDIO_SINK = null;
       DEFAULT_AUDIO_SOURCE = null;
     };
