@@ -110,7 +110,6 @@ let cfg = config.nic.window-managers; in
             };
           }
         ];
-        nixpkgs.overlays = [ (self: super: { steam = super.steam.override { extraArgs = "-forcedesktopscaling ${toString cfg.scaling.factor}"; }; }) ];
         nic.window-managers.cursor-size = lib.mkIf cfg.scaling.cursor.enable (builtins.ceil (cfg.scaling.cursor.size * cfg.scaling.factor));
       })
 
