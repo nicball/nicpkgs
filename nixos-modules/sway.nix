@@ -30,7 +30,7 @@ in
     xdg.portal.wlr.enable = true;
     environment.etc."sway/config".source = with config.nic.window-managers; pkgs.replaceVars ./sway-config {
       setWallpaper = lib.optionalString wallpaper.enable ''background ${wallpaper.source} fill'';
-      sourceXrdb = lib.optionalString x-resources.enable ''exec_always "${pkgs.xorg.xrdb}/bin/xrdb ${x-resources.source}"'';
+      sourceXrdb = lib.optionalString x-resources.enable ''exec_always "sleep 5; ${pkgs.xorg.xrdb}/bin/xrdb ${x-resources.source}"'';
       cursorTheme = cursor-theme;
       cursorSize = cursor-size;
       swayfxConfig = lib.optionalString cfg.use-swayfx (builtins.readFile ./swayfx-config);
