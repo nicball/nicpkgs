@@ -62,7 +62,7 @@ let cfg = config.nic.window-managers; in
 
       ({
         # Do nothing when closing the lid with wall power
-        services.logind.lidSwitchExternalPower = "ignore";
+        services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
 
         nic.window-managers.x-resources.source = lib.mkIf (cfg.x-resources.text != null)
           (lib.mkDerivedConfig options.nic.window-managers.x-resources.text (pkgs.writeText ".Xresources"));
@@ -74,7 +74,7 @@ let cfg = config.nic.window-managers; in
 
         nic.backlight.enable = true;
 
-        nic.rofi-wayland.enable = true;
+        nic.rofi.enable = true;
 
         environment.variables = {
           XCURSOR_THEME = cfg.cursor-theme;

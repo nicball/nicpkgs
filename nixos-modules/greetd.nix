@@ -22,7 +22,7 @@
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.greetd}/bin/agreety --cmd fish";
+          command = "${pkgs.greetd}/bin/agreety --cmd fish";
         };
       } // lib.optionalAttrs config.nic.greetd.auto-login.enable {
         initial_session = with config.nic.greetd.auto-login; {

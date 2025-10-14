@@ -10,7 +10,7 @@
     ./greetd.nix
     ./kitty.nix
     ./dunst.nix
-    ./rofi-wayland.nix
+    ./rofi.nix
     ./kakoune.nix
     ./backlight.nix
     ./hexcore-link.nix

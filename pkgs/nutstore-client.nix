@@ -8,7 +8,7 @@
 , gobject-introspection
 , libnotify
 , libappindicator-gtk3
-, webkitgtk
+, webkitgtk_4_1
 , xorg
 , alsa-lib
 , autoPatchelfHook
@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
     gobject-introspection
     libnotify
     libappindicator-gtk3
-    webkitgtk
+    webkitgtk_4_1
 
     (python3.withPackages (p: with p; [ pygobject3 ]))
 

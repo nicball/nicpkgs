@@ -31,6 +31,8 @@ buildPythonPackage rec {
     cython jinja2 toml pillow aiohttp packaging twisted pyenet
   ] ++ twisted.optional-dependencies.tls;
   doCheck = false;
+  pyproject = true;
+  build-system = [ setuptools ];
   meta = {
     platforms = lib.platforms.x86;
     broken = true;
