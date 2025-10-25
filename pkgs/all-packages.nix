@@ -22,8 +22,6 @@ with self;
 
   wayland-book = callPackage ./wayland-book {};
 
-  rtw89 = callPackage ./rtw89.nix {};
-
   maven-j8 = maven.overrideAttrs (_: _: { jdk = jdk8; });
 
   lilypondbot = callPackage ./lilypondbot {};
