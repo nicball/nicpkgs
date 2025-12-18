@@ -8,6 +8,7 @@ let
       kakoune-lsp
       kak-ansi
       kak-ispc
+      kak-racket
       kak-rescript
       kak-nord
       kak-one-light
