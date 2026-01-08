@@ -26,6 +26,7 @@ in
       enable = true;
       package = if cfg.use-swayfx then pkgs.swayfx else pkgs.sway;
       wrapperFeatures.gtk = true;
+      extraPackages = [];
     };
     xdg.portal.wlr.enable = true;
     environment.etc."sway/config".source = with config.nic.window-managers; pkgs.replaceVars ./sway-config {
