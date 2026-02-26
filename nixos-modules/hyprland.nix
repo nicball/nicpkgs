@@ -34,7 +34,7 @@ in
     environment.etc."xdg/hypr/paper" = {
       enable = config.nic.window-managers.wallpaper.enable;
       source = with config.nic.window-managers; pkgs.replaceVars ./hyprpaper-config {
-        wallpaper = wallpaper.source;
+        wallpaper = "${wallpaper.source}";
       };
     };
     nic.backlight.enable = true;

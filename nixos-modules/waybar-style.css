@@ -26,7 +26,6 @@ window#waybar > box {
 #taskbar button:hover {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: none;
-  transition: none;
 }
 
 #workspaces button {
@@ -35,27 +34,25 @@ window#waybar > box {
   border-radius: 5px;
   margin: 0.4em 0.2em;
   color: currentcolor;
+  transition: all 0.2s ease-in-out;
 }
 
 #workspaces button:hover {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: none;
   text-shadow: inherit;
-  transition: none;
 }
 
 #workspaces button.focused {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: none;
   text-shadow: inherit;
-  transition: none;
 }
 
-#workspaces button.active{
+#workspaces button.active {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: none;
   text-shadow: inherit;
-  transition: none;
 }
 
 #workspaces button.urgent {

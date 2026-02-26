@@ -56,6 +56,7 @@ decoration {
     color = rgba(1a1a1aee)
   }
 }
+layerrule = blur, notifications
 layerrule = blur, waybar
 layerrule = blur, rofi
 
@@ -100,16 +101,16 @@ windowrule = float, class:^io\.github\.ilya_zlobintsev\.LACT$
 windowrule = float, class:^org\.pulseaudio\.pavucontrol$
 windowrule = float, class:^xdg-desktop-portal-gtk$
 windowrule = float, class:^firefox$, title:^Extension:
-windowrule = workspace 4, class:^steam$
-windowrule = workspace 4, class:^steam_app_0$
-windowrule = workspace 4, class:^org\.prismlauncher\.PrismLauncher$
-windowrule = workspace 4, title:^Minecraft
-windowrule = workspace 4, class:^factorio$
-windowrule = workspace 5, class:^vlc$
-windowrule = workspace 5, class:^mpv$
-windowrule = workspace 3, class:^QQ$
-windowrule = workspace 3, class:^Element$
-windowrule = workspace 3, class:^org\.telegram\.desktop$
+windowrule = workspace 4 silent, class:^steam$
+windowrule = workspace 4 silent, class:^steam_app_0$
+windowrule = workspace 4 silent, class:^org\.prismlauncher\.PrismLauncher$
+windowrule = workspace 4 silent, title:^Minecraft
+windowrule = workspace 4 silent, class:^factorio$
+windowrule = workspace 5 silent, class:^vlc$
+windowrule = workspace 5 silent, class:^mpv$
+windowrule = workspace 3 silent, class:^QQ$
+windowrule = workspace 3 silent, class:^Element$
+windowrule = workspace 3 silent, class:^org\.telegram\.desktop$
 
 workspace = 1, defaultName:term
 workspace = 2, defaultName:browser
@@ -119,15 +120,21 @@ workspace = 5, defaultName:media
 
 $mainMod = SUPER
 
+bind = $mainMod, P, submap, passthru
+submap = passthru
+bind = $mainMod, P, submap, reset
+submap = reset
+
 bind = $mainMod, Return, exec, kitty
+bind = $mainMod, C, exec, @browser@
 bind = $mainMod, Q, killactive, 
 bind = $mainMod SHIFT, E, exit, 
 bind = $mainMod ALT, F, exec, nautilus
 bind = $mainMod SHIFT, Space, togglefloating, 
 bind = $mainMod, D, exec, rofi -show combi -run-command 'hyprctl dispatch exec {cmd}'
-bind = $mainMod, P, pseudo,
-bind = $mainMod, J, togglesplit,
-bind = $mainMod, C, exec, @browser@
+bind = $mainMod, N, pseudo,
+bind = $mainMod, V, togglesplit,
+bind = $mainMod, G, togglegroup,
 bind = $mainMod ALT, L, exec, @swaylock@
 bind = , Print, exec, @screenshot@
 
@@ -135,6 +142,10 @@ bind = $mainMod, H, movefocus, l
 bind = $mainMod, L, movefocus, r
 bind = $mainMod, K, movefocus, u
 bind = $mainMod, J, movefocus, d
+bind = $mainMod SHIFT, H, movewindow, l
+bind = $mainMod SHIFT, L, movewindow, r
+bind = $mainMod SHIFT, K, movewindow, u
+bind = $mainMod SHIFT, J, movewindow, d
 
 bind = $mainMod, 1, workspace, 1
 bind = $mainMod, 2, workspace, 2
@@ -147,16 +158,16 @@ bind = $mainMod, 8, workspace, 8
 bind = $mainMod, 9, workspace, 9
 bind = $mainMod, 0, workspace, 10
 
-bind = $mainMod SHIFT, 1, movetoworkspace, 1
-bind = $mainMod SHIFT, 2, movetoworkspace, 2
-bind = $mainMod SHIFT, 3, movetoworkspace, 3
-bind = $mainMod SHIFT, 4, movetoworkspace, 4
-bind = $mainMod SHIFT, 5, movetoworkspace, 5
-bind = $mainMod SHIFT, 6, movetoworkspace, 6
-bind = $mainMod SHIFT, 7, movetoworkspace, 7
-bind = $mainMod SHIFT, 8, movetoworkspace, 8
-bind = $mainMod SHIFT, 9, movetoworkspace, 9
-bind = $mainMod SHIFT, 0, movetoworkspace, 10
+bind = $mainMod SHIFT, 1, movetoworkspacesilent, 1
+bind = $mainMod SHIFT, 2, movetoworkspacesilent, 2
+bind = $mainMod SHIFT, 3, movetoworkspacesilent, 3
+bind = $mainMod SHIFT, 4, movetoworkspacesilent, 4
+bind = $mainMod SHIFT, 5, movetoworkspacesilent, 5
+bind = $mainMod SHIFT, 6, movetoworkspacesilent, 6
+bind = $mainMod SHIFT, 7, movetoworkspacesilent, 7
+bind = $mainMod SHIFT, 8, movetoworkspacesilent, 8
+bind = $mainMod SHIFT, 9, movetoworkspacesilent, 9
+bind = $mainMod SHIFT, 0, movetoworkspacesilent, 10
 
 bind = $mainMod, ESCAPE, togglespecialworkspace, magic
 bind = $mainMod SHIFT, ESCAPE, movetoworkspace, special:magic
