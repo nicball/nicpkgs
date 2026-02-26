@@ -1,0 +1,177 @@
+exec-once = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+monitorv2 {
+  output = desc:YCT Sculptor 0000
+  mode = modeline 552.75 2560 2608 2640 2720 1600 1603 1609 1694 +hsync -vsync
+  position = auto
+  scale = 1
+  vrr = 1
+}
+
+exec-once = @dex@ -a
+exec-once = @hyprpaper@ --config /etc/xdg/hypr/paper
+exec-once = systemctl --user start hyprpolkitagent
+exec-once = waybar
+exec-once = [workspace 1 silent] kitty
+exec-once = [workspace 2 silent] @browser@
+@sourceXrdb@
+
+env = XCURSOR_SIZE, @cursorSize@
+env = XCURSOR_THEME, @cursorTheme@
+
+input {
+  kb_layout = us
+  kb_variant =
+  kb_model =
+  kb_options =
+  kb_rules =
+
+  follow_mouse = 1
+  sensitivity = 0
+  accel_profile = flat
+}
+
+general {
+  gaps_in = 5
+  gaps_out = 10
+  border_size = 2
+  col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+  col.inactive_border = rgba(595959aa)
+  layout = dwindle
+}
+
+decoration {
+  rounding = 10
+  rounding_power = 2
+  blur {
+    enabled = true
+    size = 5
+    passes = 2
+    vibrancy = 0.1696
+  }
+  shadow {
+    enabled = true
+    range = 4
+    render_power = 3
+    color = rgba(1a1a1aee)
+  }
+}
+layerrule = blur, waybar
+layerrule = blur, rofi
+
+animations {
+  enabled = yes
+  bezier = easeOutQuint,   0.23, 1,    0.32, 1
+  bezier = easeInOutCubic, 0.65, 0.05, 0.36, 1
+  bezier = linear,         0,    0,    1,    1
+  bezier = almostLinear,   0.5,  0.5,  0.75, 1
+  bezier = quick,          0.15, 0,    0.1,  1
+
+  animation = global,        1,     10,    default
+  animation = border,        1,     5.39,  easeOutQuint
+  animation = windows,       1,     4.79,  easeOutQuint
+  animation = windowsIn,     1,     4.1,   easeOutQuint, popin 87%
+  animation = windowsOut,    1,     1.49,  linear,       popin 87%
+  animation = fadeIn,        1,     1.73,  almostLinear
+  animation = fadeOut,       1,     1.46,  almostLinear
+  animation = fade,          1,     3.03,  quick
+  animation = layers,        1,     3.81,  easeOutQuint
+  animation = layersIn,      1,     4,     easeOutQuint, fade
+  animation = layersOut,     1,     1.5,   linear,       fade
+  animation = fadeLayersIn,  1,     1.79,  almostLinear
+  animation = fadeLayersOut, 1,     1.39,  almostLinear
+  animation = workspaces,    1,     1.94,  almostLinear, fade
+  animation = workspacesIn,  1,     1.21,  almostLinear, fade
+  animation = workspacesOut, 1,     1.94,  almostLinear, fade
+  animation = zoomFactor,    1,     7,     quick
+}
+
+dwindle {
+  pseudotile = yes
+  preserve_split = yes
+}
+
+master {
+  new_status = master
+}
+
+windowrule = float, class:^lact$
+windowrule = float, class:^io\.github\.ilya_zlobintsev\.LACT$
+windowrule = float, class:^org\.pulseaudio\.pavucontrol$
+windowrule = float, class:^xdg-desktop-portal-gtk$
+windowrule = float, class:^firefox$, title:^Extension:
+windowrule = workspace 4, class:^steam$
+windowrule = workspace 4, class:^steam_app_0$
+windowrule = workspace 4, class:^org\.prismlauncher\.PrismLauncher$
+windowrule = workspace 4, title:^Minecraft
+windowrule = workspace 4, class:^factorio$
+windowrule = workspace 5, class:^vlc$
+windowrule = workspace 5, class:^mpv$
+windowrule = workspace 3, class:^QQ$
+windowrule = workspace 3, class:^Element$
+windowrule = workspace 3, class:^org\.telegram\.desktop$
+
+workspace = 1, defaultName:term
+workspace = 2, defaultName:browser
+workspace = 3, defaultName:social
+workspace = 4, defaultName:game
+workspace = 5, defaultName:media
+
+$mainMod = SUPER
+
+bind = $mainMod, Return, exec, kitty
+bind = $mainMod, Q, killactive, 
+bind = $mainMod SHIFT, E, exit, 
+bind = $mainMod ALT, F, exec, nautilus
+bind = $mainMod SHIFT, Space, togglefloating, 
+bind = $mainMod, D, exec, rofi -show combi -run-command 'hyprctl dispatch exec {cmd}'
+bind = $mainMod, P, pseudo,
+bind = $mainMod, J, togglesplit,
+bind = $mainMod, C, exec, @browser@
+bind = $mainMod ALT, L, exec, @swaylock@
+bind = , Print, exec, @screenshot@
+
+bind = $mainMod, H, movefocus, l
+bind = $mainMod, L, movefocus, r
+bind = $mainMod, K, movefocus, u
+bind = $mainMod, J, movefocus, d
+
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+bind = $mainMod, 0, workspace, 10
+
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10
+
+bind = $mainMod, ESCAPE, togglespecialworkspace, magic
+bind = $mainMod SHIFT, ESCAPE, movetoworkspace, special:magic
+
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+
+bindel = ,XF86AudioRaiseVolume, exec, @wpctl@ set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindel = ,XF86AudioLowerVolume, exec, @wpctl@ set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindel = ,XF86AudioMute, exec, @wpctl@ set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindel = ,XF86AudioMicMute, exec, @wpctl@ set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindel = ,XF86AudioPrev, exec, @playerctl@ -a previous
+bindel = ,XF86AudioPlay, exec, @playerctl@ -a play-pause
+bindel = ,XF86AudioNext, exec, @playerctl@ -a next
+

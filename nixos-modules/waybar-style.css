@@ -3,7 +3,7 @@ window#waybar {
   font-size: 3.4mm;
   font-weight: bold;
   color: #eceff4;
-  background: rgba(46, 52, 64, 0.15);
+  background: rgba(46, 52, 64, 0.6);
 }
 
 label {
@@ -45,6 +45,13 @@ window#waybar > box {
 }
 
 #workspaces button.focused {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  text-shadow: inherit;
+  transition: none;
+}
+
+#workspaces button.active{
   background: rgba(255, 255, 255, 0.2);
   box-shadow: none;
   text-shadow: inherit;

@@ -6,6 +6,7 @@ let cfg = config.nic.window-managers; in
   imports = [
     ./sway.nix
     ./niri.nix
+    ./hyprland.nix
   ];
 
   options = {
