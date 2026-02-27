@@ -1,5 +1,3 @@
-exec-once = dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
 monitorv2 {
   output = desc:YCT Sculptor 0000
   mode = modeline 552.75 2560 2608 2640 2720 1600 1603 1609 1694 +hsync -vsync
@@ -8,16 +6,11 @@ monitorv2 {
   vrr = 1
 }
 
-exec-once = @dex@ -a
-exec-once = @hyprpaper@ --config /etc/xdg/hypr/paper
-exec-once = systemctl --user start hyprpolkitagent
-exec-once = waybar
-exec-once = [workspace 1 silent] kitty
-exec-once = [workspace 2 silent] @browser@
-@sourceXrdb@
+$runner = uwsm-app --
 
-env = XCURSOR_SIZE, @cursorSize@
-env = XCURSOR_THEME, @cursorTheme@
+exec-once = [workspace 1 silent] $runner kitty
+exec-once = [workspace 2 silent] $runner @browser@
+@sourceXrdb@
 
 input {
   kb_layout = us
@@ -125,13 +118,13 @@ submap = passthru
 bind = $mainMod, P, submap, reset
 submap = reset
 
-bind = $mainMod, Return, exec, kitty
-bind = $mainMod, C, exec, @browser@
+bind = $mainMod, Return, exec, $runner kitty
+bind = $mainMod, C, exec, $runner @browser@
 bind = $mainMod, Q, killactive, 
-bind = $mainMod SHIFT, E, exit, 
-bind = $mainMod ALT, F, exec, nautilus
+bind = $mainMod SHIFT, E, exec, uwsm stop
+bind = $mainMod ALT, F, exec, $runner nautilus
 bind = $mainMod SHIFT, Space, togglefloating, 
-bind = $mainMod, D, exec, rofi -show combi -run-command 'hyprctl dispatch exec {cmd}'
+bind = $mainMod, D, exec, rofi -show combi -run-command '$runner {cmd}'
 bind = $mainMod, N, pseudo,
 bind = $mainMod, V, togglesplit,
 bind = $mainMod, G, togglegroup,
