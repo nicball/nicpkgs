@@ -107,4 +107,6 @@ with self;
 
   torrent-file-editor = qt6Packages.callPackage ./torrent-file-editor.nix {};
 
+  less = callPackage ./less.nix { inherit super; };
+
 }
