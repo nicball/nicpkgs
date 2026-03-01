@@ -49,9 +49,9 @@ decoration {
     color = rgba(1a1a1aee)
   }
 }
-layerrule = blur, notifications
-layerrule = blur, waybar
-layerrule = blur, rofi
+layerrule = blur on, match:namespace notifications
+layerrule = blur on, match:namespace waybar
+layerrule = blur on, match:namespace rofi
 
 animations {
   enabled = yes
@@ -89,21 +89,21 @@ master {
   new_status = master
 }
 
-windowrule = float, class:^lact$
-windowrule = float, class:^io\.github\.ilya_zlobintsev\.LACT$
-windowrule = float, class:^org\.pulseaudio\.pavucontrol$
-windowrule = float, class:^xdg-desktop-portal-gtk$
-windowrule = float, class:^firefox$, title:^Extension:
-windowrule = workspace 4 silent, class:^steam$
-windowrule = workspace 4 silent, class:^steam_app_0$
-windowrule = workspace 4 silent, class:^org\.prismlauncher\.PrismLauncher$
-windowrule = workspace 4 silent, title:^Minecraft
-windowrule = workspace 4 silent, class:^factorio$
-windowrule = workspace 5 silent, class:^vlc$
-windowrule = workspace 5 silent, class:^mpv$
-windowrule = workspace 3 silent, class:^QQ$
-windowrule = workspace 3 silent, class:^Element$
-windowrule = workspace 3 silent, class:^org\.telegram\.desktop$
+windowrule = float on, match:class ^lact$
+windowrule = float on, match:class ^io\.github\.ilya_zlobintsev\.LACT$
+windowrule = float on, match:class ^org\.pulseaudio\.pavucontrol$
+windowrule = float on, match:class ^xdg-desktop-portal-gtk$
+windowrule = float on, match:class ^firefox$, match:title ^Extension:
+windowrule = workspace 4 silent, match:class ^steam$
+windowrule = workspace 4 silent, match:class ^steam_app_0$
+windowrule = workspace 4 silent, match:class ^org\.prismlauncher\.PrismLauncher$
+windowrule = workspace 4 silent, match:title ^Minecraft
+windowrule = workspace 4 silent, match:class ^factorio$
+windowrule = workspace 5 silent, match:class ^vlc$
+windowrule = workspace 5 silent, match:class ^mpv$
+windowrule = workspace 3 silent, match:class ^QQ$
+windowrule = workspace 3 silent, match:class ^Element$
+windowrule = workspace 3 silent, match:class ^org\.telegram\.desktop$
 
 workspace = 1, defaultName:term
 workspace = 2, defaultName:browser

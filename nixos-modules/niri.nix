@@ -47,7 +47,7 @@
       description = "Xresources";
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "/usr/bin/env 'DISPLAY=:0' ${pkgs.xorg.xrdb}/bin/xrdb ${config.nic.window-managers.x-resources.source}";
+        ExecStart = "/usr/bin/env 'DISPLAY=:0' ${pkgs.xrdb}/bin/xrdb ${config.nic.window-managers.x-resources.source}";
       };
     };
   };

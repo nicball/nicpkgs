@@ -26,7 +26,7 @@ in
       };
     };
     environment.etc."xdg/hypr/land".source = with config.nic.window-managers; pkgs.replaceVars ./hyprland-config {
-      sourceXrdb = lib.optionalString x-resources.enable ''exec-once = ${pkgs.xorg.xrdb}/bin/xrdb ${x-resources.source}'';
+      sourceXrdb = lib.optionalString x-resources.enable ''exec-once = ${pkgs.xrdb}/bin/xrdb ${x-resources.source}'';
       inherit browser;
       swaylock = "${pkgs.swaylock}/bin/swaylock";
       playerctl = "${pkgs.playerctl}/bin/playerctl";
