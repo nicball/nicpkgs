@@ -22,6 +22,8 @@ monitorv2 {
   position = auto
   scale = 1
   vrr = 1
+  supports_hdr = 1
+  supports_wide_color = 1
 }
 
 general {
@@ -129,10 +131,12 @@ bind = $mainMod, Q, killactive,
 bind = $mainMod SHIFT, E, exec, uwsm stop
 bind = $mainMod ALT, F, exec, $runner nautilus
 bind = $mainMod SHIFT, Space, togglefloating, 
+bind = $mainMod ALT, Space, pin, 
 bind = $mainMod, D, exec, rofi -show combi -run-command '$runner {cmd}'
 bind = $mainMod, N, pseudo,
 bind = $mainMod, V, togglesplit,
 bind = $mainMod, G, togglegroup,
+bind = $mainMod, F, fullscreen,
 bind = $mainMod ALT, L, exec, hyprlock
 bind = , Print, exec, @screenshot@
 
