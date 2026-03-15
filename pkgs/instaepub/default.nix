@@ -31,5 +31,5 @@ in
 
 writers.writePython3Bin
   "instaepub"
-  { libraries = with python3Packages; [ requests requests_oauthlib urllib3 parsel ]; }
+  { libraries = with python3Packages; [ requests requests-oauthlib urllib3 parsel ]; }
   src
