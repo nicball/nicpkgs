@@ -59,7 +59,7 @@ stdenv.mkDerivation {
       mkdir src/img
       ${lib.concatMapStrings (img: "cp '${img.path}' src/img/'${img.name}'\n") imgs}
       mkdir $out
-      mdbook-epub --standalone true
+      mdbook-epub --standalone
       mv book/*.epub $out/
       runHook postInstall
     '';

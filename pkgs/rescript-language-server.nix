@@ -1,23 +1,16 @@
-{ fetchFromGitHub
+{ nv-sources
 , buildNpmPackage
 , esbuild
 , stdenv, bash, ocaml, ocamlPackages, dune_3
 }:
 
 let
-  version = "1.58.0";
 
-  source = fetchFromGitHub {
-    owner = "rescript-lang";
-    repo = "rescript-vscode";
-    rev = version;
-    sha256 = "sha256-v+qCVge57wvA97mtzbxAX9Fvi7ruo6ZyIC14O8uWl9Y=";
-  };
+  inherit (nv-sources.rescript-language-server) version src;
 
   analysis = stdenv.mkDerivation {
     pname = "rescript-editor-analysis";
-    inherit version;
-    src = source;
+    inherit version src;
     nativeBuildInputs = [ ocaml dune_3 ocamlPackages.cppo ];
     buildPhase = ''
       dune build
@@ -32,10 +25,9 @@ in
 
 buildNpmPackage rec {
   pname = "rescript-language-server";
-  inherit version;
-  src = source;
+  inherit version src;
   sourceRoot = "${src.name}/server";
-  npmDepsHash = "sha256-GXbYYtrNRbv/yl1U/171+I9+jwWDMA6ZA9lHvGAhM98=";
+  npmDepsHash = "sha256-ossX/zc9/gQgHmdB6sQzG/w1zYFbskAFCkzCberbNf8=";
   postPatch = ''
     cp -r ${analysis}/bin analysis_binaries/linux
   '';

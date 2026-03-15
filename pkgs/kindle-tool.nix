@@ -1,14 +1,7 @@
-{ stdenv, fetchFromGitHub, pkg-config, zlib, libarchive, nettle }:
+{ nv-sources, stdenv, pkg-config, zlib, libarchive, nettle }:
 
 stdenv.mkDerivation {
-  pname = "KindleTool";
-  version = "1.6.5";
-  src = fetchFromGitHub {
-    owner = "NiLuJe";
-    repo = "KindleTool";
-    rev = "v1.6.5";
-    sha256 = "sha256-Io+tfwgRAPEx+TQKZLBGrrHGAVS6ndgOOh+KlBh4t2U=";
-  };
+  inherit (nv-sources.kindle-tool) pname version src;
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ zlib libarchive nettle ];
   makeFlags = [

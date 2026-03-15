@@ -1,23 +1,25 @@
-{ stdenv, fetchzip }:
+{ stdenv, nv-sources }:
 
 let
 
-  version = "3.9";
+  version = nv-sources.pandoc-static-amd64.version;
 
   name = "pandoc-${version}";
 
-  drvs = {
-
-    "x86_64-linux" = fetchzip {
-      inherit name;
-      url = "https://github.com/jgm/pandoc/releases/download/${version}/pandoc-${version}-linux-amd64.tar.gz";
-      hash = "sha256-zU/UCIBuBcGOLj6leXJebPzsa8oGC+JUAyhBqdzKdto=";
-    };
-
+  srcs = {
+    "x86_64-linux" = nv-sources.pandoc-static-amd64.src;
+    "aarch64-linunx" = nv-sources.pandoc-static-arm64.src;
   };
 
 in
 
-(drvs.${stdenv.hostPlatform.system} or {}) // {
-  meta.platforms = builtins.attrNames drvs;
+stdenv.mkDerivation {
+  inherit (nv-sources.pandoc-static-amd64) version;
+  pname = "pandoc";
+  src = srcs.${stdenv.hostPlatform.system};
+  buildPhase = ''
+    mkdir $out
+    mv * $out
+  '';
+  meta.platforms = builtins.attrNames srcs;
 }

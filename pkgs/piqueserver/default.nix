@@ -1,40 +1,31 @@
-{ lib, fetchFromGitHub, python311Packages }:
+{ nv-sources, lib, fetchurl, python312Packages, enet, concatText }:
 
-with python311Packages;
+with python312Packages;
 
 let
 
   pyenet = buildPythonPackage rec {
-    pname = "pyenet";
-    version = "1.3.14";
-    src = fetchPypi {
-      inherit pname version;
-      sha256 = "9d0f73db413fef67a18d5fda2f8d135ac4d126e46fe0929dca897b2a08a293e7";
-    };
+    inherit (nv-sources.pyenet) pname version src;
     doCheck = false;
-    propagatedBuildInputs = [ cython ];
+    buildInputs = [ enet cython_0 ];
+    pyproject = true;
+    build-system = [ setuptools ];
   };
 
 in
 
 buildPythonPackage rec {
-  pname = "piqueserver";
-  version = "unstable-2024-01-16";
-  src = fetchFromGitHub {
-    owner = "piqueserver";
-    repo = "piqueserver";
-    rev = "ac41b4a435780ecaa12bb7c12c4810738296073d";
-    sha256 = "sha256-IJ0448T26Vdy9QJR59N4m3RhTcvzRT+LcrdnVtoJfMc=";
-  };
-  patches = [ ./aiohttp.patch ];
-  propagatedBuildInputs = [
-    cython jinja2 toml pillow aiohttp packaging twisted pyenet
+  inherit (nv-sources.piqueserver) pname src;
+  version = nv-sources.piqueserver.date;
+  dependencies = [
+    jinja2 toml pillow aiohttp packaging twisted pyenet
   ] ++ twisted.optional-dependencies.tls;
+  buildInputs = [ cython ];
+  patches = [ ./deps.patch ];
   doCheck = false;
   pyproject = true;
-  build-system = [ setuptools ];
+  build-system = [ setuptools setuptools-scm ];
   meta = {
     platforms = lib.platforms.x86;
-    broken = true;
   };
 }

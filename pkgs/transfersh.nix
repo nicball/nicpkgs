@@ -1,15 +1,8 @@
 { buildGoModule
-, fetchFromGitHub
+, nv-sources
 }:
 
 buildGoModule {
-  pname = "transfer.sh";
-  version = "1.4.0";
-  src = fetchFromGitHub {
-    owner = "dutchcoders";
-    repo = "transfer.sh";
-    rev = "v1.4.0";
-    sha256 = "sha256-8XMeLIhVWqXBeQToVSyLxEBgLVhCZ+kAf96Cti5e04U=";
-  };
-  vendorHash = "sha256-d7EMXCtDGp9k6acVg/FiLqoO1AsRzoCMkBb0zen9IGc=";
+  inherit (nv-sources.transfersh) pname version src;
+  vendorHash = "sha256-C8ZfUIGT9HiQQiJ2hk18uwGaQzNCIKp/Jiz6ePZkgDQ=";
 }

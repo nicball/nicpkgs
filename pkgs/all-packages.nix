@@ -6,13 +6,13 @@ with self;
 
   nicpkgs-scaling = 1.5;
 
+  nv-sources = callPackage ../_sources/generated.nix {};
+
   piqueserver = callPackage ./piqueserver {};
 
   terraria-server = callPackage ./terraria-server.nix {};
 
   armake2 = callPackage ./armake2.nix {};
-
-  arma3-unix-launcher = callPackage ./arma3-unix-launcher.nix {};
 
   mdbook-epub = callPackage ./mdbook-epub.nix {};
 
@@ -90,8 +90,6 @@ with self;
   adaptive-cpp = callPackage ./adaptive-cpp.nix {};
 
   opencl-benchmark = callPackage ./opencl-benchmark.nix {};
-
-  xwayland-satellite = callPackage ./xwayland-satellite.nix {};
 
   kakounePlugins = lib.recurseIntoAttrs (callPackage ./kakoune-plugins { inherit super; });
 

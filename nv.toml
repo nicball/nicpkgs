@@ -1,0 +1,73 @@
+[kindle-tool]
+src.github = "NiLuJe/KindleTool"
+fetch.github = "NiLuJe/KindleTool"
+
+[mdbook-epub]
+src.github = "Michael-F-Bryan/mdbook-epub"
+fetch.github = "Michael-F-Bryan/mdbook-epub"
+cargo_lock = [ "Cargo.lock" ]
+
+[matrix-qq]
+src.github = "duo/matrix-qq"
+fetch.github = "duo/matrix-qq"
+
+[opencl-benchmark]
+src.github = "ProjectPhysX/OpenCL-Benchmark"
+fetch.github = "ProjectPhysX/OpenCL-Benchmark"
+
+[pandoc-static-amd64]
+src.github = "jgm/pandoc"
+fetch.tarball = "https://github.com/jgm/pandoc/releases/download/$ver/pandoc-$ver-linux-amd64.tar.gz"
+
+[pandoc-static-arm64]
+src.github = "jgm/pandoc"
+fetch.tarball = "https://github.com/jgm/pandoc/releases/download/$ver/pandoc-$ver-linux-arm64.tar.gz"
+
+[piqueserver]
+src.git = "https://github.com/piqueserver/piqueserver"
+fetch.github = "piqueserver/piqueserver"
+git.date_format = "%Y.%m.%d"
+
+[pyenet]
+src.pypi = "pyenet"
+fetch.pypi = "pyenet"
+
+[rescript-language-server]
+src.github = "rescript-lang/rescript-vscode"
+fetch.github = "rescript-lang/rescript-vscode"
+
+[rime-table-bin-decompiler]
+src.git = "https://github.com/kitty-panics/rime-table-bin-decompiler"
+fetch.github = "kitty-panics/rime-table-bin-decompiler"
+
+[rust-async-book]
+src.git = "https://github.com/rust-lang/async-book"
+fetch.github = "rust-lang/async-book"
+
+[rust-reference]
+src.git = "https://github.com/rust-lang/reference"
+fetch.github = "rust-lang/reference"
+
+[rust-rfcs]
+src.git = "https://github.com/rust-lang/rfcs"
+fetch.github = "rust-lang/rfcs"
+
+[torrent-file-editor]
+src.github = "torrent-file-editor/torrent-file-editor"
+fetch.github = "torrent-file-editor/torrent-file-editor"
+
+[transfersh]
+src.github = "dutchcoders/transfer.sh"
+fetch.github = "dutchcoders/transfer.sh"
+
+[ufs-utils]
+src.github = "westerndigitalcorporation/ufs-utils"
+fetch.github = "westerndigitalcorporation/ufs-utils"
+
+[wayland-book]
+src.git = "https://git.sr.ht/~sircmpwn/wayland-book"
+fetch.git = "https://git.sr.ht/~sircmpwn/wayland-book"
+
+[wiwikwlh]
+src.git = "https://github.com/sdiehl/wiwinwlh"
+fetch.github = "sdiehl/wiwinwlh"
