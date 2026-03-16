@@ -67,7 +67,7 @@ hook -group lsp-filetype-c global BufSetOption filetype=(c|cpp) %{
   }
 }
 
-hook -group lsp-filetype-c global BufSetOption filetype=racket %{
+hook -group lsp-filetype-racket global BufSetOption filetype=racket %{
   set-option buffer lsp_servers %{
     [racket]
     root_globs = [ ".git" "info.rkt" ]
@@ -75,7 +75,7 @@ hook -group lsp-filetype-c global BufSetOption filetype=racket %{
   }
 }
 
-hook -group lsp-filetype-c global BufSetOption filetype=haskell %{
+hook -group lsp-filetype-haskell global BufSetOption filetype=haskell %{
   set-option buffer lsp_servers %{
     [haskell]
     root_globs = [ "hie.yaml", "cabal.project", "Setup.hs", "stack.yaml", "*.cabal" ]
@@ -88,12 +88,38 @@ hook -group lsp-filetype-c global BufSetOption filetype=haskell %{
   }
 }
 
-hook -group lsp-filetype-c global BufSetOption filetype=rescript %{
+hook -group lsp-filetype-rescript global BufSetOption filetype=rescript %{
   set-option buffer lsp_servers %{
     [rescript]
     root_globs = [ "packages.json", "rescript.json" ]
     command = "rescript-language-server"
     args = [ "--stdio" ]
+  }
+}
+
+hook -group lsp-filetype-rust global BufSetOption filetype=rust %{
+  set-option buffer lsp_servers %{
+    [rust-analyzer]
+    root_globs = ["Cargo.toml"]
+    single_instance = true
+    [rust-analyzer.experimental]
+    commands.commands = ["rust-analyzer.runSingle"]
+    hoverActions = true
+    [rust-analyzer.settings.rust-analyzer]
+    check.command = "clippy"
+    [rust-analyzer.symbol_kinds]
+    Constant = "const"
+    Enum = "enum"
+    EnumMember = ""
+    Field = ""
+    Function = "fn"
+    Interface = "trait"
+    Method = "fn"
+    Module = "mod"
+    Object = ""
+    Struct = "struct"
+    TypeParameter = "type"
+    Variable = "let"
   }
 }
 
@@ -118,7 +144,7 @@ set-option global lsp_semantic_tokens %{
   ]
 }
 
-hook global WinSetOption filetype=(racket|haskell|rescript|c|cpp) %{
+hook global WinSetOption filetype=(racket|haskell|rescript|c|cpp|rust) %{
   lsp-enable-window
   lsp-inlay-hints-enable window
   map window user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
