@@ -6,6 +6,24 @@
   dockerTools,
 }:
 {
+  armake2 = {
+    pname = "armake2";
+    version = "2e66c9243ab08666a5689a5344517b5ddf9f8abe";
+    src = fetchFromGitHub {
+      owner = "KoffeinFlummi";
+      repo = "armake2";
+      rev = "2e66c9243ab08666a5689a5344517b5ddf9f8abe";
+      fetchSubmodules = false;
+      sha256 = "sha256-gLvizbiKWsE2bpGLnSoLbqfm1cQUcnqS4l48GeF/W8k=";
+    };
+    cargoLock."Cargo.lock" = {
+      lockFile = ./. + "/sha256-gLvizbiKWsE2bpGLnSoLbqfm1cQUcnqS4l48GeF_W8k=/Cargo.lock";
+      outputHashes = {
+        
+      };
+    };
+    date = "2021-08-30";
+  };
   kindle-tool = {
     pname = "kindle-tool";
     version = "v1.6.6";

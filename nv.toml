@@ -1,3 +1,8 @@
+[armake2]
+src.git = "https://github.com/KoffeinFlummi/armake2"
+fetch.github = "KoffeinFlummi/armake2"
+cargo_lock = [ "Cargo.lock" ]
+
 [kindle-tool]
 src.github = "NiLuJe/KindleTool"
 fetch.github = "NiLuJe/KindleTool"
