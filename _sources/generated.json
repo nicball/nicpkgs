@@ -81,12 +81,12 @@
             "name": null,
             "owner": "ProjectPhysX",
             "repo": "OpenCL-Benchmark",
-            "rev": "v1.9",
-            "sha256": "sha256-hI1FR9M4Yz5NrFLiX04q6nsA5Eu3uFLIHQ/Ekh7KHdo=",
+            "rev": "v2.0",
+            "sha256": "sha256-Z5fH7Rm5JfzObmtSNvvM3Jy5ji1FHvuc1SE98aD1dUY=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.9"
+        "version": "v2.0"
     },
     "pandoc-static-amd64": {
         "cargoLock": null,
@@ -96,11 +96,11 @@
         "passthru": null,
         "pinned": false,
         "src": {
-            "sha256": "sha256-zU/UCIBuBcGOLj6leXJebPzsa8oGC+JUAyhBqdzKdto=",
+            "sha256": "sha256-xo8InPQrsiNJINQBiuN9nCIHDXIy8Lq4tlUoZH72FjA=",
             "type": "tarball",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.9/pandoc-3.9-linux-amd64.tar.gz"
+            "url": "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-amd64.tar.gz"
         },
-        "version": "3.9"
+        "version": "3.9.0.2"
     },
     "pandoc-static-arm64": {
         "cargoLock": null,
@@ -110,11 +110,11 @@
         "passthru": null,
         "pinned": false,
         "src": {
-            "sha256": "sha256-s8XYlcbWYUKuMCHezoxZKpJfUjr6PAHZgL/gszGc3ok=",
+            "sha256": "sha256-RmMIBDXkOFzSXSGVENmL85jsmRQh0SD6vdGMWphKqXI=",
             "type": "tarball",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.9/pandoc-3.9-linux-arm64.tar.gz"
+            "url": "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-arm64.tar.gz"
         },
-        "version": "3.9"
+        "version": "3.9.0.2"
     },
     "piqueserver": {
         "cargoLock": null,
@@ -196,7 +196,7 @@
     },
     "rust-async-book": {
         "cargoLock": null,
-        "date": "2025-11-03",
+        "date": "2026-03-16",
         "extract": null,
         "name": "rust-async-book",
         "passthru": null,
@@ -208,16 +208,37 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "async-book",
-            "rev": "2dd70d7bf916b4f2dd37a4f2229c33809a850e97",
-            "sha256": "sha256-KSl7fYUKf0Az0eHHxsltKyN/SEGV2kTo/tJsNkQLj3U=",
+            "rev": "5905b1b57ceaa847ddd359560d38e3981aec359c",
+            "sha256": "sha256-Fwg5jrey3qusZRluiVzt1rfnKA9FiqKmMkKM+dczXxI=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "2dd70d7bf916b4f2dd37a4f2229c33809a850e97"
+        "version": "5905b1b57ceaa847ddd359560d38e3981aec359c"
+    },
+    "rust-book": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "rust-book",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "rust-lang",
+            "repo": "book",
+            "rev": "nostarch-third-printing",
+            "sha256": "sha256-831lEUo5IxmbPIUTJAEjXAYoYi1Cq/qXRMx72BDT3ig=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "nostarch-third-printing"
     },
     "rust-reference": {
         "cargoLock": null,
-        "date": "2026-03-13",
+        "date": "2026-03-18",
         "extract": null,
         "name": "rust-reference",
         "passthru": null,
@@ -229,16 +250,16 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "reference",
-            "rev": "76016c64f53e6fad861933da3b2cf5bd64dc9b20",
-            "sha256": "sha256-Qiaw5pGFMeyt9gGrxzfudmh3x2reMF+OMlLJdKNbUN8=",
+            "rev": "7446bf9697c95d155eef33c6a9d91fbd29a5e359",
+            "sha256": "sha256-9Yz/CgQYXEiyqpyEFrrQSVW9V15DErCYqbpReds+iOA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "76016c64f53e6fad861933da3b2cf5bd64dc9b20"
+        "version": "7446bf9697c95d155eef33c6a9d91fbd29a5e359"
     },
     "rust-rfcs": {
         "cargoLock": null,
-        "date": "2026-01-31",
+        "date": "2026-03-18",
         "extract": null,
         "name": "rust-rfcs",
         "passthru": null,
@@ -250,12 +271,12 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "rfcs",
-            "rev": "c143e315774f746d667c5eecd95a8ed999e8a729",
-            "sha256": "sha256-gXhKfspzm0gOJSI9yI2TERNQvRiGHIxuZbLtKg1o+bc=",
+            "rev": "2f6267f2db38a66fc768d3c3c7932b4c8902f23a",
+            "sha256": "sha256-g8cn8nuWZgLxL8OofKNiBgEPTZKFT0rICmjwRKflE9Q=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "c143e315774f746d667c5eecd95a8ed999e8a729"
+        "version": "2f6267f2db38a66fc768d3c3c7932b4c8902f23a"
     },
     "torrent-file-editor": {
         "cargoLock": null,

@@ -107,4 +107,6 @@ with self;
 
   less = callPackage ./less.nix { inherit super; };
 
+  rust-book = callPackage ./rust-book.nix {};
+
 }

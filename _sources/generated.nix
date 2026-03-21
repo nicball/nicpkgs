@@ -47,29 +47,29 @@
   };
   opencl-benchmark = {
     pname = "opencl-benchmark";
-    version = "v1.9";
+    version = "v2.0";
     src = fetchFromGitHub {
       owner = "ProjectPhysX";
       repo = "OpenCL-Benchmark";
-      rev = "v1.9";
+      rev = "v2.0";
       fetchSubmodules = false;
-      sha256 = "sha256-hI1FR9M4Yz5NrFLiX04q6nsA5Eu3uFLIHQ/Ekh7KHdo=";
+      sha256 = "sha256-Z5fH7Rm5JfzObmtSNvvM3Jy5ji1FHvuc1SE98aD1dUY=";
     };
   };
   pandoc-static-amd64 = {
     pname = "pandoc-static-amd64";
-    version = "3.9";
+    version = "3.9.0.2";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.9/pandoc-3.9-linux-amd64.tar.gz";
-      sha256 = "sha256-zU/UCIBuBcGOLj6leXJebPzsa8oGC+JUAyhBqdzKdto=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-amd64.tar.gz";
+      sha256 = "sha256-xo8InPQrsiNJINQBiuN9nCIHDXIy8Lq4tlUoZH72FjA=";
     };
   };
   pandoc-static-arm64 = {
     pname = "pandoc-static-arm64";
-    version = "3.9";
+    version = "3.9.0.2";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.9/pandoc-3.9-linux-arm64.tar.gz";
-      sha256 = "sha256-s8XYlcbWYUKuMCHezoxZKpJfUjr6PAHZgL/gszGc3ok=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-arm64.tar.gz";
+      sha256 = "sha256-RmMIBDXkOFzSXSGVENmL85jsmRQh0SD6vdGMWphKqXI=";
     };
   };
   piqueserver = {
@@ -117,39 +117,50 @@
   };
   rust-async-book = {
     pname = "rust-async-book";
-    version = "2dd70d7bf916b4f2dd37a4f2229c33809a850e97";
+    version = "5905b1b57ceaa847ddd359560d38e3981aec359c";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "async-book";
-      rev = "2dd70d7bf916b4f2dd37a4f2229c33809a850e97";
+      rev = "5905b1b57ceaa847ddd359560d38e3981aec359c";
       fetchSubmodules = false;
-      sha256 = "sha256-KSl7fYUKf0Az0eHHxsltKyN/SEGV2kTo/tJsNkQLj3U=";
+      sha256 = "sha256-Fwg5jrey3qusZRluiVzt1rfnKA9FiqKmMkKM+dczXxI=";
     };
-    date = "2025-11-03";
+    date = "2026-03-16";
+  };
+  rust-book = {
+    pname = "rust-book";
+    version = "nostarch-third-printing";
+    src = fetchFromGitHub {
+      owner = "rust-lang";
+      repo = "book";
+      rev = "nostarch-third-printing";
+      fetchSubmodules = false;
+      sha256 = "sha256-831lEUo5IxmbPIUTJAEjXAYoYi1Cq/qXRMx72BDT3ig=";
+    };
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "76016c64f53e6fad861933da3b2cf5bd64dc9b20";
+    version = "7446bf9697c95d155eef33c6a9d91fbd29a5e359";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "76016c64f53e6fad861933da3b2cf5bd64dc9b20";
+      rev = "7446bf9697c95d155eef33c6a9d91fbd29a5e359";
       fetchSubmodules = false;
-      sha256 = "sha256-Qiaw5pGFMeyt9gGrxzfudmh3x2reMF+OMlLJdKNbUN8=";
+      sha256 = "sha256-9Yz/CgQYXEiyqpyEFrrQSVW9V15DErCYqbpReds+iOA=";
     };
-    date = "2026-03-13";
+    date = "2026-03-18";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
-    version = "c143e315774f746d667c5eecd95a8ed999e8a729";
+    version = "2f6267f2db38a66fc768d3c3c7932b4c8902f23a";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rfcs";
-      rev = "c143e315774f746d667c5eecd95a8ed999e8a729";
+      rev = "2f6267f2db38a66fc768d3c3c7932b4c8902f23a";
       fetchSubmodules = false;
-      sha256 = "sha256-gXhKfspzm0gOJSI9yI2TERNQvRiGHIxuZbLtKg1o+bc=";
+      sha256 = "sha256-g8cn8nuWZgLxL8OofKNiBgEPTZKFT0rICmjwRKflE9Q=";
     };
-    date = "2026-01-31";
+    date = "2026-03-18";
   };
   torrent-file-editor = {
     pname = "torrent-file-editor";
