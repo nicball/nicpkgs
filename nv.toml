@@ -49,10 +49,6 @@ fetch.github = "kitty-panics/rime-table-bin-decompiler"
 src.git = "https://github.com/rust-lang/async-book"
 fetch.github = "rust-lang/async-book"
 
-[rust-book]
-src.github = "rust-lang/book"
-fetch.github = "rust-lang/book"
-
 [rust-reference]
 src.git = "https://github.com/rust-lang/reference"
 fetch.github = "rust-lang/reference"

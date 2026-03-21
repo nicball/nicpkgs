@@ -145,17 +145,6 @@
     };
     date = "2026-03-16";
   };
-  rust-book = {
-    pname = "rust-book";
-    version = "nostarch-third-printing";
-    src = fetchFromGitHub {
-      owner = "rust-lang";
-      repo = "book";
-      rev = "nostarch-third-printing";
-      fetchSubmodules = false;
-      sha256 = "sha256-831lEUo5IxmbPIUTJAEjXAYoYi1Cq/qXRMx72BDT3ig=";
-    };
-  };
   rust-reference = {
     pname = "rust-reference";
     version = "7446bf9697c95d155eef33c6a9d91fbd29a5e359";

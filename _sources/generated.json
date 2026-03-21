@@ -241,27 +241,6 @@
         },
         "version": "5905b1b57ceaa847ddd359560d38e3981aec359c"
     },
-    "rust-book": {
-        "cargoLock": null,
-        "date": null,
-        "extract": null,
-        "name": "rust-book",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "rust-lang",
-            "repo": "book",
-            "rev": "nostarch-third-printing",
-            "sha256": "sha256-831lEUo5IxmbPIUTJAEjXAYoYi1Cq/qXRMx72BDT3ig=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "nostarch-third-printing"
-    },
     "rust-reference": {
         "cargoLock": null,
         "date": "2026-03-18",
