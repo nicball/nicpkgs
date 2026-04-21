@@ -6,9 +6,11 @@ let
 
   graphical-session-packages = packages: {
     packages = lib.forEach packages (name: pkgs.${name});
-    user.services = builtins.listToAttrs (lib.forEach packages (name: lib.nameValuePair name {
+    user.services = builtins.listToAttrs (lib.forEach packages (name: lib.nameValuePair name ({
       wantedBy = [ "graphical-session.target" ];
-    }));
+    } // lib.optionalAttrs (name == "hypridle") {
+      serviceConfig.ExecStart = "${pkgs.hypridle}/bin/hypridle --quiet";
+    })));
   };
 
 in
