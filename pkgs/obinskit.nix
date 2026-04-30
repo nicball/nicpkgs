@@ -4,20 +4,21 @@
 , libxkbcommon, libxt, libxtst }:
 
 stdenv.mkDerivation {
-  pname = "hexcore-link";
-  version = "v2.5.9";
+  pname = "obinskit";
+  version = "1.2.11";
   src = fetchzip {
-    url = "https://www.hexcore.xyz/releases/software/hexcore-link/linux/tar/HexcoreLink_2.5.9_x64.tar.gz";
-    sha256 = "sha256-9uXbdT1foohz/efMmGOizEO5oC/3S77YJ9uZcSMB9GI=";
+    url = "https://www.hexcore.xyz/occ/linux/tar/ObinsKit_1.2.11_x64.tar.gz";
+    sha256 = "sha256-+OmPh9/PpEsC2beJx9fHGRp2ijk8mUrqb47+Z6FoIZc=";
   };
   nativeBuildInputs = [ makeWrapper wrapGAppsHook3 autoPatchelfHook ];
   buildInputs = [ nss nspr alsa-lib libdrm mesa pango cairo glib ];
   installPhase = ''
-    mkdir -p $out/bin $out/share/hexcore-link
-    cp -r * $out/share/hexcore-link
-    makeWrapper $out/share/hexcore-link/hexcore-link $out/bin/hexcore-link \
-      --chdir $out/share/hexcore-link \
+    mkdir -p $out/bin $out/share/obinskit
+    cp -r * $out/share/obinskit
+    makeWrapper $out/share/obinskit/obinskit $out/bin/obinskit \
+      --chdir $out/share/obinskit \
       --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [ stdenv.cc.cc.lib libxkbcommon (lib.getLib systemd) libxt libxtst ]}"
   '';
   meta.platforms = lib.platforms.x86;
 }
+

@@ -107,4 +107,6 @@ with self;
 
   less = callPackage ./less.nix { inherit super; };
 
+  obinskit = callPackage ./obinskit.nix {};
+
 }
