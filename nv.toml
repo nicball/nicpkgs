@@ -76,3 +76,7 @@ fetch.git = "https://git.sr.ht/~sircmpwn/wayland-book"
 [wiwikwlh]
 src.git = "https://github.com/sdiehl/wiwinwlh"
 fetch.github = "sdiehl/wiwinwlh"
+
+[mautrix-telegram]
+src.github = "mautrix/telegram"
+fetch.github = "mautrix/telegram"

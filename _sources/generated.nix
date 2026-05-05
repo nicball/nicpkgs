@@ -46,6 +46,17 @@
       sha256 = "sha256-8QY5rySBJ+FSH8uEHewFX7WqhpbzZL1+fMEduDPHu9U=";
     };
   };
+  mautrix-telegram = {
+    pname = "mautrix-telegram";
+    version = "v0.2604.0";
+    src = fetchFromGitHub {
+      owner = "mautrix";
+      repo = "telegram";
+      rev = "v0.2604.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-i/eIvsqLAst9nuhZL4a+SlMcqtwy8c0iWHwe+5dYVlI=";
+    };
+  };
   mdbook-epub = {
     pname = "mdbook-epub";
     version = "v0.4.48";
@@ -92,15 +103,15 @@
   };
   piqueserver = {
     pname = "piqueserver";
-    version = "06066960753e60bc0dc83fa0cae511313f51aa52";
+    version = "b06955098c138a05dbec05f63f99aaa1c08b942b";
     src = fetchFromGitHub {
       owner = "piqueserver";
       repo = "piqueserver";
-      rev = "06066960753e60bc0dc83fa0cae511313f51aa52";
+      rev = "b06955098c138a05dbec05f63f99aaa1c08b942b";
       fetchSubmodules = false;
-      sha256 = "sha256-BzC3UUlFEePrpabdrCd7r3osRhszSijFdA1eLNQoFN8=";
+      sha256 = "sha256-SQ0kMq3ghPrCci71InfiBYUMTC6rin49zc9ZoHnJyn8=";
     };
-    date = "2026.04.25";
+    date = "2026.05.02";
   };
   pyenet = {
     pname = "pyenet";
@@ -147,27 +158,27 @@
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "581920f9109f141b88b860b3e1e8359e3896a150";
+    version = "4f86eeb5c25a7e5f1dd8a64f436caf8393ad1a3c";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "581920f9109f141b88b860b3e1e8359e3896a150";
+      rev = "4f86eeb5c25a7e5f1dd8a64f436caf8393ad1a3c";
       fetchSubmodules = false;
-      sha256 = "sha256-e1uUXteP2d0ux/YdFwz2h6HfIl+7FjDEOo62MmyiTLM=";
+      sha256 = "sha256-8LgxZXrIv8J83xbfmjH/jP6Lx+3xt1bqpEASJn9FVC0=";
     };
-    date = "2026-04-30";
+    date = "2026-05-04";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
-    version = "17a311afa36c353e88578e9dde44225aaa447ee1";
+    version = "318c2acc1b22d6284410b1e37d54dc74fc1cc675";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rfcs";
-      rev = "17a311afa36c353e88578e9dde44225aaa447ee1";
+      rev = "318c2acc1b22d6284410b1e37d54dc74fc1cc675";
       fetchSubmodules = false;
-      sha256 = "sha256-B0O4eMItQH+NK+ccm8V4T+zMHacFvN7DrfMQh0qHtlc=";
+      sha256 = "sha256-ZCGVzr8VKHmRRKy6JgWV8JGIckdK15dLSwylO+QUzOk=";
     };
-    date = "2026-05-01";
+    date = "2026-05-04";
   };
   torrent-file-editor = {
     pname = "torrent-file-editor";

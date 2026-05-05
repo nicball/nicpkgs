@@ -109,4 +109,6 @@ with self;
 
   obinskit = callPackage ./obinskit.nix {};
 
+  mautrix-telegram = callPackage ./mautrix-telegram.nix {};
+
 }

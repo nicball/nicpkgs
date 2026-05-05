@@ -18,7 +18,7 @@
           overlays = [ overlay ];
           config = {
             allowUnfree = true;
-            permittedInsecurePackages = [ "openssl-1.1.1w" ];
+            permittedInsecurePackages = [ "openssl-1.1.1w" "olm-3.2.16" ];
           };
         };
 
