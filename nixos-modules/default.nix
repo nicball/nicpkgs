@@ -16,6 +16,7 @@
     ./hexcore-link.nix
     ./cloudflare-ddns.nix
     ./instaepub.nix
+    ./fish.nix
   ];
 
   options.nic.set-nix-path = lib.mkOption {
