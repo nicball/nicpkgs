@@ -48,13 +48,13 @@
   };
   mautrix-telegram = {
     pname = "mautrix-telegram";
-    version = "v0.2604.0";
+    version = "v0.2606.0";
     src = fetchFromGitHub {
       owner = "mautrix";
       repo = "telegram";
-      rev = "v0.2604.0";
+      rev = "v0.2606.0";
       fetchSubmodules = false;
-      sha256 = "sha256-i/eIvsqLAst9nuhZL4a+SlMcqtwy8c0iWHwe+5dYVlI=";
+      sha256 = "sha256-tKoqtGCkUtCT/SMxRX6LzivGu0p/AM6TPDQoW9plTyE=";
     };
   };
   mdbook-epub = {
@@ -87,31 +87,31 @@
   };
   pandoc-static-amd64 = {
     pname = "pandoc-static-amd64";
-    version = "3.9.0.2";
+    version = "3.10";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-amd64.tar.gz";
-      sha256 = "sha256-xo8InPQrsiNJINQBiuN9nCIHDXIy8Lq4tlUoZH72FjA=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.10/pandoc-3.10-linux-amd64.tar.gz";
+      sha256 = "sha256-9SY0nBFsUSyxmZjOtsGctgZMKSYPMjkuzjIoaNVYBeM=";
     };
   };
   pandoc-static-arm64 = {
     pname = "pandoc-static-arm64";
-    version = "3.9.0.2";
+    version = "3.10";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.9.0.2/pandoc-3.9.0.2-linux-arm64.tar.gz";
-      sha256 = "sha256-RmMIBDXkOFzSXSGVENmL85jsmRQh0SD6vdGMWphKqXI=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.10/pandoc-3.10-linux-arm64.tar.gz";
+      sha256 = "sha256-kB4QAHTHh1pgYsEomnaWcBXTDwn/zzKVx0Dnkf/PtsI=";
     };
   };
   piqueserver = {
     pname = "piqueserver";
-    version = "b06955098c138a05dbec05f63f99aaa1c08b942b";
+    version = "e555d210665c7e384425c15c26615ec4a8e69433";
     src = fetchFromGitHub {
       owner = "piqueserver";
       repo = "piqueserver";
-      rev = "b06955098c138a05dbec05f63f99aaa1c08b942b";
+      rev = "e555d210665c7e384425c15c26615ec4a8e69433";
       fetchSubmodules = false;
-      sha256 = "sha256-SQ0kMq3ghPrCci71InfiBYUMTC6rin49zc9ZoHnJyn8=";
+      sha256 = "sha256-FBHMvKWu7zxj/CmbatqX9Jni3xCW/7L749K+58NaAkk=";
     };
-    date = "2026.05.02";
+    date = "2026.07.08";
   };
   pyenet = {
     pname = "pyenet";
@@ -146,49 +146,49 @@
   };
   rust-async-book = {
     pname = "rust-async-book";
-    version = "5905b1b57ceaa847ddd359560d38e3981aec359c";
+    version = "43891cedf954e991657ba97c2e3ba743d97827ce";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "async-book";
-      rev = "5905b1b57ceaa847ddd359560d38e3981aec359c";
+      rev = "43891cedf954e991657ba97c2e3ba743d97827ce";
       fetchSubmodules = false;
-      sha256 = "sha256-Fwg5jrey3qusZRluiVzt1rfnKA9FiqKmMkKM+dczXxI=";
+      sha256 = "sha256-Wi3DGbwHfKAjqn0lyICrm7BoSIzU2HI4M/O0ww+QMGw=";
     };
-    date = "2026-03-16";
+    date = "2026-05-25";
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "4f86eeb5c25a7e5f1dd8a64f436caf8393ad1a3c";
+    version = "afdc77bab886d4455c11247cdd32391bfab636ae";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "4f86eeb5c25a7e5f1dd8a64f436caf8393ad1a3c";
+      rev = "afdc77bab886d4455c11247cdd32391bfab636ae";
       fetchSubmodules = false;
-      sha256 = "sha256-8LgxZXrIv8J83xbfmjH/jP6Lx+3xt1bqpEASJn9FVC0=";
+      sha256 = "sha256-0bIZ34SnD83xmp4YtqcQpGbTGLoQkgHrswAIZylgc90=";
     };
-    date = "2026-05-04";
+    date = "2026-07-09";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
-    version = "318c2acc1b22d6284410b1e37d54dc74fc1cc675";
+    version = "f635361c8e3d927208afd6097d4fc5f30e703b43";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rfcs";
-      rev = "318c2acc1b22d6284410b1e37d54dc74fc1cc675";
+      rev = "f635361c8e3d927208afd6097d4fc5f30e703b43";
       fetchSubmodules = false;
-      sha256 = "sha256-ZCGVzr8VKHmRRKy6JgWV8JGIckdK15dLSwylO+QUzOk=";
+      sha256 = "sha256-4zCsOqrduDA1tfS5QKI5DrAOwXfgpCbODaOjOOf97GA=";
     };
-    date = "2026-05-04";
+    date = "2026-07-08";
   };
   torrent-file-editor = {
     pname = "torrent-file-editor";
-    version = "v1.0.2";
+    version = "v1.0.3";
     src = fetchFromGitHub {
       owner = "torrent-file-editor";
       repo = "torrent-file-editor";
-      rev = "v1.0.2";
+      rev = "v1.0.3";
       fetchSubmodules = false;
-      sha256 = "sha256-AcCBW3n2MXAfxSj1zAMKx8YB0/lZgUK9B0hUKvOTz0A=";
+      sha256 = "sha256-iq980BF0IkTVAGtP4s37+0w012cKWIrbNGUmpAzbcg4=";
     };
   };
   transfersh = {

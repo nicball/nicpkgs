@@ -3,7 +3,7 @@
 buildGoModule rec {
   inherit (nv-sources.mautrix-telegram) pname version src;
   buildInputs = [ olm ];
-  vendorHash = "sha256-mQ6zvEK6YcR71zLGD1n9xZzXqiXtKIs43rxeP278Ln0=";
+  vendorHash = "sha256-+VDdJg5RZzMrphJ5SK+YbdENhPiHJpwGY/JqBJewtUo=";
   ldflags = [
     "-s"
     "-w"
