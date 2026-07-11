@@ -4,6 +4,10 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:NixOS/nixpkgs/e73de5be04e0eff4190a1432b946d469c794e7b4";
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
@@ -112,6 +116,8 @@
       homeModules.default = import ./home-modules { inherit overlay; };
 
       nixosModules.default = import ./nixos-modules { inherit overlay; };
+
+      nixosConfigurations = import ./nixos-configurations { inherit (inputs) nixpkgs nix-index-database; };
 
     };
 }
