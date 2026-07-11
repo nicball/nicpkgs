@@ -25,7 +25,10 @@ in
 
   config = lib.mkIf config.nic.kakoune.enable {
     environment = {
-      variables.KAKOUNE_CONFIG_DIR = ./kakoune-config;
+      variables = {
+        KAKOUNE_CONFIG_DIR = ./kakoune-config;
+        EDITOR = "kak";
+      };
       systemPackages = [ package ];
     };
   };

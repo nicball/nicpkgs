@@ -50,6 +50,7 @@ let cfg = config.nic.window-managers; in
         enable = lib.mkEnableOption "wallpaper";
         source = lib.mkOption {
           type = lib.types.path;
+          default = ./wallpaper.png;
         };
       };
       browser = lib.mkOption {
