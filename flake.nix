@@ -8,6 +8,10 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    instaepub = {
+      url = "github:nicball/instaepub";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
@@ -117,7 +121,7 @@
 
       nixosModules.default = import ./nixos-modules { inherit overlay; };
 
-      nixosConfigurations = import ./nixos-configurations { inherit (inputs) nixpkgs nix-index-database; };
+      nixosConfigurations = import ./nixos-configurations { inherit inputs; nicpkgs = self; };
 
     };
 }

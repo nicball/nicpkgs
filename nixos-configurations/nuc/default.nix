@@ -5,12 +5,12 @@ inputs.nixpkgs.lib.nixosSystem rec {
   modules = [
     nicpkgs.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
-    ../common.nix
+    ({ ... }: { nixpkgs.overlays = [ (_: _: { instaepub = inputs.instaepub.packages.x86_64-linux.instaepub;  }) ]; })
     ./hardware-configuration.nix
-    ./amd.nix
     ./desktop.nix
-    ./network.nix
-    ./brightness.nix
-    # ./osx.nix
+    ./services.nix
+    ./intel.nix
+    ../common.nix
+    ({ ... }: { networking.hostName = "nixos-nuc"; })
   ];
 }

@@ -19,6 +19,7 @@
     ./fish.nix
     ./clash.nix
     ./amd.nix
+    ./intel.nix
   ];
 
   options.nic = {

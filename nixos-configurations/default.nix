@@ -1,5 +1,6 @@
-{ nixpkgs, nix-index-database }:
+{ nicpkgs, inputs }:
 
 {
-  desktop = import ./desktop { inherit nixpkgs nix-index-database; };
+  desktop = import ./desktop { inherit inputs nicpkgs; };
+  nuc = import ./nuc { inherit inputs nicpkgs; };
 }
