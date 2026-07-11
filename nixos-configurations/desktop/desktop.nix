@@ -36,6 +36,8 @@
     };
   };
 
+  programs.ssh.setXAuthLocation = true;
+
   # Kitty
   nic.kitty.enable = true;
 

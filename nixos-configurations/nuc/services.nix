@@ -60,7 +60,10 @@ in
 
   services.openssh = {
     enable = true;
-    settings.PasswordAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      X11Forwarding = true;
+    };
   };
 
   nic.clash = {
