@@ -23,7 +23,7 @@ in
 
     gpu = {
       enable = lib.mkEnableOption "AMD GPU";
-      overclock = lib.mkEnableOption "AMD GPU overclocking";
+      overclocking = lib.mkEnableOption "AMD GPU overclocking";
     };
 
     ryzenadj.enable = lib.mkEnableOption "ryzenadj";
@@ -42,7 +42,7 @@ in
       ];
     })
 
-    (lib.mkIf cfg.cpu.enable && cfg.cpu.manage-performance-profile {
+    (lib.mkIf (cfg.cpu.enable && cfg.cpu.manage-performance-profile) {
 
       services.acpid = {
         enable = true;

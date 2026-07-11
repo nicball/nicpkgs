@@ -60,6 +60,7 @@
       # dev
       man-pages man-pages-posix
       gcc gdb jdk gnumake racket
+      git-crypt
       # (agda.withPackages (p: [ p.standard-library ]))
 
       # i3
