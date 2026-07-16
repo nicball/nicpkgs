@@ -32,8 +32,8 @@ in
     environment.systemPackages = with pkgs; [ hyprlock ];
     systemd = graphical-session-packages [ "hyprpolkitagent" "hyprpaper" "hypridle" ];
     environment.etc = {
-      "xdg/hypr/hyprland.conf".source = with config.nic.window-managers; pkgs.replaceVars ./hyprland-config {
-        sourceXrdb = lib.optionalString x-resources.enable ''exec-once = ${pkgs.xrdb}/bin/xrdb ${x-resources.source}'';
+      "xdg/hypr/hyprland.lua".source = with config.nic.window-managers; pkgs.replaceVars ./hyprland.lua {
+        sourceXrdb = lib.optionalString x-resources.enable ''hl.exec_cmd("${pkgs.xrdb}/bin/xrdb ${x-resources.source}")'';
         inherit browser;
         playerctl = "${pkgs.playerctl}/bin/playerctl";
         wpctl = "${pkgs.wireplumber}/bin/wpctl";

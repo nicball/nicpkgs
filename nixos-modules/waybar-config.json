@@ -11,7 +11,7 @@
   // "width": 1280, // Waybar width
   "spacing": 0, // Gaps between modules (0px)
   // Choose the order of the modules
-  "modules-left": ["@wm@/workspaces", "sway/mode"],
+  "modules-left": ["@wm@/workspaces", "hyprland/submap", "sway/mode"],
   "modules-center": ["@wm@/window"],
   "modules-right": ["pulseaudio", "backlight", "network", "battery", "clock", "tray"],
   "sway/mode": {
