@@ -7,6 +7,8 @@
     nct6687.enable = true;
   };
 
+  boot.kernelModules = [ "ntsync" ];
+
   systemd.services.fancontrol = {
     enable = true;
     wantedBy = [ "multi-user.target" ];
