@@ -81,12 +81,12 @@
             "name": null,
             "owner": "mautrix",
             "repo": "telegram",
-            "rev": "v0.2606.0",
-            "sha256": "sha256-tKoqtGCkUtCT/SMxRX6LzivGu0p/AM6TPDQoW9plTyE=",
+            "rev": "v0.2607.0",
+            "sha256": "sha256-MpdsWtEsVnC6purF5sw+RD+Nb/3Wo0xrzSn2BuFZmj8=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v0.2606.0"
+        "version": "v0.2607.0"
     },
     "mdbook-epub": {
         "cargoLock": {
@@ -165,7 +165,7 @@
     },
     "piqueserver": {
         "cargoLock": null,
-        "date": "2026.07.08",
+        "date": "2026-07-15",
         "extract": null,
         "name": "piqueserver",
         "passthru": null,
@@ -177,12 +177,12 @@
             "name": null,
             "owner": "piqueserver",
             "repo": "piqueserver",
-            "rev": "e555d210665c7e384425c15c26615ec4a8e69433",
-            "sha256": "sha256-FBHMvKWu7zxj/CmbatqX9Jni3xCW/7L749K+58NaAkk=",
+            "rev": "bc57bfe30f8bf98209cd90e3bd148981fb232033",
+            "sha256": "sha256-Fz8vMZQG1/CM+Qe8VnwHb7VeU+PlJe9mazuO5PeFzns=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "e555d210665c7e384425c15c26615ec4a8e69433"
+        "version": "bc57bfe30f8bf98209cd90e3bd148981fb232033"
     },
     "pyenet": {
         "cargoLock": null,
@@ -366,6 +366,27 @@
             "type": "github"
         },
         "version": "v7.14.12"
+    },
+    "waybar": {
+        "cargoLock": null,
+        "date": "2026-07-16",
+        "extract": null,
+        "name": "waybar",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Alexays",
+            "repo": "waybar",
+            "rev": "7f732f055316d3b0ab89f57e4347d24c1cc96167",
+            "sha256": "sha256-0CpeSWMuLePAh7wmTb7OUAlmUSlerEWDb4EoFIIFPhs=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "7f732f055316d3b0ab89f57e4347d24c1cc96167"
     },
     "wayland-book": {
         "cargoLock": null,

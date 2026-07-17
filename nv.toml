@@ -31,7 +31,7 @@ fetch.tarball = "https://github.com/jgm/pandoc/releases/download/$ver/pandoc-$ve
 [piqueserver]
 src.git = "https://github.com/piqueserver/piqueserver"
 fetch.github = "piqueserver/piqueserver"
-git.date_format = "%Y.%m.%d"
+git.date_format = "%Y-%m-%d"
 
 [pyenet]
 src.pypi = "pyenet"
@@ -80,3 +80,8 @@ fetch.github = "sdiehl/wiwinwlh"
 [mautrix-telegram]
 src.github = "mautrix/telegram"
 fetch.github = "mautrix/telegram"
+
+[waybar]
+src.git = "https://github.com/Alexays/waybar"
+fetch.github = "Alexays/waybar"
+git.date_format = "%Y-%m-%d"

@@ -48,13 +48,13 @@
   };
   mautrix-telegram = {
     pname = "mautrix-telegram";
-    version = "v0.2606.0";
+    version = "v0.2607.0";
     src = fetchFromGitHub {
       owner = "mautrix";
       repo = "telegram";
-      rev = "v0.2606.0";
+      rev = "v0.2607.0";
       fetchSubmodules = false;
-      sha256 = "sha256-tKoqtGCkUtCT/SMxRX6LzivGu0p/AM6TPDQoW9plTyE=";
+      sha256 = "sha256-MpdsWtEsVnC6purF5sw+RD+Nb/3Wo0xrzSn2BuFZmj8=";
     };
   };
   mdbook-epub = {
@@ -103,15 +103,15 @@
   };
   piqueserver = {
     pname = "piqueserver";
-    version = "e555d210665c7e384425c15c26615ec4a8e69433";
+    version = "bc57bfe30f8bf98209cd90e3bd148981fb232033";
     src = fetchFromGitHub {
       owner = "piqueserver";
       repo = "piqueserver";
-      rev = "e555d210665c7e384425c15c26615ec4a8e69433";
+      rev = "bc57bfe30f8bf98209cd90e3bd148981fb232033";
       fetchSubmodules = false;
-      sha256 = "sha256-FBHMvKWu7zxj/CmbatqX9Jni3xCW/7L749K+58NaAkk=";
+      sha256 = "sha256-Fz8vMZQG1/CM+Qe8VnwHb7VeU+PlJe9mazuO5PeFzns=";
     };
-    date = "2026.07.08";
+    date = "2026-07-15";
   };
   pyenet = {
     pname = "pyenet";
@@ -212,6 +212,18 @@
       fetchSubmodules = false;
       sha256 = "sha256-/WImgvbyM+xphyUwfkCgUly/lrv8WSQ6rLC54PyCwdE=";
     };
+  };
+  waybar = {
+    pname = "waybar";
+    version = "7f732f055316d3b0ab89f57e4347d24c1cc96167";
+    src = fetchFromGitHub {
+      owner = "Alexays";
+      repo = "waybar";
+      rev = "7f732f055316d3b0ab89f57e4347d24c1cc96167";
+      fetchSubmodules = false;
+      sha256 = "sha256-0CpeSWMuLePAh7wmTb7OUAlmUSlerEWDb4EoFIIFPhs=";
+    };
+    date = "2026-07-16";
   };
   wayland-book = {
     pname = "wayland-book";
