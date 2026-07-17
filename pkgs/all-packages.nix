@@ -109,4 +109,6 @@ with self;
 
   mautrix-telegram = callPackage ./mautrix-telegram.nix {};
 
+  waybar = callPackage ./waybar.nix { inherit super; };
+
 }
