@@ -17,7 +17,7 @@ hl.config({
     },
     resize_on_border = true,
     allow_tearing = false,
-    layout = "dwindle",
+    layout = "scrolling",
   },
   decoration = {
     rounding = 10,
@@ -145,6 +145,7 @@ hl.bind("SUPER + SHIFT + Space", hl.dsp.window.float())
 hl.bind("SUPER + ALT + Space", hl.dsp.window.pin())
 hl.bind("SUPER + D", hl.dsp.exec_cmd("rofi -show combi -run-command 'uwsm-app -- {cmd}'"))
 hl.bind("SUPER + V", hl.dsp.layout("togglesplit"))
+hl.bind("SUPER + W", hl.dsp.layout("colresize +conf"))
 hl.bind("SUPER + G", hl.dsp.group.toggle())
 hl.bind("SUPER + N", hl.dsp.group.next())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
@@ -186,7 +187,7 @@ hl.bind("SUPER + ESCAPE", hl.dsp.workspace.toggle_special("magic"))
 hl.bind("SUPER + SHIFT + ESCAPE", hl.dsp.window.move({ workspace = "special:magic" }))
 
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind("SUPER + mouse:272", hl.dsp.window.resize(), { mouse = true })
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("@wpctl@ set-volume @DEFAULT_AUDIO_SINK@ 5%+"), { repeating = true, locked = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("@wpctl@ set-volume @DEFAULT_AUDIO_SINK@ 5%-"), { repeating = true, locked = true })
