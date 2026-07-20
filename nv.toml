@@ -31,7 +31,6 @@ fetch.tarball = "https://github.com/jgm/pandoc/releases/download/$ver/pandoc-$ve
 [piqueserver]
 src.git = "https://github.com/piqueserver/piqueserver"
 fetch.github = "piqueserver/piqueserver"
-git.date_format = "%Y-%m-%d"
 
 [pyenet]
 src.pypi = "pyenet"

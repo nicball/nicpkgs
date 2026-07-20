@@ -16,7 +16,7 @@ in
 
 buildPythonPackage rec {
   inherit (nv-sources.piqueserver) pname src;
-  version = nv-sources.piqueserver.date;
+  version = "0.1.0";
   dependencies = [
     jinja2 toml pillow aiohttp packaging twisted pyenet
   ] ++ twisted.optional-dependencies.tls;
