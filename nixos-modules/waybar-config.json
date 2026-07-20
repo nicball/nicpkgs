@@ -13,7 +13,7 @@
   // Choose the order of the modules
   "modules-left": ["@wm@/workspaces", "hyprland/submap", "sway/mode"],
   "modules-center": ["@wm@/window"],
-  "modules-right": ["pulseaudio", "backlight", "network", "battery", "clock", "tray"],
+  "modules-right": ["pulseaudio", "network", "battery", "clock", "tray"],
   "sway/mode": {
     "format": "<span style=\"italic\">{}</span>"
   },
