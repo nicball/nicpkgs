@@ -149,6 +149,7 @@ hl.bind("SUPER + W", hl.dsp.layout("colresize +conf"))
 hl.bind("SUPER + G", hl.dsp.group.toggle())
 hl.bind("SUPER + N", hl.dsp.group.next())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
+hl.bind("SUPER + Z", hl.dsp.focus({ last = true })
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("Print", hl.dsp.exec_cmd("@screenshot@"))
 
