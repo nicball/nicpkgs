@@ -306,6 +306,7 @@ in
   services.vaultwarden = {
     enable = true;
     config = {}; # use .env file
+    package = (builtins.getFlake "github:NixOS/nixpkgs/5a15bb6a7a083b78088483c3960ec806a0df1275").legacyPackages.x86_64-linux.vaultwarden;
   };
   systemd.services.vaultwarden.serviceConfig.WorkingDirectory = "/var/lib/vaultwarden";
 
