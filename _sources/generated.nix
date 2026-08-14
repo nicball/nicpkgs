@@ -8,21 +8,21 @@
 {
   armake2 = {
     pname = "armake2";
-    version = "2e66c9243ab08666a5689a5344517b5ddf9f8abe";
+    version = "3cc3362101900ff41504db3e780dd1625634cf94";
     src = fetchFromGitHub {
       owner = "KoffeinFlummi";
       repo = "armake2";
-      rev = "2e66c9243ab08666a5689a5344517b5ddf9f8abe";
+      rev = "3cc3362101900ff41504db3e780dd1625634cf94";
       fetchSubmodules = false;
-      sha256 = "sha256-gLvizbiKWsE2bpGLnSoLbqfm1cQUcnqS4l48GeF/W8k=";
+      sha256 = "sha256-NdJBYvxkQ3yCd5mjwPx4jqEz153fT3B9xglbcJWT02M=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./. + "/sha256-gLvizbiKWsE2bpGLnSoLbqfm1cQUcnqS4l48GeF_W8k=/Cargo.lock";
+      lockFile = ./. + "/sha256-NdJBYvxkQ3yCd5mjwPx4jqEz153fT3B9xglbcJWT02M=/Cargo.lock";
       outputHashes = {
         
       };
     };
-    date = "2021-08-30";
+    date = "2026-07-17";
   };
   kindle-tool = {
     pname = "kindle-tool";
@@ -59,16 +59,16 @@
   };
   mdbook-epub = {
     pname = "mdbook-epub";
-    version = "v0.4.48";
+    version = "v0.5.4";
     src = fetchFromGitHub {
       owner = "Michael-F-Bryan";
       repo = "mdbook-epub";
-      rev = "v0.4.48";
+      rev = "v0.5.4";
       fetchSubmodules = false;
-      sha256 = "sha256-glSsItXPafdium87PbU0Tt/Qniud6xZzqDNeryFF8BQ=";
+      sha256 = "sha256-nAXImr/sRSHcs21X5De3Lt7iTQoVTf18F5VNgzebEUY=";
     };
     cargoLock."Cargo.lock" = {
-      lockFile = ./. + "/sha256-glSsItXPafdium87PbU0Tt_Qniud6xZzqDNeryFF8BQ=/Cargo.lock";
+      lockFile = ./. + "/sha256-nAXImr_sRSHcs21X5De3Lt7iTQoVTf18F5VNgzebEUY=/Cargo.lock";
       outputHashes = {
         
       };
@@ -87,18 +87,18 @@
   };
   pandoc-static-amd64 = {
     pname = "pandoc-static-amd64";
-    version = "3.10";
+    version = "3.10.2";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.10/pandoc-3.10-linux-amd64.tar.gz";
-      sha256 = "sha256-9SY0nBFsUSyxmZjOtsGctgZMKSYPMjkuzjIoaNVYBeM=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.10.2/pandoc-3.10.2-linux-amd64.tar.gz";
+      sha256 = "sha256-qjXV4n/7TISWbDbq0Y+RBG9kvZDUj4JO1ZNvAKKZ0ws=";
     };
   };
   pandoc-static-arm64 = {
     pname = "pandoc-static-arm64";
-    version = "3.10";
+    version = "3.10.2";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.10/pandoc-3.10-linux-arm64.tar.gz";
-      sha256 = "sha256-kB4QAHTHh1pgYsEomnaWcBXTDwn/zzKVx0Dnkf/PtsI=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.10.2/pandoc-3.10.2-linux-arm64.tar.gz";
+      sha256 = "sha256-pWe503rbORYz+YnwUtctBSONwjSFLDYfQHOEA64lzGA=";
     };
   };
   piqueserver = {
@@ -123,13 +123,13 @@
   };
   rescript-language-server = {
     pname = "rescript-language-server";
-    version = "1.72.0";
+    version = "1.74.0";
     src = fetchFromGitHub {
       owner = "rescript-lang";
       repo = "rescript-vscode";
-      rev = "1.72.0";
+      rev = "1.74.0";
       fetchSubmodules = false;
-      sha256 = "sha256-bGCQ/HC6ItQMR0v0wLsF9pNX/Y1sBnp7E+Am0flWhGk=";
+      sha256 = "sha256-NIWCxS6Mar7c7l+pdnm+G4U8KEsUsr9pnNaEuvABcvk=";
     };
   };
   rime-table-bin-decompiler = {
@@ -158,27 +158,27 @@
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "afdc77bab886d4455c11247cdd32391bfab636ae";
+    version = "6a5392a7d2e429766a9e128d3bebcd981514f29e";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "afdc77bab886d4455c11247cdd32391bfab636ae";
+      rev = "6a5392a7d2e429766a9e128d3bebcd981514f29e";
       fetchSubmodules = false;
-      sha256 = "sha256-0bIZ34SnD83xmp4YtqcQpGbTGLoQkgHrswAIZylgc90=";
+      sha256 = "sha256-yVH1qTl3v08b8RqMbld7EFGIRX9SIKUBPCslNjUn2/U=";
     };
-    date = "2026-07-09";
+    date = "2026-08-11";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
-    version = "f635361c8e3d927208afd6097d4fc5f30e703b43";
+    version = "9690d9d93c14611676477f7943f24cc38e2fad39";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rfcs";
-      rev = "f635361c8e3d927208afd6097d4fc5f30e703b43";
+      rev = "9690d9d93c14611676477f7943f24cc38e2fad39";
       fetchSubmodules = false;
-      sha256 = "sha256-4zCsOqrduDA1tfS5QKI5DrAOwXfgpCbODaOjOOf97GA=";
+      sha256 = "sha256-/xADzqz/UmmBWvoEPWI6cLeKIe762iid7ev48jPVi90=";
     };
-    date = "2026-07-08";
+    date = "2026-08-10";
   };
   torrent-file-editor = {
     pname = "torrent-file-editor";
@@ -215,29 +215,29 @@
   };
   waybar = {
     pname = "waybar";
-    version = "7f732f055316d3b0ab89f57e4347d24c1cc96167";
+    version = "6c3bd01bae35f2ba46cc3b25f95a028861112295";
     src = fetchFromGitHub {
       owner = "Alexays";
       repo = "waybar";
-      rev = "7f732f055316d3b0ab89f57e4347d24c1cc96167";
+      rev = "6c3bd01bae35f2ba46cc3b25f95a028861112295";
       fetchSubmodules = false;
-      sha256 = "sha256-0CpeSWMuLePAh7wmTb7OUAlmUSlerEWDb4EoFIIFPhs=";
+      sha256 = "sha256-uFfKkAbLn4AgX0uZWlYNUxRUOdRp0x4WKXiOvQqhyy4=";
     };
-    date = "2026-07-16";
+    date = "2026-08-13";
   };
   wayland-book = {
     pname = "wayland-book";
-    version = "bec46606567adb6fd11ddf7e01878ac8155d9cf1";
+    version = "7d431b34e8ce946ae7f5b17889e891de98e8305a";
     src = fetchgit {
       url = "https://git.sr.ht/~sircmpwn/wayland-book";
-      rev = "bec46606567adb6fd11ddf7e01878ac8155d9cf1";
+      rev = "7d431b34e8ce946ae7f5b17889e891de98e8305a";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
       sparseCheckout = [ ];
-      sha256 = "sha256-O1DvCvzxkzjtoYykcpltNVuXyJZvD/JAppfez8hY7D0=";
+      sha256 = "sha256-5R6muR1Ajm9YHjKNsmV7Q9R4mbG4Y5mGafbDsgUYJVw=";
     };
-    date = "2024-02-08";
+    date = "2026-08-03";
   };
   wiwikwlh = {
     pname = "wiwikwlh";
