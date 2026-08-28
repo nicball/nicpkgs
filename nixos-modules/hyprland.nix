@@ -9,7 +9,7 @@ let
     user.services = builtins.listToAttrs (lib.forEach packages (name: lib.nameValuePair name ({
       wantedBy = [ "graphical-session.target" ];
     } // lib.optionalAttrs (name == "hypridle") {
-      serviceConfig.ExecStart = "${pkgs.hypridle}/bin/hypridle --quiet";
+      serviceConfig.ExecStart = [ "" "${pkgs.hypridle}/bin/hypridle --quiet" ];
     })));
   };
 

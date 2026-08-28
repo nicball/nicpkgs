@@ -122,7 +122,7 @@ hl.window_rule({ workspace = "5 silent", match = { class = "^vlc$" } })
 hl.window_rule({ workspace = "5 silent", match = { class = "^mpv$" } })
 
 hl.window_rule({ workspace = "3 silent", match = { class = "^QQ$" } })
-hl.window_rule({ workspace = "3 silent", match = { class = "^Element$" } })
+hl.window_rule({ workspace = "3 silent", match = { class = "^element$" } })
 hl.window_rule({ workspace = "3 silent", match = { class = "^org\\.telegram\\.desktop$" } })
 
 hl.workspace_rule({ workspace = "1", default_name = "dev" })
@@ -149,7 +149,7 @@ hl.bind("SUPER + W", hl.dsp.layout("colresize +conf"))
 hl.bind("SUPER + G", hl.dsp.group.toggle())
 hl.bind("SUPER + N", hl.dsp.group.next())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
-hl.bind("SUPER + Z", hl.dsp.focus({ last = true })
+hl.bind("SUPER + Z", hl.dsp.focus({ last = true }))
 hl.bind("SUPER + ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("Print", hl.dsp.exec_cmd("@screenshot@"))
 
