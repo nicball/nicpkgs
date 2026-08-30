@@ -151,26 +151,14 @@ in
       {
         skip_install_trust
       }
-      flake.run, :80 {
+      flake.run:80, :80 {
         reverse_proxy /jsonrpc http://localhost:6800
         file_server * browse {
           root /srv/www
           hide .*
         }
       }
-      m.flake.run {
-        reverse_proxy http://localhost:8008
-      }
-      instaepub.flake.run {
-        reverse_proxy http://localhost:8086
-      }
-      bw.flake.run {
-        reverse_proxy http://localhost:8000
-      }
-      owncast.flake.run {
-        reverse_proxy http://localhost:8082
-      }
-      ping.flake.run {
+      ping.flake.run:80 {
         header {
           Cache-Control no-store
         }
@@ -210,9 +198,18 @@ in
   #   Install.WantedBy = [ "default.target" ];
   # };
 
-  nic.cloudflare-ddns = {
-    enable = true;
-  } // import ./private/cloudflare-ddns.nix;
+  # nic.cloudflare-ddns = {
+  #   enable = true;
+  # } // import ./private/cloudflare-ddns.nix;
+
+  networking.dhcpcd.runHook = let cfg = import ./private/cloudflare-ddns.nix; in ''
+    if [[ $reason = ROUTERADVERT ]]; then
+      CF_AUTH_TOKEN=${cfg.auth-token} \
+      CF_ZONE=${cfg.zone-name} \
+      CF_RECORD=${cfg.record-name} \
+      ${pkgs.cloudflare-ddns}/bin/cloudflare-ddns
+    fi 2>&1 | ${pkgs.util-linux}/bin/logger
+  '';
 
   systemd.services.aria2d =
     let
@@ -310,8 +307,18 @@ in
   };
   systemd.services.vaultwarden.serviceConfig.WorkingDirectory = "/var/lib/vaultwarden";
 
+  services.ntfy-sh = {
+    enable = true;
+    settings = {
+      base-url = "https://ntfy.flake.run";
+      listen-http = ":8087";
+      log-level = "warning";
+    };
+  };
+
   networking.firewall = {
-    allowedTCPPorts = [ 80 443 1935 25565 5900 5901 9090 7890 ];
+    allowedTCPPorts = [ 80 443 1935 25565 5900 5901 9090 7890 5123 ];
+    allowedUDPPorts = [ 5123 ];
     allowedUDPPortRanges = [ { from = 6881; to = 6999; } ];
     allowedTCPPortRanges = [ { from = 6881; to = 6999; } ];
   };
