@@ -10,10 +10,6 @@ add-highlighter global/ show-matching
 # }
 # hook global BufCreate .* expandtab
 
-# use tab to indent line
-map global insert <tab> '<a-;><a-gt>'
-map global insert <s-tab> '<a-;><a-lt>'
-
 # use tab when completions are shown. revert to normal tab otherwise.
 hook global InsertCompletionShow .* %{
   try %{
@@ -70,7 +66,7 @@ hook -group lsp-filetype-c global BufSetOption filetype=(c|cpp) %{
 hook -group lsp-filetype-racket global BufSetOption filetype=racket %{
   set-option buffer lsp_servers %{
     [racket]
-    root_globs = [ ".git" "info.rkt" ]
+    root_globs = [ ".git", "info.rkt" ]
     args = [ "-l", "racket-langserver" ]
   }
 }
