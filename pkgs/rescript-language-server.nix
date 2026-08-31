@@ -27,7 +27,7 @@ buildNpmPackage rec {
   pname = "rescript-language-server";
   inherit version src;
   sourceRoot = "${src.name}/server";
-  npmDepsHash = "sha256-ossX/zc9/gQgHmdB6sQzG/w1zYFbskAFCkzCberbNf8=";
+  npmDepsHash = "sha256-Qsq0jCxdNdlpEiGzuB/JcTEfZ6DJ7bIbHv65JozjW70=";
   postPatch = ''
     cp -r ${analysis}/bin analysis_binaries/linux
   '';
