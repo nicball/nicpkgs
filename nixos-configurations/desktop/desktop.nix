@@ -6,35 +6,33 @@
   ];
 
   # KDE
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-  # services.displayManager.defaultSession = "plasma";
-  # services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.plasma-login-manager.enable = true;
 
-  nic.window-managers = {
-    enable = true;
-    # niri.enable = true;
-    # sway = {
-    #   enable = true;
-    #   use-swayfx = true;
-    # };
-    hyprland.enable = true;
-    scaling = {
-      enable = true;
-      factor = 1.5;
-    };
-    cursor-size = 32;
-    wallpaper.enable = true;
-    browser = "firefox";
-  };
-  nic.waybar.enable = true;
-  nic.greetd = {
-    enable = true;
-    auto-login = {
-      enable = true;
-      user = "nicball";
-    };
-  };
+  # nic.window-managers = {
+  #   enable = true;
+  #   # niri.enable = true;
+  #   # sway = {
+  #   #   enable = true;
+  #   #   use-swayfx = true;
+  #   # };
+  #   hyprland.enable = true;
+  #   scaling = {
+  #     enable = true;
+  #     factor = 1.5;
+  #   };
+  #   cursor-size = 32;
+  #   wallpaper.enable = true;
+  #   browser = "firefox";
+  # };
+  # nic.waybar.enable = true;
+  # nic.greetd = {
+  #   enable = true;
+  #   auto-login = {
+  #     enable = true;
+  #     user = "nicball";
+  #   };
+  # };
 
   programs.ssh.setXAuthLocation = true;
 
@@ -89,12 +87,13 @@
     font-awesome_5
     mononoki
     julia-mono
+    noto-fonts noto-fonts-cjk-sans noto-fonts-cjk-serif
   ];
   # Prefer Simplified Chinese Fonts
   fonts.fontconfig.defaultFonts = {
-    serif = [ "DejaVu Serif" "Source Han Serif SC" ];
-    sansSerif = [ "DejaVu Sans" "Source Han Sans SC" ];
-    monospace = [ "Monaco" "DejaVu Sans Mono" "Source Han Sans SC" ];
+    serif = [ "Noto Serif CJK SC" "DejaVu Serif" ];
+    sansSerif = [ "Noto Sans CJK SC" "DejaVu Sans" ];
+    monospace = [ "DejaVu Sans Mono" "Noto Sans Mono" ];
   };
   # Monaco
   # fonts.fontconfig.localConf = ''
