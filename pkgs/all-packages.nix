@@ -40,6 +40,8 @@ with self;
 
   rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
 
+  lean-doc = callPackage ./lean-doc.nix {};
+
   helix-doc = callPackage ./helix-doc {};
 
   alchitry-lab = callPackage ./alchitry-lab.nix {};
