@@ -19,6 +19,7 @@
         bind ctrl-left backward-token
         bind ctrl-right forward-token
         bind ctrl-backspace backward-kill-token
+        bind ctrl-h backward-kill-token
         bind ctrl-delete kill-token
         bind ctrl-alt-h backward-kill-word
       '';
