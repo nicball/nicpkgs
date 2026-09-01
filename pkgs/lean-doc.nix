@@ -20,5 +20,6 @@ stdenv.mkDerivation {
     mv out/* $out/
     runHook postInstall
   '';
+  meta.broken = true;
 }
 
