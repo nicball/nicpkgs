@@ -31,9 +31,11 @@ buildNpmPackage rec {
   postPatch = ''
     cp -r ${analysis}/bin analysis_binaries/linux
   '';
+  nativeBuildInputs = [ esbuild ];
   buildPhase = ''
-    runHook preBuild
-    ${esbuild}/bin/esbuild src/cli.ts --bundle --sourcemap --outfile=out/cli.js --format=cjs --platform=node --loader:.node=file --minify
-    runHook postBuild
+    cd ..
+    npm run bundle-server
+    cd -
   '';
+  meta.broken = true;
 }
