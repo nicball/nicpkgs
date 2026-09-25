@@ -111,4 +111,6 @@ with self;
 
   waybar = callPackage ./waybar.nix { inherit super; };
 
+  pi-skills = lib.recurseIntoAttrs (callPackage ./pi-skills {});
+
 }
