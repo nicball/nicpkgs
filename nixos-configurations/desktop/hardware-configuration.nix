@@ -10,22 +10,28 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-partuuid/2e84534f-1ef1-49ad-9730-3c4f30c3bd0d";
-      fsType = "btrfs";
-      options = [ "subvol=rootfs" "compress=zstd:8" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-partuuid/2e84534f-1ef1-49ad-9730-3c4f30c3bd0d";
+    fsType = "btrfs";
+    options = [ "subvol=rootfs" "compress=zstd:8" ];
+  };
 
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-partuuid/2e84534f-1ef1-49ad-9730-3c4f30c3bd0d";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd:8" "noatime" ];
-    };
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-partuuid/2e84534f-1ef1-49ad-9730-3c4f30c3bd0d";
+    fsType = "btrfs";
+    options = [ "subvol=nix" "compress=zstd:8" "noatime" ];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-partuuid/39967025-068f-405f-b7b3-bdba56a1f834";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-partuuid/39967025-068f-405f-b7b3-bdba56a1f834";
+    fsType = "vfat";
+  };
+
+  fileSystems."/home/nicball/wine" = {
+    device = "/dev/disk/by-partuuid/3a468496-3ab2-46bf-b424-17b91f286a63";
+    fsType = "btrfs";
+    options = [ "subvol=wine" ];
+  };
 
   zramSwap = {
     enable = true;

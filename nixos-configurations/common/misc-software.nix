@@ -61,6 +61,7 @@
       man-pages man-pages-posix
       gcc gdb jdk gnumake racket
       git-crypt
+      pi-coding-agent
       # (agda.withPackages (p: [ p.standard-library ]))
 
       # i3
@@ -83,7 +84,13 @@
     ];
 
   # Docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.daemon.settings = { registry-mirrors = [ "https://docker.mirrors.ustc.edu.cn/" ]; };
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.daemon.settings = { registry-mirrors = [ "https://docker.mirrors.ustc.edu.cn/" ]; };
+  virtualisation.podman = {                                                                                                                                         
+    enable = true;                                                                                                                                                  
+    dockerCompat = true;
+    dockerSocket.enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
 
 }
