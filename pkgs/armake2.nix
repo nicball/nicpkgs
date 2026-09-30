@@ -1,6 +1,6 @@
 { nv-sources
 , rustPlatform
-, openssl_1_1
+, openssl
 , pkg-config
 }:
 
@@ -10,6 +10,6 @@ rustPlatform.buildRustPackage rec {
   inherit (nv) pname src;
   version = "unstable-${nv.date}";
   cargoLock = nv.cargoLock."Cargo.lock";
-  buildInputs = [ openssl_1_1 ];
+  buildInputs = [ openssl ];
   nativeBuildInputs = [ pkg-config ];
 }
