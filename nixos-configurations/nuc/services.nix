@@ -316,6 +316,18 @@ in
     };
   };
 
+  services.miniflux = {
+    enable = true;
+    adminCredentialsFile = ./private/miniflux-admin.env;
+    config = {
+      LISTEN_ADDR = ":8088";
+      BASE_URL = "https://rss.flake.run";
+      LOG_LEVEL = "warning";
+      FETCHER_ALLOW_PRIVATE_NETWORKS = "1";
+    };
+  };
+  systemd.services.miniflux.environment = config.networking.proxy.envVars;
+
   networking.firewall = {
     allowedTCPPorts = [ 80 443 1935 25565 5900 5901 9090 7890 5123 ];
     allowedUDPPorts = [ 5123 ];
