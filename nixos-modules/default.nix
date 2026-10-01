@@ -25,7 +25,7 @@
   options.nic = {
     set-nix-path = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
     };
     cachix = lib.mkOption {
       type = lib.types.bool;
@@ -35,7 +35,7 @@
 
   config = lib.mkMerge [
     (lib.mkIf config.nic.set-nix-path {
-      nix.nixPath = [ "nixpkgs=flake:nixpkgs" ];
+      nix.settings.nix-path = [ "nixpkgs=flake:nixpkgs" ];
       nixpkgs.flake = {
         setFlakeRegistry = false;
         setNixPath = false;
