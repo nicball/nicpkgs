@@ -113,4 +113,6 @@ with self;
 
   pi-skills = lib.recurseIntoAttrs (callPackage ./pi-skills {});
 
+  qq = callPackage ./qq.nix { inherit super; };
+
 }
