@@ -8,7 +8,7 @@ let cfg = config.nic.intel; in
   };
 
   config = lib.mkIf cfg.gpu.enable {
-    hardware.graphics.extraPackages = with pkgs; [ intel-media-driver intel-compute-runtime-legacy1 ];
+    hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ];
     environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
     environment.systemPackages = with pkgs; [ intel-gpu-tools ];
   };
