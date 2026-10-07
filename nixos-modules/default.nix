@@ -6,17 +6,10 @@
   imports = [
     (import ./overlay.nix { inherit overlay; })
     ./window-managers.nix
-    ./waybar.nix
     ./greetd.nix
-    ./kitty.nix
-    ./dunst.nix
-    ./rofi.nix
-    ./kakoune.nix
     ./backlight.nix
     ./hexcore-link.nix
     ./cloudflare-ddns.nix
-    ./instaepub.nix
-    ./fish.nix
     ./clash.nix
     ./amd.nix
     ./intel.nix

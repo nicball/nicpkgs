@@ -70,13 +70,11 @@ let cfg = config.nic.window-managers; in
           (lib.mkDerivedConfig options.nic.window-managers.x-resources.text (pkgs.writeText ".Xresources"));
 
         environment.systemPackages = with pkgs; [
-          pavucontrol swaylock
+          pavucontrol swaylock rofi dunst
           swayimg adwaita-icon-theme nautilus glib
         ];
 
         nic.backlight.enable = true;
-
-        nic.rofi.enable = true;
 
         environment.variables = {
           XCURSOR_THEME = cfg.cursor-theme;

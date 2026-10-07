@@ -20,7 +20,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   # Fish shell
-  nic.fish.enable = true;
+  programs.fish.enable = true;
 
   # Zsh
   # programs.zsh = {
@@ -35,9 +35,6 @@
 
   # Man pages for devs
   documentation.dev.enable = true;
-
-  # Kakoune
-  nic.kakoune.enable = true;
 
   # Git
   programs.git = {
@@ -62,6 +59,7 @@
       gcc gdb jdk gnumake racket
       git-crypt
       pi-coding-agent
+      kakoune
       # (agda.withPackages (p: [ p.standard-library ]))
 
       # i3
@@ -82,6 +80,10 @@
       # documents
       graphviz pandoc # texlive.combined.scheme-full
     ];
+
+  environment.variables = {
+    EDITOR = "kak";
+  };
 
   # Docker
   # virtualisation.docker.enable = true;

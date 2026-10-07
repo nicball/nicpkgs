@@ -24,7 +24,7 @@ in
 
   config = lib.mkIf cfg.enable {
     nic.greetd.auto-login.start-command = "uwsm start hyprland-uwsm.desktop";
-    nic.waybar.wm = "hyprland";
+    programs.waybar.package = pkgs.waybar.override { window-manager = "hyprland"; };
     programs.hyprland = {
       enable = true;
       withUWSM = true;
@@ -52,7 +52,7 @@ in
         '';
       };
       "xdg/hypr/hyprlock.conf".text = with config.nic.window-managers; ''
-        $font = monospace
+        $font = sans-serif
         animations {
             enabled = true
             bezier = linear, 1, 1, 0, 0

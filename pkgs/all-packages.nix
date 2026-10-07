@@ -4,7 +4,7 @@ with self;
 
 {
 
-  nicpkgs-scaling = 1.5;
+  nicpkgs-scaling = 1;
 
   nv-sources = callPackage ../_sources/generated.nix {};
 
@@ -27,8 +27,6 @@ with self;
   lilypondbot = callPackage ./lilypondbot {};
 
   kindle-tool = callPackage ./kindle-tool.nix {};
-
-  instaepub = callPackage ./instaepub {};
 
   screenshot = callPackage ./screenshot {};
 
@@ -109,10 +107,20 @@ with self;
 
   mautrix-telegram = callPackage ./mautrix-telegram.nix {};
 
-  waybar = callPackage ./waybar.nix { inherit super; };
+  waybar = callPackage ./waybar { inherit super; };
 
   pi-skills = lib.recurseIntoAttrs (callPackage ./pi-skills {});
 
   qq = callPackage ./qq.nix { inherit super; };
+
+  kitty = callPackage ./kitty { inherit super; };
+
+  dunst = callPackage ./dunst { inherit super; };
+
+  fish = callPackage ./fish.nix { inherit super; };
+
+  kakoune = callPackage ./kakoune { inherit super; };
+
+  rofi = callPackage ./rofi { inherit super; };
 
 }

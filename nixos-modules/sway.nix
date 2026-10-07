@@ -29,7 +29,7 @@ in
       extraPackages = [];
     };
     xdg.portal.wlr.enable = true;
-    nic.waybar.wm = "sway";
+    programs.waybar.package = pkgs.waybar.override { window-manager = "sway"; };
     environment.etc."sway/config".source = with config.nic.window-managers; pkgs.replaceVars ./sway-config {
       setWallpaper = lib.optionalString wallpaper.enable ''background ${wallpaper.source} fill'';
       sourceXrdb = lib.optionalString x-resources.enable ''exec_always "${pkgs.xrdb}/bin/xrdb ${x-resources.source}"'';
