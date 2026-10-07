@@ -32,4 +32,4 @@ jobs:
         useDaemon: false
         skipPush: true
     - run: |
-        nix run .#push-to-cachix https://nicpkgs.cachix.org nicpkgs
+        nix run .#push-to-cachix nicpkgs

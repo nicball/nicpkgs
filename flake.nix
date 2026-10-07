@@ -87,18 +87,20 @@
               name = "push-to-cachix";
               runtimeInputs = with pkgs; [ jq nix ];
               text = ''
-                bincache=''${1:?"Please tell me which binary cache to check."}
-                cachixname=''${2:?"Please tell me which cachix to push to."}
+                cachix=''${1:?"Please tell me which cachix to push to."}
                 for name in ${nameList}; do
-                  echo -n "Checking $name... "
-                  path=$(nix path-info --json .#"$name"^out 2>/dev/null | jq -r 'keys[]')
-                  if nix path-info "$path" --store "$bincache" >/dev/null 2>&1; then
-                    echo "already exists. Skipping..."
-                  else
-                    echo "missed. Building..."
-                    nix build .#"$name"
-                    nix path-info --recursive "$path" | cachix push "$cachixname"
-                  fi
+                  outputs=$(nix eval --json .#"$name".outputs 2>/dev/null | jq -r '.[]')
+                  for out in $outputs; do
+                    echo -n "Checking $name^$out... "
+                    path=$(nix path-info --json .#"$name"^"$out" 2>/dev/null | jq -r 'keys[]')
+                    if nix path-info "$path" --store "https://$cachix.cachix.org" >/dev/null 2>&1; then
+                      echo "already exists. Skipping..."
+                    else
+                      echo "missed. Building..."
+                      nix build .#"$name"^"$out"
+                      nix path-info --recursive "$path" | cachix push "$cachix"
+                    fi
+                  done
                 done
               '';
             };
