@@ -22,6 +22,12 @@
   };
 
   config = lib.mkMerge [
+    ({
+      nix.settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+        auto-optimise-store = true;
+      };
+    })
     (lib.mkIf config.nic.cachix {
       nix.settings = {
         substituters = [ "https://nicpkgs.cachix.org" ];
