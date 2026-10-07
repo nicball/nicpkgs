@@ -9,17 +9,12 @@
     ./greetd.nix
     ./backlight.nix
     ./hexcore-link.nix
-    ./cloudflare-ddns.nix
     ./clash.nix
     ./amd.nix
     ./intel.nix
   ];
 
   options.nic = {
-    set-nix-path = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
     cachix = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -27,13 +22,6 @@
   };
 
   config = lib.mkMerge [
-    (lib.mkIf config.nic.set-nix-path {
-      nix.settings.nix-path = [ "nixpkgs=flake:nixpkgs" ];
-      nixpkgs.flake = {
-        setFlakeRegistry = false;
-        setNixPath = false;
-      };
-    })
     (lib.mkIf config.nic.cachix {
       nix.settings = {
         substituters = [ "https://nicpkgs.cachix.org" ];
