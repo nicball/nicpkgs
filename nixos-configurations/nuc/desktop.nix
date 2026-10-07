@@ -8,22 +8,16 @@
   nic.window-managers = {
     enable = true;
     hyprland.enable = true;
-    scaling = {
-      enable = true;
-      factor = 1.5;
-      cursor.enable = true;
-    };
+    # scaling = {
+    #   enable = true;
+    #   factor = 1.5;
+    #   cursor.enable = true;
+    # };
     wallpaper.enable = true;
     browser = "firefox";
   };
-  nic.waybar.enable = true;
+  programs.waybar.enable = true;
   nic.greetd.enable = true;
-
-  # Kitty
-  nic.kitty.enable = true;
-
-  # Notifications
-  nic.dunst.enable = true;
 
   # Streaming
   # services.sunshine = {
@@ -110,6 +104,7 @@
     # zen-browser
     firefox
     wl-clipboard
+    kitty
 
     ## Multimedia
     # mpv obs-studio # tigervnc

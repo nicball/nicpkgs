@@ -36,12 +36,6 @@
 
   programs.ssh.setXAuthLocation = true;
 
-  # Kitty
-  nic.kitty.enable = true;
-
-  # Notifications
-  nic.dunst.enable = true;
-
   # Steam
   programs.steam = {
     enable = true;
@@ -90,10 +84,39 @@
     noto-fonts noto-fonts-cjk-sans noto-fonts-cjk-serif
   ];
   # Prefer Simplified Chinese Fonts
-  fonts.fontconfig.defaultFonts = {
-    serif = [ "Noto Serif CJK SC" "DejaVu Serif" ];
-    sansSerif = [ "Noto Sans CJK SC" "DejaVu Sans" ];
-    monospace = [ "DejaVu Sans Mono" "Noto Sans Mono" ];
+  fonts.fontconfig = {
+    defaultFonts = {
+      serif = [ "Noto Serif CJK SC" "DejaVu Serif" ];
+      sansSerif = [ "Noto Sans CJK SC" "DejaVu Sans" ];
+      monospace = [ "DejaVu Sans Mono" "Noto Sans Mono" "Noto Sans CJK SC" ];
+    };
+    localConf = ''
+      <?xml version='1.0'?>
+      <!DOCTYPE fontconfig SYSTEM 'urn:fontconfig:fonts.dtd'>
+      <fontconfig>
+        <alias>
+          <family>Noto Sans</family>
+          <prefer>
+            <family>Noto Sans</family>
+            <family>Noto Sans CJK SC</family>
+          </prefer>
+        </alias>
+        <alias>
+          <family>system-ui</family>
+          <prefer>
+            <family>Noto Sans</family>
+            <family>Noto Sans CJK SC</family>
+          </prefer>
+        </alias>
+        <alias>
+          <family>Noto Serif</family>
+          <prefer>
+            <family>Noto Serif</family>
+            <family>Noto Serif CJK SC</family>
+          </prefer>
+        </alias>
+      </fontconfig>
+    '';
   };
   # Monaco
   # fonts.fontconfig.localConf = ''
@@ -121,6 +144,7 @@
     wl-clipboard
     google-chrome
     localsend
+    kitty
 
     # Social
     telegram-desktop

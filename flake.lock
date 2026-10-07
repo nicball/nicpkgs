@@ -25,11 +25,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789716636,
-        "narHash": "sha256-OUWWpLFQJClJ9YBi38+qunQehDGeZENZyiOHb3N0h2o=",
+        "lastModified": 1790999291,
+        "narHash": "sha256-3ZXSfVOlM4WH9hiKOAsyK/0dqvLD6urtCpz9pymFTUY=",
         "owner": "nicball",
         "repo": "instaepub",
-        "rev": "30617569db133f03e675c32188e62d9703da050b",
+        "rev": "036198397bb1da765fb745a862ba24e41fb3f36f",
         "type": "github"
       },
       "original": {

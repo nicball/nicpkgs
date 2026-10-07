@@ -58,6 +58,13 @@ in
 {
   # imports = [ ./factorio.nix ];
 
+  systemd.services.owncast = make-service {
+    description = "owncast streaming website";
+    dir = "owncast";
+    after = [ "network.target" ];
+    serviceConfig.ExecStart = "${pkgs.owncast}/bin/owncast -webserverport 8082";
+  };
+
   services.openssh = {
     enable = true;
     settings = {
@@ -328,8 +335,21 @@ in
   };
   systemd.services.miniflux.environment = config.networking.proxy.envVars;
 
+  services.bitmagnet = {
+    enable = true;
+    settings = {
+      processor.concurrency = 4;
+      log.level = "warning";
+      http_server.local_address = ":8888";
+      dht_server.port = 6799;
+      tmdb.api_key = import ./private/tmdb-key.nix;
+    };
+    openFirewall = true;
+  };
+  systemd.services.bitmagnet.environment = config.networking.proxy.envVars;
+
   networking.firewall = {
-    allowedTCPPorts = [ 80 443 1935 25565 5900 5901 9090 7890 5123 ];
+    allowedTCPPorts = [ 80 443 1935 25565 5900 5901 9090 7890 5123 8888 ];
     allowedUDPPorts = [ 5123 ];
     allowedUDPPortRanges = [ { from = 6881; to = 6999; } ];
     allowedTCPPortRanges = [ { from = 6881; to = 6999; } ];
