@@ -5,22 +5,23 @@ let cfg = config.nic.clash; in
 {
   options.nic.clash = {
     enable = lib.mkEnableOption "clash";
-    config.source = lib.mkOption {
+    config-path = lib.mkOption {
       type = lib.types.path;
     };
   };
 
   config = lib.mkIf cfg.enable {
     systemd.services.clash = {
-      description = "Clash Daemon";
+      description = "Clash Proxy Server";
       wantedBy = [ "multi-user.target" ];
       after = [ "network-online.target" ];
       requires = [ "network-online.target" ];
       serviceConfig = {
-        ExecStart = "${pkgs.clash-meta}/bin/clash-meta -f ${cfg.config.source} -d /var/lib/clash";
+        ExecStart = "${pkgs.clash-meta}/bin/clash-meta -f \${CREDENTIALS_DIRECTORY}/clash.yaml -d /var/lib/clash";
         StateDirectory = "clash";
         WorkingDirectory = "/var/lib/clash";
         DynamicUser = true;
+        LoadCredential = "clash.yaml:${cfg.config-path}";
         LockPersonality = true;
         MemoryDenyWriteExecute = true;
         NoNewPrivileges = true;

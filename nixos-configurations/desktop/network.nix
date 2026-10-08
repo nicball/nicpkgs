@@ -1,11 +1,12 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   networking.hostName = "nixos-desktop";
 
+  age.secrets."clash.yaml".file = ./clash.yaml.age;
   nic.clash = {
     enable = true;
-    config.source = ./private/clash.yaml;
+    config-path = config.age.secrets."clash.yaml".path;
   };
 
   networking.firewall.allowedTCPPorts = [

@@ -5,6 +5,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
   modules = [
     nicpkgs.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
+    inputs.agenix.nixosModules.default
     ../common.nix
     ./hardware-configuration.nix
     ./amd.nix
@@ -12,5 +13,6 @@ inputs.nixpkgs.lib.nixosSystem rec {
     ./network.nix
     ./brightness.nix
     # ./osx.nix
+    ({ ... }: { age.identityPaths = [ "/home/nicball/.ssh/id_ed25519" ]; })
   ];
 }

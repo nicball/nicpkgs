@@ -1,2 +1,1 @@
 **/private/** filter=git-crypt diff=git-crypt
-/nixos-configurations/common/passwords.nix filter=git-crypt diff=git-crypt
