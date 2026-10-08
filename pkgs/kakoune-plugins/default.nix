@@ -1,4 +1,4 @@
-{ lib, runCommand, wrapDerivationOutput, callPackage, super }:
+{ lib, runCommand, callPackage, super }:
 
 let
 

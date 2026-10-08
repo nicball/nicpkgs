@@ -1,12 +1,17 @@
 { config, pkgs, lib, ... }:
 
 {
+  age.secrets."factorio-settings.json" = {
+    file = ./secrets/factorio-settings.json.age;
+    owner = "factorio";
+    group = "factorio";
+  };
   services.factorio = {
     enable = true;
     admins = [ "nicball" ];
     description = "Nicball's Factorio Server";
     game-name = "MidyMidyFactorio";
-    game-password = import ./private/factorio-password.nix;
+    extraSettingsFile = config.age.secrets."factorio-settings.json".path;
     saveName = "server";
     lan = true;
     openFirewall = true;
@@ -42,6 +47,7 @@
     });
   };
 
+  age.secrets."factorio-bot.env".file = ./secrets/factorio-bot.env.age;
   systemd.services.factorio-bot = {
     enable = false;
     description = "Factorio Matrix Bridge";
@@ -49,10 +55,12 @@
     requires = [ "factorio.service" ];
     partOf = [ "factorio.service" ];
     wantedBy = [ "factorio.service" ];
-    environment = config.networking.proxy.envVars // import ./private/factorio-bot-env.nix;
+    environment = config.networking.proxy.envVars;
     serviceConfig = {
       ExecStart = "${pkgs.factorio-bot}/bin/midymidy-factorio-webservice";
       Restart = "always";
+      LoadCredential = "env:${age.secrets."factorio-bot.env".path}";
+      EnvironmentFile = "\${CREDENTIALS_DIRECTORY}/env";
     };
   };
 }

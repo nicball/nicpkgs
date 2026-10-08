@@ -30,7 +30,7 @@ with self;
 
   screenshot = callPackage ./screenshot {};
 
-  aria2 = callPackage ./aria2 { inherit super; };
+  aria2 = callPackage ./aria2.nix { inherit super; };
 
   cloudflare-ddns = callPackage ./cloudflare-ddns {};
 
@@ -67,15 +67,6 @@ with self;
   wiwikwlh = callPackage ./wiwikwlh.nix {};
 
   transfersh = callPackage ./transfersh.nix {};
-
-  inherit (callPackages ./wrap-derivation-output.nix { inherit self; })
-    modifyDerivationOutput
-    wrapDerivationOutput;
-
-  torchvisionWithRocm = let p = python3Packages; in p.torchvision.override { torch = p.torchWithRocm; } // {
-    meta.platforms = lib.platforms.x86;
-    meta.broken = true;
-  };
 
   rust-rfcs = callPackage ./rust-rfcs.nix {};
 

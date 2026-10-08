@@ -5,6 +5,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
   modules = [
     nicpkgs.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
+    inputs.agenix.nixosModules.default
     ({ ... }: { nixpkgs.overlays = [ (_: _: { instaepub = inputs.instaepub.packages.x86_64-linux.instaepub;  }) ]; })
     ./hardware-configuration.nix
     ./desktop.nix

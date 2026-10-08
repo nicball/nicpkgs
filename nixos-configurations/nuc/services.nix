@@ -73,9 +73,10 @@ in
     };
   };
 
+  age.secrets."clash.yaml".file = ./secrets/clash.yaml.age;
   nic.clash = {
     enable = true;
-    config.source = ./private/clash.yaml;
+    config-path = config.age.secrets."clash.yaml".path;
   };
 
   users.users.nicball.extraGroups = [ "www" ];
@@ -146,11 +147,15 @@ in
   #   Install.WantedBy = [ "default.target" ];
   # };
 
+  age.secrets.cloudflared.file = ./secrets/cloudflared.age;
   systemd.services.cloudflared = make-service {
     description = "Cloudflare Argo Tunnel";
     dir = "cloudflared";
     after = [ "network.target" ];
-    serviceConfig.ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token ${import ./private/cloudflared-token.nix}";
+    serviceConfig = {
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token-file \${CREDENTIALS_DIRECTORY}/token";
+      LoadCredential = "token:${config.age.secrets.cloudflared.path}";
+    };
   };
 
   systemd.services.caddy =
@@ -205,59 +210,52 @@ in
   #   Install.WantedBy = [ "default.target" ];
   # };
 
-  # nic.cloudflare-ddns = {
-  #   enable = true;
-  # } // import ./private/cloudflare-ddns.nix;
-
-  networking.dhcpcd.runHook = let cfg = import ./private/cloudflare-ddns.nix; in ''
+  age.secrets.cloudflare-ddns = {
+    file = ./secrets/cloudflare-ddns.age;
+    owner = "dhcpcd";
+    group = "dhcpcd";
+  };
+  networking.dhcpcd.runHook = ''
     if [[ $reason = ROUTERADVERT ]]; then
-      CF_AUTH_TOKEN=${cfg.auth-token} \
-      CF_ZONE=${cfg.zone-name} \
-      CF_RECORD=${cfg.record-name} \
-      ${pkgs.cloudflare-ddns}/bin/cloudflare-ddns
+      env $(xargs < ${config.age.secrets.cloudflare-ddns.path}) ${pkgs.cloudflare-ddns}/bin/cloudflare-ddns
     fi 2>&1 | ${pkgs.util-linux}/bin/logger
   '';
 
-  systemd.services.aria2d =
+  age.secrets.aria2-rpc-secret.file = ./secrets/aria2-rpc-secret.age;
+  systemd.services.aria2 =
     let
       dir = "/srv/www/files";
-      update-trackers = pkgs.writeShellScript "update-trackers.sh" ''
-        set -o pipefail
-        export https_proxy="${config.networking.proxy.httpsProxy}"
-        PATH="${pkgs.curl}/bin:$PATH"
-        url="https://raw.githubusercontent.com/ngosang/trackerslist/master/trackers_best.txt"
-        if curl --no-progress-meter "$url" | sed '/^$/d' | tr '\n' ',' > ${dir}/.trackers.new
-        then
-          mv ${dir}/.trackers.new ${dir}/.trackers
-        else
-          echo WARNING: cannot update bt trackers.
-          rm ${dir}/.trackers.new
-        fi
+      wrapper = pkgs.writeShellScript "aria2c.sh" ''
+        ${pkgs.aria2}/bin/aria2c \
+          --quiet \
+          --dir=${dir} \
+          --log=${dir}/.log \
+          --input-file=${dir}/.session \
+          --save-session=${dir}/.session \
+          --save-session-interval=600 \
+          --log-level=warn \
+          --rpc-secret="$(< $CREDENTIALS_DIRECTORY/rpc-secret)"
       '';
     in
     make-service {
-      description = "Aria2 Daemon";
+      description = "Aria2 Downloader";
       after = [ "network.target" ];
+      dynamic-user = false;
       serviceConfig = {
         ProtectSystem = "full";
         WorkingDirectory = dir;
         ReadWritePaths = dir;
-        ExecStartPre = update-trackers;
-        ExecStart =
-          let
-            aria2 = pkgs.aria2.override ({
-              server-mode = true;
-              inherit dir;
-            } // import ./private/aria2d.nix);
-          in
-          ''/bin/sh -c 'exec ${aria2}/bin/aria2c --bt-tracker="$(< ${dir}/.trackers)"' '';
+        ExecStart = "${wrapper}";
+        LoadCredential = "rpc-secret:${config.age.secrets.aria2-rpc-secret.path}";
+        User = "aria2";
+        Group = "aria2";
       };
     };
-  users.users.aria2d ={
+  users.users.aria2 ={
     isSystemUser = true;
-    group = "aria2d";
+    group = "aria2";
   };
-  users.groups.aria2d = {};
+  users.groups.aria2 = {};
 
   systemd.services.instaepub = make-service {
     description = "InstaEpub - Fetch webpages as epub.";
@@ -323,10 +321,11 @@ in
     };
   };
 
+  age.secrets."miniflux.env".file = ./secrets/miniflux.env.age;
   services.miniflux = {
     enable = true;
-    adminCredentialsFile = ./private/miniflux-admin.env;
     config = {
+      CREATE_ADMIN = 0;
       LISTEN_ADDR = ":8088";
       BASE_URL = "https://rss.flake.run";
       LOG_LEVEL = "warning";
@@ -334,7 +333,14 @@ in
     };
   };
   systemd.services.miniflux.environment = config.networking.proxy.envVars;
+  systemd.services.miniflux.serviceConfig.LoadCredential =
+    "env:${config.age.secrets."miniflux.env".path}";
+  systemd.services.miniflux.serviceConfig.ExecStart = lib.mkForce (pkgs.writeShellScript "miniflux.sh" ''
+    export $(xargs < $CREDENTIALS_DIRECTORY/env)
+    exec ${lib.getExe config.services.miniflux.package}
+  '');
 
+  age.secrets."bitmagnet.yaml".file = ./secrets/bitmagnet.yaml.age;
   services.bitmagnet = {
     enable = true;
     settings = {
@@ -342,11 +348,14 @@ in
       log.level = "warning";
       http_server.local_address = ":8888";
       dht_server.port = 6799;
-      tmdb.api_key = import ./private/tmdb-key.nix;
     };
     openFirewall = true;
   };
-  systemd.services.bitmagnet.environment = config.networking.proxy.envVars;
+  systemd.services.bitmagnet.environment = config.networking.proxy.envVars // {
+    EXTRA_CONFIG_FILES = "%d/config.yaml";
+  };
+  systemd.services.bitmagnet.serviceConfig.LoadCredential =
+    "config.yaml:${config.age.secrets."bitmagnet.yaml".path}";
 
   networking.firewall = {
     allowedTCPPorts = [ 80 443 1935 25565 5900 5901 9090 7890 5123 8888 ];
