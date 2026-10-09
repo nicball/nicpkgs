@@ -4,11 +4,11 @@ let
 in
 
 {
-  "desktop/clash.yaml.age".publicKeys = me;
+  "desktop/clash.yaml.xz.age".publicKeys = me;
   "common/nicball-hashed-password.age".publicKeys = me ++ nuc;
   "common/wireless-psk.age".publicKeys = me ++ nuc;
   "nuc/secrets/aria2-rpc-secret.age".publicKeys = me ++ nuc;
-  "nuc/secrets/clash.yaml.age".publicKeys = me ++ nuc;
+  "nuc/secrets/clash.yaml.xz.age".publicKeys = me ++ nuc;
   "nuc/secrets/cloudflare-ddns.age".publicKeys = me ++ nuc;
   "nuc/secrets/cloudflared.age".publicKeys = me ++ nuc;
   "nuc/secrets/factorio-bot.env.age".publicKeys = me ++ nuc;

@@ -73,10 +73,10 @@ in
     };
   };
 
-  age.secrets."clash.yaml".file = ./secrets/clash.yaml.age;
+  age.secrets."clash.yaml.xz".file = ./secrets/clash.yaml.xz.age;
   nic.clash = {
     enable = true;
-    config-path = config.age.secrets."clash.yaml".path;
+    config-path = config.age.secrets."clash.yaml.xz".path;
   };
 
   users.users.nicball.extraGroups = [ "www" ];

@@ -1,6 +1,18 @@
 { lib, pkgs, config, ... }:
 
-let cfg = config.nic.clash; in
+let
+
+  cfg = config.nic.clash;
+
+  exe = pkgs.writeShellScript "clash.sh" ''
+    if [[ ! -e clash.yaml ]]; then
+      cp $CREDENTIALS_DIRECTORY/clash.yaml.xz .
+      ${pkgs.xz}/bin/xz -d clash.yaml.xz
+    fi
+    exec ${pkgs.clash-meta}/bin/clash-meta -f ./clash.yaml -d /var/lib/clash
+  '';
+
+in
 
 {
   options.nic.clash = {
@@ -17,17 +29,19 @@ let cfg = config.nic.clash; in
       after = [ "network-online.target" ];
       requires = [ "network-online.target" ];
       serviceConfig = {
-        ExecStart = "${pkgs.clash-meta}/bin/clash-meta -f \${CREDENTIALS_DIRECTORY}/clash.yaml -d /var/lib/clash";
+        ExecStart = exe;
         StateDirectory = "clash";
         WorkingDirectory = "/var/lib/clash";
         DynamicUser = true;
-        LoadCredential = "clash.yaml:${cfg.config-path}";
+        LoadCredential = "clash.yaml.xz:${cfg.config-path}";
+        AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+        CapabilityBoundingSet = "CAP_NET_BIND_SERVICE";
         LockPersonality = true;
         MemoryDenyWriteExecute = true;
         NoNewPrivileges = true;
         PrivateDevices = true;
         PrivateTmp = true;
-        PrivateUsers = true;
+        # PrivateUsers = true;
         ProtectClock = true;
         ProtectControlGroups = true;
         ProtectHome = true;

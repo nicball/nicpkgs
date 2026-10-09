@@ -3,10 +3,10 @@
 {
   networking.hostName = "nixos-desktop";
 
-  age.secrets."clash.yaml".file = ./clash.yaml.age;
+  age.secrets."clash.yaml.xz".file = ./clash.yaml.xz.age;
   nic.clash = {
     enable = true;
-    config-path = config.age.secrets."clash.yaml".path;
+    config-path = config.age.secrets."clash.yaml.xz".path;
   };
 
   networking.firewall.allowedTCPPorts = [
