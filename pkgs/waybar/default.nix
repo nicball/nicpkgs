@@ -1,5 +1,5 @@
 { nv-sources, super
-, modemmanager, systemdSupport ? true, window-manager ? "sway"
+, modemmanager, systemdSupport ? true, window-manager ? "hyprland"
 , makeBinaryWrapper, replaceVars
 , acpilight, pavucontrol, util-linux
 }:

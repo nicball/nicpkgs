@@ -14,4 +14,5 @@ in
   "nuc/secrets/factorio-bot.env.age".publicKeys = me ++ nuc;
   "nuc/secrets/miniflux.env.age".publicKeys = me ++ nuc;
   "nuc/secrets/bitmagnet.yaml.age".publicKeys = me ++ nuc;
+  "nuc/secrets/pi-web.env.age".publicKeys = me ++ nuc;
 }
