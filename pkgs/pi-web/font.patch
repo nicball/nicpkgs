@@ -1,0 +1,22 @@
+diff --git a/app/layout.tsx b/app/layout.tsx
+index 62c25e4..32bcda5 100644
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -1,5 +1,4 @@
+ import type { Metadata, Viewport } from "next";
+-import { Noto_Sans_Mono } from "next/font/google";
+ import { PwaRegistration } from "@/components/PwaRegistration";
+ import { THEME_INIT_SCRIPT } from "@/lib/theme";
+ import "katex/dist/katex.min.css";
+@@ -8,8 +7,9 @@ import "./settings.css";
+ import "./sidebar.css";
+ import "./sidebar-menu.css";
+ 
+-const notoSansMono = Noto_Sans_Mono({
+-  subsets: ["latin", "cyrillic"],
++import localFont from "next/font/local";
++const notoSansMono = localFont({
++  src: "./noto-sans-mono.ttf",
+   variable: "--font-noto-mono",
+   display: "swap",
+ });

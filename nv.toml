@@ -84,3 +84,7 @@ fetch.github = "mautrix/telegram"
 src.git = "https://github.com/Alexays/waybar"
 fetch.github = "Alexays/waybar"
 git.date_format = "%Y-%m-%d"
+
+[pi-web]
+src.github = "agegr/pi-web"
+fetch.github = "agegr/pi-web"

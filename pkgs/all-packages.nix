@@ -114,4 +114,6 @@ with self;
 
   rofi = callPackage ./rofi { inherit super; };
 
+  pi-web = callPackage ./pi-web {};
+
 }

@@ -143,11 +143,11 @@
         "passthru": null,
         "pinned": false,
         "src": {
-            "sha256": "sha256-j5rz4BRqAcNeicgQ6Pq+Ind0wctOKKQQdZmoR+MAYv8=",
+            "sha256": "sha256-gMPn2RJ2bbF9ReWX4t4t5rle6YllQjtjrYJJ5wR/RBs=",
             "type": "tarball",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.12/pandoc-3.12-linux-amd64.tar.gz"
+            "url": "https://github.com/jgm/pandoc/releases/download/3.12.1/pandoc-3.12.1-linux-amd64.tar.gz"
         },
-        "version": "3.12"
+        "version": "3.12.1"
     },
     "pandoc-static-arm64": {
         "cargoLock": null,
@@ -157,11 +157,32 @@
         "passthru": null,
         "pinned": false,
         "src": {
-            "sha256": "sha256-dZKvH4zOMJ4wqfmlgl/cHZxO8elCHznsgYgR/9pIAbs=",
+            "sha256": "sha256-gBXWZscdlsnt4sF1+e+ZNj+A3dG3InEllvSBsziMkkw=",
             "type": "tarball",
-            "url": "https://github.com/jgm/pandoc/releases/download/3.12/pandoc-3.12-linux-arm64.tar.gz"
+            "url": "https://github.com/jgm/pandoc/releases/download/3.12.1/pandoc-3.12.1-linux-arm64.tar.gz"
         },
-        "version": "3.12"
+        "version": "3.12.1"
+    },
+    "pi-web": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "pi-web",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "agegr",
+            "repo": "pi-web",
+            "rev": "v0.11.0",
+            "sha256": "sha256-C1cdlyi7YRNjLXymObg4dHuvEkMutASkICykPlk2X24=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v0.11.0"
     },
     "piqueserver": {
         "cargoLock": null,
@@ -264,7 +285,7 @@
     },
     "rust-reference": {
         "cargoLock": null,
-        "date": "2026-09-29",
+        "date": "2026-10-07",
         "extract": null,
         "name": "rust-reference",
         "passthru": null,
@@ -276,16 +297,16 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "reference",
-            "rev": "a286e1ecb8ce193d50056e4bb042eea9b23876ef",
-            "sha256": "sha256-Vk0tppPbmm/U0Pltfo+Y2lFrxS2ft0uwQGLiKxRCyZo=",
+            "rev": "9fa1d6fba4ca87ca2d4e1b2c3807488bd8b4a85c",
+            "sha256": "sha256-wgq89VXY0xNBFAiYdpFR+c4B/ZcYhCDaZzmH6tG5dGM=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "a286e1ecb8ce193d50056e4bb042eea9b23876ef"
+        "version": "9fa1d6fba4ca87ca2d4e1b2c3807488bd8b4a85c"
     },
     "rust-rfcs": {
         "cargoLock": null,
-        "date": "2026-09-10",
+        "date": "2026-10-05",
         "extract": null,
         "name": "rust-rfcs",
         "passthru": null,
@@ -297,12 +318,12 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "rfcs",
-            "rev": "51783df9a76c355de7ceebeae101cba47f8ca463",
-            "sha256": "sha256-wzuCkwW5EnWUx0wepxDLixLchbM2zvCqV4op6zXl850=",
+            "rev": "d2705ad64ba47e812a2b6b19d6f613fb4c14c5e0",
+            "sha256": "sha256-ZF1ye2DDBU9v8KcsyWlQHYjnXE62gjWckbva1YCWBNc=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "51783df9a76c355de7ceebeae101cba47f8ca463"
+        "version": "d2705ad64ba47e812a2b6b19d6f613fb4c14c5e0"
     },
     "torrent-file-editor": {
         "cargoLock": null,
@@ -369,7 +390,7 @@
     },
     "waybar": {
         "cargoLock": null,
-        "date": "2026-09-24",
+        "date": "2026-10-02",
         "extract": null,
         "name": "waybar",
         "passthru": null,
@@ -381,16 +402,16 @@
             "name": null,
             "owner": "Alexays",
             "repo": "waybar",
-            "rev": "16843896794a9c595139318420f81f40e84f8c78",
-            "sha256": "sha256-Y/bf7OmtwrEhdRDTkh4OVAEZX5ixL+io0W/UPJuto+g=",
+            "rev": "323e66f51644d0562be54af3c21f368a4d61d321",
+            "sha256": "sha256-pe6h9T710ncxz3PbNfzmuWUjZ5kTw2emAvsWg+pqHsk=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "16843896794a9c595139318420f81f40e84f8c78"
+        "version": "323e66f51644d0562be54af3c21f368a4d61d321"
     },
     "wayland-book": {
         "cargoLock": null,
-        "date": "2026-08-03",
+        "date": "2026-10-07",
         "extract": null,
         "name": "wayland-book",
         "passthru": null,
@@ -400,13 +421,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "rev": "7d431b34e8ce946ae7f5b17889e891de98e8305a",
-            "sha256": "sha256-5R6muR1Ajm9YHjKNsmV7Q9R4mbG4Y5mGafbDsgUYJVw=",
+            "rev": "31d37f13921bee84ae814efe25d6aabfdc8177bd",
+            "sha256": "sha256-qT+NgpIG0TwZcHM38xgtEQ/aHCcx98ctqqe9eizyYh8=",
             "sparseCheckout": [],
             "type": "git",
             "url": "https://git.sr.ht/~sircmpwn/wayland-book"
         },
-        "version": "7d431b34e8ce946ae7f5b17889e891de98e8305a"
+        "version": "31d37f13921bee84ae814efe25d6aabfdc8177bd"
     },
     "wiwikwlh": {
         "cargoLock": null,
