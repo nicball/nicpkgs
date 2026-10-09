@@ -357,6 +357,27 @@ in
   systemd.services.bitmagnet.serviceConfig.LoadCredential =
     "config.yaml:${config.age.secrets."bitmagnet.yaml".path}";
 
+  age.secrets."pi-web.env" = {
+    file = ./secrets/pi-web.env.age;
+    owner = "nicball";
+    group = "users";
+  };
+  systemd.services.pi-web = make-service {
+    description = "Pi Web";
+    dynamic-user = false;
+    proxy = true;
+    sandboxing = false;
+    serviceConfig = {
+      ExecStart = pkgs.writeShellScript "pi-web.sh" ''
+        export $(xargs < ${config.age.secrets."pi-web.env".path})
+        exec ${pkgs.pi-web}/bin/pi-web
+      '';
+      WorkingDirectory = "/home/nicball";
+      User = "nicball";
+      Group = "users";
+    };
+  };
+
   networking.firewall = {
     allowedTCPPorts = [ 80 443 1935 25565 5900 5901 9090 7890 5123 8888 ];
     allowedUDPPorts = [ 5123 ];
