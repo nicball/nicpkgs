@@ -357,17 +357,13 @@ in
   systemd.services.bitmagnet.serviceConfig.LoadCredential =
     "config.yaml:${config.age.secrets."bitmagnet.yaml".path}";
 
-  age.secrets."pi-web.env" = {
-    file = ./secrets/pi-web.env.age;
-    owner = "nicball";
-    group = "users";
-  };
+  age.secrets."pi-web.env".file = ./secrets/pi-web.env.age;
   systemd.services.pi-web = make-service {
     description = "Pi Web";
-    dynamic-user = false;
     proxy = true;
-    sandboxing = false;
+    dir = "pi-web";
     environment = {
+      HOME = "/var/lib/pi-web";
       PI_WEB_SKIP_VERSION_CHECK = "1";
       PI_WEB_ALLOWED_HOSTS = "pi.flake.run";
       PI_WEB_NO_OPEN = "1";
@@ -377,12 +373,11 @@ in
     };
     serviceConfig = {
       ExecStart = pkgs.writeShellScript "pi-web.sh" ''
-        export $(xargs < ${config.age.secrets."pi-web.env".path})
+        export $(xargs < $CREDENTIALS_DIRECTORY/env)
         exec ${pkgs.pi-web}/bin/pi-web
       '';
-      WorkingDirectory = "/home/nicball";
-      User = "nicball";
-      Group = "users";
+      LoadCredential = "env:${config.age.secrets."pi-web.env".path}";
+      MemoryDenyWriteExecute = false;
     };
   };
 
