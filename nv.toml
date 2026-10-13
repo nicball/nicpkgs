@@ -88,3 +88,7 @@ git.date_format = "%Y-%m-%d"
 [pi-web]
 src.github = "agegr/pi-web"
 fetch.github = "agegr/pi-web"
+
+[pi-coding-agent]
+src.github = "earendil-works/pi"
+fetch.github = "earendil-works/pi"

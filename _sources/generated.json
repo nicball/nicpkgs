@@ -163,6 +163,27 @@
         },
         "version": "3.12.1"
     },
+    "pi-coding-agent": {
+        "cargoLock": null,
+        "date": null,
+        "extract": null,
+        "name": "pi-coding-agent",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "earendil-works",
+            "repo": "pi",
+            "rev": "v1.2.0",
+            "sha256": "sha256-IjNJvVxjzRur2foQDWPA5iM9sa3ThBoZU1/LT5pU6jc=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v1.2.0"
+    },
     "pi-web": {
         "cargoLock": null,
         "date": null,
@@ -177,12 +198,12 @@
             "name": null,
             "owner": "agegr",
             "repo": "pi-web",
-            "rev": "v0.11.0",
-            "sha256": "sha256-C1cdlyi7YRNjLXymObg4dHuvEkMutASkICykPlk2X24=",
+            "rev": "v0.12.0",
+            "sha256": "sha256-TKmstNr6niiI/4OiurfG2ZhctA2LJDSeSIZsuKRdBZ0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v0.11.0"
+        "version": "v0.12.0"
     },
     "piqueserver": {
         "cargoLock": null,
@@ -285,7 +306,7 @@
     },
     "rust-reference": {
         "cargoLock": null,
-        "date": "2026-10-07",
+        "date": "2026-10-11",
         "extract": null,
         "name": "rust-reference",
         "passthru": null,
@@ -297,12 +318,12 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "reference",
-            "rev": "9fa1d6fba4ca87ca2d4e1b2c3807488bd8b4a85c",
-            "sha256": "sha256-wgq89VXY0xNBFAiYdpFR+c4B/ZcYhCDaZzmH6tG5dGM=",
+            "rev": "5baa209fc1998b8425be2ea1e8a57b613fed52d2",
+            "sha256": "sha256-ilPIeZFOGGCfbAtHfWHc7RyD2OupEZs/XYryut6JM4w=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "9fa1d6fba4ca87ca2d4e1b2c3807488bd8b4a85c"
+        "version": "5baa209fc1998b8425be2ea1e8a57b613fed52d2"
     },
     "rust-rfcs": {
         "cargoLock": null,
@@ -390,7 +411,7 @@
     },
     "waybar": {
         "cargoLock": null,
-        "date": "2026-10-02",
+        "date": "2026-10-11",
         "extract": null,
         "name": "waybar",
         "passthru": null,
@@ -402,12 +423,12 @@
             "name": null,
             "owner": "Alexays",
             "repo": "waybar",
-            "rev": "323e66f51644d0562be54af3c21f368a4d61d321",
-            "sha256": "sha256-pe6h9T710ncxz3PbNfzmuWUjZ5kTw2emAvsWg+pqHsk=",
+            "rev": "4e207a0cb51a9eb89b4245d90245721f5e39bf06",
+            "sha256": "sha256-0L1elPWYo9yKgEwpXWWVWQyPVU0SW36LkWUR26CksgU=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "323e66f51644d0562be54af3c21f368a4d61d321"
+        "version": "4e207a0cb51a9eb89b4245d90245721f5e39bf06"
     },
     "wayland-book": {
         "cargoLock": null,

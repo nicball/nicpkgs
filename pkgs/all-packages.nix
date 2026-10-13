@@ -116,4 +116,6 @@ with self;
 
   pi-web = callPackage ./pi-web {};
 
+  pi-coding-agent = callPackage ./pi-coding-agent.nix {};
+
 }

@@ -101,15 +101,26 @@
       sha256 = "sha256-gBXWZscdlsnt4sF1+e+ZNj+A3dG3InEllvSBsziMkkw=";
     };
   };
+  pi-coding-agent = {
+    pname = "pi-coding-agent";
+    version = "v1.2.0";
+    src = fetchFromGitHub {
+      owner = "earendil-works";
+      repo = "pi";
+      rev = "v1.2.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-IjNJvVxjzRur2foQDWPA5iM9sa3ThBoZU1/LT5pU6jc=";
+    };
+  };
   pi-web = {
     pname = "pi-web";
-    version = "v0.11.0";
+    version = "v0.12.0";
     src = fetchFromGitHub {
       owner = "agegr";
       repo = "pi-web";
-      rev = "v0.11.0";
+      rev = "v0.12.0";
       fetchSubmodules = false;
-      sha256 = "sha256-C1cdlyi7YRNjLXymObg4dHuvEkMutASkICykPlk2X24=";
+      sha256 = "sha256-TKmstNr6niiI/4OiurfG2ZhctA2LJDSeSIZsuKRdBZ0=";
     };
   };
   piqueserver = {
@@ -169,15 +180,15 @@
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "9fa1d6fba4ca87ca2d4e1b2c3807488bd8b4a85c";
+    version = "5baa209fc1998b8425be2ea1e8a57b613fed52d2";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "9fa1d6fba4ca87ca2d4e1b2c3807488bd8b4a85c";
+      rev = "5baa209fc1998b8425be2ea1e8a57b613fed52d2";
       fetchSubmodules = false;
-      sha256 = "sha256-wgq89VXY0xNBFAiYdpFR+c4B/ZcYhCDaZzmH6tG5dGM=";
+      sha256 = "sha256-ilPIeZFOGGCfbAtHfWHc7RyD2OupEZs/XYryut6JM4w=";
     };
-    date = "2026-10-07";
+    date = "2026-10-11";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
@@ -226,15 +237,15 @@
   };
   waybar = {
     pname = "waybar";
-    version = "323e66f51644d0562be54af3c21f368a4d61d321";
+    version = "4e207a0cb51a9eb89b4245d90245721f5e39bf06";
     src = fetchFromGitHub {
       owner = "Alexays";
       repo = "waybar";
-      rev = "323e66f51644d0562be54af3c21f368a4d61d321";
+      rev = "4e207a0cb51a9eb89b4245d90245721f5e39bf06";
       fetchSubmodules = false;
-      sha256 = "sha256-pe6h9T710ncxz3PbNfzmuWUjZ5kTw2emAvsWg+pqHsk=";
+      sha256 = "sha256-0L1elPWYo9yKgEwpXWWVWQyPVU0SW36LkWUR26CksgU=";
     };
-    date = "2026-10-02";
+    date = "2026-10-11";
   };
   wayland-book = {
     pname = "wayland-book";
