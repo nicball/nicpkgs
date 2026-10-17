@@ -1,6 +1,6 @@
-{ nicpkgs, inputs }:
+{ nicpkgs }:
 
 {
-  desktop = import ./desktop { inherit inputs nicpkgs; };
-  nuc = import ./nuc { inherit inputs nicpkgs; };
+  desktop = import ./desktop { inherit nicpkgs; };
+  nuc = import ./nuc { inherit nicpkgs; };
 }

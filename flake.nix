@@ -123,9 +123,9 @@
 
       overlays.default = overlay;
 
-      nixosModules.default = import ./nixos-modules { inherit overlay; };
+      nixosModules.default = import ./nixos-modules { nicpkgs = self; };
 
-      nixosConfigurations = import ./nixos-configurations { inherit inputs; nicpkgs = self; };
+      nixosConfigurations = import ./nixos-configurations { nicpkgs = self; };
 
     };
 }

@@ -1,4 +1,6 @@
-{ inputs, nicpkgs }:
+{ nicpkgs }:
+
+let inherit (nicpkgs) inputs; in
 
 inputs.nixpkgs.lib.nixosSystem rec {
   system = "x86_64-linux";

@@ -1,10 +1,10 @@
-{ overlay }:
+{ nicpkgs }:
 
 { lib, config, ... }:
 
 {
   imports = [
-    (import ./overlay.nix { inherit overlay; })
+    (import ./overlay.nix { overlay = nicpkgs.overlays.default; })
     ./window-managers.nix
     ./greetd.nix
     ./backlight.nix
@@ -26,6 +26,10 @@
       nix.settings = {
         experimental-features = [ "nix-command" "flakes" ];
         auto-optimise-store = true;
+      };
+      nix.registry.nicpkgs.to = {
+        type = "path";
+        path = nicpkgs.outPath;
       };
     })
     (lib.mkIf config.nic.cachix {
