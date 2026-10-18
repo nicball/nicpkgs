@@ -81,12 +81,12 @@
             "name": null,
             "owner": "mautrix",
             "repo": "telegram",
-            "rev": "v0.2609.0",
-            "sha256": "sha256-M8kQap14MRh3tlqOe7JxLkJlsNsJY/COztv0AqvdgF0=",
+            "rev": "v0.2610.0",
+            "sha256": "sha256-2oHtqtpFhNr+v49nMSe33RGDj+MQV2D/+8JX+YYWi+0=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v0.2609.0"
+        "version": "v0.2610.0"
     },
     "mdbook-epub": {
         "cargoLock": {
@@ -177,12 +177,12 @@
             "name": null,
             "owner": "earendil-works",
             "repo": "pi",
-            "rev": "v1.2.0",
-            "sha256": "sha256-IjNJvVxjzRur2foQDWPA5iM9sa3ThBoZU1/LT5pU6jc=",
+            "rev": "v1.3.0",
+            "sha256": "sha256-AsutbwnjiwwLkB5tqLW+1GdGZyLmXsU0W+SNdNhJu7U=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.2.0"
+        "version": "v1.3.0"
     },
     "pi-web": {
         "cargoLock": null,
@@ -198,12 +198,12 @@
             "name": null,
             "owner": "agegr",
             "repo": "pi-web",
-            "rev": "v0.12.0",
-            "sha256": "sha256-TKmstNr6niiI/4OiurfG2ZhctA2LJDSeSIZsuKRdBZ0=",
+            "rev": "v0.12.2",
+            "sha256": "sha256-3SLxCRZVFYie1Ux73KlGCACFpJt2xaKTXc8eAdxPFy4=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v0.12.0"
+        "version": "v0.12.2"
     },
     "piqueserver": {
         "cargoLock": null,
@@ -306,7 +306,7 @@
     },
     "rust-reference": {
         "cargoLock": null,
-        "date": "2026-10-11",
+        "date": "2026-10-13",
         "extract": null,
         "name": "rust-reference",
         "passthru": null,
@@ -318,12 +318,12 @@
             "name": null,
             "owner": "rust-lang",
             "repo": "reference",
-            "rev": "5baa209fc1998b8425be2ea1e8a57b613fed52d2",
-            "sha256": "sha256-ilPIeZFOGGCfbAtHfWHc7RyD2OupEZs/XYryut6JM4w=",
+            "rev": "2dafab96d919d6ab2884488e970bf95610ff83eb",
+            "sha256": "sha256-oa+sIcuxpKnr0hWO4W7GGPecGoUbl47PUOCRAL9mI+M=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "5baa209fc1998b8425be2ea1e8a57b613fed52d2"
+        "version": "2dafab96d919d6ab2884488e970bf95610ff83eb"
     },
     "rust-rfcs": {
         "cargoLock": null,

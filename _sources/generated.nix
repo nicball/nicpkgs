@@ -48,13 +48,13 @@
   };
   mautrix-telegram = {
     pname = "mautrix-telegram";
-    version = "v0.2609.0";
+    version = "v0.2610.0";
     src = fetchFromGitHub {
       owner = "mautrix";
       repo = "telegram";
-      rev = "v0.2609.0";
+      rev = "v0.2610.0";
       fetchSubmodules = false;
-      sha256 = "sha256-M8kQap14MRh3tlqOe7JxLkJlsNsJY/COztv0AqvdgF0=";
+      sha256 = "sha256-2oHtqtpFhNr+v49nMSe33RGDj+MQV2D/+8JX+YYWi+0=";
     };
   };
   mdbook-epub = {
@@ -103,24 +103,24 @@
   };
   pi-coding-agent = {
     pname = "pi-coding-agent";
-    version = "v1.2.0";
+    version = "v1.3.0";
     src = fetchFromGitHub {
       owner = "earendil-works";
       repo = "pi";
-      rev = "v1.2.0";
+      rev = "v1.3.0";
       fetchSubmodules = false;
-      sha256 = "sha256-IjNJvVxjzRur2foQDWPA5iM9sa3ThBoZU1/LT5pU6jc=";
+      sha256 = "sha256-AsutbwnjiwwLkB5tqLW+1GdGZyLmXsU0W+SNdNhJu7U=";
     };
   };
   pi-web = {
     pname = "pi-web";
-    version = "v0.12.0";
+    version = "v0.12.2";
     src = fetchFromGitHub {
       owner = "agegr";
       repo = "pi-web";
-      rev = "v0.12.0";
+      rev = "v0.12.2";
       fetchSubmodules = false;
-      sha256 = "sha256-TKmstNr6niiI/4OiurfG2ZhctA2LJDSeSIZsuKRdBZ0=";
+      sha256 = "sha256-3SLxCRZVFYie1Ux73KlGCACFpJt2xaKTXc8eAdxPFy4=";
     };
   };
   piqueserver = {
@@ -180,15 +180,15 @@
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "5baa209fc1998b8425be2ea1e8a57b613fed52d2";
+    version = "2dafab96d919d6ab2884488e970bf95610ff83eb";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "5baa209fc1998b8425be2ea1e8a57b613fed52d2";
+      rev = "2dafab96d919d6ab2884488e970bf95610ff83eb";
       fetchSubmodules = false;
-      sha256 = "sha256-ilPIeZFOGGCfbAtHfWHc7RyD2OupEZs/XYryut6JM4w=";
+      sha256 = "sha256-oa+sIcuxpKnr0hWO4W7GGPecGoUbl47PUOCRAL9mI+M=";
     };
-    date = "2026-10-11";
+    date = "2026-10-13";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
