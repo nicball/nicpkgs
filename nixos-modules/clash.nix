@@ -5,11 +5,8 @@ let
   cfg = config.nic.clash;
 
   exe = pkgs.writeShellScript "clash.sh" ''
-    if [[ ! -e clash.yaml ]]; then
-      cp $CREDENTIALS_DIRECTORY/clash.yaml.xz .
-      ${pkgs.xz}/bin/xz -d clash.yaml.xz
-    fi
-    exec ${pkgs.clash-meta}/bin/clash-meta -f ./clash.yaml -d /var/lib/clash
+    ${pkgs.xz}/bin/xz -dc $CREDENTIALS_DIRECTORY/clash.yaml.xz > clash.yaml
+    exec ${pkgs.clash-meta}/bin/clash-meta -f clash.yaml -d /var/lib/clash
   '';
 
 in
