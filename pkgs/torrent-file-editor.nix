@@ -1,7 +1,9 @@
-{ stdenv, nv-sources, cmake, wrapQtAppsHook, qtbase, qttools, qt5compat }:
+{ stdenv, cmake, wrapQtAppsHook, qtbase, qttools, qt5compat }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.torrent-file-editor; in
 
 stdenv.mkDerivation (self: {
-  inherit (nv-sources.torrent-file-editor) pname version src;
+  inherit (nv) pname version src;
   nativeBuildInputs = [ cmake wrapQtAppsHook ];
   buildInputs = [ qtbase qttools qt5compat ];
   cmakeFlags = [ "-DQT6_BUILD=ON" "-DCMAKE_BUILD_TYPE=Release" ];

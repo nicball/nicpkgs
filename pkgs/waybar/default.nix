@@ -1,10 +1,11 @@
-{ nv-sources, super
+{ stdenv, super
 , modemmanager, systemdSupport ? true, window-manager ? "hyprland"
 , makeBinaryWrapper, replaceVars
 , acpilight, pavucontrol, util-linux
 }:
 
 let
+  nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.waybar;
   config = replaceVars ./config.json {
     wm = window-manager;
     xbacklight = "${acpilight}/bin/xbacklight";
@@ -14,7 +15,7 @@ let
 in
 
 (super.waybar.override { cavaSupport = false; }).overrideAttrs (prev: {
-  inherit (nv-sources.waybar) src;
+  inherit (nv) src;
   buildInputs = (prev.buildInputs or []) ++ [ modemmanager ];
   nativeBuildInputs = (prev.nativeBuildInputs or []) ++ [ makeBinaryWrapper ];
   postInstall = (prev.postInstall or "") + ''

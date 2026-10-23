@@ -1,14 +1,11 @@
-{ nicpkgs }:
-
-let inherit (nicpkgs) inputs; in
+let inherit (<nicpkgs>) inputs; in
 
 inputs.nixpkgs.lib.nixosSystem rec {
   system = "x86_64-linux";
   modules = [
-    nicpkgs.nixosModules.default
+    <nicpkgs>.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
     inputs.agenix.nixosModules.default
-    ({ ... }: { nixpkgs.overlays = [ (_: _: { instaepub = inputs.instaepub.packages.x86_64-linux.instaepub;  }) ]; })
     ./hardware-configuration.nix
     ./desktop.nix
     ./services.nix

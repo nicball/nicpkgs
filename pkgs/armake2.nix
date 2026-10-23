@@ -1,10 +1,10 @@
-{ nv-sources
+{ stdenv
 , rustPlatform
 , openssl
 , pkg-config
 }:
 
-let nv = nv-sources.armake2; in
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.armake2; in
 
 rustPlatform.buildRustPackage rec {
   inherit (nv) pname src;

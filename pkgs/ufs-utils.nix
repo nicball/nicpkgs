@@ -1,7 +1,9 @@
-{ stdenv, nv-sources, glibc }:
+{ stdenv, glibc }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.ufs-utils; in
 
 stdenv.mkDerivation {
-  inherit (nv-sources.ufs-utils) pname version src;
+  inherit (nv) pname version src;
   nativeBuildInputs = [ glibc.static ];
   installPhase = ''
     runHook preInstall

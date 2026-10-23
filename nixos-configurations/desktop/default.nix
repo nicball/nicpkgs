@@ -1,11 +1,9 @@
-{ nicpkgs }:
-
-let inherit (nicpkgs) inputs; in
+let inherit (<nicpkgs>) inputs; in
 
 inputs.nixpkgs.lib.nixosSystem rec {
   system = "x86_64-linux";
   modules = [
-    nicpkgs.nixosModules.default
+    <nicpkgs>.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
     inputs.agenix.nixosModules.default
     ../common.nix

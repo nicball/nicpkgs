@@ -19,13 +19,20 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
-
-    let overlay = import ./pkgs/all-packages.nix; in
-
+    let
+      import-with-brackets = path:
+        let scope = {
+          import = import-with-brackets;
+          __findFile = sp: f:
+            if f == "nicpkgs"
+              then self
+              else builtins.findFile sp f;
+        }; in scopedImport scope path;
+      overlay = import-with-brackets ./pkgs/all-packages.nix;
+    in
     flake-utils.lib.eachDefaultSystem (system:
       let
-
-        pkgs = import nixpkgs {
+        pkgs = import-with-brackets nixpkgs {
           inherit system;
           overlays = [ overlay ];
           config = {
@@ -33,16 +40,13 @@
             permittedInsecurePackages = [ "openssl-1.1.1w" "olm-3.2.16" ];
           };
         };
-
         lib = pkgs.lib;
-
         filter-pkgset-recursive = f: attrs:
           let go = f: prefixes: attrs:
             let first-level = lib.filterAttrs (k: v: k == "recurseForDerivations" || f (prefixes ++ [ k ]) v) attrs; in
             lib.mapAttrs (k: v: if is-recursive-pkgs v then go f (prefixes ++ [ k ]) v else v) first-level;
           in
           go f [] attrs;
-
         get-paths-recursive = ps:
           let
             flatten = prefix: ps:
@@ -57,7 +61,6 @@
                 ps;
           in
           builtins.map (lib.removePrefix ".") (builtins.attrNames (flatten "" ps));
-
         filter-my-pkgs = ps:
           let
             skeleton = overlay dummy-pkgs {};
@@ -72,15 +75,10 @@
             };
           in
           filter-pkgset-recursive (path: _: lib.hasAttrByPath path skeleton) ps;
-
         is-broken = lib.attrByPath [ "meta" "broken" ] false;
-
         is-good = system: p: lib.isDerivation p && !is-broken p && lib.meta.availableOn { inherit system; } p;
-
         is-recursive-pkgs = p: builtins.isAttrs p && (p.recurseForDerivations or false);
-
         filter-good-pkgs = system: ps: filter-pkgset-recursive (_: p: is-recursive-pkgs p || is-good system p) ps;
-
         add-push-to-cachix = system: pkgs: ps: ps // {
           push-to-cachix =
             let
@@ -109,23 +107,15 @@
               '';
             };
         };
-
         final-pkgs = system: pkgs: filter-good-pkgs system (add-push-to-cachix system pkgs (filter-my-pkgs pkgs));
-
       in {
-
         packages = final-pkgs system pkgs;
-
         packagesCross = builtins.mapAttrs (arch: cpkgs: final-pkgs arch cpkgs) pkgs.pkgsCross;
-
+        nv-sources = pkgs.callPackage ./_sources/generated.nix {};
       }
     ) // {
-
       overlays.default = overlay;
-
-      nixosModules.default = import ./nixos-modules { nicpkgs = self; };
-
-      nixosConfigurations = import ./nixos-configurations { nicpkgs = self; };
-
+      nixosModules.default = import-with-brackets ./nixos-modules;
+      nixosConfigurations = import-with-brackets ./nixos-configurations;
     };
 }

@@ -1,5 +1,3 @@
-{ overlay }:
-
 { lib, config, ... }:
 
 {
@@ -16,7 +14,7 @@
 
   config = lib.mkIf config.nic.nicpkgs.enable-overlay {
     nixpkgs.overlays = [
-      overlay
+      <nicpkgs>.overlays.default
       (self: super: { nicpkgs-scaling = config.nic.nicpkgs.scaling-factor; })
     ];
   };

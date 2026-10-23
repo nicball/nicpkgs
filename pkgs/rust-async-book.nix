@@ -1,11 +1,12 @@
-{ nv-sources
-, stdenv
+{ stdenv
 , mdbook-epub
 }:
 
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.rust-async-book; in
+
 stdenv.mkDerivation {
-  inherit (nv-sources.rust-async-book) pname src;
-  version = "unstable-${nv-sources.rust-async-book.date}";
+  inherit (nv) pname src;
+  version = "unstable-${nv.date}";
   dontConfigure = true;
   dontBuild = true;
   nativeBuildInputs = [ mdbook-epub ];

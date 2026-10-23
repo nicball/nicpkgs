@@ -1,9 +1,9 @@
-{ nv-sources, lib, fetchurl, python312Packages, enet, concatText }:
+{ stdenv, lib, fetchurl, python312Packages, enet, concatText }:
 
 with python312Packages;
 
 let
-
+  nv-sources = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system};
   pyenet = buildPythonPackage rec {
     inherit (nv-sources.pyenet) pname version src;
     doCheck = false;
@@ -11,7 +11,6 @@ let
     pyproject = true;
     build-system = [ setuptools ];
   };
-
 in
 
 buildPythonPackage rec {

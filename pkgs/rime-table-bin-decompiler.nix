@@ -1,8 +1,10 @@
-{ nv-sources, lib, stdenv, boost188, cmake }:
+{ lib, stdenv, boost188, cmake }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.rime-table-bin-decompiler; in
 
 stdenv.mkDerivation {
-  inherit (nv-sources.rime-table-bin-decompiler) pname src;
-  version = "unstable-${nv-sources.rime-table-bin-decompiler.date}";
+  inherit (nv) pname src;
+  version = "unstable-${nv.date}";
   nativeBuildInputs = [ cmake boost188 ];
   installPhase = ''
     runHook preInstall

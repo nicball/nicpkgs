@@ -1,13 +1,11 @@
-{ nv-sources
-, buildNpmPackage
+{ buildNpmPackage
 , esbuild
 , stdenv, bash, ocaml, ocamlPackages, dune_3
 }:
 
 let
-
-  inherit (nv-sources.rescript-language-server) version src;
-
+  nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.rescript-language-server;
+  inherit (nv) version src;
   analysis = stdenv.mkDerivation {
     pname = "rescript-editor-analysis";
     inherit version src;

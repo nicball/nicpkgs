@@ -1,8 +1,10 @@
-{ stdenv, nv-sources, mdbook-epub, python3, writeShellScriptBin }:
+{ stdenv, mdbook-epub, python3, writeShellScriptBin }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.rust-rfcs; in
 
 stdenv.mkDerivation {
-  inherit (nv-sources.rust-rfcs) pname src;
-  version = "unstable-${nv-sources.rust-rfcs.date}";
+  inherit (nv) pname src;
+  version = "unstable-${nv.date}";
   dontConfigure = true;
   buildPhase = ''
     runHook preBuild

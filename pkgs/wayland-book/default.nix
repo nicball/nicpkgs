@@ -1,8 +1,10 @@
-{ stdenv, nv-sources, mdbook-epub }:
+{ stdenv, mdbook-epub }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.wayland-book; in
 
 stdenv.mkDerivation {
-  inherit (nv-sources.wayland-book) pname src;
-  version = "unstable-${nv-sources.wayland-book.date}";
+  inherit (nv) pname src;
+  version = "unstable-${nv.date}";
   patches = [ ./ccpng.patch ];
   dontConfigure = true;
   dontBuild = true;

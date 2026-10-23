@@ -1,7 +1,9 @@
-{ nv-sources, buildNpmPackage, google-fonts }:
+{ stdenv, buildNpmPackage, google-fonts }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.pi-web; in
 
 buildNpmPackage {
-  inherit (nv-sources.pi-web) pname version src;
+  inherit (nv) pname version src;
   patches = [ ./font.patch ];
   npmDepsHash = "sha256-WWmrAjPrN1Nk2NrTJ9GFEBXp7Y1y/RZjMZxnJSQcNjY=";
   preBuild = ''

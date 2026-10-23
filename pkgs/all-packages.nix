@@ -1,121 +1,62 @@
 self: super:
-
-with self;
-
+let inherit (self) callPackage lib qt6Packages system; in
 {
-
-  nicpkgs-scaling = 1;
-
-  nv-sources = callPackage ../_sources/generated.nix {};
-
-  piqueserver = callPackage ./piqueserver {};
-
-  terraria-server = callPackage ./terraria-server.nix {};
-
-  armake2 = callPackage ./armake2.nix {};
-
-  mdbook-epub = callPackage ./mdbook-epub.nix {};
-
-  rust-reference = callPackage ./rust-reference.nix {};
-
-  rust-async-book = callPackage ./rust-async-book.nix {};
-
-  wayland-book = callPackage ./wayland-book {};
-
-  maven-j8 = maven.overrideAttrs (_: _: { jdk = jdk8; });
-
-  lilypondbot = callPackage ./lilypondbot {};
-
-  kindle-tool = callPackage ./kindle-tool.nix {};
-
-  screenshot = callPackage ./screenshot {};
-
-  aria2 = callPackage ./aria2.nix { inherit super; };
-
-  cloudflare-ddns = callPackage ./cloudflare-ddns {};
-
-  ufs-utils = callPackage ./ufs-utils.nix {};
-
+  nicpkgs-scaling           = 1;
+  piqueserver               = callPackage ./piqueserver {};
+  terraria-server           = callPackage ./terraria-server.nix {};
+  armake2                   = callPackage ./armake2.nix {};
+  mdbook-epub               = callPackage ./mdbook-epub.nix {};
+  rust-reference            = callPackage ./rust-reference.nix {};
+  rust-async-book           = callPackage ./rust-async-book.nix {};
+  wayland-book              = callPackage ./wayland-book {};
+  lilypondbot               = callPackage ./lilypondbot {};
+  kindle-tool               = callPackage ./kindle-tool.nix {};
+  screenshot                = callPackage ./screenshot {};
+  aria2                     = callPackage ./aria2.nix { inherit super; };
+  cloudflare-ddns           = callPackage ./cloudflare-ddns {};
+  ufs-utils                 = callPackage ./ufs-utils.nix {};
   rime-table-bin-decompiler = callPackage ./rime-table-bin-decompiler.nix {};
-
-  lean-doc = callPackage ./lean-doc.nix {};
-
-  helix-doc = callPackage ./helix-doc {};
-
-  alchitry-lab = callPackage ./alchitry-lab.nix {};
-
-  InsydeImageExtractor = callPackage ./InsydeImageExtractor.nix {};
-
-  flowerss-bot = callPackage ./flowerss-bot.nix {};
-
-  pandoc-static = callPackage ./pandoc-static.nix {};
-
-  mirai-console-loader = callPackage ./mirai-console-loader.nix {};
-
-  matrix-qq = callPackage ./matrix-qq.nix {};
-
-  factorio-headless = callPackage ./factorio-headless {};
-
-  factorio-bot =
+  lean-doc                  = callPackage ./lean-doc.nix {};
+  helix-doc                 = callPackage ./helix-doc {};
+  alchitry-lab              = callPackage ./alchitry-lab.nix {};
+  InsydeImageExtractor      = callPackage ./InsydeImageExtractor.nix {};
+  flowerss-bot              = callPackage ./flowerss-bot.nix {};
+  pandoc-static             = callPackage ./pandoc-static.nix {};
+  mirai-console-loader      = callPackage ./mirai-console-loader.nix {};
+  matrix-qq                 = callPackage ./matrix-qq.nix {};
+  factorio-headless         = callPackage ./factorio-headless {};
+  factorio-bot              =
     let flake = builtins.getFlake "github:MidyMidy-Factorio/midymidy-factorio-webservice/880ebae6c941c06454c6f3f732b723596d3c9b35"; in
     (flake.overlays.default self super).midymidy-factorio-webservice;
-
-  fvckbot =
+  fvckbot                   =
     let flake = builtins.getFlake "github:nicball/fvckbot/61022c520ed573e2906dd505fed9af4cf1eb0542"; in
     (flake.overlays.default self super).fvckbot;
-
-  wiwikwlh = callPackage ./wiwikwlh.nix {};
-
-  transfersh = callPackage ./transfersh.nix {};
-
-  rust-rfcs = callPackage ./rust-rfcs.nix {};
-
-  rescript-language-server = callPackage ./rescript-language-server.nix {};
-
-  monaco-ttf = callPackage ./monaco-ttf {};
-
-  libjit = callPackage ./libjit.nix {};
-
-  adaptive-cpp = callPackage ./adaptive-cpp.nix {};
-
-  opencl-benchmark = callPackage ./opencl-benchmark.nix {};
-
-  kakounePlugins = lib.recurseIntoAttrs (callPackage ./kakoune-plugins { inherit super; });
-
-  hexcore-link = callPackage ./hexcore-link.nix {};
-
-  nutstore-client = callPackage ./nutstore-client.nix {};
-
-  nutstore-nautilus = callPackage ./nutstore-nautilus.nix {};
-
-  zen-browser = callPackage ./zen-browser {};
-
-  uudeck = callPackage ./uudeck.nix {};
-
-  torrent-file-editor = qt6Packages.callPackage ./torrent-file-editor.nix {};
-
-  obinskit = callPackage ./obinskit.nix {};
-
-  mautrix-telegram = callPackage ./mautrix-telegram.nix {};
-
-  waybar = callPackage ./waybar { inherit super; };
-
-  pi-skills = lib.recurseIntoAttrs (callPackage ./pi-skills {});
-
-  qq = callPackage ./qq.nix { inherit super; };
-
-  kitty = callPackage ./kitty { inherit super; };
-
-  dunst = callPackage ./dunst { inherit super; };
-
-  fish = callPackage ./fish.nix { inherit super; };
-
-  kakoune = callPackage ./kakoune { inherit super; };
-
-  rofi = callPackage ./rofi { inherit super; };
-
-  pi-web = callPackage ./pi-web {};
-
-  pi-coding-agent = callPackage ./pi-coding-agent.nix {};
-
+  wiwikwlh                  = callPackage ./wiwikwlh.nix {};
+  transfersh                = callPackage ./transfersh.nix {};
+  rust-rfcs                 = callPackage ./rust-rfcs.nix {};
+  rescript-language-server  = callPackage ./rescript-language-server.nix {};
+  monaco-ttf                = callPackage ./monaco-ttf {};
+  libjit                    = callPackage ./libjit.nix {};
+  adaptive-cpp              = callPackage ./adaptive-cpp.nix {};
+  opencl-benchmark          = callPackage ./opencl-benchmark.nix {};
+  kakounePlugins            = lib.recurseIntoAttrs (callPackage ./kakoune-plugins { inherit super; });
+  hexcore-link              = callPackage ./hexcore-link.nix {};
+  nutstore-client           = callPackage ./nutstore-client.nix {};
+  nutstore-nautilus         = callPackage ./nutstore-nautilus.nix {};
+  zen-browser               = callPackage ./zen-browser {};
+  uudeck                    = callPackage ./uudeck.nix {};
+  torrent-file-editor       = qt6Packages.callPackage ./torrent-file-editor.nix {};
+  obinskit                  = callPackage ./obinskit.nix {};
+  mautrix-telegram          = callPackage ./mautrix-telegram.nix {};
+  waybar                    = callPackage ./waybar { inherit super; };
+  pi-skills                 = lib.recurseIntoAttrs (callPackage ./pi-skills {});
+  qq                        = callPackage ./qq.nix { inherit super; };
+  kitty                     = callPackage ./kitty { inherit super; };
+  dunst                     = callPackage ./dunst { inherit super; };
+  fish                      = callPackage ./fish.nix { inherit super; };
+  kakoune                   = callPackage ./kakoune { inherit super; };
+  rofi                      = callPackage ./rofi { inherit super; };
+  pi-web                    = callPackage ./pi-web {};
+  pi-coding-agent           = callPackage ./pi-coding-agent.nix {};
+  instaepub                 = <nicpkgs>.inputs.instaepub.packages.${self.stdenv.hostPlatform.system}.instaepub;
 }

@@ -1,7 +1,9 @@
-{ nv-sources, stdenv, pkg-config, zlib, libarchive, nettle }:
+{ stdenv, pkg-config, zlib, libarchive, nettle }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.kindle-tool; in
 
 stdenv.mkDerivation {
-  inherit (nv-sources.kindle-tool) pname version src;
+  inherit (nv) pname version src;
   nativeBuildInputs = [ pkg-config ];
   buildInputs = [ zlib libarchive nettle ];
   makeFlags = [

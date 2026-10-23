@@ -1,8 +1,10 @@
-{ stdenv, nv-sources, mdbook-epub }:
+{ stdenv, mdbook-epub }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.rust-reference; in
 
 stdenv.mkDerivation {
-  inherit (nv-sources.rust-reference) pname src;
-  version = "unstable-${nv-sources.rust-reference.date}";
+  inherit (nv) pname src;
+  version = "unstable-${nv.date}";
   dontConfigure = true;
   dontBuild = true;
   nativeBuildInputs = [ mdbook-epub ];

@@ -1,10 +1,8 @@
-{ nicpkgs }:
-
 { lib, config, ... }:
 
 {
   imports = [
-    (import ./overlay.nix { overlay = nicpkgs.overlays.default; })
+    (import-with-brackets ./overlay.nix)
     ./window-managers.nix
     ./greetd.nix
     ./backlight.nix
@@ -29,7 +27,7 @@
       };
       nix.registry.nicpkgs.to = {
         type = "path";
-        path = nicpkgs.outPath;
+        path = <nicpkgs>.outPath;
       };
     })
     (lib.mkIf config.nic.cachix {

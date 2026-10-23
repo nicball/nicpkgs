@@ -1,7 +1,9 @@
-{ lib, buildGoModule, nv-sources, olm }:
+{ lib, buildGoModule, stdenv, olm }:
+
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.matrix-qq; in
 
 buildGoModule {
-  inherit (nv-sources.matrix-qq) pname version src;
+  inherit (nv) pname version src;
   buildInputs = [ olm ];
   vendorHash = "sha256-VLlW178B1a2mEwEb/aLZFYPVdC9hzQzI1gen+M8pg1I=";
 }

@@ -1,13 +1,14 @@
 { stdenv
-, nv-sources
 , haskellPackages
 , pandoc
 , glibcLocales
 }:
 
+let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.wiwikwlh; in
+
 stdenv.mkDerivation {
-  inherit (nv-sources.wiwikwlh) pname src;
-  version = "unstable-${nv-sources.wiwikwlh.date}";
+  inherit (nv) pname src;
+  version = "unstable-${nv.date}";
   nativeBuildInputs = [ (haskellPackages.ghcWithPackages (p: [ p.pandoc ])) pandoc ];
   LOCALE_ARCHIVE = "${glibcLocales}/lib/locale/locale-archive";
   buildPhase = ''

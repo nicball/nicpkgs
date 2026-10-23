@@ -1,5 +1,4 @@
 { lib
-, nv-sources
 , fetchurl
 , buildNpmPackage
 , fetchFromGitHub
@@ -12,7 +11,8 @@
 }:
 
 let
-  version = lib.removePrefix "v" nv-sources.pi-coding-agent.version;
+  nv = <nicpkgs>.nv-sources.${stdenvNoCC.hostPlatform.system}.pi-coding-agent;
+  version = lib.removePrefix "v" nv.version;
   model-data = fetchurl {
     url = "https://registry.npmjs.org/@earendil-works/pi-ai/-/pi-ai-${version}.tgz";
     hash = "sha256-U0PhY5vzQ73DNE3zrWwxwFpQtoutB6xrzhCJDUtrimE=";
@@ -20,7 +20,7 @@ let
 in
 
 buildNpmPackage {
-  inherit (nv-sources.pi-coding-agent) pname src;
+  inherit (nv) pname src;
   inherit version;
   npmDepsHash = "sha256-+gFyvrhkCsF99oNvs0gBmLXnDW0hWnZI/wFId7UbI6Q=";
   npmWorkspace = "packages/coding-agent";

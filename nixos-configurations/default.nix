@@ -1,6 +1,4 @@
-{ nicpkgs }:
-
 {
-  desktop = import ./desktop { inherit nicpkgs; };
-  nuc = import ./nuc { inherit nicpkgs; };
+  desktop = import-with-brackets ./desktop;
+  nuc = import-with-brackets ./nuc;
 }
