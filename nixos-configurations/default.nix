@@ -1,4 +1,5 @@
 {
-  desktop = import-with-brackets ./desktop;
-  nuc = import-with-brackets ./nuc;
+  desktop = import ./desktop;
+  nuc = import ./nuc;
+  wsl-work = import ./wsl-work;
 }

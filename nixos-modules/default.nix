@@ -2,7 +2,7 @@
 
 {
   imports = [
-    (import-with-brackets ./overlay.nix)
+    (import ./overlay.nix)
     ./window-managers.nix
     ./greetd.nix
     ./backlight.nix
