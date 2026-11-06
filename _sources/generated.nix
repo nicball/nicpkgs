@@ -87,40 +87,40 @@
   };
   pandoc-static-amd64 = {
     pname = "pandoc-static-amd64";
-    version = "3.12.1";
+    version = "3.13";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.12.1/pandoc-3.12.1-linux-amd64.tar.gz";
-      sha256 = "sha256-gMPn2RJ2bbF9ReWX4t4t5rle6YllQjtjrYJJ5wR/RBs=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.13/pandoc-3.13-linux-amd64.tar.gz";
+      sha256 = "sha256-FVd6u1Ss+hO1jVovSQ4pwFZu/8465RMlv6Cxe9i6eUQ=";
     };
   };
   pandoc-static-arm64 = {
     pname = "pandoc-static-arm64";
-    version = "3.12.1";
+    version = "3.13";
     src = fetchTarball {
-      url = "https://github.com/jgm/pandoc/releases/download/3.12.1/pandoc-3.12.1-linux-arm64.tar.gz";
-      sha256 = "sha256-gBXWZscdlsnt4sF1+e+ZNj+A3dG3InEllvSBsziMkkw=";
+      url = "https://github.com/jgm/pandoc/releases/download/3.13/pandoc-3.13-linux-arm64.tar.gz";
+      sha256 = "sha256-hYWuEs4V3wPtlPjzxJs95EKXdmkJF61rpuOCpGSBeAY=";
     };
   };
   pi-coding-agent = {
     pname = "pi-coding-agent";
-    version = "v1.3.0";
+    version = "v1.5.0";
     src = fetchFromGitHub {
       owner = "earendil-works";
       repo = "pi";
-      rev = "v1.3.0";
+      rev = "v1.5.0";
       fetchSubmodules = false;
-      sha256 = "sha256-AsutbwnjiwwLkB5tqLW+1GdGZyLmXsU0W+SNdNhJu7U=";
+      sha256 = "sha256-eH3RuypmXeayuZ9lEag6KW3m2LSM4bDc4ogyHxjZMNI=";
     };
   };
   pi-web = {
     pname = "pi-web";
-    version = "v0.12.2";
+    version = "v0.15.0";
     src = fetchFromGitHub {
       owner = "agegr";
       repo = "pi-web";
-      rev = "v0.12.2";
+      rev = "v0.15.0";
       fetchSubmodules = false;
-      sha256 = "sha256-3SLxCRZVFYie1Ux73KlGCACFpJt2xaKTXc8eAdxPFy4=";
+      sha256 = "sha256-EUa1w0HP5J45yNRGYLtP401q+mjyRjcq9FWhy+++wxk=";
     };
   };
   piqueserver = {
@@ -168,39 +168,39 @@
   };
   rust-async-book = {
     pname = "rust-async-book";
-    version = "43891cedf954e991657ba97c2e3ba743d97827ce";
+    version = "840327a2e8ea30644b2a6c8940d467183a17c43d";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "async-book";
-      rev = "43891cedf954e991657ba97c2e3ba743d97827ce";
+      rev = "840327a2e8ea30644b2a6c8940d467183a17c43d";
       fetchSubmodules = false;
-      sha256 = "sha256-Wi3DGbwHfKAjqn0lyICrm7BoSIzU2HI4M/O0ww+QMGw=";
+      sha256 = "sha256-tBVVgFcrzsSPilUnVsinJgApvbWrHmc+xlGL/lgNPso=";
     };
-    date = "2026-05-25";
+    date = "2026-10-21";
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "2dafab96d919d6ab2884488e970bf95610ff83eb";
+    version = "a2ae66d7037cbedac68746b9510b24cc34b96d69";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "2dafab96d919d6ab2884488e970bf95610ff83eb";
+      rev = "a2ae66d7037cbedac68746b9510b24cc34b96d69";
       fetchSubmodules = false;
-      sha256 = "sha256-oa+sIcuxpKnr0hWO4W7GGPecGoUbl47PUOCRAL9mI+M=";
+      sha256 = "sha256-cNuaw7PIjdgN5BAFVQIfstShwvQO5GShx6uXB8iASP8=";
     };
-    date = "2026-10-13";
+    date = "2026-11-04";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
-    version = "d2705ad64ba47e812a2b6b19d6f613fb4c14c5e0";
+    version = "3bdcd22feea6848a7920fa06d17ad4c6ada9db89";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "rfcs";
-      rev = "d2705ad64ba47e812a2b6b19d6f613fb4c14c5e0";
+      rev = "3bdcd22feea6848a7920fa06d17ad4c6ada9db89";
       fetchSubmodules = false;
-      sha256 = "sha256-ZF1ye2DDBU9v8KcsyWlQHYjnXE62gjWckbva1YCWBNc=";
+      sha256 = "sha256-WhbF7KGYX2Kby7k9UUotq3tQv62aObrWxH5q1ULH+gk=";
     };
-    date = "2026-10-05";
+    date = "2026-11-01";
   };
   torrent-file-editor = {
     pname = "torrent-file-editor";
@@ -237,15 +237,15 @@
   };
   waybar = {
     pname = "waybar";
-    version = "4e207a0cb51a9eb89b4245d90245721f5e39bf06";
+    version = "f49ec82e2d296f033b081fd36d12297795b017dc";
     src = fetchFromGitHub {
       owner = "Alexays";
       repo = "waybar";
-      rev = "4e207a0cb51a9eb89b4245d90245721f5e39bf06";
+      rev = "f49ec82e2d296f033b081fd36d12297795b017dc";
       fetchSubmodules = false;
-      sha256 = "sha256-0L1elPWYo9yKgEwpXWWVWQyPVU0SW36LkWUR26CksgU=";
+      sha256 = "sha256-qxqnXm27fDAlXXGAVXg/0Se8U7fMkCEgpRpD1QTr01M=";
     };
-    date = "2026-10-11";
+    date = "2026-11-05";
   };
   wayland-book = {
     pname = "wayland-book";

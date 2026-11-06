@@ -15,14 +15,14 @@ let
   version = lib.removePrefix "v" nv.version;
   model-data = fetchurl {
     url = "https://registry.npmjs.org/@earendil-works/pi-ai/-/pi-ai-${version}.tgz";
-    hash = "sha256-U0PhY5vzQ73DNE3zrWwxwFpQtoutB6xrzhCJDUtrimE=";
+    hash = "sha256-4yD+e9K5J3grqaN9NW/lg38aqWpGQyYQ4bO5zLdI6lw=";
   };
 in
 
 buildNpmPackage {
   inherit (nv) pname src;
   inherit version;
-  npmDepsHash = "sha256-+gFyvrhkCsF99oNvs0gBmLXnDW0hWnZI/wFId7UbI6Q=";
+  npmDepsHash = "sha256-koVd02HEhEAOkcvIuUg4X1A6P6P0B+wJp4DJLwkH62w=";
   npmWorkspace = "packages/coding-agent";
   npmRebuildFlags = [ "--ignore-scripts" ];
   nativeBuildInputs = [
