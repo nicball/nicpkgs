@@ -11,6 +11,7 @@ inputs.nixpkgs.lib.nixosSystem rec {
     ./services.nix
     ./intel.nix
     ../common.nix
+    ../common/network.nix
     ({ ... }: { networking.hostName = "nixos-nuc"; })
   ];
 }

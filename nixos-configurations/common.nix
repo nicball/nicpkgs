@@ -4,7 +4,6 @@
   imports = [
     ./common/passwords.nix
     ./common/misc-software.nix
-    ./common/network.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;

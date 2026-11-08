@@ -5,6 +5,8 @@
   # KDE
   services.desktopManager.plasma6.enable = true;
   services.displayManager.plasma-login-manager.enable = true;
+  networking.networkmanager.enable = true;
+  users.users.nicball.extraGroups = [ "networkmanager" ];
 
   # nic.window-managers = {
   #   enable = true;
@@ -83,8 +85,8 @@
   # Prefer Simplified Chinese Fonts
   fonts.fontconfig = {
     defaultFonts = {
-      serif = [ "Noto Serif CJK SC" "DejaVu Serif" ];
-      sansSerif = [ "Noto Sans CJK SC" "DejaVu Sans" ];
+      serif = [ "Noto Serif" "Noto Serif CJK SC" "DejaVu Serif" ];
+      sansSerif = [ "Noto Sans" "Noto Sans CJK SC" "DejaVu Sans" ];
       monospace = [ "DejaVu Sans Mono" "Noto Sans Mono" "Noto Sans CJK SC" ];
     };
     localConf = ''
@@ -93,13 +95,6 @@
       <fontconfig>
         <alias>
           <family>Noto Sans</family>
-          <prefer>
-            <family>Noto Sans</family>
-            <family>Noto Sans CJK SC</family>
-          </prefer>
-        </alias>
-        <alias>
-          <family>system-ui</family>
           <prefer>
             <family>Noto Sans</family>
             <family>Noto Sans CJK SC</family>
