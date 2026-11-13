@@ -7,6 +7,7 @@
     ./greetd.nix
     ./backlight.nix
     ./hexcore-link.nix
+    ./keychron.nix
     ./clash.nix
     ./amd.nix
     ./intel.nix

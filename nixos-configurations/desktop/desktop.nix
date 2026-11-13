@@ -44,6 +44,7 @@
 
   # Keyboard driver
   nic.hexcore-link.enable = true;
+  nic.keychron.enable = true;
 
   # kde-connect
   # programs.kdeconnect.enable = true;
