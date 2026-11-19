@@ -5,7 +5,7 @@ let nv = <nicpkgs>.nv-sources.${stdenv.hostPlatform.system}.mautrix-telegram; in
 buildGoModule rec {
   inherit (nv) pname version src;
   buildInputs = [ olm ];
-  vendorHash = "sha256-JbnlJnCtIKC3rpO2mBa7DvEFeWuq9tpvN9H+MoQ5VV0=";
+  vendorHash = "sha256-byvTXR7gy6b/TIVfJ8bwMC/D9vqn6iwjoxBE1gkBNBc=";
   ldflags = [
     "-s"
     "-w"
