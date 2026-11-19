@@ -60,6 +60,7 @@
       git-crypt
       pi-coding-agent
       kakoune
+      podman-compose
       # (agda.withPackages (p: [ p.standard-library ]))
 
       # i3

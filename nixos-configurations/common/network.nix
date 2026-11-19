@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   networking = {
@@ -22,6 +22,7 @@
       pskRaw = "ext:cain";
       # extraConfig = "bssid=F4:2A:7D:D3:3B:95";
     };
+    # CMCC-f6m3.pskRaw = "ext:cmcc-f6m3";
     # "226" = { psk = "226226226"; };
     "android-oneplusace" = { pskRaw = "ext:android_oneplusace"; };
     ustc-guest = {};

@@ -58,6 +58,11 @@ in
 {
   # imports = [ ./factorio.nix ];
 
+  networking.dhcpcd.extraConfig = ''
+    interface eno1
+      inform 192.168.0.42/24
+  '';
+
   systemd.services.owncast = make-service {
     description = "owncast streaming website";
     dir = "owncast";
@@ -70,6 +75,8 @@ in
     settings = {
       PasswordAuthentication = false;
       X11Forwarding = true;
+      AllowTcpForwarding = true;
+      GatewayPorts = "clientspecified";
     };
   };
 
@@ -345,7 +352,7 @@ in
     enable = true;
     settings = {
       processor.concurrency = 4;
-      log.level = "warning";
+      log.level = "critical";
       http_server.local_address = ":8888";
       dht_server.port = 6799;
     };
