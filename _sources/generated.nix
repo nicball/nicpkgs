@@ -103,24 +103,24 @@
   };
   pi-coding-agent = {
     pname = "pi-coding-agent";
-    version = "v1.5.2";
+    version = "v1.6.0";
     src = fetchFromGitHub {
       owner = "earendil-works";
       repo = "pi";
-      rev = "v1.5.2";
+      rev = "v1.6.0";
       fetchSubmodules = false;
-      sha256 = "sha256-0dKtABQqfvCLF0WOydu5rpycMqC+N8Pc9Ex4BWKElyw=";
+      sha256 = "sha256-UVQnOMYikjxi7JREcxPZh/Uamy0l4rBvhawHR/MZZgo=";
     };
   };
   pi-web = {
     pname = "pi-web";
-    version = "v0.17.0";
+    version = "v0.18.0";
     src = fetchFromGitHub {
       owner = "agegr";
       repo = "pi-web";
-      rev = "v0.17.0";
+      rev = "v0.18.0";
       fetchSubmodules = false;
-      sha256 = "sha256-OLQ9RzT7/OMV7x4AO5BuEqk8WvqbTwzB6yeaoUQRid8=";
+      sha256 = "sha256-Dl8cgjULhdc5dNeIxexOe7oMaxIZqF0Kv0JGa9AFt7A=";
     };
   };
   piqueserver = {
@@ -180,15 +180,15 @@
   };
   rust-reference = {
     pname = "rust-reference";
-    version = "c9cc32825b03fc206d9c6fe73e9ca6a2f3576d6c";
+    version = "b122dbbf524f95f75fd2cc2966fe26bd37aa8b04";
     src = fetchFromGitHub {
       owner = "rust-lang";
       repo = "reference";
-      rev = "c9cc32825b03fc206d9c6fe73e9ca6a2f3576d6c";
+      rev = "b122dbbf524f95f75fd2cc2966fe26bd37aa8b04";
       fetchSubmodules = false;
-      sha256 = "sha256-fTolJFNHpNmZ86TrRS/VEWzhIe+9autP4dj17nrCJf0=";
+      sha256 = "sha256-zVhCLYSodd6wubb2n1J6qV9lk+YJZ20MDPjvZ4mjZmc=";
     };
-    date = "2026-11-17";
+    date = "2026-11-25";
   };
   rust-rfcs = {
     pname = "rust-rfcs";
